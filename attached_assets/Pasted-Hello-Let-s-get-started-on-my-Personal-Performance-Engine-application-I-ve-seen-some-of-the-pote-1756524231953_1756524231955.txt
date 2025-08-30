@@ -1,0 +1,20 @@
+Hello! Let's get started on my "Personal Performance Engine" application. I've seen some of the potential features you can build, and I want to confirm that we will implement all of them.
+Project Vision & Core Features:
+My goal is to create a full-featured fitness application. Please build the app to include all of the following key features you previously suggested:
+ * Advanced workout logging with RIR tracking.
+ * AI-powered fitness coaching via Gemini.
+ * Nutrition tracking with macro counting.
+ * Body metrics logging and progress charts.
+ * Offline-first design for gym environments.
+Core Architecture Requirements:
+To ensure the application is secure, scalable, and robust, we must build it using the following architecture. This is a strict requirement.
+ * Hosting & Framework: The application is a Vite front-end that will be deployed on Vercel.
+ * Authentication: User accounts will be managed by Firebase Authentication using Google Sign-In.
+ * Backend Logic (for AI): All sensitive API calls must be handled by Vercel Serverless Functions. The "AI-powered fitness coaching" feature must use a serverless function (e.g., at /api/generateWorkout) to securely call the Google Gemini API. The API key must never be exposed on the front-end.
+ * Database: All user data (profiles, workouts, nutrition, metrics) must be stored in a Cloud Firestore database to ensure data is saved and can be synced across devices.
+Development Plan:
+Please begin development by following these steps in order:
+ * Set up the Foundation: First, implement the core architecture. This means creating the Vercel Serverless Function endpoint for the AI calls and establishing the connection to our Cloud Firestore database.
+ * Implement Workout Logging: Once the foundation is in place, build the complete feature for "Advanced workout logging," including the UI and the Firestore functions to save and retrieve the data.
+ * Implement the Remaining Features: After workout logging is complete, proceed to build the other core features (Nutrition, Body Metrics, etc.) one by one.
+Please confirm you understand this project plan. Let's start with Step 1: Setting up the Vercel Serverless Function and the Cloud Firestore connection.
