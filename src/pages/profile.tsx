@@ -1,12 +1,15 @@
+import { useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { useTheme } from '../components/theme-provider'
 import { Button } from '../components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
-import { User, Moon, Sun, LogOut } from 'lucide-react'
+import { User, Moon, Sun, LogOut, ChevronRight, Settings, Download, Trash2, HelpCircle, MessageCircle, FileText, Scale } from 'lucide-react'
 
-export default function ProfilePage() {
+export default function SettingsPage() {
   const { user, logout, signInWithGoogle } = useAuth()
   const { theme, setTheme } = useTheme()
+
+  const [measurementUnit, setMeasurementUnit] = useState('lbs')
 
   if (!user) {
     return (
@@ -35,9 +38,9 @@ export default function ProfilePage() {
           {/* Main Content Card */}
           <Card className="bg-slate-800/80 border-slate-700/50 shadow-2xl backdrop-blur-xl">
             <CardContent className="p-8 text-center space-y-6">
-              <h2 className="text-2xl font-bold text-white">Profile</h2>
+              <h2 className="text-2xl font-bold text-white">Settings</h2>
               <p className="text-slate-300 text-base leading-relaxed">
-                Please sign in to view your profile
+                Please sign in to access your settings
               </p>
               <Button 
                 onClick={signInWithGoogle} 
@@ -74,6 +77,10 @@ export default function ProfilePage() {
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
+  const handleMeasurementToggle = () => {
+    setMeasurementUnit(measurementUnit === 'lbs' ? 'kg' : 'lbs')
+  }
+
   // Get user initials for fallback avatar
   const getInitials = (name: string | null) => {
     if (!name) return 'U'
@@ -85,19 +92,67 @@ export default function ProfilePage() {
       .slice(0, 2)
   }
 
+  // Format member since date
+  const getMemberSinceDate = () => {
+    if (user?.metadata?.creationTime) {
+      const creationDate = new Date(user.metadata.creationTime)
+      return creationDate.toLocaleDateString('en-US', { 
+        month: 'long', 
+        year: 'numeric' 
+      })
+    }
+    return 'Recently'
+  }
+
+  // Settings list item component
+  const SettingsItem = ({ icon: Icon, title, subtitle, action, showToggle = false, toggleState = false, showChevron = true }: {
+    icon: any
+    title: string
+    subtitle?: string
+    action?: () => void
+    showToggle?: boolean
+    toggleState?: boolean
+    showChevron?: boolean
+  }) => (
+    <div 
+      className="flex items-center justify-between p-4 hover:bg-muted/50 transition-colors cursor-pointer"
+      onClick={action}
+    >
+      <div className="flex items-center gap-3">
+        <Icon className="w-5 h-5 text-muted-foreground" />
+        <div>
+          <p className="font-medium">{title}</p>
+          {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
+        </div>
+      </div>
+      
+      {showToggle ? (
+        <button
+          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+            toggleState ? 'bg-primary' : 'bg-gray-200 dark:bg-gray-700'
+          }`}
+        >
+          <span
+            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+              toggleState ? 'translate-x-6' : 'translate-x-1'
+            }`}
+          />
+        </button>
+      ) : showChevron ? (
+        <ChevronRight className="w-5 h-5 text-muted-foreground" />
+      ) : null}
+    </div>
+  )
+
   return (
     <div className="container mx-auto p-4 space-y-6 pb-24">
-      <h1 className="text-2xl font-bold pt-4">My Profile</h1>
+      <h1 className="text-2xl font-bold pt-4">Settings</h1>
       
-      {/* User Information Card */}
+      {/* User Header */}
       <Card>
-        <CardHeader>
-          <CardTitle>Account Information</CardTitle>
-          <CardDescription>Your profile details from Google</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="p-6">
           <div className="flex items-center gap-4">
-            {/* Custom Avatar Component */}
+            {/* User Avatar */}
             <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20">
               {user.photoURL ? (
                 <img 
@@ -113,54 +168,110 @@ export default function ProfilePage() {
             </div>
             <div>
               <p className="font-semibold text-lg">{user.displayName}</p>
-              <p className="text-sm text-muted-foreground">{user.email}</p>
+              <p className="text-sm text-muted-foreground">Member since {getMemberSinceDate()}</p>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Settings Card */}
+      {/* Account Settings Section */}
       <Card>
         <CardHeader>
-          <CardTitle>Settings</CardTitle>
-          <CardDescription>Customize your app experience</CardDescription>
+          <CardTitle>Account Settings</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
-          {/* Dark Theme Toggle */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              {theme === 'dark' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
-              <div>
-                <p className="font-medium">Dark Theme</p>
-                <p className="text-sm text-muted-foreground">Toggle dark mode appearance</p>
-              </div>
-            </div>
-            {/* Custom Toggle Switch */}
-            <button
-              onClick={handleThemeToggle}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-                theme === 'dark' ? 'bg-primary' : 'bg-gray-200 dark:bg-gray-700'
-              }`}
-            >
-              <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  theme === 'dark' ? 'translate-x-6' : 'translate-x-1'
-                }`}
-              />
-            </button>
+        <CardContent className="p-0">
+          <div className="divide-y">
+            <SettingsItem
+              icon={User}
+              title="My Profile & Account"
+              subtitle="View and edit your profile information"
+              action={() => {/* Placeholder */}}
+            />
+            <SettingsItem
+              icon={theme === 'dark' ? Moon : Sun}
+              title="Dark Mode"
+              subtitle="Toggle dark mode appearance"
+              action={handleThemeToggle}
+              showToggle={true}
+              toggleState={theme === 'dark'}
+              showChevron={false}
+            />
+            <SettingsItem
+              icon={Scale}
+              title="Measurement Units"
+              subtitle={`Currently using ${measurementUnit}`}
+              action={handleMeasurementToggle}
+              showToggle={true}
+              toggleState={measurementUnit === 'kg'}
+              showChevron={false}
+            />
           </div>
+        </CardContent>
+      </Card>
 
-          {/* Sign Out Button */}
-          <div className="pt-4 border-t">
-            <Button 
-              variant="destructive" 
-              onClick={logout}
-              className="w-full flex items-center gap-2"
-            >
-              <LogOut className="w-4 h-4" />
-              Sign Out
-            </Button>
+      {/* Data Management Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Data Management</CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <div className="divide-y">
+            <SettingsItem
+              icon={Download}
+              title="Data Export"
+              subtitle="Download your fitness data"
+              action={() => {/* Placeholder */}}
+            />
+            <SettingsItem
+              icon={Trash2}
+              title="Account & Data Deletion"
+              subtitle="Permanently delete your account and data"
+              action={() => {/* Placeholder */}}
+            />
           </div>
+        </CardContent>
+      </Card>
+
+      {/* Support Section */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Support</CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <div className="divide-y">
+            <SettingsItem
+              icon={HelpCircle}
+              title="Help Center"
+              subtitle="Get help and find answers"
+              action={() => {/* Placeholder */}}
+            />
+            <SettingsItem
+              icon={MessageCircle}
+              title="Contact Us"
+              subtitle="Get in touch with our support team"
+              action={() => {/* Placeholder */}}
+            />
+            <SettingsItem
+              icon={FileText}
+              title="Legal"
+              subtitle="Privacy policy and terms of service"
+              action={() => {/* Placeholder */}}
+            />
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Sign Out Button */}
+      <Card>
+        <CardContent className="p-6">
+          <Button 
+            variant="destructive" 
+            onClick={logout}
+            className="w-full flex items-center gap-2 h-12"
+          >
+            <LogOut className="w-5 h-5" />
+            Sign Out
+          </Button>
         </CardContent>
       </Card>
     </div>
