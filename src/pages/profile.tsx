@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { useTheme } from '../components/theme-provider'
 import { Button } from '../components/ui/button'
@@ -9,16 +9,22 @@ export default function SettingsPage() {
   const { user, logout, signInWithGoogle } = useAuth()
   const { theme, setTheme } = useTheme()
 
-  const [measurementUnit, setMeasurementUnit] = useState('lbs')
+  const [measurementUnit, setMeasurementUnit] = useState(() => {
+    return localStorage.getItem('measurementUnit') || 'lbs'
+  })
+
+  useEffect(() => {
+    localStorage.setItem('measurementUnit', measurementUnit)
+  }, [measurementUnit])
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <div className="min-h-screen flex items-center justify-center p-6">
         <div className="w-full max-w-md text-center space-y-8">
           {/* Branded Logo */}
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <div className="w-20 h-20 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-2xl shadow-cyan-500/30">
+              <div className="w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-2xl flex items-center justify-center shadow-2xl">
                 {/* Stylized heartbeat/pulse logo */}
                 <svg 
                   className="w-10 h-10 text-white" 
@@ -31,20 +37,20 @@ export default function SettingsPage() {
                 </svg>
               </div>
               {/* Glowing effect */}
-              <div className="absolute inset-0 w-20 h-20 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-2xl blur-xl opacity-30 animate-pulse"></div>
+              <div className="absolute inset-0 w-20 h-20 bg-gradient-to-br from-primary to-primary/80 rounded-2xl blur-xl opacity-30 animate-pulse"></div>
             </div>
           </div>
 
           {/* Main Content Card */}
-          <Card className="bg-slate-800/80 border-slate-700/50 shadow-2xl backdrop-blur-xl">
+          <Card>
             <CardContent className="p-8 text-center space-y-6">
-              <h2 className="text-2xl font-bold text-white">Settings</h2>
-              <p className="text-slate-300 text-base leading-relaxed">
+              <h2 className="text-2xl font-bold">Settings</h2>
+              <p className="text-muted-foreground text-base leading-relaxed">
                 Please sign in to access your settings
               </p>
               <Button 
                 onClick={signInWithGoogle} 
-                className="w-full h-12 text-base font-semibold bg-slate-700 hover:bg-slate-600 text-white border-2 border-cyan-400/50 hover:border-cyan-400 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-xl hover:shadow-cyan-400/20" 
+                className="w-full h-12 text-base font-semibold transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]" 
                 size="lg"
               >
                 <svg className="w-5 h-5 mr-3" viewBox="0 0 24 24">
@@ -56,7 +62,7 @@ export default function SettingsPage() {
                 Continue with Google
               </Button>
               
-              <p className="text-center text-sm text-slate-400 mt-6">
+              <p className="text-center text-sm text-muted-foreground mt-6">
                 Secure authentication powered by Google
               </p>
             </CardContent>
@@ -64,7 +70,7 @@ export default function SettingsPage() {
 
           {/* Subtle brand footer */}
           <div className="text-center">
-            <p className="text-slate-500 text-sm">
+            <p className="text-muted-foreground text-sm">
               Elevate your fitness journey with smart technology
             </p>
           </div>
@@ -161,7 +167,7 @@ export default function SettingsPage() {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <div className="w-full h-full bg-primary/10 flex items-center justify-center text-primary font-semibold">
+                <div className="w-full h-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-white font-semibold">
                   {getInitials(user.displayName)}
                 </div>
               )}
