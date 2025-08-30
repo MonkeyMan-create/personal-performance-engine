@@ -80,7 +80,7 @@ Focus on practical, actionable advice for gym performance.`;
       }
     });
 
-    const analysis: WorkoutAnalysis = JSON.parse(result.text);
+    const analysis: WorkoutAnalysis = JSON.parse(result.text || '{}');
     
     return response.status(200).json(analysis);
   } catch (error) {

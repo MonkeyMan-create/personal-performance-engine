@@ -1,242 +1,77 @@
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { useTheme } from "@/components/theme-provider";
-import { Moon, Sun, Dumbbell, Utensils, Trophy, Play } from "lucide-react";
-import { LocalStorageService, WorkoutData, MealData } from "@/lib/localStorage";
-import { useLocation } from "wouter";
+import { useAuth } from '../contexts/AuthContext'
+import { Button } from '../components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
+import { Activity, Target, TrendingUp, Zap } from 'lucide-react'
 
-export default function Home() {
-  const { theme, toggleTheme } = useTheme();
-  const [, setLocation] = useLocation();
-  const [activeWorkout, setActiveWorkout] = useState<WorkoutData | null>(null);
-  const [todaysMeals, setTodaysMeals] = useState<MealData[]>([]);
-  const [weeklyStats, setWeeklyStats] = useState({ workouts: 0, calories: 0 });
+export default function HomePage() {
+  const { user, signInWithGoogle } = useAuth()
 
-  useEffect(() => {
-    // Load data
-    const workout = LocalStorageService.getActiveWorkout();
-    setActiveWorkout(workout);
-
-    const meals = LocalStorageService.getMeals(new Date());
-    setTodaysMeals(meals);
-
-    // Calculate weekly stats
-    const workouts = LocalStorageService.getWorkouts();
-    const weekAgo = new Date();
-    weekAgo.setDate(weekAgo.getDate() - 7);
-    
-    const weeklyWorkouts = workouts.filter(w => 
-      w.startTime >= weekAgo && w.isCompleted
-    ).length;
-
-    const totalCalories = meals.reduce((sum, meal) => sum + (meal.calories || 0), 0);
-
-    setWeeklyStats({ workouts: weeklyWorkouts, calories: totalCalories });
-  }, []);
-
-  const currentDate = new Date().toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-
-  const continueWorkout = () => {
-    setLocation('/workouts');
-  };
-
-  const startNewWorkout = () => {
-    setLocation('/workouts');
-  };
+  if (!user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl">Personal Performance Engine</CardTitle>
+            <CardDescription>
+              Track workouts, nutrition, and achieve your fitness goals with AI coaching
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button onClick={signInWithGoogle} className="w-full" size="lg">
+              <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                <path fill="currentColor" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+              </svg>
+              Continue with Google
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-50 glass-effect border-b border-border">
-        <div className="flex items-center justify-between p-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
-              <Dumbbell className="h-4 w-4 text-white" />
-            </div>
-            <h1 className="text-xl font-bold text-foreground">FitTracker Pro</h1>
-          </div>
-          <div className="flex items-center space-x-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-200"
-              data-testid="button-toggle-theme"
-            >
-              {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setLocation('/profile')}
-              className="w-8 h-8 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-sm font-semibold"
-              data-testid="button-profile"
-            >
-              <span>JD</span>
-            </Button>
-          </div>
-        </div>
-      </header>
+    <div className="container mx-auto p-4 space-y-6">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold">Welcome back, {user.displayName?.split(' ')[0]}</h1>
+        <p className="text-muted-foreground mt-2">Ready to crush your fitness goals today?</p>
+      </div>
 
-      {/* Main Content */}
-      <main className="p-4 space-y-4">
-        {/* Today's Overview */}
-        <section className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-foreground">Today's Overview</h2>
-            <span className="text-sm text-muted-foreground">{currentDate}</span>
-          </div>
+      <div className="grid grid-cols-2 gap-4">
+        <Card className="border-primary/20">
+          <CardContent className="p-4 text-center">
+            <Activity className="w-8 h-8 mx-auto mb-2 text-primary" />
+            <h3 className="font-semibold">Quick Workout</h3>
+            <p className="text-sm text-muted-foreground">Log your training</p>
+          </CardContent>
+        </Card>
 
-          {/* Quick Stats Cards */}
-          <div className="grid grid-cols-2 gap-4">
-            <Card className="bg-card border border-border">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground">Workouts</p>
-                    <p className="text-2xl font-bold text-accent" data-testid="text-weekly-workouts">
-                      {weeklyStats.workouts}
-                    </p>
-                  </div>
-                  <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center">
-                    <Trophy className="h-5 w-5 text-accent" />
-                  </div>
-                </div>
-                <p className="text-xs text-muted-foreground mt-2">This week</p>
-              </CardContent>
-            </Card>
+        <Card className="border-green-500/20">
+          <CardContent className="p-4 text-center">
+            <Target className="w-8 h-8 mx-auto mb-2 text-green-500" />
+            <h3 className="font-semibold">Track Nutrition</h3>
+            <p className="text-sm text-muted-foreground">Log your meals</p>
+          </CardContent>
+        </Card>
 
-            <Card className="bg-card border border-border">
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground">Calories</p>
-                    <p className="text-2xl font-bold text-primary" data-testid="text-daily-calories">
-                      {weeklyStats.calories.toLocaleString()}
-                    </p>
-                  </div>
-                  <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-                    <Utensils className="h-5 w-5 text-primary" />
-                  </div>
-                </div>
-                <p className="text-xs text-muted-foreground mt-2">Today</p>
-              </CardContent>
-            </Card>
-          </div>
+        <Card className="border-blue-500/20">
+          <CardContent className="p-4 text-center">
+            <TrendingUp className="w-8 h-8 mx-auto mb-2 text-blue-500" />
+            <h3 className="font-semibold">View Progress</h3>
+            <p className="text-sm text-muted-foreground">See your gains</p>
+          </CardContent>
+        </Card>
 
-          {/* Active Workout Card */}
-          {activeWorkout ? (
-            <Card className="gradient-bg text-white">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-semibold">{activeWorkout.name}</h3>
-                  <Badge className="bg-white/20 text-white border-white/20">
-                    In Progress
-                  </Badge>
-                </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm opacity-90">
-                      {activeWorkout.exercises.length} exercises planned
-                    </p>
-                    <p className="text-lg font-semibold">
-                      Started {new Date(activeWorkout.startTime).toLocaleTimeString([], {
-                        hour: '2-digit',
-                        minute: '2-digit'
-                      })}
-                    </p>
-                  </div>
-                  <Button
-                    onClick={continueWorkout}
-                    className="bg-white text-primary px-4 py-2 rounded-lg font-semibold hover:bg-white/90"
-                    data-testid="button-continue-workout"
-                  >
-                    <Play className="h-4 w-4 mr-2" />
-                    Continue
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          ) : (
-            <Card className="bg-card border border-border">
-              <CardContent className="p-6 text-center">
-                <div className="mb-4">
-                  <Dumbbell className="h-12 w-12 text-muted-foreground mx-auto mb-2" />
-                  <h3 className="text-lg font-semibold text-foreground">Ready for a workout?</h3>
-                  <p className="text-sm text-muted-foreground">Start your fitness journey today</p>
-                </div>
-                <Button
-                  onClick={startNewWorkout}
-                  className="bg-primary text-primary-foreground hover:bg-primary/90"
-                  data-testid="button-start-workout"
-                >
-                  Start New Workout
-                </Button>
-              </CardContent>
-            </Card>
-          )}
-
-          {/* Progress Chart Placeholder */}
-          <Card className="bg-card border border-border">
-            <CardHeader>
-              <CardTitle className="text-lg font-semibold">Weight Progress</CardTitle>
-            </CardHeader>
-            <CardContent className="p-4">
-              <div className="chart-container bg-muted/30 rounded-lg p-4 flex items-center justify-center">
-                <div className="text-center text-muted-foreground">
-                  <Trophy className="h-8 w-8 mx-auto mb-2" />
-                  <p className="text-sm">Progress visualization coming soon</p>
-                  <p className="text-xs">Track your body metrics to see charts</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Recent Meals */}
-          {todaysMeals.length > 0 && (
-            <section className="space-y-3">
-              <h3 className="text-lg font-semibold text-foreground">Today's Nutrition</h3>
-              {todaysMeals.slice(0, 2).map((meal) => (
-                <Card key={meal.id} className="bg-card border border-border">
-                  <CardContent className="p-4 flex items-center space-x-4">
-                    <img
-                      src="https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&h=100"
-                      alt={meal.name}
-                      className="w-16 h-16 rounded-lg object-cover"
-                    />
-                    <div className="flex-1">
-                      <h4 className="font-medium text-foreground">{meal.name}</h4>
-                      <p className="text-sm text-muted-foreground">
-                        {meal.protein}g P • {meal.carbs}g C • {meal.fat}g F
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-semibold text-foreground">{meal.calories}</p>
-                      <p className="text-xs text-muted-foreground">cal</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-              {todaysMeals.length > 2 && (
-                <Button
-                  variant="outline"
-                  onClick={() => setLocation('/nutrition')}
-                  className="w-full"
-                  data-testid="button-view-all-meals"
-                >
-                  View All Meals
-                </Button>
-              )}
-            </section>
-          )}
-        </section>
-      </main>
+        <Card className="border-purple-500/20">
+          <CardContent className="p-4 text-center">
+            <Zap className="w-8 h-8 mx-auto mb-2 text-purple-500" />
+            <h3 className="font-semibold">AI Coaching</h3>
+            <p className="text-sm text-muted-foreground">Get smart advice</p>
+          </CardContent>
+        </Card>
+      </div>
     </div>
-  );
+  )
 }

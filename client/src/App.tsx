@@ -1,62 +1,50 @@
-import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { ThemeProvider } from "@/components/theme-provider";
-import { BottomNavigation } from "@/components/bottom-navigation";
-import { AuthProvider, useAuth } from "@/contexts/AuthContext";
-import { LoginPage } from "@/components/auth/LoginPage";
-import NotFound from "@/pages/not-found";
-import Home from "@/pages/home";
-import Workouts from "@/pages/workouts";
-import Nutrition from "@/pages/nutrition";
-import Progress from "@/pages/progress";
-import Profile from "@/pages/profile";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Router, Route, Switch } from 'wouter'
+import { AuthProvider } from './contexts/AuthContext'
+import { ThemeProvider } from './components/theme-provider'
+import HomePage from './pages/home'
+import WorkoutsPage from './pages/workouts'
+import NutritionPage from './pages/nutrition'
+import ProgressPage from './pages/progress'
+import ProfilePage from './pages/profile'
+import NotFoundPage from './pages/not-found'
+import BottomNavigation from './components/bottom-navigation'
+import { Toaster } from './components/ui/toaster'
 
-function Router() {
-  const { user, loading } = useAuth();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return <LoginPage />;
-  }
-
-  return (
-    <div className="max-w-md mx-auto bg-background min-h-screen relative pb-20">
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/workouts" component={Workouts} />
-        <Route path="/nutrition" component={Nutrition} />
-        <Route path="/progress" component={Progress} />
-        <Route path="/profile" component={Profile} />
-        <Route component={NotFound} />
-      </Switch>
-      <BottomNavigation />
-    </div>
-  );
-}
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 1,
+    },
+  },
+})
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <TooltipProvider>
-          <AuthProvider>
-            <Toaster />
-            <Router />
-          </AuthProvider>
-        </TooltipProvider>
+        <AuthProvider>
+          <Router>
+            <div className="min-h-screen bg-background text-foreground">
+              <main className="pb-16">
+                <Switch>
+                  <Route path="/" component={HomePage} />
+                  <Route path="/workouts" component={WorkoutsPage} />
+                  <Route path="/nutrition" component={NutritionPage} />
+                  <Route path="/progress" component={ProgressPage} />
+                  <Route path="/profile" component={ProfilePage} />
+                  <Route component={NotFoundPage} />
+                </Switch>
+              </main>
+              <BottomNavigation />
+              <Toaster />
+            </div>
+          </Router>
+        </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
-  );
+  )
 }
 
-export default App;
+export default App
