@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus, Play, Clock, CheckCircle } from "lucide-react";
-import { WorkoutLogger } from "@/components/workout-logger";
+import { FirebaseWorkoutLogger } from "@/components/workout/FirebaseWorkoutLogger";
 import { LocalStorageService, WorkoutData, ExerciseData } from "@/lib/localStorage";
 import { DEFAULT_PPL_TEMPLATE } from "@/lib/exercises";
 import { toast } from "@/hooks/use-toast";
@@ -86,7 +86,7 @@ export default function Workouts() {
             Back to Overview
           </Button>
         </div>
-        <WorkoutLogger workoutId={activeWorkout.id} />
+        <FirebaseWorkoutLogger />
       </div>
     );
   }

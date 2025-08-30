@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/generateWorkout.ts": {
+      "runtime": "@vercel/node"
+    }
+  }
+}
