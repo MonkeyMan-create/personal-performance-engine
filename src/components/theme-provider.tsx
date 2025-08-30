@@ -22,13 +22,22 @@ const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
 export function ThemeProvider({
   children,
-  defaultTheme = 'light',
+  defaultTheme = 'dark',
   storageKey = 'vite-ui-theme',
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  )
+  const [theme, setTheme] = useState<Theme>(() => {
+    try {
+      const storedTheme = localStorage.getItem(storageKey)
+      if (storedTheme === 'dark' || storedTheme === 'light' || storedTheme === 'system') {
+        return storedTheme
+      }
+    } catch (error) {
+      // localStorage not available or other error
+      console.warn('Failed to access localStorage for theme:', error)
+    }
+    return defaultTheme
+  })
 
   useEffect(() => {
     const root = window.document.documentElement
@@ -51,7 +60,11 @@ export function ThemeProvider({
   const value = {
     theme,
     setTheme: (newTheme: Theme) => {
-      localStorage.setItem(storageKey, newTheme)
+      try {
+        localStorage.setItem(storageKey, newTheme)
+      } catch (error) {
+        console.warn('Failed to save theme to localStorage:', error)
+      }
       setTheme(newTheme)
     },
   }
