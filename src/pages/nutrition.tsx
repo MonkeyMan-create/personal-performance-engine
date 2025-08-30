@@ -197,7 +197,6 @@ export default function NutritionPage() {
           <p className="text-muted-foreground">No meals logged yet. Start by adding your first meal!</p>
         </CardContent>
       </Card>
-      </div>
     </div>
   )
 }
