@@ -14,22 +14,22 @@ export default function BottomNavigation() {
   const [location] = useLocation()
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="grid grid-cols-5 gap-1 p-2">
+    <nav className="fixed bottom-0 left-0 right-0 border-t border-border/50 bg-card/80 backdrop-blur-xl supports-[backdrop-filter]:bg-card/80 shadow-2xl">
+      <div className="grid grid-cols-5 gap-2 p-4 max-w-md mx-auto">
         {navItems.map(({ href, icon: Icon, label }) => {
           const isActive = location === href
           return (
             <Link key={href} href={href}>
               <div
                 className={cn(
-                  'flex flex-col items-center justify-center p-2 rounded-lg transition-colors',
+                  'flex flex-col items-center justify-center p-3 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95',
                   isActive
-                    ? 'text-primary bg-primary/10'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-accent'
+                    ? 'text-primary bg-primary/15 shadow-md'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-accent/50 hover:shadow-sm'
                 )}
               >
-                <Icon className="w-5 h-5 mb-1" />
-                <span className="text-xs font-medium">{label}</span>
+                <Icon className="w-5 h-5 mb-1.5" />
+                <span className="text-xs font-medium tracking-wide">{label}</span>
               </div>
             </Link>
           )
