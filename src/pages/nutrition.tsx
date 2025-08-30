@@ -94,41 +94,46 @@ export default function NutritionPage() {
   }
 
   return (
-    <div className="container mx-auto p-4 space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">My Nutrition</h1>
-        <Button onClick={() => setShowForm(true)}>
-          <Plus className="w-4 h-4 mr-2" />
-          + Log Meal
-        </Button>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <div className="container mx-auto p-4 space-y-6 pb-24">
+        <div className="flex items-center justify-between pt-4">
+          <h1 className="text-2xl font-bold text-white">My Nutrition</h1>
+          <Button 
+            onClick={() => setShowForm(true)}
+            className="bg-slate-700 hover:bg-slate-600 text-white border border-cyan-400/50 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20"
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            + Log Meal
+          </Button>
+        </div>
 
       {showForm && (
-        <Card>
+        <Card className="bg-slate-800/80 border-slate-700/50 shadow-xl backdrop-blur-xl">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle>Log Meal</CardTitle>
+              <CardTitle className="text-white">Log Meal</CardTitle>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setShowForm(false)}
+                className="text-slate-300 hover:text-white hover:bg-slate-700"
               >
                 <X className="w-4 h-4" />
               </Button>
             </div>
-            <CardDescription>Track your food intake and calories</CardDescription>
+            <CardDescription className="text-slate-300">Track your food intake and calories</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="mealType" className="block text-sm font-medium mb-2">
+                <label htmlFor="mealType" className="block text-sm font-medium mb-2 text-white">
                   Meal Type
                 </label>
                 <select
                   id="mealType"
                   value={mealData.mealType}
                   onChange={(e) => handleInputChange('mealType', e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="w-full p-2 border border-slate-600 bg-slate-700 text-white rounded-md focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400"
                   required
                 >
                   <option value="">Select meal type</option>
@@ -140,7 +145,7 @@ export default function NutritionPage() {
               </div>
 
               <div>
-                <label htmlFor="foodItem" className="block text-sm font-medium mb-2">
+                <label htmlFor="foodItem" className="block text-sm font-medium mb-2 text-white">
                   Food Item
                 </label>
                 <input
@@ -148,14 +153,14 @@ export default function NutritionPage() {
                   id="foodItem"
                   value={mealData.foodItem}
                   onChange={(e) => handleInputChange('foodItem', e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="w-full p-2 border border-slate-600 bg-slate-700 text-white rounded-md focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 placeholder:text-slate-400"
                   placeholder="Enter food item"
                   required
                 />
               </div>
 
               <div>
-                <label htmlFor="calories" className="block text-sm font-medium mb-2">
+                <label htmlFor="calories" className="block text-sm font-medium mb-2 text-white">
                   Calories
                 </label>
                 <input
@@ -163,7 +168,7 @@ export default function NutritionPage() {
                   id="calories"
                   value={mealData.calories}
                   onChange={(e) => handleInputChange('calories', e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-transparent"
+                  className="w-full p-2 border border-slate-600 bg-slate-700 text-white rounded-md focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 placeholder:text-slate-400"
                   placeholder="Enter calories"
                   min="0"
                   required
@@ -171,14 +176,17 @@ export default function NutritionPage() {
               </div>
 
               <div className="flex gap-2 pt-4">
-                <Button type="submit" className="flex-1">
+                <Button 
+                  type="submit" 
+                  className="flex-1 bg-cyan-600 hover:bg-cyan-500 text-white"
+                >
                   Log Meal
                 </Button>
                 <Button
                   type="button"
                   variant="outline"
                   onClick={() => setShowForm(false)}
-                  className="flex-1"
+                  className="flex-1 border-slate-600 text-slate-300 hover:bg-slate-700 hover:text-white"
                 >
                   Cancel
                 </Button>
@@ -188,15 +196,16 @@ export default function NutritionPage() {
         </Card>
       )}
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Today's Meals</CardTitle>
-          <CardDescription>Your logged meals and calories</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground">No meals logged yet. Start by adding your first meal!</p>
-        </CardContent>
-      </Card>
+        <Card className="bg-slate-800/80 border-slate-700/50 shadow-xl backdrop-blur-xl">
+          <CardHeader>
+            <CardTitle className="text-white">Today's Meals</CardTitle>
+            <CardDescription className="text-slate-300">Your logged meals and calories</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-slate-300">No meals logged yet. Start by adding your first meal!</p>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }
