@@ -4,14 +4,17 @@ import { Button } from '../components/ui/button'
 import { Plus } from 'lucide-react'
 
 export default function WorkoutsPage() {
-  const { user } = useAuth()
+  const { user, signInWithGoogle } = useAuth()
 
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
-        <Card>
-          <CardContent className="p-6 text-center">
-            <p>Please sign in to access workouts</p>
+        <Card className="max-w-md">
+          <CardContent className="p-6 text-center space-y-4">
+            <p className="text-lg">Please sign in to view your workouts</p>
+            <Button onClick={signInWithGoogle} className="w-full">
+              Sign In
+            </Button>
           </CardContent>
         </Card>
       </div>
@@ -21,10 +24,10 @@ export default function WorkoutsPage() {
   return (
     <div className="container mx-auto p-4 space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Workouts</h1>
+        <h1 className="text-2xl font-bold">My Workouts</h1>
         <Button>
           <Plus className="w-4 h-4 mr-2" />
-          New Workout
+          + Add Workout
         </Button>
       </div>
 
