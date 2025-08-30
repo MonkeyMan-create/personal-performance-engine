@@ -4,37 +4,37 @@
 
 @layer base {
   :root {
-    /* Light theme - Clean whites and professional grays */
-    --background: 0 0% 100%;
-    --foreground: 215 15% 15%;
+    /* Light theme - Professional off-white with subtle grays */
+    --background: 0 0% 98%;
+    --foreground: 220 13% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 15% 15%;
+    --card-foreground: 220 13% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 15% 15%;
+    --popover-foreground: 220 13% 18%;
 
-    --primary: 213 94% 68%;
+    --primary: 180 98% 31%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 15% 96%;
-    --secondary-foreground: 215 15% 25%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 46%;
 
-    --muted: 210 15% 96%;
-    --muted-foreground: 215 10% 45%;
+    --muted: 220 13% 95%;
+    --muted-foreground: 220 9% 46%;
 
-    --accent: 210 15% 96%;
-    --accent-foreground: 215 15% 25%;
+    --accent: 220 13% 95%;
+    --accent-foreground: 220 9% 34%;
 
-    --destructive: 0 72% 51%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 15% 92%;
-    --input: 210 15% 92%;
-    --ring: 213 94% 68%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 180 98% 31%;
 
-    --chart-1: 213 94% 68%;
-    --chart-2: 200 80% 60%;
+    --chart-1: 180 98% 31%;
+    --chart-2: 173 58% 39%;
     --chart-3: 35 91% 65%;
     --chart-4: 280 65% 60%;
     --chart-5: 320 75% 65%;
@@ -42,43 +42,43 @@
     /* Accent colors for branding */
     --accent-cyan: 180 100% 50%;
     --accent-teal: 173 80% 40%;
-    --brand-primary: 180 100% 50%;
+    --brand-primary: 180 98% 31%;
 
     --radius: 0.75rem;
   }
 
   .dark {
-    /* Dark theme - Professional cool blues and neutral grays */
-    --background: 215 25% 8%;
-    --foreground: 210 15% 96%;
+    /* Dark theme - Professional charcoal with cyan accents */
+    --background: 222 84% 5%;
+    --foreground: 210 40% 98%;
 
-    --card: 215 20% 12%;
-    --card-foreground: 210 15% 94%;
+    --card: 222 84% 7%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 215 20% 12%;
-    --popover-foreground: 210 15% 94%;
+    --popover: 222 84% 7%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 213 94% 68%;
-    --primary-foreground: 215 25% 8%;
+    --primary: 180 98% 31%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 215 15% 18%;
-    --secondary-foreground: 210 15% 90%;
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 80%;
 
-    --muted: 215 15% 15%;
-    --muted-foreground: 210 10% 65%;
+    --muted: 217 32% 14%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 215 15% 18%;
-    --accent-foreground: 210 15% 90%;
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 80%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 210 15% 96%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 85% 97%;
 
-    --border: 215 15% 18%;
-    --input: 215 15% 18%;
-    --ring: 213 94% 68%;
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 180 98% 31%;
 
-    --chart-1: 213 94% 68%;
-    --chart-2: 200 80% 60%;
+    --chart-1: 180 98% 31%;
+    --chart-2: 173 58% 39%;
     --chart-3: 35 91% 65%;
     --chart-4: 280 65% 60%;
     --chart-5: 320 75% 65%;
@@ -86,7 +86,7 @@
     /* Accent colors for branding */
     --accent-cyan: 180 100% 50%;
     --accent-teal: 173 80% 40%;
-    --brand-primary: 180 100% 50%;
+    --brand-primary: 180 98% 31%;
   }
 }
 
