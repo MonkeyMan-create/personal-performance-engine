@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a comprehensive mobile-first fitness tracking application built with React/TypeScript frontend and Express.js backend. The app provides workout logging, nutrition tracking, progress monitoring, and AI-powered coaching features. It uses an offline-first approach with localStorage for data persistence and includes integration with Google's Gemini AI for intelligent coaching and recipe generation.
+This is a comprehensive mobile-first fitness tracking application built with React/TypeScript frontend and Express.js backend. The app provides workout logging, nutrition tracking, progress monitoring, and AI-powered coaching features. It uses an offline-first approach with localStorage for data persistence and includes integration with Google's Gemini AI for intelligent coaching and recipe generation
 
 ## User Preferences
 
