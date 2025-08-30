@@ -122,7 +122,7 @@ export default function SettingsPage() {
   }) => (
     <div 
       className="flex items-center justify-between p-4 hover:bg-muted/50 transition-colors cursor-pointer"
-      onClick={action}
+      onClick={showToggle ? undefined : action}
     >
       <div className="flex items-center gap-3">
         <Icon className="w-5 h-5 text-muted-foreground" />
@@ -134,8 +134,12 @@ export default function SettingsPage() {
       
       {showToggle ? (
         <button
+          onClick={(e) => {
+            e.stopPropagation()
+            action?.()
+          }}
           className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-            toggleState ? 'bg-primary' : 'bg-gray-200 dark:bg-gray-700'
+            toggleState ? 'bg-primary' : 'bg-muted-foreground/30'
           }`}
         >
           <span
