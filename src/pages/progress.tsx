@@ -80,18 +80,19 @@ export default function ProgressPage() {
   }
 
   return (
-    <div className="container mx-auto p-4 space-y-6 pb-24">
-      <h1 className="text-2xl font-bold pt-4">My Progress</h1>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <div className="container mx-auto p-4 space-y-6 pb-24">
+        <h1 className="text-2xl font-bold pt-4 text-slate-900 dark:text-white">My Progress</h1>
 
-      {/* Weight Trend Section */}
-      <Card>
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <TrendingUp className="w-5 h-5 text-primary" />
-            <CardTitle>Weight Trend</CardTitle>
-          </div>
-          <CardDescription>Track your weight changes over time</CardDescription>
-        </CardHeader>
+        {/* Weight Trend Section */}
+        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <TrendingUp className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
+              <CardTitle className="text-slate-900 dark:text-white">Weight Trend</CardTitle>
+            </div>
+            <CardDescription className="text-slate-600 dark:text-slate-300">Track your weight changes over time</CardDescription>
+          </CardHeader>
           <CardContent>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -126,31 +127,32 @@ export default function ProgressPage() {
         </CardContent>
       </Card>
 
-      {/* Workout Consistency Section */}
-      <Card>
-        <CardHeader>
-          <div className="flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-emerald-500" />
-            <CardTitle>Workout Consistency</CardTitle>
-          </div>
-          <CardDescription>Your workout frequency and streaks</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="text-center p-4 bg-muted/30 rounded-lg">
-              <div className="text-2xl font-bold text-primary">12</div>
-              <div className="text-sm text-muted-foreground">Workouts This Month</div>
+        {/* Workout Consistency Section */}
+        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <CardTitle className="text-slate-900 dark:text-white">Workout Consistency</CardTitle>
             </div>
-            <div className="text-center p-4 bg-muted/30 rounded-lg">
-              <div className="text-2xl font-bold text-emerald-500">5</div>
-              <div className="text-sm text-muted-foreground">Current Streak (days)</div>
+            <CardDescription className="text-slate-600 dark:text-slate-300">Your workout frequency and streaks</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="text-center p-4 bg-slate-100/80 dark:bg-slate-700/50 rounded-lg backdrop-blur-sm">
+                <div className="text-2xl font-bold text-cyan-600 dark:text-cyan-400">12</div>
+                <div className="text-sm text-slate-600 dark:text-slate-300">Workouts This Month</div>
+              </div>
+              <div className="text-center p-4 bg-slate-100/80 dark:bg-slate-700/50 rounded-lg backdrop-blur-sm">
+                <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">5</div>
+                <div className="text-sm text-slate-600 dark:text-slate-300">Current Streak (days)</div>
+              </div>
             </div>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            Great consistency! Keep up the momentum to reach your fitness goals.
-          </p>
-        </CardContent>
-      </Card>
+            <p className="text-sm text-slate-600 dark:text-slate-300">
+              Great consistency! Keep up the momentum to reach your fitness goals.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }

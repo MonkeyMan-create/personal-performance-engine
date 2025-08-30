@@ -121,14 +121,14 @@ export default function SettingsPage() {
     showChevron?: boolean
   }) => (
     <div 
-      className="flex items-center justify-between p-4 hover:bg-muted/50 transition-colors cursor-pointer"
+      className="flex items-center justify-between p-4 hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer"
       onClick={showToggle ? undefined : action}
     >
       <div className="flex items-center gap-3">
-        <Icon className="w-5 h-5 text-muted-foreground" />
+        <Icon className="w-5 h-5 text-slate-600 dark:text-slate-400" />
         <div>
-          <p className="font-medium">{title}</p>
-          {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
+          <p className="font-medium text-slate-900 dark:text-white">{title}</p>
+          {subtitle && <p className="text-sm text-slate-600 dark:text-slate-400">{subtitle}</p>}
         </div>
       </div>
       
@@ -138,8 +138,8 @@ export default function SettingsPage() {
             e.stopPropagation()
             action?.()
           }}
-          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-            toggleState ? 'bg-primary' : 'bg-muted-foreground/30'
+          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 ${
+            toggleState ? 'bg-cyan-500' : 'bg-slate-400/30 dark:bg-slate-600/50'
           }`}
         >
           <span
@@ -149,46 +149,47 @@ export default function SettingsPage() {
           />
         </button>
       ) : showChevron ? (
-        <ChevronRight className="w-5 h-5 text-muted-foreground" />
+        <ChevronRight className="w-5 h-5 text-slate-600 dark:text-slate-400" />
       ) : null}
     </div>
   )
 
   return (
-    <div className="container mx-auto p-4 space-y-6 pb-24">
-      <h1 className="text-2xl font-bold pt-4">Settings</h1>
-      
-      {/* User Header */}
-      <Card>
-        <CardContent className="p-6">
-          <div className="flex items-center gap-4">
-            {/* User Avatar */}
-            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20">
-              {user.photoURL ? (
-                <img 
-                  src={user.photoURL} 
-                  alt={user.displayName || 'User'} 
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center text-white font-semibold">
-                  {getInitials(user.displayName)}
-                </div>
-              )}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+      <div className="container mx-auto p-4 space-y-6 pb-24">
+        <h1 className="text-2xl font-bold pt-4 text-slate-900 dark:text-white">Settings</h1>
+        
+        {/* User Header */}
+        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-4">
+              {/* User Avatar */}
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-cyan-400/30">
+                {user.photoURL ? (
+                  <img 
+                    src={user.photoURL} 
+                    alt={user.displayName || 'User'} 
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center text-white font-semibold">
+                    {getInitials(user.displayName)}
+                  </div>
+                )}
+              </div>
+              <div>
+                <p className="font-semibold text-lg text-slate-900 dark:text-white">{user.displayName}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-300">Member since {getMemberSinceDate()}</p>
+              </div>
             </div>
-            <div>
-              <p className="font-semibold text-lg">{user.displayName}</p>
-              <p className="text-sm text-muted-foreground">Member since {getMemberSinceDate()}</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
-      {/* Account Settings Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Account Settings</CardTitle>
-        </CardHeader>
+        {/* Account Settings Section */}
+        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+          <CardHeader>
+            <CardTitle className="text-slate-900 dark:text-white">Account Settings</CardTitle>
+          </CardHeader>
         <CardContent className="p-0">
           <div className="divide-y">
             <SettingsItem
@@ -219,11 +220,11 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      {/* Data Management Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Data Management</CardTitle>
-        </CardHeader>
+        {/* Data Management Section */}
+        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+          <CardHeader>
+            <CardTitle className="text-slate-900 dark:text-white">Data Management</CardTitle>
+          </CardHeader>
         <CardContent className="p-0">
           <div className="divide-y">
             <SettingsItem
@@ -242,11 +243,11 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      {/* Support Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Support</CardTitle>
-        </CardHeader>
+        {/* Support Section */}
+        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+          <CardHeader>
+            <CardTitle className="text-slate-900 dark:text-white">Support</CardTitle>
+          </CardHeader>
         <CardContent className="p-0">
           <div className="divide-y">
             <SettingsItem
@@ -271,19 +272,20 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      {/* Sign Out Button */}
-      <Card>
-        <CardContent className="p-6">
-          <Button 
-            variant="destructive" 
-            onClick={logout}
-            className="w-full flex items-center gap-2 h-12"
-          >
-            <LogOut className="w-5 h-5" />
-            Sign Out
-          </Button>
-        </CardContent>
-      </Card>
+        {/* Sign Out Button */}
+        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+          <CardContent className="p-6">
+            <Button 
+              variant="destructive" 
+              onClick={logout}
+              className="w-full flex items-center gap-2 h-12 bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800"
+            >
+              <LogOut className="w-5 h-5" />
+              Sign Out
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }
