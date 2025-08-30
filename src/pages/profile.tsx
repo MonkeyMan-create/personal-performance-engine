@@ -86,17 +86,16 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <div className="container mx-auto p-4 space-y-6 pb-24">
-        <h1 className="text-2xl font-bold text-white pt-4">My Profile</h1>
-        
-        {/* User Information Card */}
-        <Card className="bg-slate-800/80 border-slate-700/50 shadow-xl backdrop-blur-xl">
-          <CardHeader>
-            <CardTitle className="text-white">Account Information</CardTitle>
-            <CardDescription className="text-slate-300">Your profile details from Google</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
+    <div className="container mx-auto p-4 space-y-6 pb-24">
+      <h1 className="text-2xl font-bold pt-4">My Profile</h1>
+      
+      {/* User Information Card */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Account Information</CardTitle>
+          <CardDescription>Your profile details from Google</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
           <div className="flex items-center gap-4">
             {/* Custom Avatar Component */}
             <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20">
@@ -113,34 +112,34 @@ export default function ProfilePage() {
               )}
             </div>
             <div>
-              <p className="font-semibold text-lg text-white">{user.displayName}</p>
-              <p className="text-sm text-slate-300">{user.email}</p>
+              <p className="font-semibold text-lg">{user.displayName}</p>
+              <p className="text-sm text-muted-foreground">{user.email}</p>
             </div>
           </div>
         </CardContent>
       </Card>
 
-        {/* Settings Card */}
-        <Card className="bg-slate-800/80 border-slate-700/50 shadow-xl backdrop-blur-xl">
-          <CardHeader>
-            <CardTitle className="text-white">Settings</CardTitle>
-            <CardDescription className="text-slate-300">Customize your app experience</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {/* Dark Theme Toggle */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                {theme === 'dark' ? <Moon className="w-5 h-5 text-cyan-400" /> : <Sun className="w-5 h-5 text-cyan-400" />}
-                <div>
-                  <p className="font-medium text-white">Dark Theme</p>
-                  <p className="text-sm text-slate-300">Toggle dark mode appearance</p>
-                </div>
+      {/* Settings Card */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Settings</CardTitle>
+          <CardDescription>Customize your app experience</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          {/* Dark Theme Toggle */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              {theme === 'dark' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+              <div>
+                <p className="font-medium">Dark Theme</p>
+                <p className="text-sm text-muted-foreground">Toggle dark mode appearance</p>
               </div>
+            </div>
             {/* Custom Toggle Switch */}
             <button
               onClick={handleThemeToggle}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-800 ${
-                theme === 'dark' ? 'bg-cyan-600' : 'bg-slate-600'
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+                theme === 'dark' ? 'bg-primary' : 'bg-gray-200 dark:bg-gray-700'
               }`}
             >
               <span
@@ -151,20 +150,19 @@ export default function ProfilePage() {
             </button>
           </div>
 
-            {/* Sign Out Button */}
-            <div className="pt-4 border-t border-slate-600">
-              <Button 
-                variant="destructive" 
-                onClick={logout}
-                className="w-full flex items-center gap-2 bg-red-600 hover:bg-red-500"
-              >
-                <LogOut className="w-4 h-4" />
-                Sign Out
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+          {/* Sign Out Button */}
+          <div className="pt-4 border-t">
+            <Button 
+              variant="destructive" 
+              onClick={logout}
+              className="w-full flex items-center gap-2"
+            >
+              <LogOut className="w-4 h-4" />
+              Sign Out
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   )
 }

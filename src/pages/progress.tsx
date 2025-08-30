@@ -80,19 +80,18 @@ export default function ProgressPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <div className="container mx-auto p-4 space-y-6 pb-24">
-        <h1 className="text-2xl font-bold text-white pt-4">My Progress</h1>
+    <div className="container mx-auto p-4 space-y-6 pb-24">
+      <h1 className="text-2xl font-bold pt-4">My Progress</h1>
 
-        {/* Weight Trend Section */}
-        <Card className="bg-slate-800/80 border-slate-700/50 shadow-xl backdrop-blur-xl">
-          <CardHeader>
-            <div className="flex items-center gap-2">
-              <TrendingUp className="w-5 h-5 text-cyan-400" />
-              <CardTitle className="text-white">Weight Trend</CardTitle>
-            </div>
-            <CardDescription className="text-slate-300">Track your weight changes over time</CardDescription>
-          </CardHeader>
+      {/* Weight Trend Section */}
+      <Card>
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <TrendingUp className="w-5 h-5 text-primary" />
+            <CardTitle>Weight Trend</CardTitle>
+          </div>
+          <CardDescription>Track your weight changes over time</CardDescription>
+        </CardHeader>
           <CardContent>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -109,18 +108,17 @@ export default function ProgressPage() {
                 />
                 <Tooltip 
                   contentStyle={{ 
-                    backgroundColor: '#1e293b',
-                    border: '1px solid #475569',
-                    borderRadius: '8px',
-                    color: '#f1f5f9'
+                    backgroundColor: 'hsl(var(--card))',
+                    border: '1px solid hsl(var(--border))',
+                    borderRadius: '8px'
                   }}
                 />
                 <Line 
                   type="monotone" 
                   dataKey="weight" 
-                  stroke="#22d3ee" 
+                  stroke="hsl(var(--primary))" 
                   strokeWidth={3}
-                  dot={{ fill: '#22d3ee', strokeWidth: 2, r: 4 }}
+                  dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2, r: 4 }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -128,32 +126,31 @@ export default function ProgressPage() {
         </CardContent>
       </Card>
 
-        {/* Workout Consistency Section */}
-        <Card className="bg-slate-800/80 border-slate-700/50 shadow-xl backdrop-blur-xl">
-          <CardHeader>
-            <div className="flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-emerald-400" />
-              <CardTitle className="text-white">Workout Consistency</CardTitle>
+      {/* Workout Consistency Section */}
+      <Card>
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <Calendar className="w-5 h-5 text-emerald-500" />
+            <CardTitle>Workout Consistency</CardTitle>
+          </div>
+          <CardDescription>Your workout frequency and streaks</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="text-center p-4 bg-muted/30 rounded-lg">
+              <div className="text-2xl font-bold text-primary">12</div>
+              <div className="text-sm text-muted-foreground">Workouts This Month</div>
             </div>
-            <CardDescription className="text-slate-300">Your workout frequency and streaks</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-4 bg-slate-700/50 rounded-lg border border-slate-600/30">
-                <div className="text-2xl font-bold text-cyan-400">12</div>
-                <div className="text-sm text-slate-300">Workouts This Month</div>
-              </div>
-              <div className="text-center p-4 bg-slate-700/50 rounded-lg border border-slate-600/30">
-                <div className="text-2xl font-bold text-emerald-400">5</div>
-                <div className="text-sm text-slate-300">Current Streak (days)</div>
-              </div>
+            <div className="text-center p-4 bg-muted/30 rounded-lg">
+              <div className="text-2xl font-bold text-emerald-500">5</div>
+              <div className="text-sm text-muted-foreground">Current Streak (days)</div>
             </div>
-            <p className="text-sm text-slate-300">
-              Great consistency! Keep up the momentum to reach your fitness goals.
-            </p>
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            Great consistency! Keep up the momentum to reach your fitness goals.
+          </p>
+        </CardContent>
+      </Card>
     </div>
   )
 }
