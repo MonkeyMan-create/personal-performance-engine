@@ -1,0 +1,269 @@
+// Local storage functions for guest mode data management
+// These functions ONLY interact with localStorage and are used exclusively in guest mode
+
+// Workout data types for guest mode
+export interface GuestWorkout {
+  id: string
+  date: string
+  exercises: {
+    name: string
+    sets: {
+      weight: number
+      reps: number
+      rir: number // Reps in Reserve
+    }[]
+  }[]
+  duration?: number
+  notes?: string
+}
+
+// Nutrition data types for guest mode  
+export interface GuestMeal {
+  id: string
+  date: string
+  mealType: 'breakfast' | 'lunch' | 'dinner' | 'snack'
+  foodItem: string
+  calories: number
+  protein?: number
+  carbs?: number
+  fat?: number
+}
+
+// Progress data types for guest mode
+export interface GuestProgress {
+  id: string
+  date: string
+  weight?: number
+  bodyFat?: number
+  measurements?: {
+    chest?: number
+    waist?: number
+    hips?: number
+    arms?: number
+    thighs?: number
+  }
+  notes?: string
+}
+
+// Storage keys for guest data
+const GUEST_WORKOUTS_KEY = 'guest_workouts'
+const GUEST_MEALS_KEY = 'guest_meals'
+const GUEST_PROGRESS_KEY = 'guest_progress'
+const GUEST_PREFERENCES_KEY = 'guest_preferences'
+
+// Utility function to safely parse JSON from localStorage
+function parseStorageData<T>(key: string, defaultValue: T): T {
+  try {
+    const data = localStorage.getItem(key)
+    return data ? JSON.parse(data) : defaultValue
+  } catch (error) {
+    console.warn(`Failed to parse ${key} from localStorage:`, error)
+    return defaultValue
+  }
+}
+
+// Utility function to safely save data to localStorage
+function saveStorageData<T>(key: string, data: T): boolean {
+  try {
+    localStorage.setItem(key, JSON.stringify(data))
+    return true
+  } catch (error) {
+    console.error(`Failed to save ${key} to localStorage:`, error)
+    return false
+  }
+}
+
+// ===== WORKOUT FUNCTIONS =====
+
+export function saveWorkoutLocally(workout: Omit<GuestWorkout, 'id'>): string {
+  const workouts = getWorkoutsLocally()
+  const newWorkout: GuestWorkout = {
+    ...workout,
+    id: `workout_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+  }
+  
+  workouts.push(newWorkout)
+  saveStorageData(GUEST_WORKOUTS_KEY, workouts)
+  return newWorkout.id
+}
+
+export function getWorkoutsLocally(): GuestWorkout[] {
+  return parseStorageData<GuestWorkout[]>(GUEST_WORKOUTS_KEY, [])
+}
+
+export function getWorkoutLocally(id: string): GuestWorkout | null {
+  const workouts = getWorkoutsLocally()
+  return workouts.find(workout => workout.id === id) || null
+}
+
+export function updateWorkoutLocally(id: string, updates: Partial<GuestWorkout>): boolean {
+  const workouts = getWorkoutsLocally()
+  const index = workouts.findIndex(workout => workout.id === id)
+  
+  if (index === -1) return false
+  
+  workouts[index] = { ...workouts[index], ...updates, id }
+  return saveStorageData(GUEST_WORKOUTS_KEY, workouts)
+}
+
+export function deleteWorkoutLocally(id: string): boolean {
+  const workouts = getWorkoutsLocally()
+  const filteredWorkouts = workouts.filter(workout => workout.id !== id)
+  return saveStorageData(GUEST_WORKOUTS_KEY, filteredWorkouts)
+}
+
+// ===== NUTRITION FUNCTIONS =====
+
+export function saveMealLocally(meal: Omit<GuestMeal, 'id'>): string {
+  const meals = getMealsLocally()
+  const newMeal: GuestMeal = {
+    ...meal,
+    id: `meal_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+  }
+  
+  meals.push(newMeal)
+  saveStorageData(GUEST_MEALS_KEY, meals)
+  return newMeal.id
+}
+
+export function getMealsLocally(): GuestMeal[] {
+  return parseStorageData<GuestMeal[]>(GUEST_MEALS_KEY, [])
+}
+
+export function getMealsByDateLocally(date: string): GuestMeal[] {
+  const meals = getMealsLocally()
+  return meals.filter(meal => meal.date === date)
+}
+
+export function updateMealLocally(id: string, updates: Partial<GuestMeal>): boolean {
+  const meals = getMealsLocally()
+  const index = meals.findIndex(meal => meal.id === id)
+  
+  if (index === -1) return false
+  
+  meals[index] = { ...meals[index], ...updates, id }
+  return saveStorageData(GUEST_MEALS_KEY, meals)
+}
+
+export function deleteMealLocally(id: string): boolean {
+  const meals = getMealsLocally()
+  const filteredMeals = meals.filter(meal => meal.id !== id)
+  return saveStorageData(GUEST_MEALS_KEY, filteredMeals)
+}
+
+// ===== PROGRESS FUNCTIONS =====
+
+export function saveProgressLocally(progress: Omit<GuestProgress, 'id'>): string {
+  const progressData = getProgressLocally()
+  const newProgress: GuestProgress = {
+    ...progress,
+    id: `progress_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+  }
+  
+  progressData.push(newProgress)
+  saveStorageData(GUEST_PROGRESS_KEY, progressData)
+  return newProgress.id
+}
+
+export function getProgressLocally(): GuestProgress[] {
+  return parseStorageData<GuestProgress[]>(GUEST_PROGRESS_KEY, [])
+}
+
+export function getLatestProgressLocally(): GuestProgress | null {
+  const progressData = getProgressLocally()
+  if (progressData.length === 0) return null
+  
+  return progressData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())[0]
+}
+
+export function updateProgressLocally(id: string, updates: Partial<GuestProgress>): boolean {
+  const progressData = getProgressLocally()
+  const index = progressData.findIndex(progress => progress.id === id)
+  
+  if (index === -1) return false
+  
+  progressData[index] = { ...progressData[index], ...updates, id }
+  return saveStorageData(GUEST_PROGRESS_KEY, progressData)
+}
+
+export function deleteProgressLocally(id: string): boolean {
+  const progressData = getProgressLocally()
+  const filteredProgress = progressData.filter(progress => progress.id !== id)
+  return saveStorageData(GUEST_PROGRESS_KEY, filteredProgress)
+}
+
+// ===== PREFERENCES FUNCTIONS =====
+
+export interface GuestPreferences {
+  measurementUnit: 'lbs' | 'kg'
+  theme: 'light' | 'dark' | 'system'
+  defaultRIR: number
+  goalCalories?: number
+  goalProtein?: number
+  goalCarbs?: number
+  goalFat?: number
+}
+
+export function savePreferencesLocally(preferences: Partial<GuestPreferences>): boolean {
+  const currentPrefs = getPreferencesLocally()
+  const updatedPrefs = { ...currentPrefs, ...preferences }
+  return saveStorageData(GUEST_PREFERENCES_KEY, updatedPrefs)
+}
+
+export function getPreferencesLocally(): GuestPreferences {
+  return parseStorageData<GuestPreferences>(GUEST_PREFERENCES_KEY, {
+    measurementUnit: 'lbs',
+    theme: 'dark',
+    defaultRIR: 2
+  })
+}
+
+// ===== UTILITY FUNCTIONS =====
+
+export function clearAllGuestDataLocally(): boolean {
+  try {
+    localStorage.removeItem(GUEST_WORKOUTS_KEY)
+    localStorage.removeItem(GUEST_MEALS_KEY)
+    localStorage.removeItem(GUEST_PROGRESS_KEY)
+    localStorage.removeItem(GUEST_PREFERENCES_KEY)
+    return true
+  } catch (error) {
+    console.error('Failed to clear guest data:', error)
+    return false
+  }
+}
+
+export function exportGuestDataLocally(): {
+  workouts: GuestWorkout[]
+  meals: GuestMeal[]
+  progress: GuestProgress[]
+  preferences: GuestPreferences
+} {
+  return {
+    workouts: getWorkoutsLocally(),
+    meals: getMealsLocally(),
+    progress: getProgressLocally(),
+    preferences: getPreferencesLocally()
+  }
+}
+
+export function getGuestDataSummaryLocally() {
+  return {
+    totalWorkouts: getWorkoutsLocally().length,
+    totalMeals: getMealsLocally().length,
+    totalProgressEntries: getProgressLocally().length,
+    lastActivity: (() => {
+      const workouts = getWorkoutsLocally()
+      const meals = getMealsLocally()
+      const progress = getProgressLocally()
+      
+      const allDates = [
+        ...workouts.map(w => w.date),
+        ...meals.map(m => m.date),
+        ...progress.map(p => p.date)
+      ].sort().reverse()
+      
+      return allDates[0] || null
+    })()
+  }
+}
