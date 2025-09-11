@@ -269,30 +269,47 @@ export default function HealthConnectionsPage() {
                         </Button>
                       </div>
                     ) : (
-                      <Button
-                        onClick={() => requestPermissions(platform)}
-                        disabled={!platform.available || isLoading || permissionStatus?.denied}
-                        className="w-full bg-slate-700 dark:bg-slate-600 hover:bg-slate-600 dark:hover:bg-slate-500 text-white border-2 border-cyan-400/50 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 disabled:opacity-50"
-                        data-testid={`button-connect-${platform.id}`}
-                      >
-                        {isLoading ? (
-                          <div className="flex items-center gap-2">
-                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                            Requesting Permission...
-                          </div>
-                        ) : permissionStatus?.denied ? (
-                          'Permission Denied'
-                        ) : !platform.available ? (
-                          `Requires ${platform.platform === 'android' ? 'Android' : 'iOS'} Device`
-                        ) : (
-                          `Connect to ${platform.name}`
+                      <div className="space-y-2">
+                        <Button
+                          onClick={() => requestPermissions(platform)}
+                          disabled={!platform.available || isLoading}
+                          className="w-full bg-slate-700 dark:bg-slate-600 hover:bg-slate-600 dark:hover:bg-slate-500 text-white border-2 border-cyan-400/50 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 disabled:opacity-50"
+                          data-testid={`button-connect-${platform.id}`}
+                        >
+                          {isLoading ? (
+                            <div className="flex items-center gap-2">
+                              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                              Requesting Permission...
+                            </div>
+                          ) : !platform.available ? (
+                            `Requires ${platform.platform === 'android' ? 'Android' : 'iOS'} Device`
+                          ) : (
+                            `Connect to ${platform.name}`
+                          )}
+                        </Button>
+                        
+                        {permissionStatus?.denied && (
+                          <Button
+                            onClick={() => {
+                              setPermissionStatuses(prev => ({
+                                ...prev,
+                                [platform.id]: { granted: false, denied: false, requested: false }
+                              }))
+                            }}
+                            variant="outline"
+                            size="sm"
+                            className="w-full text-xs border-amber-300 text-amber-700 hover:bg-amber-50 dark:border-amber-600 dark:text-amber-400 dark:hover:bg-amber-900/20"
+                            data-testid={`button-retry-${platform.id}`}
+                          >
+                            Try Again
+                          </Button>
                         )}
-                      </Button>
+                      </div>
                     )}
                     
                     {permissionStatus?.denied && (
                       <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 text-center">
-                        To retry, you may need to enable permissions in your device settings
+                        Permission was denied. You can try again or check your device settings.
                       </p>
                     )}
                   </div>

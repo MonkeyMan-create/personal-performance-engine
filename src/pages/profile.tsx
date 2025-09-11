@@ -4,7 +4,8 @@ import AuthPrompt from '../components/AuthPrompt'
 import { useTheme } from '../components/theme-provider'
 import { Button } from '../components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
-import { User, Moon, Sun, LogOut, ChevronRight, Settings, Download, Trash2, HelpCircle, MessageCircle, FileText, Scale } from 'lucide-react'
+import { User, Moon, Sun, LogOut, ChevronRight, Settings, Download, Trash2, HelpCircle, MessageCircle, FileText, Scale, Smartphone } from 'lucide-react'
+import { Link } from 'wouter'
 
 export default function SettingsPage() {
   const { user, logout, isGuestMode } = useAuth()
@@ -36,7 +37,7 @@ export default function SettingsPage() {
   }
 
   // Get user initials for fallback avatar
-  const getInitials = (name: string | null) => {
+  const getInitials = (name: string | null | undefined) => {
     if (!name) return 'U'
     return name
       .split(' ')
@@ -179,6 +180,18 @@ export default function SettingsPage() {
           </CardHeader>
         <CardContent className="p-0">
           <div className="divide-y">
+            <Link href="/health-connections">
+              <div className="flex items-center justify-between p-4 hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer">
+                <div className="flex items-center gap-3">
+                  <Smartphone className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                  <div>
+                    <p className="font-medium text-slate-900 dark:text-white">Health Data Connections</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-300">Connect Google Health & Apple HealthKit</p>
+                  </div>
+                </div>
+                <ChevronRight className="w-4 h-4 text-slate-400" />
+              </div>
+            </Link>
             <SettingsItem
               icon={Download}
               title="Data Export"
