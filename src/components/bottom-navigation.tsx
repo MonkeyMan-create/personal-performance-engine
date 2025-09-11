@@ -14,34 +14,31 @@ const navItems = [
 export default function BottomNavigation() {
   const [location, setLocation] = useLocation()
 
-  // Custom navigation handler to control history behavior
+  // Custom navigation handler with precise routing logic
   const handleNavigation = (href: string, event: React.MouseEvent) => {
     event.preventDefault()
     
-    const isNavigatingToHome = href === '/'
-    const isCurrentlyOnHome = location === '/'
-    const isMainPage = ['/workouts', '/nutrition', '/progress', '/profile'].includes(href)
-    const isCurrentlyOnMainPage = ['/workouts', '/nutrition', '/progress', '/profile'].includes(location)
+    // Define base route and main pages
+    const BASE_ROUTE = '/'
+    const MAIN_PAGES = ['/workouts', '/nutrition', '/progress', '/profile']
     
-    if (isNavigatingToHome) {
-      // Always use normal navigation to home (pushState)
-      setLocation(href)
-    } else if (isMainPage) {
-      if (isCurrentlyOnHome) {
-        // Navigating from home to main page - use normal navigation (pushState)
-        setLocation(href)
-      } else if (isCurrentlyOnMainPage) {
-        // Navigating from main page to another main page - use replaceState
-        // This ensures the previous main page is replaced in history
-        window.history.replaceState(null, '', href)
-        setLocation(href)
-      } else {
-        // Default case - use normal navigation
-        setLocation(href)
-      }
-    } else {
-      // Default case for any other navigation
-      setLocation(href)
+    const isCurrentlyOnBase = location === BASE_ROUTE
+    const isCurrentlyOnMainPage = MAIN_PAGES.includes(location)
+    const isNavigatingToMainPage = MAIN_PAGES.includes(href)
+    
+    // Rule 1: FROM Dashboard TO main page = NEW history entry (pushState)
+    if (isCurrentlyOnBase && isNavigatingToMainPage) {
+      setLocation(href) // Creates new history entry
+    }
+    // Rule 2: BETWEEN main pages = REPLACE current history entry (replaceState)
+    else if (isCurrentlyOnMainPage && isNavigatingToMainPage) {
+      window.history.replaceState(null, '', href)
+      // Force wouter to recognize the URL change without adding to history
+      window.dispatchEvent(new PopStateEvent('popstate'))
+    }
+    // Rule 3: All other navigation (including back to Dashboard) = normal navigation
+    else {
+      setLocation(href) // Uses normal pushState behavior
     }
   }
 
