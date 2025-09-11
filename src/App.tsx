@@ -13,6 +13,7 @@ const NutritionPage = React.lazy(() => import('./pages/nutrition'))
 const ProgressPage = React.lazy(() => import('./pages/progress'))
 const ProfilePage = React.lazy(() => import('./pages/profile'))
 const HealthConnectionsPage = React.lazy(() => import('./pages/health-connections'))
+const MissionModelPage = React.lazy(() => import('./pages/mission-model'))
 const NotFoundPage = React.lazy(() => import('./pages/not-found'))
 
 const queryClient = new QueryClient({
@@ -63,6 +64,7 @@ function App() {
                     <Route path="/progress" component={ProgressPage} />
                     <Route path="/profile" component={ProfilePage} />
                     <Route path="/health-connections" component={HealthConnectionsPage} />
+                    <Route path="/mission" component={MissionModelPage} />
                     <Route component={NotFoundPage} />
                   </Switch>
                 </Suspense>
