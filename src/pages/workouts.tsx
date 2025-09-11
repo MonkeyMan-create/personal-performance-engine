@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import AuthPrompt from '../components/AuthPrompt'
+import WorkoutTemplateSelector from '../components/WorkoutTemplateSelector'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button'
-import { Plus, X, Minus, Save, Trash2 } from 'lucide-react'
+import { Plus, X, Minus, Save, Trash2, Zap } from 'lucide-react'
 import { saveWorkoutLocally, getWorkoutsLocally, GuestWorkout } from '../utils/guestStorage'
 
 interface ExerciseForm {
@@ -24,6 +25,7 @@ interface WorkoutForm {
 export default function WorkoutsPage() {
   const { user, isGuestMode } = useAuth()
   const [showForm, setShowForm] = useState(false)
+  const [showTemplateSelector, setShowTemplateSelector] = useState(false)
   const [workouts, setWorkouts] = useState<GuestWorkout[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [workoutForm, setWorkoutForm] = useState<WorkoutForm>({
@@ -194,19 +196,35 @@ export default function WorkoutsPage() {
     }
   }
 
+  const handleTemplateSelection = (templateForm: WorkoutForm) => {
+    setWorkoutForm(templateForm)
+    setShowForm(true)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         <div className="flex items-center justify-between pt-4">
           <h1 className="text-2xl font-bold text-slate-900 dark:text-white">My Workouts</h1>
-          <Button 
-            onClick={() => setShowForm(true)}
-            className="bg-slate-700 dark:bg-slate-600 hover:bg-slate-600 dark:hover:bg-slate-500 text-white border-2 border-cyan-400/50 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20"
-            data-testid="button-add-workout"
-          >
-            <Plus className="w-4 h-4 mr-2" />
-            + Add Workout
-          </Button>
+          <div className="flex gap-2">
+            <Button 
+              onClick={() => setShowTemplateSelector(true)}
+              variant="outline"
+              className="border-cyan-400/50 text-cyan-600 hover:bg-cyan-50 dark:text-cyan-400 dark:hover:bg-cyan-900/20 dark:border-cyan-600"
+              data-testid="button-use-template"
+            >
+              <Zap className="w-4 h-4 mr-2" />
+              Use Template
+            </Button>
+            <Button 
+              onClick={() => setShowForm(true)}
+              className="bg-slate-700 dark:bg-slate-600 hover:bg-slate-600 dark:hover:bg-slate-500 text-white border-2 border-cyan-400/50 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20"
+              data-testid="button-add-workout"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Custom Workout
+            </Button>
+          </div>
         </div>
 
         {showForm && (
@@ -407,6 +425,13 @@ export default function WorkoutsPage() {
             </CardContent>
           </Card>
         )}
+
+        {/* Template Selector */}
+        <WorkoutTemplateSelector
+          isOpen={showTemplateSelector}
+          onClose={() => setShowTemplateSelector(false)}
+          onSelectTemplate={handleTemplateSelection}
+        />
 
         {/* Workouts List */}
         <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
