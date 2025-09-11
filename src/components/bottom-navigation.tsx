@@ -1,3 +1,4 @@
+import React from 'react'
 import { Link, useLocation } from 'wouter'
 import { Home, Dumbbell, Apple, TrendingUp, User } from 'lucide-react'
 import { cn } from '../lib/utils'
@@ -11,7 +12,38 @@ const navItems = [
 ]
 
 export default function BottomNavigation() {
-  const [location] = useLocation()
+  const [location, setLocation] = useLocation()
+
+  // Custom navigation handler to control history behavior
+  const handleNavigation = (href: string, event: React.MouseEvent) => {
+    event.preventDefault()
+    
+    const isNavigatingToHome = href === '/'
+    const isCurrentlyOnHome = location === '/'
+    const isMainPage = ['/workouts', '/nutrition', '/progress', '/profile'].includes(href)
+    const isCurrentlyOnMainPage = ['/workouts', '/nutrition', '/progress', '/profile'].includes(location)
+    
+    if (isNavigatingToHome) {
+      // Always use normal navigation to home (pushState)
+      setLocation(href)
+    } else if (isMainPage) {
+      if (isCurrentlyOnHome) {
+        // Navigating from home to main page - use normal navigation (pushState)
+        setLocation(href)
+      } else if (isCurrentlyOnMainPage) {
+        // Navigating from main page to another main page - use replaceState
+        // This ensures the previous main page is replaced in history
+        window.history.replaceState(null, '', href)
+        setLocation(href)
+      } else {
+        // Default case - use normal navigation
+        setLocation(href)
+      }
+    } else {
+      // Default case for any other navigation
+      setLocation(href)
+    }
+  }
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 border-t border-border/50 bg-card/80 backdrop-blur-xl supports-[backdrop-filter]:bg-card/80 shadow-2xl">
@@ -19,7 +51,12 @@ export default function BottomNavigation() {
         {navItems.map(({ href, icon: Icon, label }) => {
           const isActive = location === href
           return (
-            <Link key={href} href={href}>
+            <a 
+              key={href} 
+              href={href}
+              onClick={(e) => handleNavigation(href, e)}
+              className="cursor-pointer"
+            >
               <div
                 className={cn(
                   'flex flex-col items-center justify-center p-3 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 relative',
@@ -41,7 +78,7 @@ export default function BottomNavigation() {
                   <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-full shadow-sm animate-pulse"></div>
                 )}
               </div>
-            </Link>
+            </a>
           )
         })}
       </div>
