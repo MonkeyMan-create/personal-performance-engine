@@ -98,7 +98,10 @@ const WorkoutLogScreen: React.FC = () => {
 
       {/* 1-Tap Logging Button */}
       <div className="p-6 pt-0">
-        <button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg py-4 rounded-xl shadow-lg transition-colors active:bg-emerald-800">
+        <button 
+          onClick={() => alert('Set Logged!')}
+          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-lg py-4 rounded-xl shadow-lg transition-colors active:bg-emerald-800"
+        >
           Log Set ✔
         </button>
       </div>
