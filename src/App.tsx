@@ -1,13 +1,17 @@
 import React, { Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Router, Route, Switch } from 'wouter'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 import { ThemeProvider } from './components/theme-provider'
 import BottomNavigation from './components/bottom-navigation'
 import { Toaster } from './components/ui/toaster'
 
-// Code-splitting: Dynamic imports using React.lazy()
-const HomePage = React.lazy(() => import('./pages/home'))
+// Import the new screen components
+import HomeScreen from './components/HomeScreen'
+import NutritionLogScreen from './components/NutritionLogScreen'
+import WorkoutLogScreen from './components/WorkoutLogScreen'
+
+// Original pages for other routes
 const WorkoutsPage = React.lazy(() => import('./pages/workouts'))
 const NutritionPage = React.lazy(() => import('./pages/nutrition'))
 const ProgressPage = React.lazy(() => import('./pages/progress'))
@@ -56,18 +60,49 @@ function App() {
           <Router>
             <div className="min-h-screen bg-background text-foreground">
               <main className="pb-16">
-                <Suspense fallback={<PageLoadingFallback />}>
-                  <Switch>
-                    <Route path="/" component={HomePage} />
-                    <Route path="/workouts" component={WorkoutsPage} />
-                    <Route path="/nutrition" component={NutritionPage} />
-                    <Route path="/progress" component={ProgressPage} />
-                    <Route path="/profile" component={ProfilePage} />
-                    <Route path="/health-connections" component={HealthConnectionsPage} />
-                    <Route path="/mission" component={MissionModelPage} />
-                    <Route component={NotFoundPage} />
-                  </Switch>
-                </Suspense>
+                <Routes>
+                  {/* New routing structure for the screen components */}
+                  <Route path="/" element={<HomeScreen />} />
+                  <Route path="/log-nutrition" element={<NutritionLogScreen />} />
+                  <Route path="/log-workout" element={<WorkoutLogScreen />} />
+                  
+                  {/* Keep existing routes for other functionality */}
+                  <Route path="/workouts" element={
+                    <Suspense fallback={<PageLoadingFallback />}>
+                      <WorkoutsPage />
+                    </Suspense>
+                  } />
+                  <Route path="/nutrition" element={
+                    <Suspense fallback={<PageLoadingFallback />}>
+                      <NutritionPage />
+                    </Suspense>
+                  } />
+                  <Route path="/progress" element={
+                    <Suspense fallback={<PageLoadingFallback />}>
+                      <ProgressPage />
+                    </Suspense>
+                  } />
+                  <Route path="/profile" element={
+                    <Suspense fallback={<PageLoadingFallback />}>
+                      <ProfilePage />
+                    </Suspense>
+                  } />
+                  <Route path="/health-connections" element={
+                    <Suspense fallback={<PageLoadingFallback />}>
+                      <HealthConnectionsPage />
+                    </Suspense>
+                  } />
+                  <Route path="/mission" element={
+                    <Suspense fallback={<PageLoadingFallback />}>
+                      <MissionModelPage />
+                    </Suspense>
+                  } />
+                  <Route path="*" element={
+                    <Suspense fallback={<PageLoadingFallback />}>
+                      <NotFoundPage />
+                    </Suspense>
+                  } />
+                </Routes>
               </main>
               <BottomNavigation />
               <Toaster />

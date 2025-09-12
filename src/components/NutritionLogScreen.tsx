@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const NutritionLogScreen: React.FC = () => {
+  const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('Search')
 
   const tabs = ['Search', 'My Meals', 'Recipes']
@@ -18,7 +20,7 @@ const NutritionLogScreen: React.FC = () => {
         
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 pt-8">
-          <button className="p-2">
+          <button onClick={() => navigate('/')} className="p-2">
             {/* Back Arrow Icon (Heroicons) */}
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const WorkoutLogScreen: React.FC = () => {
+  const navigate = useNavigate()
   // State for input values - simulating smart pre-filling for first set
   const [sets, setSets] = useState([
     { weight: '100', reps: '8' }, // Pre-filled from previous
@@ -19,7 +21,7 @@ const WorkoutLogScreen: React.FC = () => {
       <div className="flex-1">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 pt-8">
-          <button className="p-2">
+          <button onClick={() => navigate('/')} className="p-2">
             {/* Back Arrow Icon (Heroicons) */}
             <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />

@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const HomeScreen: React.FC = () => {
+  const navigate = useNavigate()
   // Hardcoded values as requested
   const consumed = 1200
   const budget = 2500
@@ -52,10 +54,16 @@ const HomeScreen: React.FC = () => {
 
         {/* Main Action Buttons */}
         <div className="grid grid-cols-2 gap-4">
-          <button className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg transition-all duration-200 transform hover:scale-105">
+          <button 
+            onClick={() => navigate('/log-nutrition')}
+            className="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg transition-all duration-200 transform hover:scale-105"
+          >
             + Log Meal
           </button>
-          <button className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg transition-all duration-200 transform hover:scale-105">
+          <button 
+            onClick={() => navigate('/log-workout')}
+            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg transition-all duration-200 transform hover:scale-105"
+          >
             + Log Workout
           </button>
         </div>
