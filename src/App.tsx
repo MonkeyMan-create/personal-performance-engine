@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
+import { AppStateProvider } from './contexts/AppStateContext'
 import { ThemeProvider } from './components/theme-provider'
 import BottomNavigation from './components/bottom-navigation'
 import { Toaster } from './components/ui/toaster'
@@ -57,57 +58,59 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <AuthProvider>
-          <Router>
-            <div className="min-h-screen bg-background text-foreground">
-              <main className="pb-16">
-                <Routes>
-                  {/* New routing structure for the screen components */}
-                  <Route path="/" element={<HomeScreen />} />
-                  <Route path="/log-nutrition" element={<NutritionLogScreen />} />
-                  <Route path="/log-workout" element={<WorkoutLogScreen />} />
-                  
-                  {/* Keep existing routes for other functionality */}
-                  <Route path="/workouts" element={
-                    <Suspense fallback={<PageLoadingFallback />}>
-                      <WorkoutsPage />
-                    </Suspense>
-                  } />
-                  <Route path="/nutrition" element={
-                    <Suspense fallback={<PageLoadingFallback />}>
-                      <NutritionPage />
-                    </Suspense>
-                  } />
-                  <Route path="/progress" element={
-                    <Suspense fallback={<PageLoadingFallback />}>
-                      <ProgressPage />
-                    </Suspense>
-                  } />
-                  <Route path="/profile" element={
-                    <Suspense fallback={<PageLoadingFallback />}>
-                      <ProfilePage />
-                    </Suspense>
-                  } />
-                  <Route path="/health-connections" element={
-                    <Suspense fallback={<PageLoadingFallback />}>
-                      <HealthConnectionsPage />
-                    </Suspense>
-                  } />
-                  <Route path="/mission" element={
-                    <Suspense fallback={<PageLoadingFallback />}>
-                      <MissionModelPage />
-                    </Suspense>
-                  } />
-                  <Route path="*" element={
-                    <Suspense fallback={<PageLoadingFallback />}>
-                      <NotFoundPage />
-                    </Suspense>
-                  } />
-                </Routes>
-              </main>
-              <BottomNavigation />
-              <Toaster />
-            </div>
-          </Router>
+          <AppStateProvider>
+            <Router>
+              <div className="min-h-screen bg-background text-foreground">
+                <main className="pb-16">
+                  <Routes>
+                    {/* New routing structure for the screen components */}
+                    <Route path="/" element={<HomeScreen />} />
+                    <Route path="/log-nutrition" element={<NutritionLogScreen />} />
+                    <Route path="/log-workout" element={<WorkoutLogScreen />} />
+                    
+                    {/* Keep existing routes for other functionality */}
+                    <Route path="/workouts" element={
+                      <Suspense fallback={<PageLoadingFallback />}>
+                        <WorkoutsPage />
+                      </Suspense>
+                    } />
+                    <Route path="/nutrition" element={
+                      <Suspense fallback={<PageLoadingFallback />}>
+                        <NutritionPage />
+                      </Suspense>
+                    } />
+                    <Route path="/progress" element={
+                      <Suspense fallback={<PageLoadingFallback />}>
+                        <ProgressPage />
+                      </Suspense>
+                    } />
+                    <Route path="/profile" element={
+                      <Suspense fallback={<PageLoadingFallback />}>
+                        <ProfilePage />
+                      </Suspense>
+                    } />
+                    <Route path="/health-connections" element={
+                      <Suspense fallback={<PageLoadingFallback />}>
+                        <HealthConnectionsPage />
+                      </Suspense>
+                    } />
+                    <Route path="/mission" element={
+                      <Suspense fallback={<PageLoadingFallback />}>
+                        <MissionModelPage />
+                      </Suspense>
+                    } />
+                    <Route path="*" element={
+                      <Suspense fallback={<PageLoadingFallback />}>
+                        <NotFoundPage />
+                      </Suspense>
+                    } />
+                  </Routes>
+                </main>
+                <BottomNavigation />
+                <Toaster />
+              </div>
+            </Router>
+          </AppStateProvider>
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
