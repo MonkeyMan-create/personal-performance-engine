@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const HomeScreen: React.FC = () => {
   const navigate = useNavigate()
-  // Hardcoded values as requested
-  const consumed = 1200
-  const budget = 2500
-  const remaining = budget - consumed
-  const progressPercentage = (consumed / budget) * 100
+  
+  // State variables for dynamic calorie tracking
+  const [caloriesConsumed, setCaloriesConsumed] = useState(1200)
+  const [calorieBudget, setCalorieBudget] = useState(2500)
+  
+  // Calculate derived values
+  const remaining = calorieBudget - caloriesConsumed
+  const progressPercentage = (caloriesConsumed / calorieBudget) * 100
 
   return (
     <div className="min-h-screen bg-[#1A1A1A] font-sans">
@@ -65,6 +68,16 @@ const HomeScreen: React.FC = () => {
             className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg transition-all duration-200 transform hover:scale-105"
           >
             + Log Workout
+          </button>
+        </div>
+
+        {/* Test Button for State Management */}
+        <div className="flex justify-center">
+          <button
+            onClick={() => setCaloriesConsumed(prev => prev + 100)}
+            className="bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-200"
+          >
+            Add 100 kcal
           </button>
         </div>
 
