@@ -2,17 +2,12 @@ import React, { Suspense } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
-import { AppStateProvider } from './contexts/AppStateContext'
 import { ThemeProvider } from './components/theme-provider'
 import BottomNavigation from './components/bottom-navigation'
 import { Toaster } from './components/ui/toaster'
 
-// Import the new screen components
-import HomeScreen from './components/HomeScreen'
-import NutritionLogScreen from './components/NutritionLogScreen'
-import WorkoutLogScreen from './components/WorkoutLogScreen'
-
-// Original pages for other routes
+// Original pages
+const HomePage = React.lazy(() => import('./pages/home'))
 const WorkoutsPage = React.lazy(() => import('./pages/workouts'))
 const NutritionPage = React.lazy(() => import('./pages/nutrition'))
 const ProgressPage = React.lazy(() => import('./pages/progress'))
@@ -58,17 +53,15 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <AuthProvider>
-          <AppStateProvider>
             <Router>
               <div className="min-h-screen bg-background text-foreground">
                 <main className="pb-16">
                   <Routes>
-                    {/* New routing structure for the screen components */}
-                    <Route path="/" element={<HomeScreen />} />
-                    <Route path="/log-nutrition" element={<NutritionLogScreen />} />
-                    <Route path="/log-workout" element={<WorkoutLogScreen />} />
-                    
-                    {/* Keep existing routes for other functionality */}
+                    <Route path="/" element={
+                      <Suspense fallback={<PageLoadingFallback />}>
+                        <HomePage />
+                      </Suspense>
+                    } />
                     <Route path="/workouts" element={
                       <Suspense fallback={<PageLoadingFallback />}>
                         <WorkoutsPage />
@@ -110,7 +103,6 @@ function App() {
                 <Toaster />
               </div>
             </Router>
-          </AppStateProvider>
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
