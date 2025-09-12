@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAppState } from '../contexts/AppStateContext'
 
 const NutritionLogScreen: React.FC = () => {
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('Search')
+  
+  // Connect to global state
+  const { addCalories } = useAppState()
 
   const tabs = ['Search', 'My Meals', 'Recipes']
   
@@ -83,9 +87,13 @@ const NutritionLogScreen: React.FC = () => {
           
           <div className="space-y-3">
             {recentItems.map((item, index) => (
-              <div
+              <button
                 key={index}
-                className="bg-gray-800 rounded-lg p-4 border border-gray-700 hover:bg-gray-750 transition-colors cursor-pointer"
+                onClick={() => {
+                  addCalories(item.calories)
+                  navigate('/')
+                }}
+                className="w-full bg-gray-800 rounded-lg p-4 border border-gray-700 hover:bg-gray-750 transition-colors cursor-pointer"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-3">
@@ -106,7 +114,7 @@ const NutritionLogScreen: React.FC = () => {
                     <span className="text-gray-400 text-sm ml-1">kcal</span>
                   </div>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
         </div>
