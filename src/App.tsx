@@ -4,6 +4,7 @@ import { Router, Route, Switch } from 'wouter'
 import { AuthProvider } from './contexts/AuthContext'
 import { ThemeProvider } from './components/theme-provider'
 import { MeasurementProvider } from './contexts/MeasurementContext'
+import { LocalizationProvider } from './contexts/LocalizationContext'
 import BottomNavigation from './components/bottom-navigation'
 import { Toaster } from './components/ui/toaster'
 
@@ -24,6 +25,9 @@ const HelpCenterPage = React.lazy(() => import('./pages/help-center'))
 const DataExportPage = React.lazy(() => import('./pages/data-export'))
 const DeleteAccountPage = React.lazy(() => import('./pages/delete-account'))
 const PrivacyTermsPage = React.lazy(() => import('./pages/privacy-terms'))
+
+// Wellness pages
+const MeditatePage = React.lazy(() => import('./pages/meditate'))
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -62,8 +66,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <MeasurementProvider>
-          <AuthProvider>
-            <Router>
+          <LocalizationProvider>
+            <AuthProvider>
+              <Router>
               <div className="min-h-screen bg-background text-foreground">
                 <main className="pb-16">
                   <Switch>
@@ -132,6 +137,11 @@ function App() {
                         <PrivacyTermsPage />
                       </Suspense>
                     </Route>
+                    <Route path="/meditate">
+                      <Suspense fallback={<PageLoadingFallback />}>
+                        <MeditatePage />
+                      </Suspense>
+                    </Route>
                     <Route>
                       <Suspense fallback={<PageLoadingFallback />}>
                         <NotFoundPage />
@@ -143,7 +153,8 @@ function App() {
                 <Toaster />
               </div>
             </Router>
-          </AuthProvider>
+            </AuthProvider>
+          </LocalizationProvider>
         </MeasurementProvider>
       </ThemeProvider>
     </QueryClientProvider>

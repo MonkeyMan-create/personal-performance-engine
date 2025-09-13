@@ -1,17 +1,31 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import AuthPrompt from '../components/AuthPrompt'
 import { useTheme } from '../components/theme-provider'
 import { useMeasurement } from '../contexts/MeasurementContext'
 import { Button } from '../components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
-import { User, Moon, Sun, LogOut, ChevronRight, Settings, Download, Trash2, HelpCircle, MessageCircle, FileText, Scale, Smartphone, Info } from 'lucide-react'
+import { User, Moon, Sun, LogOut, ChevronRight, Settings, Download, Trash2, HelpCircle, MessageCircle, FileText, Scale, Smartphone, Info, Globe, Languages, ChevronDown } from 'lucide-react'
 import { Link } from 'wouter'
+import { useLocalization, SUPPORTED_LANGUAGES, SUPPORTED_COUNTRIES } from '../contexts/LocalizationContext'
+import { getProfileDataLocally, ProfileData } from '../utils/guestStorage'
+import { useToast } from '../hooks/use-toast'
 
 export default function SettingsPage() {
   const { user, logout, isGuestMode } = useAuth()
   const { theme, setTheme } = useTheme()
   const { unit: measurementUnit, setUnit: setMeasurementUnit } = useMeasurement()
+  const { language, country, setLanguage, setCountry } = useLocalization()
+  const [profileData, setProfileData] = useState<ProfileData>({})
+  const { toast } = useToast()
+
+  // Load profile data including uploaded picture
+  useEffect(() => {
+    if (isGuestMode) {
+      const existingProfile = getProfileDataLocally()
+      setProfileData(existingProfile)
+    }
+  }, [isGuestMode])
 
   if (!user && !isGuestMode) {
     return (
@@ -23,11 +37,57 @@ export default function SettingsPage() {
   }
 
   const handleThemeToggle = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
+    setTheme(newTheme)
+    toast({
+      title: "Theme Updated!",
+      description: `Switched to ${newTheme} mode successfully.`,
+    })
   }
 
   const handleMeasurementToggle = () => {
-    setMeasurementUnit(measurementUnit === 'lbs' ? 'kg' : 'lbs')
+    const newUnit = measurementUnit === 'lbs' ? 'kg' : 'lbs'
+    setMeasurementUnit(newUnit)
+    toast({
+      title: "Units Updated!",
+      description: `Measurement units changed to ${newUnit.toUpperCase()} successfully.`,
+    })
+  }
+
+  // State for dropdown visibility
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false)
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false)
+
+  // Handlers for Language and Country
+  const handleLanguageSelect = (langCode: string) => {
+    const selectedLang = SUPPORTED_LANGUAGES.find(l => l.code === langCode)
+    setLanguage(langCode)
+    setShowLanguageDropdown(false)
+    toast({
+      title: "Language Updated!",
+      description: `Language changed to ${selectedLang?.name || langCode} successfully.`,
+    })
+  }
+
+  const handleCountrySelect = (countryCode: string) => {
+    const selectedCountry = SUPPORTED_COUNTRIES.find(c => c.code === countryCode)
+    setCountry(countryCode)
+    setShowCountryDropdown(false)
+    toast({
+      title: "Region Updated!",
+      description: `Region changed to ${selectedCountry?.name || countryCode} successfully.`,
+    })
+  }
+
+  // Helper functions to get display names
+  const getLanguageDisplay = () => {
+    const lang = SUPPORTED_LANGUAGES.find(l => l.code === language)
+    return lang ? `${lang.flag} ${lang.name}` : 'English'
+  }
+
+  const getCountryDisplay = () => {
+    const country_ = SUPPORTED_COUNTRIES.find(c => c.code === country)
+    return country_ ? `${country_.flag} ${country_.name}` : 'United States'
   }
 
   // Get user initials for fallback avatar
@@ -116,28 +176,31 @@ export default function SettingsPage() {
             <div className="flex items-center gap-4">
               {/* User Avatar */}
               <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-teal-400/30 shadow-xl" data-testid="user-avatar">
-                {!isGuestMode && user?.photoURL ? (
+                {(isGuestMode && profileData.profilePicture) || (!isGuestMode && user?.photoURL) ? (
                   <img 
-                    src={user.photoURL} 
-                    alt={user.displayName || 'User'} 
+                    src={isGuestMode ? profileData.profilePicture! : user!.photoURL!} 
+                    alt={(isGuestMode ? profileData.displayName : user?.displayName) || 'User'} 
                     className="w-full h-full object-cover"
+                    data-testid="user-avatar-image"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-white font-bold text-xl">
-                    {isGuestMode ? 'G' : getInitials(user?.displayName)}
+                  <div className="w-full h-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-white font-bold text-xl" data-testid="user-avatar-initials">
+                    {isGuestMode ? getInitials(profileData.displayName) || 'G' : getInitials(user?.displayName)}
                   </div>
                 )}
               </div>
               <div className="flex-1">
                 <h2 className="font-bold text-2xl text-white" data-testid="user-name">
-                  {isGuestMode ? 'Guest User' : user?.displayName}
+                  {isGuestMode ? (profileData.displayName || 'Guest User') : user?.displayName}
                 </h2>
                 <p className="text-slate-300 font-medium">
                   {isGuestMode ? 'Guest Session' : `Member since ${getMemberSinceDate()}`}
                 </p>
-                {!isGuestMode && user?.email && (
+                {isGuestMode && profileData.email ? (
+                  <p className="text-sm text-slate-400 mt-1" data-testid="user-email">{profileData.email}</p>
+                ) : (!isGuestMode && user?.email && (
                   <p className="text-sm text-slate-400 mt-1" data-testid="user-email">{user.email}</p>
-                )}
+                ))}
               </div>
             </div>
           </CardContent>
@@ -189,6 +252,84 @@ export default function SettingsPage() {
               showChevron={false}
               testId="settings-measurement-units"
             />
+            
+            {/* Language Dropdown */}
+            <div className="relative">
+              <div 
+                className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
+                data-testid="settings-language"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-slate-700/30 rounded-xl">
+                    <Languages className="w-5 h-5 text-slate-300" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Language</p>
+                    <p className="text-sm text-slate-400 mt-0.5">{getLanguageDisplay()}</p>
+                  </div>
+                </div>
+                <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform duration-200 ${showLanguageDropdown ? 'rotate-180' : ''}`} />
+              </div>
+              
+              {showLanguageDropdown && (
+                <div className="absolute top-full left-2 right-2 z-50 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-xl overflow-hidden">
+                  {SUPPORTED_LANGUAGES.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => handleLanguageSelect(lang.code)}
+                      className={`w-full text-left px-4 py-3 hover:bg-slate-700/50 transition-colors flex items-center gap-3 ${
+                        language === lang.code ? 'bg-slate-700/30 text-teal-300' : 'text-white'
+                      }`}
+                      data-testid={`language-option-${lang.code}`}
+                    >
+                      <span className="text-lg">{lang.flag}</span>
+                      <span className="font-medium">{lang.name}</span>
+                      {language === lang.code && <span className="ml-auto text-teal-400">✓</span>}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Country Dropdown */}
+            <div className="relative">
+              <div 
+                className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+                data-testid="settings-country"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-slate-700/30 rounded-xl">
+                    <Globe className="w-5 h-5 text-slate-300" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Country/Region</p>
+                    <p className="text-sm text-slate-400 mt-0.5">{getCountryDisplay()}</p>
+                  </div>
+                </div>
+                <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform duration-200 ${showCountryDropdown ? 'rotate-180' : ''}`} />
+              </div>
+              
+              {showCountryDropdown && (
+                <div className="absolute top-full left-2 right-2 z-50 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-xl overflow-hidden max-h-64 overflow-y-auto">
+                  {SUPPORTED_COUNTRIES.map((country_) => (
+                    <button
+                      key={country_.code}
+                      onClick={() => handleCountrySelect(country_.code)}
+                      className={`w-full text-left px-4 py-3 hover:bg-slate-700/50 transition-colors flex items-center gap-3 ${
+                        country === country_.code ? 'bg-slate-700/30 text-teal-300' : 'text-white'
+                      }`}
+                      data-testid={`country-option-${country_.code}`}
+                    >
+                      <span className="text-lg">{country_.flag}</span>
+                      <span className="font-medium">{country_.name}</span>
+                      {country === country_.code && <span className="ml-auto text-teal-400">✓</span>}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </CardContent>
         </Card>
 

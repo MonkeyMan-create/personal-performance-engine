@@ -124,14 +124,14 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-background dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         
         {/* Top Section - Greeting & Time */}
         <div className="pt-8 text-center space-y-4">
           <div className="flex items-center justify-center gap-3 mb-2">
             <GreetingIcon className="w-8 h-8 text-yellow-400" />
-            <h1 className="text-3xl font-bold text-white" data-testid="greeting-text">
+            <h1 className="text-3xl font-bold text-foreground" data-testid="greeting-text">
               {greeting.text}
             </h1>
           </div>
@@ -149,9 +149,9 @@ export default function HomePage() {
         </div>
 
         {/* Mood Check-in */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+        <Card className="bg-card/60 border-border backdrop-blur-xl">
           <CardHeader className="text-center">
-            <CardTitle className="text-white text-xl">How are you feeling today?</CardTitle>
+            <CardTitle className="text-foreground text-xl">How are you feeling today?</CardTitle>
             <CardDescription className="text-slate-300">
               Tap an emoji to check in with your mood
             </CardDescription>
@@ -164,14 +164,14 @@ export default function HomePage() {
                   onClick={() => setSelectedMood(mood.value)}
                   className={`p-4 rounded-2xl transition-all duration-300 hover:scale-110 active:scale-95 ${
                     selectedMood === mood.value 
-                      ? 'bg-slate-600/60 ring-4 ring-slate-400/50 shadow-lg shadow-slate-400/20' 
-                      : 'bg-slate-700/50 hover:bg-slate-600/50'
+                      ? 'bg-accent ring-4 ring-accent/50 shadow-lg shadow-accent/20' 
+                      : 'bg-muted hover:bg-muted/80'
                   }`}
                   data-testid={`mood-${mood.value}`}
                   aria-label={`Select ${mood.label} mood`}
                 >
                   <div className="text-3xl">{mood.emoji}</div>
-                  <div className="text-xs text-slate-300 mt-1 font-medium">{mood.label}</div>
+                  <div className="text-xs text-muted-foreground mt-1 font-medium">{mood.label}</div>
                 </button>
               ))}
             </div>
@@ -193,7 +193,7 @@ export default function HomePage() {
 
         {/* Key Metrics Grid */}
         <div className="grid grid-cols-2 gap-4">
-          <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+          <Card className="bg-card/60 border-border backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-purple-600/20 rounded-lg">
@@ -206,7 +206,7 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
-              <div className="mt-2 w-full bg-slate-700 rounded-full h-2">
+              <div className="mt-2 w-full bg-muted rounded-full h-2">
                 <div 
                   className="bg-gradient-to-r from-purple-500 to-purple-400 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, stepsProgress)}%` }}
@@ -215,7 +215,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+          <Card className="bg-card/60 border-border backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-orange-600/20 rounded-lg">
@@ -228,7 +228,7 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
-              <div className="mt-2 w-full bg-slate-700 rounded-full h-2">
+              <div className="mt-2 w-full bg-muted rounded-full h-2">
                 <div 
                   className="bg-gradient-to-r from-orange-500 to-orange-400 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `70%` }}
@@ -237,7 +237,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+          <Card className="bg-card/60 border-border backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-blue-600/20 rounded-lg">
@@ -250,7 +250,7 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
-              <div className="mt-2 w-full bg-slate-700 rounded-full h-2">
+              <div className="mt-2 w-full bg-muted rounded-full h-2">
                 <div 
                   className="bg-gradient-to-r from-blue-500 to-blue-400 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, sleepProgress)}%` }}
@@ -259,7 +259,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+          <Card className="bg-card/60 border-border backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-blue-600/20 rounded-lg">
@@ -272,7 +272,7 @@ export default function HomePage() {
                   </p>
                 </div>
               </div>
-              <div className="mt-2 w-full bg-slate-700 rounded-full h-2">
+              <div className="mt-2 w-full bg-muted rounded-full h-2">
                 <div 
                   className="bg-gradient-to-r from-blue-500 to-blue-400 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, waterProgress)}%` }}
@@ -328,29 +328,31 @@ export default function HomePage() {
             </Card>
           </Link>
 
-          <Card 
-            className="bg-gradient-to-r from-teal-500 to-teal-600 border-0 shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-            data-testid="card-meditate"
-          >
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between text-white">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
-                    <Brain className="w-6 h-6" />
+          <Link href="/meditate">
+            <Card 
+              className="bg-gradient-to-r from-teal-500 to-teal-600 border-0 shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              data-testid="card-meditate"
+            >
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between text-white">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
+                      <Brain className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold">Meditate</h3>
+                      <p className="text-teal-100">Find your inner peace</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold">Meditate</h3>
-                    <p className="text-teal-100">Find your inner peace</p>
-                  </div>
+                  <Plus className="w-6 h-6" />
                 </div>
-                <Plus className="w-6 h-6" />
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </Link>
         </div>
 
         {/* Daily Wellness Insights */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+        <Card className="bg-card/60 border-border backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Lightbulb className="w-5 h-5 text-yellow-400" />
@@ -391,7 +393,7 @@ export default function HomePage() {
         </Card>
 
         {/* Nutrition Snapshot */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+        <Card className="bg-card/60 border-border backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
               <Apple className="w-5 h-5 text-orange-400" />
@@ -405,8 +407,8 @@ export default function HomePage() {
             {/* Macros */}
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-white font-medium">Protein</span>
-                <span className="text-slate-300 text-sm" data-testid="protein-count">
+                <span className="text-foreground font-medium">Protein</span>
+                <span className="text-muted-foreground text-sm" data-testid="protein-count">
                   {nutritionData.protein.current}g / {nutritionData.protein.goal}g
                 </span>
               </div>

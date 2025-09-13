@@ -59,7 +59,7 @@ export default function BottomNavigation() {
                   'flex flex-col items-center justify-center p-3 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 relative',
                   isActive
                     ? 'text-cyan-400 bg-gradient-to-br from-cyan-500/20 to-teal-500/20 shadow-lg shadow-cyan-500/25 border border-cyan-500/30'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-accent/50 hover:shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-accent/50 hover:shadow-sm'
                 )}
               >
                 <Icon className={cn(

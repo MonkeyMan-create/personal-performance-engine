@@ -4,6 +4,8 @@ import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
 import { ArrowLeft, Check, Play, Pause, SkipForward } from 'lucide-react'
 import { getSmartDefaults, getCurrentWorkoutSession, addSetToCurrentSession } from '../utils/guestStorage'
+import { useMeasurement } from '../contexts/MeasurementContext'
+import { useToast } from '../hooks/use-toast'
 
 interface ActiveSetViewProps {
   exerciseName: string
@@ -16,6 +18,10 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
   const session = getCurrentWorkoutSession()
   const currentExercise = session?.exercises.find(ex => ex.name === exerciseName)
   const currentSetNumber = (currentExercise?.sets.length || 0) + 1
+
+  // Measurement context for unit conversion
+  const { unit, convertWeight, formatWeight } = useMeasurement()
+  const { toast } = useToast()
 
   // Smart pre-filling
   const smartDefaults = getSmartDefaults(exerciseName)
@@ -57,7 +63,11 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
 
   const handleLogSet = async () => {
     if (!weight.trim() || !reps.trim() || !rir.trim()) {
-      alert('Please fill in all fields')
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all fields (weight, reps, RIR).",
+        variant: "destructive"
+      })
       return
     }
 
@@ -66,12 +76,20 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
     const rirNum = parseInt(rir)
 
     if (isNaN(weightNum) || isNaN(repsNum) || isNaN(rirNum)) {
-      alert('Please enter valid numbers')
+      toast({
+        title: "Invalid Input",
+        description: "Please enter valid numbers for all fields.",
+        variant: "destructive"
+      })
       return
     }
 
     if (weightNum <= 0 || repsNum <= 0 || rirNum < 0 || rirNum > 10) {
-      alert('Please enter valid values (weight > 0, reps > 0, RIR 0-10)')
+      toast({
+        title: "Invalid Values",
+        description: "Weight and reps must be greater than 0. RIR must be between 0-10.",
+        variant: "destructive"
+      })
       return
     }
 
@@ -81,6 +99,12 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
       const success = addSetToCurrentSession(exerciseName, weightNum, repsNum, rirNum)
       
       if (success) {
+        // Show success toast
+        toast({
+          title: "Set Logged! 💪",
+          description: `${formatWeight(weightNum)} × ${repsNum} reps (RIR ${rirNum}) recorded successfully.`,
+        })
+        
         // Start rest timer
         setIsResting(true)
         setRemainingTime(restTime)
@@ -101,7 +125,11 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
       }
     } catch (error) {
       console.error('Failed to log set:', error)
-      alert('Failed to log set. Please try again.')
+      toast({
+        title: "Error",
+        description: "Failed to log set. Please try again.",
+        variant: "destructive",
+      })
     } finally {
       setIsLoading(false)
     }
@@ -152,7 +180,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
             </p>
             {currentSetNumber > 1 && currentExercise && (
               <p className="text-sm text-slate-500 dark:text-slate-400">
-                Last: {currentExercise.sets[currentExercise.sets.length - 1].weight}lbs × {currentExercise.sets[currentExercise.sets.length - 1].reps} (RIR {currentExercise.sets[currentExercise.sets.length - 1].rir})
+                Last: {formatWeight(currentExercise.sets[currentExercise.sets.length - 1].weight, 'lbs')} × {currentExercise.sets[currentExercise.sets.length - 1].reps} (RIR {currentExercise.sets[currentExercise.sets.length - 1].rir})
               </p>
             )}
           </CardHeader>
@@ -175,7 +203,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   step="0.5"
                   data-testid="input-active-weight"
                 />
-                <p className="text-xs text-slate-500 dark:text-slate-400 text-center mt-1">lbs</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 text-center mt-1">{unit}</p>
               </div>
 
               <div>

@@ -17,6 +17,8 @@ import {
   cancelWorkoutSession,
   GuestWorkout 
 } from '../utils/guestStorage'
+import { useMeasurement } from '../contexts/MeasurementContext'
+import { useToast } from '../hooks/use-toast'
 
 type ViewMode = 'overview' | 'exercise-selection' | 'active-set' | 'finish-workout' | 'history'
 
@@ -31,6 +33,8 @@ interface WorkoutForm {
 
 export default function WorkoutsPage() {
   const { user, isGuestMode } = useAuth()
+  const { formatWeight } = useMeasurement()
+  const { toast } = useToast()
   const [viewMode, setViewMode] = useState<ViewMode>('overview')
   const [selectedExercise, setSelectedExercise] = useState<string>('')
   const [workouts, setWorkouts] = useState<GuestWorkout[]>([])
@@ -205,6 +209,13 @@ export default function WorkoutsPage() {
       const workoutId = finishWorkoutSession(duration, notes)
       
       if (workoutId) {
+        // Show success toast
+        const sessionSummary = getSessionSummary()
+        toast({
+          title: "Workout Completed! 🏆",
+          description: `Great job! You completed ${sessionSummary?.uniqueExercises || 0} exercises with ${sessionSummary?.totalSets || 0} total sets.`,
+        })
+        
         // Reload workouts
         const updatedWorkouts = getWorkoutsLocally().sort((a, b) => 
           new Date(b.date).getTime() - new Date(a.date).getTime()
@@ -221,7 +232,11 @@ export default function WorkoutsPage() {
       }
     } catch (error) {
       console.error('Failed to complete workout:', error)
-      alert('Failed to save workout. Please try again.')
+      toast({
+        title: "Error",
+        description: "Failed to save workout. Please try again.",
+        variant: "destructive",
+      })
     } finally {
       setIsLoading(false)
     }
@@ -549,7 +564,7 @@ export default function WorkoutsPage() {
                                     key={setIndex}
                                     className="text-xs bg-slate-200 dark:bg-slate-600 px-2 py-1 rounded text-slate-700 dark:text-slate-300"
                                   >
-                                    {set.weight}lbs × {set.reps} (RIR {set.rir})
+                                    {formatWeight(set.weight, 'lbs')} × {set.reps} (RIR {set.rir})
                                   </span>
                                 ))}
                               </div>

@@ -19,7 +19,7 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen flex items-center justify-center p-6 bg-background dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="w-full max-w-md text-center space-y-8">
         {/* Branded Logo */}
         <div className="flex justify-center mb-8">
@@ -34,12 +34,12 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
         </div>
 
         {/* Main Content Card */}
-        <Card className="bg-slate-800/80 border-slate-700/50 shadow-2xl backdrop-blur-xl">
+        <Card className="bg-card/80 border-border shadow-2xl backdrop-blur-xl">
           <CardHeader className="text-center space-y-4 pb-4">
             <CardTitle className="text-3xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
               Personal Performance Engine
             </CardTitle>
-            <CardDescription className="text-slate-300 text-base max-w-sm mx-auto leading-relaxed">
+            <CardDescription className="text-muted-foreground text-base max-w-sm mx-auto leading-relaxed">
               Track workouts, nutrition, and achieve your fitness goals with AI coaching
             </CardDescription>
           </CardHeader>

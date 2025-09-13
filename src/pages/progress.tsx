@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts'
 import { TrendingUp, Calendar, Dumbbell, Apple, Target, Flame, Trophy, Award, Star, Zap, Shield, Crown, Medal, BadgeCheck } from 'lucide-react'
 import { getWorkoutsLocally, getMealsLocally, getProgressLocally, GuestWorkout, GuestMeal, GuestProgress } from '../utils/guestStorage'
+import { useMeasurement } from '../contexts/MeasurementContext'
 
 interface WorkoutStats {
   totalWorkouts: number
@@ -33,6 +34,7 @@ interface CalorieData {
 
 export default function ProgressPage() {
   const { user, isGuestMode } = useAuth()
+  const { convertWeight, formatWeight, unit } = useMeasurement()
   const [workouts, setWorkouts] = useState<GuestWorkout[]>([])
   const [meals, setMeals] = useState<GuestMeal[]>([])
   const [progressData, setProgressData] = useState<GuestProgress[]>([])
@@ -93,7 +95,7 @@ export default function ProgressPage() {
 
           // Calculate current streak (consecutive days with workouts)
           let currentStreak = 0
-          const sortedWorkoutDates = [...new Set(guestWorkouts.map(w => w.date))].sort().reverse()
+          const sortedWorkoutDates = Array.from(new Set(guestWorkouts.map(w => w.date))).sort().reverse()
           
           for (let i = 0; i < sortedWorkoutDates.length; i++) {
             const date = new Date(sortedWorkoutDates[i])
@@ -125,7 +127,7 @@ export default function ProgressPage() {
 
           // Calculate nutrition stats
           const totalCalories = guestMeals.reduce((total, meal) => total + meal.calories, 0)
-          const uniqueDates = [...new Set(guestMeals.map(meal => meal.date))]
+          const uniqueDates = Array.from(new Set(guestMeals.map(meal => meal.date)))
           const averageCaloriesPerDay = uniqueDates.length > 0 ? Math.round(totalCalories / uniqueDates.length) : 0
 
           const oneWeekAgo = new Date()
@@ -174,7 +176,7 @@ export default function ProgressPage() {
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     .map(entry => ({
       date: new Date(entry.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
-      weight: entry.weight!
+      weight: convertWeight(entry.weight!, 'lbs') // Convert stored weight (lbs) to user's preferred unit
     }))
 
   // Generate daily calorie data for the last 7 days
@@ -324,6 +326,7 @@ export default function ProgressPage() {
                             border: '1px solid hsl(var(--border))',
                             borderRadius: '8px'
                           }}
+                          formatter={(value: number) => [`${value.toFixed(1)} ${unit}`, 'Weight']}
                         />
                         <Line 
                           type="monotone" 
@@ -358,20 +361,25 @@ export default function ProgressPage() {
                             const weightChange = lastWeight - firstWeight
                             const percentChange = ((weightChange / firstWeight) * 100)
                             
-                            if (Math.abs(weightChange) < 1) {
+                            // Convert threshold values to user's preferred unit for comparison
+                            const threshold1 = convertWeight(1, 'lbs')
+                            const threshold2 = convertWeight(2, 'lbs')
+                            const threshold5 = convertWeight(5, 'lbs')
+                            
+                            if (Math.abs(weightChange) < threshold1) {
                               return "Excellent consistency! You're maintaining your weight within a healthy range. Keep up the great work!"
-                            } else if (weightChange < -5) {
-                              return `Outstanding progress! You've lost ${Math.abs(weightChange).toFixed(1)} lbs (${Math.abs(percentChange).toFixed(1)}% reduction). Your dedication is paying off!`
-                            } else if (weightChange < -2) {
-                              return `Great progress! You've lost ${Math.abs(weightChange).toFixed(1)} lbs. Steady and sustainable weight loss is the key to long-term success!`
+                            } else if (weightChange < -threshold5) {
+                              return `Outstanding progress! You've lost ${Math.abs(weightChange).toFixed(1)} ${unit} (${Math.abs(percentChange).toFixed(1)}% reduction). Your dedication is paying off!`
+                            } else if (weightChange < -threshold2) {
+                              return `Great progress! You've lost ${Math.abs(weightChange).toFixed(1)} ${unit}. Steady and sustainable weight loss is the key to long-term success!`
                             } else if (weightChange < 0) {
-                              return `Nice work! You've lost ${Math.abs(weightChange).toFixed(1)} lbs. Every pound counts toward your health goals!`
-                            } else if (weightChange > 5) {
-                              return `You've gained ${weightChange.toFixed(1)} lbs. If this aligns with your goals (muscle building), great! Otherwise, consider reviewing your nutrition and exercise plan.`
-                            } else if (weightChange > 2) {
-                              return `You've gained ${weightChange.toFixed(1)} lbs. Monitor your progress and adjust your approach if needed to stay on track with your goals.`
+                              return `Nice work! You've lost ${Math.abs(weightChange).toFixed(1)} ${unit}. Every ${unit === 'lbs' ? 'pound' : 'kilogram'} counts toward your health goals!`
+                            } else if (weightChange > threshold5) {
+                              return `You've gained ${weightChange.toFixed(1)} ${unit}. If this aligns with your goals (muscle building), great! Otherwise, consider reviewing your nutrition and exercise plan.`
+                            } else if (weightChange > threshold2) {
+                              return `You've gained ${weightChange.toFixed(1)} ${unit}. Monitor your progress and adjust your approach if needed to stay on track with your goals.`
                             } else {
-                              return `You've gained ${weightChange.toFixed(1)} lbs. Small fluctuations are normal - focus on the overall trend and keep consistency!`
+                              return `You've gained ${weightChange.toFixed(1)} ${unit}. Small fluctuations are normal - focus on the overall trend and keep consistency!`
                             }
                           })()}
                         </p>

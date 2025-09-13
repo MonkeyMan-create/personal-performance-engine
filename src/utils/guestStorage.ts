@@ -50,6 +50,8 @@ const GUEST_WORKOUTS_KEY = 'guest_workouts'
 const GUEST_MEALS_KEY = 'guest_meals'
 const GUEST_PROGRESS_KEY = 'guest_progress'
 const GUEST_PREFERENCES_KEY = 'guest_preferences'
+const GUEST_PROFILE_KEY = 'guest_profile'
+const GUEST_GOALS_KEY = 'guest_goals'
 
 // Utility function to safely parse JSON from localStorage
 function parseStorageData<T>(key: string, defaultValue: T): T {
@@ -192,16 +194,105 @@ export function deleteProgressLocally(id: string): boolean {
   return saveStorageData(GUEST_PROGRESS_KEY, filteredProgress)
 }
 
+// ===== PROFILE DATA FUNCTIONS =====
+
+export interface ProfileData {
+  profilePicture?: string // base64 image data
+  displayName?: string
+  email?: string
+  bio?: string
+}
+
+export interface PersonalGoals {
+  targetWeight?: number // stored in lbs, converted for display
+  dailyCalories?: number
+  weeklyWorkouts?: number
+  dailySteps?: number
+  currentWeight?: number // for progress tracking
+}
+
+export interface PersonalRecord {
+  exerciseName: string
+  maxWeight: number // stored in lbs
+  reps: number
+  date: string
+  workoutId: string
+}
+
+export function saveProfileDataLocally(profileData: Partial<ProfileData>): boolean {
+  const currentProfile = getProfileDataLocally()
+  const updatedProfile = { ...currentProfile, ...profileData }
+  return saveStorageData(GUEST_PROFILE_KEY, updatedProfile)
+}
+
+export function getProfileDataLocally(): ProfileData {
+  return parseStorageData<ProfileData>(GUEST_PROFILE_KEY, {})
+}
+
+export function savePersonalGoalsLocally(goals: Partial<PersonalGoals>): boolean {
+  const currentGoals = getPersonalGoalsLocally()
+  const updatedGoals = { ...currentGoals, ...goals }
+  return saveStorageData(GUEST_GOALS_KEY, updatedGoals)
+}
+
+export function getPersonalGoalsLocally(): PersonalGoals {
+  return parseStorageData<PersonalGoals>(GUEST_GOALS_KEY, {})
+}
+
+export function calculatePersonalRecords(): PersonalRecord[] {
+  const workouts = getWorkoutsLocally()
+  const prMap = new Map<string, PersonalRecord>()
+  
+  // Iterate through all workouts to find maximum weights
+  workouts.forEach(workout => {
+    workout.exercises.forEach(exercise => {
+      const exerciseName = exercise.name.toLowerCase().trim()
+      
+      exercise.sets.forEach(set => {
+        if (set.weight && set.reps > 0) {
+          const currentPR = prMap.get(exerciseName)
+          
+          if (!currentPR || set.weight > currentPR.maxWeight) {
+            prMap.set(exerciseName, {
+              exerciseName: exercise.name,
+              maxWeight: set.weight,
+              reps: set.reps,
+              date: workout.date,
+              workoutId: workout.id
+            })
+          }
+        }
+      })
+    })
+  })
+  
+  return Array.from(prMap.values()).sort((a, b) => b.maxWeight - a.maxWeight)
+}
+
+export function getPersonalRecordFor(exerciseName: string): PersonalRecord | null {
+  const prs = calculatePersonalRecords()
+  return prs.find(pr => pr.exerciseName.toLowerCase().includes(exerciseName.toLowerCase())) || null
+}
+
+// Major compound exercises to highlight
+export const MAJOR_EXERCISES = ['bench press', 'squat', 'deadlift', 'overhead press', 'pull up', 'row']
+
+export function getMajorExercisePRs(): PersonalRecord[] {
+  const allPRs = calculatePersonalRecords()
+  return MAJOR_EXERCISES.map(exerciseName => {
+    return allPRs.find(pr => 
+      pr.exerciseName.toLowerCase().includes(exerciseName) ||
+      exerciseName.includes(pr.exerciseName.toLowerCase())
+    )
+  }).filter(Boolean) as PersonalRecord[]
+}
+
 // ===== PREFERENCES FUNCTIONS =====
 
 export interface GuestPreferences {
   measurementUnit: 'lbs' | 'kg'
   theme: 'light' | 'dark' | 'system'
   defaultRIR: number
-  goalCalories?: number
-  goalProtein?: number
-  goalCarbs?: number
-  goalFat?: number
 }
 
 export function savePreferencesLocally(preferences: Partial<GuestPreferences>): boolean {

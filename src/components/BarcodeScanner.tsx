@@ -25,7 +25,7 @@ export default function BarcodeScanner({
 
   // Camera barcode scanning with react-zxing
   const { ref: cameraRef } = useZxing({
-    onDecodeResult: useCallback((result) => {
+    onDecodeResult: useCallback((result: any) => {
       const barcode = result.getText()
       if (barcode && !isScanningRef.current) {
         isScanningRef.current = true
@@ -37,7 +37,7 @@ export default function BarcodeScanner({
         })
       }
     }, [onBarcodeScanned, onClose]),
-    onDecodeError: useCallback((error) => {
+    onDecodeError: useCallback((error: any) => {
       // Silently handle decode errors - this is normal during scanning
       console.debug('Barcode decode error:', error)
     }, []),

@@ -31,6 +31,7 @@ import {
 import { saveMealLocally, getMealsByDateLocally, GuestMeal } from '../utils/guestStorage'
 import { toast } from '../hooks/use-toast'
 import LazyBarcodeScanner from '../components/LazyBarcodeScanner'
+import { useLocalization } from '../contexts/LocalizationContext'
 
 interface FoodItem {
   id: string
@@ -53,6 +54,7 @@ interface MealToLog {
 
 export default function NutritionPage() {
   const { user, isGuestMode } = useAuth()
+  const { getCountryCode } = useLocalization()
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<FoodItem[]>([])
   const [isSearching, setIsSearching] = useState(false)
@@ -131,10 +133,19 @@ export default function NutritionPage() {
     
     setIsSearching(true)
     try {
-      // Search Open Food Facts API
-      const response = await fetch(
-        `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=20`
-      )
+      // Get country code for filtering
+      const countryCode = getCountryCode()
+      
+      // Build URL with country filtering if available
+      let searchUrl = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${encodeURIComponent(query)}&search_simple=1&action=process&json=1&page_size=20`
+      
+      // Add country filter if a specific country is selected (not global)
+      if (countryCode) {
+        searchUrl += `&countries_tags_en=${countryCode}`
+      }
+      
+      // Search Open Food Facts API with country filtering
+      const response = await fetch(searchUrl)
       
       if (!response.ok) throw new Error('Search failed')
       
@@ -175,9 +186,51 @@ export default function NutritionPage() {
   const scanBarcode = async (barcode: string) => {
     setIsSearching(true)
     try {
-      const response = await fetch(
-        `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`
-      )
+      // Get country code for potential filtering
+      const countryCode = getCountryCode()
+      
+      // Use country-specific URL if available, otherwise use global
+      const apiUrl = countryCode 
+        ? `https://${countryCode}.openfoodfacts.org/api/v0/product/${barcode}.json`
+        : `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`
+      
+      const response = await fetch(apiUrl)
+      
+      // If country-specific request fails, fallback to global search
+      if (!response.ok && countryCode) {
+        console.log('Country-specific search failed, falling back to global...')
+        const fallbackResponse = await fetch(
+          `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`
+        )
+        
+        if (!fallbackResponse.ok) throw new Error('Product not found')
+        const fallbackData = await fallbackResponse.json()
+        
+        if (fallbackData.status === 1 && fallbackData.product) {
+          const product = fallbackData.product
+          const food: FoodItem = {
+            id: product.code,
+            name: product.product_name || 'Unknown Product',
+            brand: product.brands,
+            calories: Math.round(product.nutriments?.['energy-kcal_100g'] || 0),
+            protein: product.nutriments?.proteins_100g,
+            carbs: product.nutriments?.carbohydrates_100g,
+            fat: product.nutriments?.fat_100g,
+            serving: product.serving_size || '100g',
+            imageUrl: product.image_url,
+            barcode: product.code
+          }
+          
+          setSelectedFood(food)
+          toast({
+            title: 'Product found!',
+            description: `${food.name} - ${food.calories} cal per ${food.serving} (Global result)`
+          })
+        } else {
+          throw new Error('Product not found')
+        }
+        return
+      }
       
       if (!response.ok) throw new Error('Product not found')
       
@@ -256,13 +309,32 @@ export default function NutritionPage() {
   const logCustomFood = () => {
     const today = new Date().toISOString().split('T')[0]
     
+    // Validate required fields
+    if (!customFood.name.trim()) {
+      toast({
+        title: 'Missing Information',
+        description: 'Please enter a food name.',
+        variant: 'destructive'
+      })
+      return
+    }
+
+    if (!customFood.calories.trim() || isNaN(parseInt(customFood.calories)) || parseInt(customFood.calories) <= 0) {
+      toast({
+        title: 'Invalid Calories',
+        description: 'Please enter a valid calorie amount greater than 0.',
+        variant: 'destructive'
+      })
+      return
+    }
+
     const mealToLog: Omit<GuestMeal, 'id'> = {
       mealType,
       foodItem: customFood.name,
-      calories: parseInt(customFood.calories) || 0,
-      protein: customFood.protein ? parseInt(customFood.protein) : undefined,
-      carbs: customFood.carbs ? parseInt(customFood.carbs) : undefined,
-      fat: customFood.fat ? parseInt(customFood.fat) : undefined,
+      calories: parseInt(customFood.calories),
+      protein: customFood.protein && !isNaN(parseInt(customFood.protein)) ? parseInt(customFood.protein) : undefined,
+      carbs: customFood.carbs && !isNaN(parseInt(customFood.carbs)) ? parseInt(customFood.carbs) : undefined,
+      fat: customFood.fat && !isNaN(parseInt(customFood.fat)) ? parseInt(customFood.fat) : undefined,
       date: today
     }
     
