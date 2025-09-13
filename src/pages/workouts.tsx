@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import AuthPrompt from '../components/AuthPrompt'
-import ExerciseSelector from '../components/ExerciseSelector'
-import ActiveSetView from '../components/ActiveSetView'
-import WorkoutTemplateSelector from '../components/WorkoutTemplateSelector'
+import LazyExerciseSelector from '../components/LazyExerciseSelector'
+import LazyActiveSetView from '../components/LazyActiveSetView'
+import LazyWorkoutTemplateSelector from '../components/LazyWorkoutTemplateSelector'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
@@ -266,7 +266,7 @@ export default function WorkoutsPage() {
             )}
 
             {/* Exercise selector overlay */}
-            <ExerciseSelector
+            <LazyExerciseSelector
               onSelectExercise={handleSelectExercise}
               onClose={() => setViewMode('overview')}
             />
@@ -276,7 +276,7 @@ export default function WorkoutsPage() {
 
     case 'active-set':
       return (
-        <ActiveSetView
+        <LazyActiveSetView
           exerciseName={selectedExercise}
           onFinishExercise={handleFinishExercise}
           onBackToSelection={handleBackToSelection}
@@ -551,7 +551,7 @@ export default function WorkoutsPage() {
             )}
 
             {/* Template Selector */}
-            <WorkoutTemplateSelector
+            <LazyWorkoutTemplateSelector
               isOpen={showTemplateSelector}
               onClose={() => setShowTemplateSelector(false)}
               onSelectTemplate={handleTemplateSelection}

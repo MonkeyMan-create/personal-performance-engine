@@ -25,9 +25,9 @@ import {
   CameraOff,
   AlertCircle
 } from 'lucide-react'
-import { useZxing } from 'react-zxing'
 import { saveMealLocally, getMealsByDateLocally, GuestMeal } from '../utils/guestStorage'
 import { toast } from '../hooks/use-toast'
+import LazyBarcodeScanner from '../components/LazyBarcodeScanner'
 
 interface FoodItem {
   id: string
@@ -72,10 +72,6 @@ export default function NutritionPage() {
   
   // Camera scanning state
   const [isCameraModalOpen, setIsCameraModalOpen] = useState(false)
-  const [cameraError, setCameraError] = useState<string | null>(null)
-  const [isCameraReady, setIsCameraReady] = useState(false)
-  const isScanningRef = useRef(false)
-  const videoStreamRef = useRef<MediaStream | null>(null)
 
   // Load today's meals and recent foods
   useEffect(() => {
@@ -295,94 +291,21 @@ export default function NutritionPage() {
     fat: acc.fat + (meal.fat || 0)
   }), { calories: 0, protein: 0, carbs: 0, fat: 0 })
 
-  // Camera barcode scanning with react-zxing
-  const { ref: cameraRef } = useZxing({
-    onDecodeResult: useCallback((result) => {
-      const barcode = result.getText()
-      if (barcode && !isScanningRef.current) {
-        isScanningRef.current = true
-        setIsCameraModalOpen(false)
-        setIsCameraReady(false)
-        scanBarcode(barcode).finally(() => {
-          isScanningRef.current = false
-        })
-        toast({
-          title: 'Barcode detected!',
-          description: `Scanning product: ${barcode}`
-        })
-      }
-    }, []),
-    onDecodeError: useCallback((error) => {
-      // Silently handle decode errors - this is normal during scanning
-      console.debug('Barcode decode error:', error)
-    }, []),
-    constraints: {
-      video: {
-        facingMode: 'environment', // Use back camera on mobile
-        width: { ideal: 640 },
-        height: { ideal: 480 }
-      }
-    },
-    timeBetweenDecodingAttempts: 300
-  })
-
-  const openCameraScanner = async () => {
-    setCameraError(null)
-    setIsCameraReady(false)
-    isScanningRef.current = false
-    
-    // Check for camera permission first
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: { 
-          facingMode: 'environment',
-          width: { ideal: 640 },
-          height: { ideal: 480 }
-        } 
-      })
-      videoStreamRef.current = stream
-      stream.getTracks().forEach(track => track.stop()) // Stop test stream
-      setIsCameraModalOpen(true)
-      
-      // Give camera time to initialize
-      setTimeout(() => {
-        setIsCameraReady(true)
-      }, 1000)
-    } catch (error) {
-      console.error('Camera access error:', error)
-      if (error instanceof Error) {
-        if (error.name === 'NotAllowedError') {
-          setCameraError('Camera access denied. Please allow camera access and try again.')
-        } else if (error.name === 'NotFoundError') {
-          setCameraError('No camera found on this device.')
-        } else {
-          setCameraError('Unable to access camera. Please check your device settings.')
-        }
-      } else {
-        setCameraError('Unable to access camera.')
-      }
-      toast({
-        title: 'Camera Error',
-        description: 'Unable to access camera. You can still enter barcodes manually.',
-        variant: 'destructive'
-      })
-    }
+  // Barcode scanner handlers
+  const openCameraScanner = () => {
+    setIsCameraModalOpen(true)
   }
 
   const closeCameraScanner = () => {
-    // Clean up camera stream
-    if (videoStreamRef.current) {
-      videoStreamRef.current.getTracks().forEach(track => {
-        track.stop()
-      })
-      videoStreamRef.current = null
-    }
-    
-    // Reset scanning state
-    isScanningRef.current = false
     setIsCameraModalOpen(false)
-    setIsCameraReady(false)
-    setCameraError(null)
+  }
+
+  const handleBarcodeScanned = async (barcode: string) => {
+    await scanBarcode(barcode)
+  }
+
+  const handleManualBarcodeEntry = () => {
+    setShowBarcodeSection(true)
   }
 
   return (
@@ -1003,110 +926,13 @@ export default function NutritionPage() {
           </CardContent>
         </Card>
 
-        {/* Camera Scanning Modal */}
-        <Dialog open={isCameraModalOpen} onOpenChange={closeCameraScanner}>
-          <DialogContent className="max-w-md mx-auto sm:max-w-lg w-[95vw] max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2">
-                <Camera className="w-5 h-5" />
-                Scan Barcode
-              </DialogTitle>
-              <DialogDescription>
-                Point your camera at a barcode to scan the product
-              </DialogDescription>
-            </DialogHeader>
-            
-            <div className="space-y-4">
-              {cameraError ? (
-                <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-                  <div className="flex items-center gap-2 text-red-700 dark:text-red-400">
-                    <AlertCircle className="w-5 h-5" />
-                    <span className="font-medium">Camera Error</span>
-                  </div>
-                  <p className="text-red-600 dark:text-red-300 mt-1 text-sm">
-                    {cameraError}
-                  </p>
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setShowBarcodeSection(true)}
-                    className="mt-3"
-                    data-testid="button-manual-entry"
-                  >
-                    Enter barcode manually instead
-                  </Button>
-                </div>
-              ) : (
-                <div className="relative">
-                  <div className="aspect-video bg-black rounded-lg overflow-hidden relative">
-                    <video
-                      ref={cameraRef as React.RefObject<HTMLVideoElement>}
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      muted
-                      playsInline
-                      webkit-playsinline="true"
-                      data-testid="video-scanner"
-                    />
-                    
-                    {/* Scanning overlay - responsive for mobile */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="border-2 border-white rounded-lg w-48 h-16 sm:w-64 sm:h-24 relative">
-                        <div className="absolute top-0 left-0 w-3 h-3 sm:w-4 sm:h-4 border-t-2 border-l-2 border-emerald-400"></div>
-                        <div className="absolute top-0 right-0 w-3 h-3 sm:w-4 sm:h-4 border-t-2 border-r-2 border-emerald-400"></div>
-                        <div className="absolute bottom-0 left-0 w-3 h-3 sm:w-4 sm:h-4 border-b-2 border-l-2 border-emerald-400"></div>
-                        <div className="absolute bottom-0 right-0 w-3 h-3 sm:w-4 sm:h-4 border-b-2 border-r-2 border-emerald-400"></div>
-                      </div>
-                    </div>
-                    
-                    {/* Loading state */}
-                    {!isCameraReady && (
-                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                        <div className="flex items-center gap-2 text-white">
-                          <Loader2 className="w-5 h-5 animate-spin" />
-                          <span>Starting camera...</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  
-                  {/* Instructions */}
-                  <div className="mt-4 text-center">
-                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
-                      Position the barcode within the frame
-                    </p>
-                    <p className="text-xs text-slate-500 dark:text-slate-500">
-                      The scan will happen automatically when a barcode is detected
-                    </p>
-                  </div>
-                </div>
-              )}
-              
-              {/* Action buttons */}
-              <div className="flex gap-2">
-                <Button
-                  variant="outline"
-                  onClick={closeCameraScanner}
-                  className="flex-1"
-                  data-testid="button-cancel-scan"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    closeCameraScanner()
-                    setShowBarcodeSection(true)
-                  }}
-                  className="flex-1"
-                  data-testid="button-manual-barcode"
-                >
-                  Enter manually
-                </Button>
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
+        {/* Lazy-loaded Barcode Scanner */}
+        <LazyBarcodeScanner
+          isOpen={isCameraModalOpen}
+          onClose={closeCameraScanner}
+          onBarcodeScanned={handleBarcodeScanned}
+          onManualEntry={handleManualBarcodeEntry}
+        />
       </div>
     </div>
   )
