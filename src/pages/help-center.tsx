@@ -1,0 +1,268 @@
+import React, { useState } from 'react'
+import { Button } from '../components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
+import { Input } from '../components/ui/input'
+import { ArrowLeft, Search, Book, MessageCircle, ChevronDown, ChevronRight } from 'lucide-react'
+import { Link } from 'wouter'
+
+interface FAQItem {
+  id: string
+  question: string
+  answer: string
+  category: string
+}
+
+const faqData: FAQItem[] = [
+  {
+    id: '1',
+    question: 'How do I track my workouts?',
+    answer: 'Navigate to the Workouts tab and tap "Start Workout". Select exercises from our database or create custom ones. Log sets, reps, and weights for each exercise. Your progress is automatically saved.',
+    category: 'Workouts'
+  },
+  {
+    id: '2',
+    question: 'Can I use the app without creating an account?',
+    answer: 'Yes! Our Guest Mode allows you to use all core features without registration. Your data is saved locally on your device. To sync across devices or backup data, create an account.',
+    category: 'Account'
+  },
+  {
+    id: '3',
+    question: 'How do I switch between LBS and KG?',
+    answer: 'Go to Settings (Profile tab), then tap "Measurement Units" to toggle between LBS and KG. This setting affects all weight displays throughout the app.',
+    category: 'Settings'
+  },
+  {
+    id: '4',
+    question: 'How do I log my nutrition?',
+    answer: 'Use the Nutrition tab to log meals and track calories. Search our food database or scan barcodes for quick entry. Set daily calorie goals based on your fitness objectives.',
+    category: 'Nutrition'
+  },
+  {
+    id: '5',
+    question: 'Is my data secure and private?',
+    answer: 'Absolutely. We use industry-standard encryption and never sell your personal data. You have full control over your information and can export or delete it at any time.',
+    category: 'Privacy'
+  },
+  {
+    id: '6',
+    question: 'How do I connect health apps like Apple Health?',
+    answer: 'Visit Settings > Health Data Connections to link with Apple HealthKit or Google Health Connect. This allows automatic syncing of health metrics like sleep and heart rate.',
+    category: 'Integrations'
+  }
+]
+
+const categories = ['All', 'Workouts', 'Nutrition', 'Account', 'Settings', 'Privacy', 'Integrations']
+
+export default function HelpCenterPage() {
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [expandedFAQ, setExpandedFAQ] = useState<string | null>(null)
+
+  const filteredFAQs = faqData.filter(faq => {
+    const matchesSearch = faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || faq.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
+
+  const toggleFAQ = (id: string) => {
+    setExpandedFAQ(expandedFAQ === id ? null : id)
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <div className="container mx-auto p-4 space-y-6 pb-24">
+        {/* Header */}
+        <div className="flex items-center gap-4 pt-8">
+          <Link href="/profile">
+            <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white" data-testid="button-back">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Settings
+            </Button>
+          </Link>
+        </div>
+
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-white" data-testid="page-title">Help Center</h1>
+          <p className="text-slate-300 mt-2">Find answers to common questions and learn how to use the app</p>
+        </div>
+
+        {/* Search Bar */}
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+          <CardContent className="p-6">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+              <Input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search for help topics..."
+                className="pl-10 bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 h-12"
+                data-testid="input-search"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Quick Actions */}
+        <div className="grid md:grid-cols-3 gap-6">
+          <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-slate-700/40 transition-all">
+            <CardContent className="p-6 text-center space-y-4">
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-xl mx-auto flex items-center justify-center">
+                <Book className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <h3 className="font-bold text-white text-lg">Getting Started</h3>
+                <p className="text-slate-300 text-sm mt-2">
+                  New to the app? Learn the basics here
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Link href="/contact-support">
+            <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-slate-700/40 transition-all">
+              <CardContent className="p-6 text-center space-y-4">
+                <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-xl mx-auto flex items-center justify-center">
+                  <MessageCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-white text-lg">Contact Support</h3>
+                  <p className="text-slate-300 text-sm mt-2">
+                    Can't find what you're looking for?
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/mission">
+            <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-slate-700/40 transition-all">
+              <CardContent className="p-6 text-center space-y-4">
+                <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-xl mx-auto flex items-center justify-center">
+                  <Search className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-white text-lg">Our Mission</h3>
+                  <p className="text-slate-300 text-sm mt-2">
+                    Learn about our commitment to free fitness
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+        </div>
+
+        {/* Category Filter */}
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+          <CardContent className="p-6">
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category)}
+                  className={selectedCategory === category 
+                    ? "bg-teal-500 hover:bg-teal-600 text-white" 
+                    : "border-slate-600 text-slate-300 hover:bg-slate-700/50"
+                  }
+                  data-testid={`filter-${category.toLowerCase()}`}
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* FAQ Section */}
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+          <CardHeader>
+            <CardTitle className="text-white text-xl font-bold">
+              Frequently Asked Questions
+            </CardTitle>
+            <CardDescription className="text-slate-300">
+              {filteredFAQs.length} question{filteredFAQs.length !== 1 ? 's' : ''} found
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {filteredFAQs.length === 0 ? (
+              <div className="text-center py-8">
+                <p className="text-slate-400">
+                  No questions found. Try adjusting your search or category filter.
+                </p>
+              </div>
+            ) : (
+              filteredFAQs.map((faq) => (
+                <div key={faq.id} className="border border-slate-700 rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => toggleFAQ(faq.id)}
+                    className="w-full p-4 text-left hover:bg-slate-700/30 transition-all duration-200 flex items-center justify-between"
+                    data-testid={`faq-question-${faq.id}`}
+                  >
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-white">{faq.question}</h3>
+                      <span className="text-xs text-teal-400 font-medium">{faq.category}</span>
+                    </div>
+                    {expandedFAQ === faq.id ? (
+                      <ChevronDown className="w-5 h-5 text-slate-400" />
+                    ) : (
+                      <ChevronRight className="w-5 h-5 text-slate-400" />
+                    )}
+                  </button>
+                  
+                  {expandedFAQ === faq.id && (
+                    <div className="p-4 bg-slate-700/20 border-t border-slate-700" data-testid={`faq-answer-${faq.id}`}>
+                      <p className="text-slate-300 leading-relaxed">{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              ))
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Additional Resources */}
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+          <CardHeader>
+            <CardTitle className="text-white text-xl font-bold">
+              Still Need Help?
+            </CardTitle>
+            <CardDescription className="text-slate-300">
+              Additional resources and support options
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid md:grid-cols-2 gap-4">
+              <Link href="/contact-support">
+                <Button 
+                  variant="outline" 
+                  className="w-full h-12 border-teal-400/50 text-teal-400 hover:bg-teal-400/10"
+                  data-testid="button-contact-support-bottom"
+                >
+                  <MessageCircle className="w-4 h-4 mr-2" />
+                  Contact Support Team
+                </Button>
+              </Link>
+              
+              <Link href="/mission">
+                <Button 
+                  variant="outline" 
+                  className="w-full h-12 border-purple-400/50 text-purple-400 hover:bg-purple-400/10"
+                  data-testid="button-mission-bottom"
+                >
+                  <Book className="w-4 h-4 mr-2" />
+                  Learn About Our Mission
+                </Button>
+              </Link>
+            </div>
+            
+            <p className="text-xs text-slate-500 text-center">
+              We're here to help! Don't hesitate to reach out if you can't find what you're looking for.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}

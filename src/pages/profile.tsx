@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import AuthPrompt from '../components/AuthPrompt'
 import { useTheme } from '../components/theme-provider'
+import { useMeasurement } from '../contexts/MeasurementContext'
 import { Button } from '../components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { User, Moon, Sun, LogOut, ChevronRight, Settings, Download, Trash2, HelpCircle, MessageCircle, FileText, Scale, Smartphone, Info } from 'lucide-react'
@@ -10,14 +11,7 @@ import { Link } from 'wouter'
 export default function SettingsPage() {
   const { user, logout, isGuestMode } = useAuth()
   const { theme, setTheme } = useTheme()
-
-  const [measurementUnit, setMeasurementUnit] = useState(() => {
-    return localStorage.getItem('measurementUnit') || 'lbs'
-  })
-
-  useEffect(() => {
-    localStorage.setItem('measurementUnit', measurementUnit)
-  }, [measurementUnit])
+  const { unit: measurementUnit, setUnit: setMeasurementUnit } = useMeasurement()
 
   if (!user && !isGuestMode) {
     return (
@@ -161,13 +155,20 @@ export default function SettingsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="p-2 space-y-2">
-            <SettingsItem
-              icon={User}
-              title="My Profile & Account"
-              subtitle="View and edit your profile information"
-              action={() => {/* Placeholder */}}
-              testId="settings-profile"
-            />
+            <Link href="/profile-edit">
+              <div className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-profile">
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-slate-700/30 rounded-xl">
+                    <User className="w-5 h-5 text-slate-300" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">My Profile & Account</p>
+                    <p className="text-sm text-slate-400 mt-0.5">View and edit your profile information</p>
+                  </div>
+                </div>
+                <ChevronRight className="w-5 h-5 text-slate-400" />
+              </div>
+            </Link>
             <SettingsItem
               icon={theme === 'dark' ? Moon : Sun}
               title="Dark Mode"
@@ -220,20 +221,34 @@ export default function SettingsPage() {
                 <ChevronRight className="w-5 h-5 text-slate-400" />
               </div>
             </Link>
-            <SettingsItem
-              icon={Download}
-              title="Export Data"
-              subtitle="Download your fitness and nutrition data"
-              action={() => {/* Placeholder */}}
-              testId="settings-export-data"
-            />
-            <SettingsItem
-              icon={Trash2}
-              title="Delete Account"
-              subtitle="Permanently remove your account and all data"
-              action={() => {/* Placeholder */}}
-              testId="settings-delete-account"
-            />
+            <Link href="/data-export">
+              <div className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-export-data">
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-slate-700/30 rounded-xl">
+                    <Download className="w-5 h-5 text-slate-300" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Export Data</p>
+                    <p className="text-sm text-slate-400 mt-0.5">Download your fitness and nutrition data</p>
+                  </div>
+                </div>
+                <ChevronRight className="w-5 h-5 text-slate-400" />
+              </div>
+            </Link>
+            <Link href="/delete-account">
+              <div className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-delete-account">
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-slate-700/30 rounded-xl">
+                    <Trash2 className="w-5 h-5 text-slate-300" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Delete Account</p>
+                    <p className="text-sm text-slate-400 mt-0.5">Permanently remove your account and all data</p>
+                  </div>
+                </div>
+                <ChevronRight className="w-5 h-5 text-slate-400" />
+              </div>
+            </Link>
           </CardContent>
         </Card>
 
@@ -266,27 +281,48 @@ export default function SettingsPage() {
                 <ChevronRight className="w-5 h-5 text-slate-400" />
               </div>
             </Link>
-            <SettingsItem
-              icon={HelpCircle}
-              title="Help Center"
-              subtitle="Find answers to common questions"
-              action={() => {/* Placeholder */}}
-              testId="settings-help-center"
-            />
-            <SettingsItem
-              icon={MessageCircle}
-              title="Contact Support"
-              subtitle="Get in touch with our support team"
-              action={() => {/* Placeholder */}}
-              testId="settings-contact-support"
-            />
-            <SettingsItem
-              icon={FileText}
-              title="Privacy & Terms"
-              subtitle="View our privacy policy and terms of service"
-              action={() => {/* Placeholder */}}
-              testId="settings-legal"
-            />
+            <Link href="/help-center">
+              <div className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-help-center">
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-slate-700/30 rounded-xl">
+                    <HelpCircle className="w-5 h-5 text-slate-300" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Help Center</p>
+                    <p className="text-sm text-slate-400 mt-0.5">Find answers to common questions</p>
+                  </div>
+                </div>
+                <ChevronRight className="w-5 h-5 text-slate-400" />
+              </div>
+            </Link>
+            <Link href="/contact-support">
+              <div className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-contact-support">
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-slate-700/30 rounded-xl">
+                    <MessageCircle className="w-5 h-5 text-slate-300" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Contact Support</p>
+                    <p className="text-sm text-slate-400 mt-0.5">Get in touch with our support team</p>
+                  </div>
+                </div>
+                <ChevronRight className="w-5 h-5 text-slate-400" />
+              </div>
+            </Link>
+            <Link href="/privacy-terms">
+              <div className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-legal">
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-slate-700/30 rounded-xl">
+                    <FileText className="w-5 h-5 text-slate-300" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Privacy & Terms</p>
+                    <p className="text-sm text-slate-400 mt-0.5">View our privacy policy and terms of service</p>
+                  </div>
+                </div>
+                <ChevronRight className="w-5 h-5 text-slate-400" />
+              </div>
+            </Link>
           </CardContent>
         </Card>
 
