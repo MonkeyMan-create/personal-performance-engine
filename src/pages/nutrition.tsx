@@ -31,7 +31,6 @@ import {
 import { saveMealLocally, getMealsByDateLocally, GuestMeal } from '../utils/guestStorage'
 import { toast } from '../hooks/use-toast'
 import LazyBarcodeScanner from '../components/LazyBarcodeScanner'
-import ProgressRing from '../components/ProgressRing'
 
 interface FoodItem {
   id: string
@@ -413,81 +412,126 @@ export default function NutritionPage() {
       <div className="container mx-auto p-4 space-y-6 pb-24">
         
         {/* Daily Summary Section */}
-        <div className="pt-8 text-center space-y-6">
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Nutrition</h1>
-          
-          {/* Progress Rings */}
-          <div className="flex items-center justify-center gap-6">
-            {/* Protein Ring */}
-            <div className="flex flex-col items-center">
-              <ProgressRing
-                progress={proteinProgress}
-                current={Math.round(todayStats.protein)}
-                goal={nutritionGoals.protein}
-                label="Protein"
-                unit="g"
-                size="sm"
-                className="drop-shadow-lg [&>*]:!stroke-orange-500 [&_text]:!fill-orange-500"
-              />
-            </div>
-
-            {/* Central Calorie Ring */}
-            <div className="flex flex-col items-center">
-              <ProgressRing
-                progress={caloriesProgress}
-                current={todayStats.calories}
-                goal={nutritionGoals.calories}
-                label="Calories Remaining"
-                unit="cal"
-                size="lg"
-                className="drop-shadow-2xl [&>*]:!stroke-orange-500 [&_text]:!fill-orange-500"
-              />
-              <div className="mt-3 text-center">
-                <p className="text-lg font-bold text-orange-600 dark:text-orange-400" data-testid="calories-remaining">
-                  {caloriesRemaining > 0 ? caloriesRemaining : 0} cal remaining
-                </p>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  {todayMeals.length} meals logged today
-                </p>
-              </div>
-            </div>
-
-            {/* Fat Ring */}
-            <div className="flex flex-col items-center">
-              <ProgressRing
-                progress={fatProgress}
-                current={Math.round(todayStats.fat)}
-                goal={nutritionGoals.fat}
-                label="Fat"
-                unit="g"
-                size="sm"
-                className="drop-shadow-lg [&>*]:!stroke-yellow-500 [&_text]:!fill-yellow-500"
-              />
-            </div>
-
-            {/* Hydration Ring */}
-            <div className="flex flex-col items-center">
-              <ProgressRing
-                progress={hydrationProgress}
-                current={waterGlasses}
-                goal={8}
-                label="Hydration"
-                unit="glasses"
-                size="sm"
-                className="drop-shadow-lg [&>*]:!stroke-blue-500 [&_text]:!fill-blue-500"
-                data-testid="progress-ring-hydration"
-              />
-              <Button
-                onClick={addWaterGlass}
-                size="sm"
-                className="mt-2 h-8 px-3 bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium rounded-full shadow-lg transition-all duration-200 hover:scale-105"
-                data-testid="button-add-water-inline"
-              >
-                <Droplets className="w-3 h-3 mr-1" />
-                Add Glass
-              </Button>
-            </div>
+        <div className="pt-8 space-y-6">
+          <div className="text-center">
+            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Nutrition</h1>
+            <p className="text-lg font-bold text-orange-600 dark:text-orange-400 mt-2" data-testid="calories-remaining">
+              {caloriesRemaining > 0 ? caloriesRemaining : 0} cal remaining
+            </p>
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              {todayMeals.length} meals logged today
+            </p>
           </div>
+          
+          {/* Daily Metrics Card */}
+          <Card className="bg-white/80 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl shadow-xl">
+            <CardContent className="p-6">
+              <div className="space-y-6">
+                
+                {/* Calories Metric */}
+                <div className="space-y-3" data-testid="metric-calories">
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Calories</h3>
+                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400">
+                      {todayStats.calories.toLocaleString()} / {nutritionGoals.calories.toLocaleString()} cal
+                    </span>
+                  </div>
+                  <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 shadow-inner">
+                    <div 
+                      className="bg-gradient-to-r from-orange-500 to-orange-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                      style={{ width: `${Math.min(100, caloriesProgress)}%` }}
+                      data-testid="progress-bar-calories"
+                    />
+                  </div>
+                  <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
+                    <span>0 cal</span>
+                    <span>{Math.round(caloriesProgress)}% of goal</span>
+                    <span>{nutritionGoals.calories.toLocaleString()} cal</span>
+                  </div>
+                </div>
+
+                {/* Protein Metric */}
+                <div className="space-y-3" data-testid="metric-protein">
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Protein</h3>
+                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400">
+                      {Math.round(todayStats.protein)}g / {nutritionGoals.protein}g
+                    </span>
+                  </div>
+                  <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 shadow-inner">
+                    <div 
+                      className="bg-gradient-to-r from-orange-400 to-orange-500 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                      style={{ width: `${Math.min(100, proteinProgress)}%` }}
+                      data-testid="progress-bar-protein"
+                    />
+                  </div>
+                  <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
+                    <span>0g</span>
+                    <span>{Math.round(proteinProgress)}% of goal</span>
+                    <span>{nutritionGoals.protein}g</span>
+                  </div>
+                </div>
+
+                {/* Fat Metric */}
+                <div className="space-y-3" data-testid="metric-fat">
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Fat</h3>
+                    <span className="text-lg font-bold text-yellow-600 dark:text-yellow-400">
+                      {Math.round(todayStats.fat)}g / {nutritionGoals.fat}g
+                    </span>
+                  </div>
+                  <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 shadow-inner">
+                    <div 
+                      className="bg-gradient-to-r from-yellow-500 to-yellow-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                      style={{ width: `${Math.min(100, fatProgress)}%` }}
+                      data-testid="progress-bar-fat"
+                    />
+                  </div>
+                  <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
+                    <span>0g</span>
+                    <span>{Math.round(fatProgress)}% of goal</span>
+                    <span>{nutritionGoals.fat}g</span>
+                  </div>
+                </div>
+
+                <div className="border-t border-slate-200 dark:border-slate-600 pt-4">
+                  {/* Hydration Metric */}
+                  <div className="space-y-3" data-testid="metric-hydration">
+                    <div className="flex justify-between items-center">
+                      <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Hydration</h3>
+                      <div className="flex items-center gap-3">
+                        <span className="text-lg font-bold text-blue-600 dark:text-blue-400">
+                          {waterGlasses} / 8 glasses
+                        </span>
+                        <Button
+                          onClick={addWaterGlass}
+                          size="sm"
+                          className="h-8 px-3 bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium rounded-full shadow-lg transition-all duration-200 hover:scale-105"
+                          data-testid="button-add-water-inline"
+                        >
+                          <Droplets className="w-3 h-3 mr-1" />
+                          Add Glass
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 shadow-inner">
+                      <div 
+                        className="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                        style={{ width: `${Math.min(100, hydrationProgress)}%` }}
+                        data-testid="progress-bar-hydration"
+                      />
+                    </div>
+                    <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
+                      <span>0 glasses</span>
+                      <span>{Math.round(hydrationProgress)}% of goal</span>
+                      <span>8 glasses</span>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Meal Type Selector */}
