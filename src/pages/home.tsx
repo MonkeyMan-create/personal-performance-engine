@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import AuthPrompt from '../components/AuthPrompt'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
-import { Plus, Utensils, Dumbbell, Clock, Moon, Sun, Calendar } from 'lucide-react'
+import { Plus, Utensils, Dumbbell, Clock, Moon, Sun, Calendar, Brain, Activity, Flame, Target, Apple, TrendingUp, Lightbulb, Award } from 'lucide-react'
 import { Link } from 'wouter'
-import LazyDataCards from '../components/LazyDataCards'
+import ProgressRing from '../components/ProgressRing'
 
 export default function HomePage() {
   const { user, isGuestMode } = useAuth()
@@ -64,12 +64,64 @@ export default function HomePage() {
 
   // Mock data for progress indicators
   const stepsData = { current: 7234, goal: 10000 }
-  const caloriesData = { current: 420, goal: 600 }
+  const caloriesData = { current: 1450, goal: 2000 }
   const sleepData = { current: 7.2, goal: 8 }
+  const waterData = { current: 6, goal: 8 }
 
   const stepsProgress = (stepsData.current / stepsData.goal) * 100
   const caloriesProgress = (caloriesData.current / caloriesData.goal) * 100
   const sleepProgress = (sleepData.current / sleepData.goal) * 100
+  const waterProgress = (waterData.current / waterData.goal) * 100
+
+  // Nutrition mock data
+  const nutritionData = {
+    calories: { current: 1450, goal: 2000 },
+    protein: { current: 85, goal: 120 },
+    carbs: { current: 180, goal: 250 },
+    fat: { current: 65, goal: 80 },
+    mealsLogged: 2
+  }
+
+  // Color mapping for consistent Tailwind classes
+  const colorMap = {
+    teal: {
+      bg: 'bg-teal-600/20',
+      text: 'text-teal-400'
+    },
+    emerald: {
+      bg: 'bg-emerald-600/20',
+      text: 'text-emerald-400'
+    },
+    blue: {
+      bg: 'bg-blue-600/20',
+      text: 'text-blue-400'
+    }
+  }
+
+  // Wellness insights
+  const insights = [
+    {
+      id: 1,
+      icon: Target,
+      message: "You're 85% to your step goal! A 10-minute walk will get you there.",
+      action: "Take a walk",
+      color: "teal" as keyof typeof colorMap
+    },
+    {
+      id: 2,
+      icon: Award,
+      message: "Great job hitting your protein target yesterday!",
+      action: "Keep it up",
+      color: "emerald" as keyof typeof colorMap
+    },
+    {
+      id: 3,
+      icon: Brain,
+      message: "Consider a 5-minute meditation to reduce stress.",
+      action: "Meditate",
+      color: "blue" as keyof typeof colorMap
+    }
+  ]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
@@ -112,7 +164,7 @@ export default function HomePage() {
                   onClick={() => setSelectedMood(mood.value)}
                   className={`p-4 rounded-2xl transition-all duration-300 hover:scale-110 active:scale-95 ${
                     selectedMood === mood.value 
-                      ? 'bg-purple-600/40 ring-4 ring-purple-400/50 shadow-lg shadow-purple-400/20' 
+                      ? 'bg-teal-600/40 ring-4 ring-teal-400/50 shadow-lg shadow-teal-400/20' 
                       : 'bg-slate-700/50 hover:bg-slate-600/50'
                   }`}
                   data-testid={`mood-${mood.value}`}
@@ -126,61 +178,295 @@ export default function HomePage() {
           </CardContent>
         </Card>
 
-        {/* Action Cards */}
-        <div className="space-y-4">
-          {/* Log Workout Card */}
-          <Link href="/workouts">
-            <Card 
-              className="bg-gradient-to-r from-purple-500 to-pink-500 border-0 shadow-2xl shadow-purple-500/25 hover:shadow-purple-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-              data-testid="card-log-workout"
-            >
-              <CardContent className="p-8">
-                <div className="flex items-center justify-between text-white">
-                  <div className="flex items-center gap-4">
-                    <div className="p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
-                      <Dumbbell className="w-8 h-8" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold">Log Workout</h3>
-                      <p className="text-purple-100 text-lg">Track your training session</p>
-                    </div>
-                  </div>
-                  <Plus className="w-8 h-8" />
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-
-          {/* Log Meal Card */}
-          <Link href="/nutrition">
-            <Card 
-              className="bg-gradient-to-r from-purple-500 to-pink-500 border-0 shadow-2xl shadow-purple-500/25 hover:shadow-purple-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-              data-testid="card-log-meal"
-            >
-              <CardContent className="p-8">
-                <div className="flex items-center justify-between text-white">
-                  <div className="flex items-center gap-4">
-                    <div className="p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
-                      <Utensils className="w-8 h-8" />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold">Log Meal</h3>
-                      <p className="text-purple-100 text-lg">Record what you ate</p>
-                    </div>
-                  </div>
-                  <Plus className="w-8 h-8" />
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
+        {/* Central Progress Ring */}
+        <div className="flex justify-center py-8">
+          <ProgressRing
+            progress={caloriesProgress}
+            current={caloriesData.current}
+            goal={caloriesData.goal}
+            label="Calories"
+            unit="cal"
+            size="lg"
+            className="drop-shadow-2xl"
+          />
         </div>
 
-        {/* Data Cards Grid - Lazy Loaded */}
-        <LazyDataCards
-          stepsData={stepsData}
-          caloriesData={caloriesData}
-          sleepData={sleepData}
-        />
+        {/* Key Metrics Grid */}
+        <div className="grid grid-cols-2 gap-4">
+          <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-teal-600/20 rounded-lg">
+                  <Activity className="w-5 h-5 text-teal-400" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm text-slate-300">Steps</p>
+                  <p className="text-lg font-bold text-white" data-testid="steps-count-metric">
+                    {stepsData.current.toLocaleString()}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-2 w-full bg-slate-700 rounded-full h-2">
+                <div 
+                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  style={{ width: `${Math.min(100, stepsProgress)}%` }}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-teal-600/20 rounded-lg">
+                  <Flame className="w-5 h-5 text-teal-400" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm text-slate-300">Burned</p>
+                  <p className="text-lg font-bold text-white" data-testid="calories-burned-metric">
+                    420 cal
+                  </p>
+                </div>
+              </div>
+              <div className="mt-2 w-full bg-slate-700 rounded-full h-2">
+                <div 
+                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  style={{ width: `70%` }}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-teal-600/20 rounded-lg">
+                  <Moon className="w-5 h-5 text-teal-400" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm text-slate-300">Sleep</p>
+                  <p className="text-lg font-bold text-white" data-testid="sleep-hours-metric">
+                    {sleepData.current}h
+                  </p>
+                </div>
+              </div>
+              <div className="mt-2 w-full bg-slate-700 rounded-full h-2">
+                <div 
+                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  style={{ width: `${Math.min(100, sleepProgress)}%` }}
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+            <CardContent className="p-4">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-teal-600/20 rounded-lg">
+                  <Target className="w-5 h-5 text-teal-400" />
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm text-slate-300">Water</p>
+                  <p className="text-lg font-bold text-white" data-testid="water-glasses-metric">
+                    {waterData.current} / {waterData.goal}
+                  </p>
+                </div>
+              </div>
+              <div className="mt-2 w-full bg-slate-700 rounded-full h-2">
+                <div 
+                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  style={{ width: `${Math.min(100, waterProgress)}%` }}
+                />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Quick Action Buttons */}
+        <div className="space-y-4">
+          <Link href="/workouts">
+            <Card 
+              className="bg-gradient-to-r from-teal-500 to-teal-600 border-0 shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              data-testid="card-log-workout"
+            >
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between text-white">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
+                      <Dumbbell className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold">Log Workout</h3>
+                      <p className="text-teal-100">Track your training session</p>
+                    </div>
+                  </div>
+                  <Plus className="w-6 h-6" />
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Link href="/nutrition">
+            <Card 
+              className="bg-gradient-to-r from-teal-500 to-teal-600 border-0 shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              data-testid="card-log-meal"
+            >
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between text-white">
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
+                      <Utensils className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold">Log Meal</h3>
+                      <p className="text-teal-100">Record what you ate</p>
+                    </div>
+                  </div>
+                  <Plus className="w-6 h-6" />
+                </div>
+              </CardContent>
+            </Card>
+          </Link>
+
+          <Card 
+            className="bg-gradient-to-r from-teal-500 to-teal-600 border-0 shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+            data-testid="card-meditate"
+          >
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between text-white">
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
+                    <Brain className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">Meditate</h3>
+                    <p className="text-teal-100">Find your inner peace</p>
+                  </div>
+                </div>
+                <Plus className="w-6 h-6" />
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Daily Wellness Insights */}
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+          <CardHeader>
+            <CardTitle className="text-white flex items-center gap-2">
+              <Lightbulb className="w-5 h-5 text-teal-400" />
+              Daily Wellness Insights
+            </CardTitle>
+            <CardDescription className="text-slate-300">
+              Personalized tips to help you reach your goals
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            {insights.map((insight) => {
+              const IconComponent = insight.icon
+              const colors = colorMap[insight.color]
+              return (
+                <div 
+                  key={insight.id} 
+                  className="p-4 bg-slate-700/30 rounded-lg border border-slate-600/50 hover:bg-slate-700/50 transition-colors"
+                  data-testid={`insight-${insight.id}`}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className={`p-2 ${colors.bg} rounded-lg flex-shrink-0`}>
+                      <IconComponent className={`w-4 h-4 ${colors.text}`} />
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-white text-sm leading-relaxed">{insight.message}</p>
+                      <button 
+                        className="mt-2 text-teal-400 text-xs font-medium hover:text-teal-300 transition-colors"
+                        data-testid={`insight-action-${insight.id}`}
+                      >
+                        {insight.action} →
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </CardContent>
+        </Card>
+
+        {/* Nutrition Snapshot */}
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+          <CardHeader>
+            <CardTitle className="text-white flex items-center gap-2">
+              <Apple className="w-5 h-5 text-teal-400" />
+              Nutrition Snapshot
+            </CardTitle>
+            <CardDescription className="text-slate-300">
+              Today's nutritional breakdown
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            {/* Macros */}
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-white font-medium">Protein</span>
+                <span className="text-slate-300 text-sm" data-testid="protein-count">
+                  {nutritionData.protein.current}g / {nutritionData.protein.goal}g
+                </span>
+              </div>
+              <div className="w-full bg-slate-700 rounded-full h-2">
+                <div 
+                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  style={{ width: `${Math.min(100, (nutritionData.protein.current / nutritionData.protein.goal) * 100)}%` }}
+                />
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-white font-medium">Carbs</span>
+                <span className="text-slate-300 text-sm" data-testid="carbs-count">
+                  {nutritionData.carbs.current}g / {nutritionData.carbs.goal}g
+                </span>
+              </div>
+              <div className="w-full bg-slate-700 rounded-full h-2">
+                <div 
+                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  style={{ width: `${Math.min(100, (nutritionData.carbs.current / nutritionData.carbs.goal) * 100)}%` }}
+                />
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <span className="text-white font-medium">Fat</span>
+                <span className="text-slate-300 text-sm" data-testid="fat-count">
+                  {nutritionData.fat.current}g / {nutritionData.fat.goal}g
+                </span>
+              </div>
+              <div className="w-full bg-slate-700 rounded-full h-2">
+                <div 
+                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  style={{ width: `${Math.min(100, (nutritionData.fat.current / nutritionData.fat.goal) * 100)}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="flex justify-between items-center pt-4 border-t border-slate-700">
+              <div className="text-center">
+                <p className="text-2xl font-bold text-teal-400" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
+                <p className="text-xs text-slate-400">Meals Logged</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-teal-400" data-testid="calories-remaining">
+                  {nutritionData.calories.goal - nutritionData.calories.current}
+                </p>
+                <p className="text-xs text-slate-400">Calories Left</p>
+              </div>
+              <div className="text-center">
+                <p className="text-2xl font-bold text-teal-400">73%</p>
+                <p className="text-xs text-slate-400">Daily Goal</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )
