@@ -60,7 +60,7 @@ export default function WorkoutsPage() {
       difficulty: 'Intermediate',
       type: 'Strength Training',
       icon: Dumbbell,
-      color: 'from-teal-500 to-teal-600'
+      color: 'from-yellow-500 to-orange-500'
     },
     {
       id: 'lower-body-power',
@@ -71,7 +71,7 @@ export default function WorkoutsPage() {
       difficulty: 'Advanced',
       type: 'Power Training',
       icon: Target,
-      color: 'from-emerald-500 to-emerald-600'
+      color: 'from-red-500 to-red-600'
     },
     {
       id: 'hiit-cardio',
@@ -82,7 +82,7 @@ export default function WorkoutsPage() {
       difficulty: 'Intermediate',
       type: 'Cardio',
       icon: Flame,
-      color: 'from-orange-500 to-red-500'
+      color: 'from-orange-500 to-yellow-500'
     },
     {
       id: 'full-body-circuit',
@@ -93,7 +93,7 @@ export default function WorkoutsPage() {
       difficulty: 'Beginner',
       type: 'Circuit Training',
       icon: Activity,
-      color: 'from-blue-500 to-indigo-600'
+      color: 'from-green-500 to-emerald-500'
     },
     {
       id: 'core-abs',
@@ -104,7 +104,7 @@ export default function WorkoutsPage() {
       difficulty: 'Beginner',
       type: 'Core Training',
       icon: Target,
-      color: 'from-purple-500 to-pink-600'
+      color: 'from-green-500 to-emerald-500'
     },
     {
       id: 'yoga-flow',
@@ -115,7 +115,7 @@ export default function WorkoutsPage() {
       difficulty: 'Beginner',
       type: 'Flexibility',
       icon: Heart,
-      color: 'from-green-500 to-teal-500'
+      color: 'from-green-500 to-emerald-500'
     }
   ]
 
@@ -323,7 +323,7 @@ export default function WorkoutsPage() {
                             {exercise.sets.map((set, setIndex) => (
                               <span 
                                 key={setIndex}
-                                className="text-xs bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-2 py-1 rounded"
+                                className="text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded"
                               >
                                 {set.weight}lbs × {set.reps}
                               </span>
@@ -504,7 +504,7 @@ export default function WorkoutsPage() {
 
                         <div className="space-y-2">
                           {workout.exercises.map((exercise, index) => (
-                            <div key={index} className="border-l-2 border-teal-400 pl-3">
+                            <div key={index} className="border-l-2 border-purple-400 pl-3">
                               <p className="font-medium text-slate-900 dark:text-white">{exercise.name}</p>
                               <div className="flex flex-wrap gap-2 mt-1">
                                 {exercise.sets.map((set, setIndex) => (
@@ -555,7 +555,7 @@ export default function WorkoutsPage() {
 
             {/* Active Session Banner */}
             {currentSession && (
-              <Card className="bg-gradient-to-r from-teal-500/10 to-teal-600/10 border-teal-400/50 dark:border-teal-600/50">
+              <Card className="bg-gradient-to-r from-purple-500/10 to-purple-600/10 border-purple-400/50 dark:border-purple-600/50">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div>
@@ -566,7 +566,7 @@ export default function WorkoutsPage() {
                     </div>
                     <Button
                       onClick={() => setViewMode('exercise-selection')}
-                      className="bg-teal-600 hover:bg-teal-700 text-white"
+                      className="bg-purple-600 hover:bg-purple-700 text-white"
                       data-testid="button-continue-workout"
                     >
                       Continue
@@ -590,7 +590,7 @@ export default function WorkoutsPage() {
                 <Button
                   onClick={handleStartWorkout}
                   variant="outline"
-                  className="flex-1 h-12 border-teal-400/50 text-teal-600 hover:bg-teal-50 dark:text-teal-400 dark:hover:bg-teal-900/20 dark:border-teal-600"
+                  className="flex-1 h-12 border-purple-400/50 text-purple-600 hover:bg-purple-50 dark:text-purple-400 dark:hover:bg-purple-900/20 dark:border-purple-600"
                   data-testid="button-create-custom"
                 >
                   <Plus className="w-5 h-5 mr-2" />
@@ -644,7 +644,7 @@ export default function WorkoutsPage() {
                   <Button
                     onClick={handleStartWorkout}
                     size="lg"
-                    className="bg-white text-teal-600 hover:bg-white/90 font-semibold px-8"
+                    className="bg-white text-purple-600 hover:bg-white/90 font-semibold px-8"
                     data-testid="button-start-session"
                   >
                     Start Session
@@ -669,7 +669,7 @@ export default function WorkoutsPage() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300"
+                  className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300"
                   onClick={() => setShowTemplateSelector(true)}
                   data-testid="button-view-all-templates"
                 >
@@ -691,10 +691,10 @@ export default function WorkoutsPage() {
                       >
                         <CardContent className="p-4">
                           <div className="flex items-start justify-between mb-3">
-                            <div className="p-2 bg-teal-600/20 rounded-lg">
-                              <IconComponent className="w-5 h-5 text-teal-400" />
+                            <div className="p-2 bg-purple-600/20 rounded-lg">
+                              <IconComponent className="w-5 h-5 text-purple-400" />
                             </div>
-                            <span className="text-xs bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300 px-2 py-1 rounded-full">
+                            <span className="text-xs bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 px-2 py-1 rounded-full">
                               {template.difficulty}
                             </span>
                           </div>
@@ -725,13 +725,13 @@ export default function WorkoutsPage() {
               <div className="grid grid-cols-2 gap-4">
                 <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50">
                   <CardContent className="p-4 text-center">
-                    <p className="text-2xl font-bold text-teal-600 dark:text-teal-400">{workouts.length}</p>
+                    <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">{workouts.length}</p>
                     <p className="text-sm text-slate-600 dark:text-slate-300">Total Workouts</p>
                   </CardContent>
                 </Card>
                 <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50">
                   <CardContent className="p-4 text-center">
-                    <p className="text-2xl font-bold text-teal-600 dark:text-teal-400">
+                    <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
                       {workouts.reduce((total, workout) => 
                         total + workout.exercises.reduce((sets, ex) => sets + ex.sets.length, 0), 0
                       )}

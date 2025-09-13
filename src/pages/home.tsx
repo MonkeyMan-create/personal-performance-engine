@@ -84,9 +84,9 @@ export default function HomePage() {
 
   // Color mapping for consistent Tailwind classes
   const colorMap = {
-    teal: {
-      bg: 'bg-teal-600/20',
-      text: 'text-teal-400'
+    purple: {
+      bg: 'bg-purple-600/20',
+      text: 'text-purple-400'
     },
     emerald: {
       bg: 'bg-emerald-600/20',
@@ -105,7 +105,7 @@ export default function HomePage() {
       icon: Target,
       message: "You're 85% to your step goal! A 10-minute walk will get you there.",
       action: "Take a walk",
-      color: "teal" as keyof typeof colorMap
+      color: "purple" as keyof typeof colorMap
     },
     {
       id: 2,
@@ -164,7 +164,7 @@ export default function HomePage() {
                   onClick={() => setSelectedMood(mood.value)}
                   className={`p-4 rounded-2xl transition-all duration-300 hover:scale-110 active:scale-95 ${
                     selectedMood === mood.value 
-                      ? 'bg-teal-600/40 ring-4 ring-teal-400/50 shadow-lg shadow-teal-400/20' 
+                      ? 'bg-slate-600/60 ring-4 ring-slate-400/50 shadow-lg shadow-slate-400/20' 
                       : 'bg-slate-700/50 hover:bg-slate-600/50'
                   }`}
                   data-testid={`mood-${mood.value}`}
@@ -187,7 +187,7 @@ export default function HomePage() {
             label="Calories"
             unit="cal"
             size="lg"
-            className="drop-shadow-2xl"
+            className="drop-shadow-2xl [&>*]:!stroke-orange-500 [&_text]:!fill-orange-500"
           />
         </div>
 
@@ -196,8 +196,8 @@ export default function HomePage() {
           <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-teal-600/20 rounded-lg">
-                  <Activity className="w-5 h-5 text-teal-400" />
+                <div className="p-2 bg-purple-600/20 rounded-lg">
+                  <Activity className="w-5 h-5 text-purple-400" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-slate-300">Steps</p>
@@ -208,7 +208,7 @@ export default function HomePage() {
               </div>
               <div className="mt-2 w-full bg-slate-700 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-purple-500 to-purple-400 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, stepsProgress)}%` }}
                 />
               </div>
@@ -218,8 +218,8 @@ export default function HomePage() {
           <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-teal-600/20 rounded-lg">
-                  <Flame className="w-5 h-5 text-teal-400" />
+                <div className="p-2 bg-orange-600/20 rounded-lg">
+                  <Flame className="w-5 h-5 text-orange-400" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-slate-300">Burned</p>
@@ -230,7 +230,7 @@ export default function HomePage() {
               </div>
               <div className="mt-2 w-full bg-slate-700 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-orange-500 to-orange-400 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `70%` }}
                 />
               </div>
@@ -240,8 +240,8 @@ export default function HomePage() {
           <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-teal-600/20 rounded-lg">
-                  <Moon className="w-5 h-5 text-teal-400" />
+                <div className="p-2 bg-blue-600/20 rounded-lg">
+                  <Moon className="w-5 h-5 text-blue-400" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-slate-300">Sleep</p>
@@ -252,7 +252,7 @@ export default function HomePage() {
               </div>
               <div className="mt-2 w-full bg-slate-700 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-blue-500 to-blue-400 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, sleepProgress)}%` }}
                 />
               </div>
@@ -262,8 +262,8 @@ export default function HomePage() {
           <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-teal-600/20 rounded-lg">
-                  <Target className="w-5 h-5 text-teal-400" />
+                <div className="p-2 bg-blue-600/20 rounded-lg">
+                  <Target className="w-5 h-5 text-blue-400" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-slate-300">Water</p>
@@ -274,7 +274,7 @@ export default function HomePage() {
               </div>
               <div className="mt-2 w-full bg-slate-700 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-blue-500 to-blue-400 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, waterProgress)}%` }}
                 />
               </div>
@@ -353,7 +353,7 @@ export default function HomePage() {
         <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
-              <Lightbulb className="w-5 h-5 text-teal-400" />
+              <Lightbulb className="w-5 h-5 text-yellow-400" />
               Daily Wellness Insights
             </CardTitle>
             <CardDescription className="text-slate-300">
@@ -377,7 +377,7 @@ export default function HomePage() {
                     <div className="flex-1">
                       <p className="text-white text-sm leading-relaxed">{insight.message}</p>
                       <button 
-                        className="mt-2 text-teal-400 text-xs font-medium hover:text-teal-300 transition-colors"
+                        className={`mt-2 ${colorMap[insight.color].text} text-xs font-medium hover:opacity-80 transition-colors`}
                         data-testid={`insight-action-${insight.id}`}
                       >
                         {insight.action} →
@@ -394,7 +394,7 @@ export default function HomePage() {
         <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
-              <Apple className="w-5 h-5 text-teal-400" />
+              <Apple className="w-5 h-5 text-orange-400" />
               Nutrition Snapshot
             </CardTitle>
             <CardDescription className="text-slate-300">
@@ -412,7 +412,7 @@ export default function HomePage() {
               </div>
               <div className="w-full bg-slate-700 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-orange-500 to-orange-400 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, (nutritionData.protein.current / nutritionData.protein.goal) * 100)}%` }}
                 />
               </div>
@@ -427,7 +427,7 @@ export default function HomePage() {
               </div>
               <div className="w-full bg-slate-700 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-amber-500 to-yellow-400 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, (nutritionData.carbs.current / nutritionData.carbs.goal) * 100)}%` }}
                 />
               </div>
@@ -442,7 +442,7 @@ export default function HomePage() {
               </div>
               <div className="w-full bg-slate-700 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-teal-500 to-teal-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-yellow-500 to-amber-400 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, (nutritionData.fat.current / nutritionData.fat.goal) * 100)}%` }}
                 />
               </div>
@@ -451,17 +451,17 @@ export default function HomePage() {
             {/* Quick Stats */}
             <div className="flex justify-between items-center pt-4 border-t border-slate-700">
               <div className="text-center">
-                <p className="text-2xl font-bold text-teal-400" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
+                <p className="text-2xl font-bold text-orange-400" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
                 <p className="text-xs text-slate-400">Meals Logged</p>
               </div>
               <div className="text-center">
-                <p className="text-2xl font-bold text-teal-400" data-testid="calories-remaining">
+                <p className="text-2xl font-bold text-orange-400" data-testid="calories-remaining">
                   {nutritionData.calories.goal - nutritionData.calories.current}
                 </p>
                 <p className="text-xs text-slate-400">Calories Left</p>
               </div>
               <div className="text-center">
-                <p className="text-2xl font-bold text-teal-400">73%</p>
+                <p className="text-2xl font-bold text-orange-400">73%</p>
                 <p className="text-xs text-slate-400">Daily Goal</p>
               </div>
             </div>

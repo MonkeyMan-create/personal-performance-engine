@@ -426,7 +426,7 @@ export default function NutritionPage() {
                 label="Protein"
                 unit="g"
                 size="sm"
-                className="drop-shadow-lg"
+                className="drop-shadow-lg [&>*]:!stroke-orange-500 [&_text]:!fill-orange-500"
               />
             </div>
 
@@ -439,10 +439,10 @@ export default function NutritionPage() {
                 label="Calories Remaining"
                 unit="cal"
                 size="lg"
-                className="drop-shadow-2xl"
+                className="drop-shadow-2xl [&>*]:!stroke-orange-500 [&_text]:!fill-orange-500"
               />
               <div className="mt-3 text-center">
-                <p className="text-lg font-bold text-teal-600 dark:text-teal-400" data-testid="calories-remaining">
+                <p className="text-lg font-bold text-orange-600 dark:text-orange-400" data-testid="calories-remaining">
                   {caloriesRemaining > 0 ? caloriesRemaining : 0} cal remaining
                 </p>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -460,7 +460,7 @@ export default function NutritionPage() {
                 label="Fat"
                 unit="g"
                 size="sm"
-                className="drop-shadow-lg"
+                className="drop-shadow-lg [&>*]:!stroke-yellow-500 [&_text]:!fill-yellow-500"
               />
             </div>
           </div>
@@ -475,7 +475,7 @@ export default function NutritionPage() {
               size="sm"
               onClick={() => setMealType(type)}
               className={mealType === type 
-                ? 'bg-teal-600 hover:bg-teal-700 text-white' 
+                ? 'bg-orange-600 hover:bg-orange-700 text-white' 
                 : 'border-slate-300 dark:border-slate-600'}
               data-testid={`button-meal-type-${type}`}
             >
@@ -511,30 +511,30 @@ export default function NutritionPage() {
               <Button
                 variant="outline"
                 onClick={openCameraScanner}
-                className="h-12 bg-white/50 dark:bg-slate-800/50 border-teal-200 dark:border-teal-700 hover:bg-teal-50 dark:hover:bg-teal-900/20 hover:border-teal-300 dark:hover:border-teal-600 transition-colors"
+                className="h-12 bg-white/50 dark:bg-slate-800/50 border-orange-200 dark:border-orange-700 hover:bg-orange-50 dark:hover:bg-orange-900/20 hover:border-orange-300 dark:hover:border-orange-600 transition-colors"
                 data-testid="button-barcode-scan-secondary"
               >
-                <Barcode className="w-5 h-5 mr-2 text-teal-600 dark:text-teal-400" />
+                <Barcode className="w-5 h-5 mr-2 text-orange-600 dark:text-orange-400" />
                 <span className="text-slate-700 dark:text-slate-300">Scan Barcode</span>
               </Button>
               
               <Button
                 variant="outline"
                 onClick={openPhotoCapture}
-                className="h-12 bg-white/50 dark:bg-slate-800/50 border-teal-200 dark:border-teal-700 hover:bg-teal-50 dark:hover:bg-teal-900/20 hover:border-teal-300 dark:hover:border-teal-600 transition-colors"
+                className="h-12 bg-white/50 dark:bg-slate-800/50 border-orange-200 dark:border-orange-700 hover:bg-orange-50 dark:hover:bg-orange-900/20 hover:border-orange-300 dark:hover:border-orange-600 transition-colors"
                 data-testid="button-photo-logging-secondary"
               >
-                <ImageIcon className="w-5 h-5 mr-2 text-teal-600 dark:text-teal-400" />
+                <ImageIcon className="w-5 h-5 mr-2 text-orange-600 dark:text-orange-400" />
                 <span className="text-slate-700 dark:text-slate-300">Photo Log</span>
               </Button>
               
               <Button
                 variant="outline"
                 onClick={() => setShowCustomSection(!showCustomSection)}
-                className="h-12 bg-white/50 dark:bg-slate-800/50 border-teal-200 dark:border-teal-700 hover:bg-teal-50 dark:hover:bg-teal-900/20 hover:border-teal-300 dark:hover:border-teal-600 transition-colors"
+                className="h-12 bg-white/50 dark:bg-slate-800/50 border-orange-200 dark:border-orange-700 hover:bg-orange-50 dark:hover:bg-orange-900/20 hover:border-orange-300 dark:hover:border-orange-600 transition-colors"
                 data-testid="button-custom-food-secondary"
               >
-                <Plus className="w-5 h-5 mr-2 text-teal-600 dark:text-teal-400" />
+                <Plus className="w-5 h-5 mr-2 text-orange-600 dark:text-orange-400" />
                 <span className="text-slate-700 dark:text-slate-300">Add Custom</span>
               </Button>
             </div>
@@ -550,14 +550,14 @@ export default function NutritionPage() {
                       placeholder="Search for any food..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-12 pl-12 text-base bg-white dark:bg-slate-700 border-2 border-teal-200 dark:border-teal-700 focus:border-teal-500 dark:focus:border-teal-400 rounded-xl"
+                      className="h-12 pl-12 text-base bg-white dark:bg-slate-700 border-2 border-orange-200 dark:border-orange-700 focus:border-orange-500 dark:focus:border-orange-400 rounded-xl"
                       data-testid="input-food-search"
                     />
                   </div>
                   <Button 
                     type="submit" 
                     disabled={isSearching || !searchQuery.trim()}
-                    className="w-full h-10 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-xl"
+                    className="w-full h-10 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-xl"
                     data-testid="button-search-food"
                   >
                     {isSearching ? (
@@ -582,7 +582,7 @@ export default function NutritionPage() {
                       href="https://openfoodfacts.org" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-teal-600 hover:text-teal-700 dark:text-teal-400 font-medium inline-flex items-center gap-1"
+                      className="text-orange-600 hover:text-orange-700 dark:text-orange-400 font-medium inline-flex items-center gap-1"
                     >
                       Open Food Facts
                       <ExternalLink className="w-3 h-3" />
@@ -655,7 +655,7 @@ export default function NutritionPage() {
                           <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{food.brand}</p>
                         )}
                         <div className="flex items-center gap-4 mt-2 text-sm text-slate-600 dark:text-slate-400">
-                          <span className="font-medium text-teal-600 dark:text-teal-400">{food.calories} cal</span>
+                          <span className="font-medium text-orange-600 dark:text-orange-400">{food.calories} cal</span>
                           {food.protein && <span>P: {food.protein}g</span>}
                           {food.carbs && <span>C: {food.carbs}g</span>}
                           {food.fat && <span>F: {food.fat}g</span>}
@@ -737,9 +737,9 @@ export default function NutritionPage() {
                   </div>
                   <div className="space-y-4">
                     {/* Camera Scan Option */}
-                    <div className="p-4 bg-teal-50 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-800 rounded-lg">
+                    <div className="p-4 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg">
                       <div className="flex items-center gap-3 mb-3">
-                        <Camera className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+                        <Camera className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                         <h4 className="font-medium text-slate-900 dark:text-white">Camera Scan</h4>
                       </div>
                       <p className="text-slate-600 dark:text-slate-400 text-sm mb-3">
@@ -750,7 +750,7 @@ export default function NutritionPage() {
                           setShowBarcodeSection(false)
                           openCameraScanner()
                         }}
-                        className="w-full bg-teal-600 hover:bg-teal-700 text-white"
+                        className="w-full bg-orange-600 hover:bg-orange-700 text-white"
                         data-testid="button-open-camera"
                       >
                         <Camera className="w-4 h-4 mr-2" />
@@ -824,13 +824,13 @@ export default function NutritionPage() {
                                 {food.name}
                               </h4>
                               <div className="flex items-center gap-3 mt-1 text-sm text-slate-600 dark:text-slate-400">
-                                <span className="font-medium text-teal-600 dark:text-teal-400">{food.calories} cal</span>
+                                <span className="font-medium text-orange-600 dark:text-orange-400">{food.calories} cal</span>
                                 {food.protein && <span>P: {food.protein}g</span>}
                                 {food.carbs && <span>C: {food.carbs}g</span>}
                                 {food.fat && <span>F: {food.fat}g</span>}
                               </div>
                             </div>
-                            <Plus className="w-4 h-4 text-teal-600 dark:text-teal-400 mt-1" />
+                            <Plus className="w-4 h-4 text-orange-600 dark:text-orange-400 mt-1" />
                           </div>
                         </div>
                       ))}
@@ -949,7 +949,7 @@ export default function NutritionPage() {
                         setShowCustomSection(false)
                       }}
                       disabled={!customFood.name || !customFood.calories}
-                      className="w-full h-12 bg-teal-600 hover:bg-teal-700 text-white"
+                      className="w-full h-12 bg-orange-600 hover:bg-orange-700 text-white"
                       data-testid="button-log-custom"
                     >
                       <Plus className="w-5 h-5 mr-2" />
@@ -1051,7 +1051,7 @@ export default function NutritionPage() {
                 
                 <Button
                   onClick={() => logFood(selectedFood)}
-                  className="w-full bg-teal-600 hover:bg-teal-700 text-white"
+                  className="w-full bg-orange-600 hover:bg-orange-700 text-white"
                   data-testid="button-confirm-log"
                 >
                   <Check className="w-4 h-4 mr-2" />
@@ -1068,7 +1068,7 @@ export default function NutritionPage() {
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Today's Meals</h2>
             <Badge 
               variant="secondary" 
-              className="bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-700"
+              className="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-700"
             >
               {todayMeals.length} logged
             </Badge>
@@ -1078,8 +1078,8 @@ export default function NutritionPage() {
             <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
               <CardContent className="p-12 text-center">
                 <div className="flex flex-col items-center gap-4">
-                  <div className="w-16 h-16 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
-                    <Utensils className="w-8 h-8 text-teal-600 dark:text-teal-400" />
+                  <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center">
+                    <Utensils className="w-8 h-8 text-orange-600 dark:text-orange-400" />
                   </div>
                   <div>
                     <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
@@ -1130,7 +1130,7 @@ export default function NutritionPage() {
                             </h3>
                             <Badge 
                               variant="secondary"
-                              className="text-xs bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-700"
+                              className="text-xs bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-700"
                             >
                               {meal.mealType}
                             </Badge>
@@ -1139,7 +1139,7 @@ export default function NutritionPage() {
                           {/* Macro breakdown */}
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                             <div className="text-center">
-                              <div className="text-2xl font-bold text-teal-600 dark:text-teal-400" data-testid={`meal-calories-${meal.id}`}>
+                              <div className="text-2xl font-bold text-orange-600 dark:text-orange-400" data-testid={`meal-calories-${meal.id}`}>
                                 {meal.calories}
                               </div>
                               <div className="text-xs text-slate-500 dark:text-slate-400">Calories</div>
@@ -1171,8 +1171,8 @@ export default function NutritionPage() {
                           </div>
                           
                           {/* Insight message */}
-                          <div className="p-3 bg-teal-50 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-800 rounded-lg">
-                            <p className="text-sm text-teal-700 dark:text-teal-300 font-medium" data-testid={`meal-insight-${meal.id}`}>
+                          <div className="p-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg">
+                            <p className="text-sm text-orange-700 dark:text-orange-300 font-medium" data-testid={`meal-insight-${meal.id}`}>
                               {getInsightMessage(meal)}
                             </p>
                           </div>
@@ -1216,8 +1216,8 @@ export default function NutritionPage() {
             </DialogHeader>
             <div className="space-y-4 pt-4">
               <div className="text-center space-y-4">
-                <div className="w-20 h-20 mx-auto bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
-                  <ImageIcon className="w-10 h-10 text-teal-600 dark:text-teal-400" />
+                <div className="w-20 h-20 mx-auto bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center">
+                  <ImageIcon className="w-10 h-10 text-orange-600 dark:text-orange-400" />
                 </div>
                 <div>
                   <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
@@ -1232,7 +1232,7 @@ export default function NutritionPage() {
               <div className="flex gap-3">
                 <Button
                   onClick={handlePhotoCapture}
-                  className="flex-1 bg-teal-600 hover:bg-teal-700 text-white"
+                  className="flex-1 bg-orange-600 hover:bg-orange-700 text-white"
                   data-testid="button-take-photo"
                 >
                   <Camera className="w-4 h-4 mr-2" />

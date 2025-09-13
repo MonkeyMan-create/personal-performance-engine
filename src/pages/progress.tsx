@@ -229,15 +229,15 @@ export default function ProgressPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Card 
                   data-testid="card-total-workouts"
-                  className="bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/40 dark:to-teal-800/40 border-teal-200 dark:border-teal-700 hover:shadow-lg transition-all duration-200"
+                  className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/40 dark:to-purple-800/40 border-purple-200 dark:border-purple-700 hover:shadow-lg transition-all duration-200"
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
-                    <div className="w-12 h-12 mx-auto bg-teal-500 dark:bg-teal-600 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 mx-auto bg-purple-500 dark:bg-purple-600 rounded-full flex items-center justify-center">
                       <Dumbbell className="w-6 h-6 text-white" />
                     </div>
                     <div className="space-y-1">
-                      <div data-testid="text-total-workouts" className="text-3xl font-bold text-teal-700 dark:text-teal-300">{workoutStats.totalWorkouts}</div>
-                      <div className="text-sm font-medium text-teal-600 dark:text-teal-400">Total Workouts</div>
+                      <div data-testid="text-total-workouts" className="text-3xl font-bold text-purple-700 dark:text-purple-300">{workoutStats.totalWorkouts}</div>
+                      <div className="text-sm font-medium text-purple-600 dark:text-purple-400">Total Workouts</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -297,7 +297,7 @@ export default function ProgressPage() {
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+                    <TrendingUp className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                     <CardTitle className="text-xl text-slate-900 dark:text-white">Weight Trend</CardTitle>
                   </div>
                   <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -328,9 +328,9 @@ export default function ProgressPage() {
                         <Line 
                           type="monotone" 
                           dataKey="weight" 
-                          stroke="#14B8A6" 
+                          stroke="#3B82F6" 
                           strokeWidth={3}
-                          dot={{ fill: '#14B8A6', strokeWidth: 2, r: 5 }}
+                          dot={{ fill: '#3B82F6', strokeWidth: 2, r: 5 }}
                         />
                       </LineChart>
                     </ResponsiveContainer>
@@ -339,15 +339,15 @@ export default function ProgressPage() {
                   {/* Motivational Insights */}
                   <div 
                     data-testid="weight-insights"
-                    className="bg-gradient-to-r from-teal-50 to-emerald-50 dark:from-teal-900/30 dark:to-emerald-900/30 rounded-lg p-4 border border-teal-200 dark:border-teal-700"
+                    className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-lg p-4 border border-blue-200 dark:border-blue-700"
                   >
                     <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-teal-500 dark:bg-teal-600 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
                         <TrendingUp className="w-4 h-4 text-white" />
                       </div>
                       <div className="space-y-1">
-                        <h4 className="font-semibold text-teal-700 dark:text-teal-300">Weight Progress Insight</h4>
-                        <p data-testid="text-weight-insight" className="text-sm text-teal-600 dark:text-teal-400">
+                        <h4 className="font-semibold text-blue-700 dark:text-blue-300">Weight Progress Insight</h4>
+                        <p data-testid="text-weight-insight" className="text-sm text-blue-600 dark:text-blue-400">
                           {(() => {
                             if (weightTrendData.length < 2) {
                               return "Keep logging your weight to see meaningful trends and insights!"
@@ -387,7 +387,7 @@ export default function ProgressPage() {
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+                    <TrendingUp className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                     <CardTitle className="text-xl text-slate-900 dark:text-white">Weight Trend</CardTitle>
                   </div>
                   <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -395,12 +395,12 @@ export default function ProgressPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="bg-gradient-to-r from-teal-50 to-emerald-50 dark:from-teal-900/30 dark:to-emerald-900/30 rounded-lg p-6 border border-teal-200 dark:border-teal-700 text-center">
-                    <div className="w-12 h-12 mx-auto bg-teal-500 dark:bg-teal-600 rounded-full flex items-center justify-center mb-3">
+                  <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-lg p-6 border border-blue-200 dark:border-blue-700 text-center">
+                    <div className="w-12 h-12 mx-auto bg-blue-500 dark:bg-blue-600 rounded-full flex items-center justify-center mb-3">
                       <TrendingUp className="w-6 h-6 text-white" />
                     </div>
-                    <h4 className="font-semibold text-teal-700 dark:text-teal-300 mb-2">Ready to Track Your Progress?</h4>
-                    <p className="text-sm text-teal-600 dark:text-teal-400">
+                    <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Ready to Track Your Progress?</h4>
+                    <p className="text-sm text-blue-600 dark:text-blue-400">
                       Start logging your weight regularly to visualize your fitness journey and get personalized insights!
                     </p>
                   </div>
@@ -417,7 +417,7 @@ export default function ProgressPage() {
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <Trophy className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+                    <Trophy className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                     <CardTitle className="text-xl text-slate-900 dark:text-white">Your Achievements</CardTitle>
                   </div>
                   <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -437,7 +437,7 @@ export default function ProgressPage() {
                           title: 'First Step',
                           description: 'Complete your first workout',
                           icon: Dumbbell,
-                          color: 'from-teal-400 to-teal-600',
+                          color: 'from-purple-400 to-purple-600',
                           earned: workoutStats.totalWorkouts >= 1,
                           target: 1,
                           current: workoutStats.totalWorkouts
@@ -507,7 +507,7 @@ export default function ProgressPage() {
                           title: 'Century Club',
                           description: 'Complete 100 workouts',
                           icon: BadgeCheck,
-                          color: 'from-teal-400 to-cyan-600',
+                          color: 'from-purple-400 to-purple-600',
                           earned: workoutStats.totalWorkouts >= 100,
                           target: 100,
                           current: workoutStats.totalWorkouts
@@ -576,7 +576,7 @@ export default function ProgressPage() {
                                       cx="30"
                                       cy="30"
                                       r="28"
-                                      stroke="#14B8A6"
+                                      stroke="#3B82F6"
                                       strokeWidth="2"
                                       fill="none"
                                       strokeDasharray={`${progressPercent * 1.76} 176`}
@@ -620,7 +620,7 @@ export default function ProgressPage() {
                   <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Award className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+                        <Award className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                         <span className="font-medium text-slate-900 dark:text-white">Achievement Progress</span>
                       </div>
                       <div 
@@ -658,7 +658,7 @@ export default function ProgressPage() {
             >
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Flame className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+                  <Flame className="w-6 h-6 text-orange-600 dark:text-orange-400" />
                   <CardTitle className="text-xl text-slate-900 dark:text-white">Daily Calories (Last 7 Days)</CardTitle>
                 </div>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -710,7 +710,7 @@ export default function ProgressPage() {
             >
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Target className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+                  <Target className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                   <CardTitle className="text-xl text-slate-900 dark:text-white">Workout Details</CardTitle>
                 </div>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -721,10 +721,10 @@ export default function ProgressPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div 
                     data-testid="card-workouts-this-month"
-                    className="text-center p-4 bg-teal-50/80 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-700 rounded-lg backdrop-blur-sm"
+                    className="text-center p-4 bg-purple-50/80 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700 rounded-lg backdrop-blur-sm"
                   >
-                    <div data-testid="text-workouts-this-month" className="text-2xl font-bold text-teal-600 dark:text-teal-400">{workoutStats.workoutsThisMonth}</div>
-                    <div className="text-sm text-teal-700 dark:text-teal-300">Workouts This Month</div>
+                    <div data-testid="text-workouts-this-month" className="text-2xl font-bold text-purple-600 dark:text-purple-400">{workoutStats.workoutsThisMonth}</div>
+                    <div className="text-sm text-purple-700 dark:text-purple-300">Workouts This Month</div>
                   </div>
                   <div 
                     data-testid="card-total-sets"
@@ -738,10 +738,10 @@ export default function ProgressPage() {
                 {workoutStats.averageRIR > 0 && (
                   <div 
                     data-testid="card-average-rir"
-                    className="text-center p-4 bg-teal-50/80 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-700 rounded-lg backdrop-blur-sm"
+                    className="text-center p-4 bg-purple-50/80 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700 rounded-lg backdrop-blur-sm"
                   >
-                    <div data-testid="text-average-rir" className="text-2xl font-bold text-teal-600 dark:text-teal-400">{workoutStats.averageRIR}</div>
-                    <div className="text-sm text-teal-700 dark:text-teal-300">Average RIR (Reps in Reserve)</div>
+                    <div data-testid="text-average-rir" className="text-2xl font-bold text-purple-600 dark:text-purple-400">{workoutStats.averageRIR}</div>
+                    <div className="text-sm text-purple-700 dark:text-purple-300">Average RIR (Reps in Reserve)</div>
                   </div>
                 )}
 
