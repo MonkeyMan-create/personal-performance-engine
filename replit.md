@@ -21,6 +21,9 @@ This is a comprehensive mobile-first fitness tracking application built with Rea
 - **API Attribution**: Proper Open Food Facts attribution with ODbL license compliance for commercial use
 - **Preserved Features**: Maintained custom food entry, recent foods history, and barcode input while improving interface hierarchy
 - **Complete Workflow**: Full search → selection → logging workflow tested and verified for seamless user experience
+- **Barcode Scanning**: Integrated react-zxing library for real-time camera barcode scanning with automatic Open Food Facts lookup
+- **Mobile Camera Support**: Optimized camera interface for mobile devices with proper permissions and video attributes
+- **Robust Error Handling**: Comprehensive camera access, device detection, and network error management
 
 ## User Preferences
 
