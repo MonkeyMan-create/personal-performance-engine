@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import AuthPrompt from '../components/AuthPrompt'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
 import { Badge } from '../components/ui/badge'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../components/ui/dialog'
 import { 
   Search, 
   Barcode, 
@@ -19,8 +20,12 @@ import {
   ChevronUp,
   X,
   Check,
-  ExternalLink
+  ExternalLink,
+  Camera,
+  CameraOff,
+  AlertCircle
 } from 'lucide-react'
+import { useZxing } from 'react-zxing'
 import { saveMealLocally, getMealsByDateLocally, GuestMeal } from '../utils/guestStorage'
 import { toast } from '../hooks/use-toast'
 
@@ -64,6 +69,13 @@ export default function NutritionPage() {
     fat: '',
     serving: '100g'
   })
+  
+  // Camera scanning state
+  const [isCameraModalOpen, setIsCameraModalOpen] = useState(false)
+  const [cameraError, setCameraError] = useState<string | null>(null)
+  const [isCameraReady, setIsCameraReady] = useState(false)
+  const isScanningRef = useRef(false)
+  const videoStreamRef = useRef<MediaStream | null>(null)
 
   // Load today's meals and recent foods
   useEffect(() => {
@@ -283,6 +295,96 @@ export default function NutritionPage() {
     fat: acc.fat + (meal.fat || 0)
   }), { calories: 0, protein: 0, carbs: 0, fat: 0 })
 
+  // Camera barcode scanning with react-zxing
+  const { ref: cameraRef } = useZxing({
+    onDecodeResult: useCallback((result) => {
+      const barcode = result.getText()
+      if (barcode && !isScanningRef.current) {
+        isScanningRef.current = true
+        setIsCameraModalOpen(false)
+        setIsCameraReady(false)
+        scanBarcode(barcode).finally(() => {
+          isScanningRef.current = false
+        })
+        toast({
+          title: 'Barcode detected!',
+          description: `Scanning product: ${barcode}`
+        })
+      }
+    }, []),
+    onDecodeError: useCallback((error) => {
+      // Silently handle decode errors - this is normal during scanning
+      console.debug('Barcode decode error:', error)
+    }, []),
+    constraints: {
+      video: {
+        facingMode: 'environment', // Use back camera on mobile
+        width: { ideal: 640 },
+        height: { ideal: 480 }
+      }
+    },
+    timeBetweenDecodingAttempts: 300
+  })
+
+  const openCameraScanner = async () => {
+    setCameraError(null)
+    setIsCameraReady(false)
+    isScanningRef.current = false
+    
+    // Check for camera permission first
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ 
+        video: { 
+          facingMode: 'environment',
+          width: { ideal: 640 },
+          height: { ideal: 480 }
+        } 
+      })
+      videoStreamRef.current = stream
+      stream.getTracks().forEach(track => track.stop()) // Stop test stream
+      setIsCameraModalOpen(true)
+      
+      // Give camera time to initialize
+      setTimeout(() => {
+        setIsCameraReady(true)
+      }, 1000)
+    } catch (error) {
+      console.error('Camera access error:', error)
+      if (error instanceof Error) {
+        if (error.name === 'NotAllowedError') {
+          setCameraError('Camera access denied. Please allow camera access and try again.')
+        } else if (error.name === 'NotFoundError') {
+          setCameraError('No camera found on this device.')
+        } else {
+          setCameraError('Unable to access camera. Please check your device settings.')
+        }
+      } else {
+        setCameraError('Unable to access camera.')
+      }
+      toast({
+        title: 'Camera Error',
+        description: 'Unable to access camera. You can still enter barcodes manually.',
+        variant: 'destructive'
+      })
+    }
+  }
+
+  const closeCameraScanner = () => {
+    // Clean up camera stream
+    if (videoStreamRef.current) {
+      videoStreamRef.current.getTracks().forEach(track => {
+        track.stop()
+      })
+      videoStreamRef.current = null
+    }
+    
+    // Reset scanning state
+    isScanningRef.current = false
+    setIsCameraModalOpen(false)
+    setIsCameraReady(false)
+    setCameraError(null)
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="container mx-auto p-4 space-y-6 pb-24">
@@ -345,8 +447,8 @@ export default function NutritionPage() {
                     variant="ghost"
                     size="sm"
                     className="absolute right-2 top-1/2 transform -translate-y-1/2 h-10 w-10 p-0 text-slate-400 hover:text-emerald-600"
-                    onClick={() => setShowBarcodeSection(!showBarcodeSection)}
-                    data-testid="button-barcode-toggle"
+                    onClick={openCameraScanner}
+                    data-testid="button-barcode-scan"
                   >
                     <Barcode className="w-5 h-5" />
                   </Button>
@@ -518,7 +620,7 @@ export default function NutritionPage() {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-lg font-medium text-slate-900 dark:text-white">
-                      Scan Barcode
+                      Barcode Options
                     </h3>
                     <Button
                       variant="ghost"
@@ -530,24 +632,53 @@ export default function NutritionPage() {
                     </Button>
                   </div>
                   <div className="space-y-4">
-                    <p className="text-slate-600 dark:text-slate-400">
-                      Enter a barcode number to find product information
-                    </p>
-                    <Input
-                      type="text"
-                      placeholder="Enter barcode number..."
-                      className="h-12"
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' && e.currentTarget.value) {
-                          scanBarcode(e.currentTarget.value)
+                    {/* Camera Scan Option */}
+                    <div className="p-4 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Camera className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                        <h4 className="font-medium text-slate-900 dark:text-white">Camera Scan</h4>
+                      </div>
+                      <p className="text-slate-600 dark:text-slate-400 text-sm mb-3">
+                        Use your device's camera to scan barcodes automatically
+                      </p>
+                      <Button
+                        onClick={() => {
                           setShowBarcodeSection(false)
-                        }
-                      }}
-                      data-testid="input-barcode"
-                    />
-                    <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
-                      Camera scanning coming soon!
-                    </p>
+                          openCameraScanner()
+                        }}
+                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                        data-testid="button-open-camera"
+                      >
+                        <Camera className="w-4 h-4 mr-2" />
+                        Open Camera Scanner
+                      </Button>
+                    </div>
+
+                    {/* Manual Entry Option */}
+                    <div className="p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-600 rounded-lg">
+                      <div className="flex items-center gap-3 mb-3">
+                        <Barcode className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+                        <h4 className="font-medium text-slate-900 dark:text-white">Manual Entry</h4>
+                      </div>
+                      <p className="text-slate-600 dark:text-slate-400 text-sm mb-3">
+                        Enter a barcode number manually if camera scanning isn't working
+                      </p>
+                      <Input
+                        type="text"
+                        placeholder="Enter barcode number..."
+                        className="h-12 mb-3"
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && e.currentTarget.value) {
+                            scanBarcode(e.currentTarget.value)
+                            setShowBarcodeSection(false)
+                          }
+                        }}
+                        data-testid="input-barcode-manual"
+                      />
+                      <p className="text-xs text-slate-500 dark:text-slate-500">
+                        Press Enter after typing the barcode number
+                      </p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -871,6 +1002,111 @@ export default function NutritionPage() {
             )}
           </CardContent>
         </Card>
+
+        {/* Camera Scanning Modal */}
+        <Dialog open={isCameraModalOpen} onOpenChange={closeCameraScanner}>
+          <DialogContent className="max-w-md mx-auto sm:max-w-lg w-[95vw] max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <Camera className="w-5 h-5" />
+                Scan Barcode
+              </DialogTitle>
+              <DialogDescription>
+                Point your camera at a barcode to scan the product
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="space-y-4">
+              {cameraError ? (
+                <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                  <div className="flex items-center gap-2 text-red-700 dark:text-red-400">
+                    <AlertCircle className="w-5 h-5" />
+                    <span className="font-medium">Camera Error</span>
+                  </div>
+                  <p className="text-red-600 dark:text-red-300 mt-1 text-sm">
+                    {cameraError}
+                  </p>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowBarcodeSection(true)}
+                    className="mt-3"
+                    data-testid="button-manual-entry"
+                  >
+                    Enter barcode manually instead
+                  </Button>
+                </div>
+              ) : (
+                <div className="relative">
+                  <div className="aspect-video bg-black rounded-lg overflow-hidden relative">
+                    <video
+                      ref={cameraRef as React.RefObject<HTMLVideoElement>}
+                      className="w-full h-full object-cover"
+                      autoPlay
+                      muted
+                      playsInline
+                      webkit-playsinline="true"
+                      data-testid="video-scanner"
+                    />
+                    
+                    {/* Scanning overlay - responsive for mobile */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="border-2 border-white rounded-lg w-48 h-16 sm:w-64 sm:h-24 relative">
+                        <div className="absolute top-0 left-0 w-3 h-3 sm:w-4 sm:h-4 border-t-2 border-l-2 border-emerald-400"></div>
+                        <div className="absolute top-0 right-0 w-3 h-3 sm:w-4 sm:h-4 border-t-2 border-r-2 border-emerald-400"></div>
+                        <div className="absolute bottom-0 left-0 w-3 h-3 sm:w-4 sm:h-4 border-b-2 border-l-2 border-emerald-400"></div>
+                        <div className="absolute bottom-0 right-0 w-3 h-3 sm:w-4 sm:h-4 border-b-2 border-r-2 border-emerald-400"></div>
+                      </div>
+                    </div>
+                    
+                    {/* Loading state */}
+                    {!isCameraReady && (
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                        <div className="flex items-center gap-2 text-white">
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          <span>Starting camera...</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* Instructions */}
+                  <div className="mt-4 text-center">
+                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
+                      Position the barcode within the frame
+                    </p>
+                    <p className="text-xs text-slate-500 dark:text-slate-500">
+                      The scan will happen automatically when a barcode is detected
+                    </p>
+                  </div>
+                </div>
+              )}
+              
+              {/* Action buttons */}
+              <div className="flex gap-2">
+                <Button
+                  variant="outline"
+                  onClick={closeCameraScanner}
+                  className="flex-1"
+                  data-testid="button-cancel-scan"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    closeCameraScanner()
+                    setShowBarcodeSection(true)
+                  }}
+                  className="flex-1"
+                  data-testid="button-manual-barcode"
+                >
+                  Enter manually
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   )
