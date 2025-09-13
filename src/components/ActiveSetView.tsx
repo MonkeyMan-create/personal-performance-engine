@@ -221,7 +221,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
             {!isResting ? (
               <Button
                 onClick={handleLogSet}
-                disabled={isLoading || !weight.trim() || !reps.trim() || !rir.trim()}
+                disabled={isLoading || !weight || !reps || !rir || parseFloat(weight) <= 0 || parseInt(reps) <= 0 || parseInt(rir) < 0}
                 className="w-full h-16 text-xl font-bold bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 text-white border-0 shadow-lg hover:shadow-xl hover:shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-150"
                 data-testid="button-log-set"
               >
