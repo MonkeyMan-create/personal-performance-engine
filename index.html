@@ -4,43 +4,100 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personal Performance Engine</title>
+    <meta name="description" content="The Personal Performance Engine is a holistic wellness app to track your fitness, nutrition, and mental well-being.">
+    <meta name="keywords" content="fitness tracker, nutrition tracking, wellness app, performance monitoring, health tracking, workout planner, mental wellbeing">
+    <meta name="author" content="Personal Performance Engine">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://personal-performance-engine.com">
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="./src/main.tsx" as="script" />
+    <title>Personal Performance Engine - Holistic Wellness & Fitness Tracker</title>
     
-    <!-- DNS prefetch for external resources -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://personal-performance-engine.com">
+    <meta property="og:title" content="Personal Performance Engine - Holistic Wellness & Fitness Tracker">
+    <meta property="og:description" content="The Personal Performance Engine is a holistic wellness app to track your fitness, nutrition, and mental well-being.">
+    <meta property="og:image" content="https://personal-performance-engine.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Personal Performance Engine">
+    <meta property="og:locale" content="en_US">
     
-    <!-- Defer JavaScript for better rendering performance -->
-    <script type="module" src="./src/main.tsx" defer></script>
-  </head>
-  <body>
-    <div id="root">
-      <!-- Loading placeholder to improve perceived performance -->
-      <div style="
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://personal-performance-engine.com">
+    <meta name="twitter:title" content="Personal Performance Engine - Holistic Wellness & Fitness Tracker">
+    <meta name="twitter:description" content="The Personal Performance Engine is a holistic wellness app to track your fitness, nutrition, and mental well-being.">
+    <meta name="twitter:image" content="https://personal-performance-engine.com/twitter-card.jpg">
+    
+    <!-- Apple iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Performance Engine">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Performance Engine">
+    
+    <!-- Performance and security optimizations -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Critical CSS for loading state to prevent FOUC -->
+    <style>
+      /* Inline critical styles for loading state */
+      .loading-placeholder {
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: 100vh;
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
         color: #06b6d4;
-        font-family: system-ui, -apple-system, sans-serif;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         font-size: 18px;
         font-weight: 500;
-      ">
-        <div style="text-align: center;">
-          <div style="
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px;
-            background: linear-gradient(45deg, #06b6d4, #14b8a6);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: pulse 2s infinite;
-          ">
+      }
+      .loading-content {
+        text-align: center;
+      }
+      .loading-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 20px;
+        background: linear-gradient(45deg, #06b6d4, #14b8a6);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.7; transform: scale(1.05); }
+      }
+    </style>
+    
+    <!-- Resource hints for performance -->
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#06b6d4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="./src/main.tsx" as="script" crossorigin>
+    <link rel="preload" href="./src/index.css" as="style">
+    <link rel="modulepreload" href="./src/main.tsx">
+    
+    <!-- Optimized JavaScript loading -->
+    <script type="module" src="./src/main.tsx"></script>
+  </head>
+  <body>
+    <div id="root">
+      <!-- Loading placeholder to improve perceived performance -->
+      <div class="loading-placeholder">
+        <div class="loading-content">
+          <div class="loading-icon">
             <!-- Heartbeat/pulse icon -->
             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
               <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -49,12 +106,6 @@
           <div>Loading Performance Engine...</div>
         </div>
       </div>
-      <style>
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.7; transform: scale(1.05); }
-        }
-      </style>
     </div>
   </body>
 </html>

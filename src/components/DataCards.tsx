@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, CardContent } from './ui/card'
-import { Footprints, Flame, Moon } from 'lucide-react'
+import { Activity, Flame, Moon } from 'lucide-react'
 
 interface DataCardsProps {
   stepsData: { current: number; goal: number }
@@ -21,7 +21,7 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-emerald-600/20 rounded-xl">
-                <Footprints className="w-6 h-6 text-emerald-400" />
+                <Activity className="w-6 h-6 text-emerald-400" />
               </div>
               <div>
                 <h3 className="text-white font-semibold text-lg">Steps Today</h3>
