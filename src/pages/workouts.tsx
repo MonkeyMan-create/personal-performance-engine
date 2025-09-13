@@ -4,10 +4,11 @@ import AuthPrompt from '../components/AuthPrompt'
 import LazyExerciseSelector from '../components/LazyExerciseSelector'
 import LazyActiveSetView from '../components/LazyActiveSetView'
 import LazyWorkoutTemplateSelector from '../components/LazyWorkoutTemplateSelector'
+import { convertTemplateToWorkoutForm } from '../utils/workoutTemplates'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
-import { Play, History, Zap, Plus, CheckCircle, Timer, Target, ArrowLeft } from 'lucide-react'
+import { Play, History, Zap, Plus, CheckCircle, Timer, Target, ArrowLeft, Dumbbell, Heart, Flame, Activity, Search, Clock, Calendar } from 'lucide-react'
 import { 
   getWorkoutsLocally, 
   getCurrentWorkoutSession, 
@@ -47,6 +48,79 @@ export default function WorkoutsPage() {
   // Finish workout form state
   const [workoutDuration, setWorkoutDuration] = useState('')
   const [workoutNotes, setWorkoutNotes] = useState('')
+
+  // Workout templates data
+  const workoutTemplates = [
+    {
+      id: 'upper-body-strength',
+      title: 'Upper Body Strength',
+      description: 'Build upper body muscle and strength',
+      duration: 45,
+      exercises: 6,
+      difficulty: 'Intermediate',
+      type: 'Strength Training',
+      icon: Dumbbell,
+      color: 'from-teal-500 to-teal-600'
+    },
+    {
+      id: 'lower-body-power',
+      title: 'Lower Body Power',
+      description: 'Explosive leg and glute training',
+      duration: 50,
+      exercises: 7,
+      difficulty: 'Advanced',
+      type: 'Power Training',
+      icon: Target,
+      color: 'from-emerald-500 to-emerald-600'
+    },
+    {
+      id: 'hiit-cardio',
+      title: 'HIIT Cardio',
+      description: 'High-intensity interval training',
+      duration: 25,
+      exercises: 8,
+      difficulty: 'Intermediate',
+      type: 'Cardio',
+      icon: Flame,
+      color: 'from-orange-500 to-red-500'
+    },
+    {
+      id: 'full-body-circuit',
+      title: 'Full Body Circuit',
+      description: 'Complete body conditioning workout',
+      duration: 40,
+      exercises: 8,
+      difficulty: 'Beginner',
+      type: 'Circuit Training',
+      icon: Activity,
+      color: 'from-blue-500 to-indigo-600'
+    },
+    {
+      id: 'core-abs',
+      title: 'Core & Abs',
+      description: 'Targeted core strengthening',
+      duration: 20,
+      exercises: 5,
+      difficulty: 'Beginner',
+      type: 'Core Training',
+      icon: Target,
+      color: 'from-purple-500 to-pink-600'
+    },
+    {
+      id: 'yoga-flow',
+      title: 'Yoga Flow',
+      description: 'Flexibility and mindfulness',
+      duration: 35,
+      exercises: 4,
+      difficulty: 'Beginner',
+      type: 'Flexibility',
+      icon: Heart,
+      color: 'from-green-500 to-teal-500'
+    }
+  ]
+
+  // Recommended workout (featured)
+  const recommendedWorkout = workoutTemplates[0]
 
   // Load workouts and current session on component mount
   useEffect(() => {
@@ -163,8 +237,14 @@ export default function WorkoutsPage() {
 
   const handleTemplateSelection = (templateForm: WorkoutForm) => {
     setWorkoutForm(templateForm)
-    // For now, just start a workout - could extend to pre-populate exercises
+    setShowTemplateSelector(false)
+    // Start a workout with the template data
     handleStartWorkout()
+  }
+
+  const handleSelectTemplateFromCard = (template: any) => {
+    const templateForm = convertTemplateToWorkoutForm(template)
+    handleTemplateSelection(templateForm)
   }
 
   const getSessionSummary = () => {
@@ -243,7 +323,7 @@ export default function WorkoutsPage() {
                             {exercise.sets.map((set, setIndex) => (
                               <span 
                                 key={setIndex}
-                                className="text-xs bg-cyan-100 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-200 px-2 py-1 rounded"
+                                className="text-xs bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-2 py-1 rounded"
                               >
                                 {set.weight}lbs × {set.reps}
                               </span>
@@ -424,7 +504,7 @@ export default function WorkoutsPage() {
 
                         <div className="space-y-2">
                           {workout.exercises.map((exercise, index) => (
-                            <div key={index} className="border-l-2 border-cyan-400 pl-3">
+                            <div key={index} className="border-l-2 border-teal-400 pl-3">
                               <p className="font-medium text-slate-900 dark:text-white">{exercise.name}</p>
                               <div className="flex flex-wrap gap-2 mt-1">
                                 {exercise.sets.map((set, setIndex) => (
@@ -459,8 +539,9 @@ export default function WorkoutsPage() {
       return (
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
           <div className="container mx-auto p-4 space-y-6 pb-24">
+            {/* Header */}
             <div className="flex items-center justify-between pt-4">
-              <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Workouts</h1>
+              <h1 className="text-2xl font-bold text-slate-900 dark:text-white">My Workouts</h1>
               <Button
                 onClick={() => setViewMode('history')}
                 variant="outline"
@@ -474,7 +555,7 @@ export default function WorkoutsPage() {
 
             {/* Active Session Banner */}
             {currentSession && (
-              <Card className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border-cyan-400/50 dark:border-cyan-600/50">
+              <Card className="bg-gradient-to-r from-teal-500/10 to-teal-600/10 border-teal-400/50 dark:border-teal-600/50">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div>
@@ -485,7 +566,7 @@ export default function WorkoutsPage() {
                     </div>
                     <Button
                       onClick={() => setViewMode('exercise-selection')}
-                      className="bg-cyan-600 hover:bg-cyan-700 text-white"
+                      className="bg-teal-600 hover:bg-teal-700 text-white"
                       data-testid="button-continue-workout"
                     >
                       Continue
@@ -495,51 +576,162 @@ export default function WorkoutsPage() {
               </Card>
             )}
 
-            {/* Quick Actions */}
-            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-              <CardHeader>
-                <CardTitle className="text-slate-900 dark:text-white flex items-center">
-                  <Target className="w-5 h-5 mr-2" />
-                  Start Training
-                </CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-300">
-                  Choose how you'd like to start your workout
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <Button
-                  onClick={handleStartWorkout}
-                  className="w-full h-14 text-lg bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 text-white shadow-lg hover:shadow-xl hover:shadow-cyan-500/25"
-                  data-testid="button-start-workout"
-                >
-                  <Play className="w-6 h-6 mr-3" />
-                  Start Custom Workout
-                </Button>
-                
+            {/* Discovery-Focused Header Section */}
+            <div className="space-y-4">
+              <div className="flex gap-3">
                 <Button
                   onClick={() => setShowTemplateSelector(true)}
-                  variant="outline"
-                  className="w-full h-12 border-cyan-400/50 text-cyan-600 hover:bg-cyan-50 dark:text-cyan-400 dark:hover:bg-cyan-900/20 dark:border-cyan-600"
-                  data-testid="button-use-template"
+                  className="flex-1 h-12 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg hover:shadow-xl hover:shadow-teal-500/25"
+                  data-testid="button-find-workout"
                 >
-                  <Zap className="w-5 h-5 mr-2" />
-                  Use Workout Template
+                  <Search className="w-5 h-5 mr-2" />
+                  Find a Workout
                 </Button>
+                <Button
+                  onClick={handleStartWorkout}
+                  variant="outline"
+                  className="flex-1 h-12 border-teal-400/50 text-teal-600 hover:bg-teal-50 dark:text-teal-400 dark:hover:bg-teal-900/20 dark:border-teal-600"
+                  data-testid="button-create-custom"
+                >
+                  <Plus className="w-5 h-5 mr-2" />
+                  Create Custom
+                </Button>
+              </div>
+            </div>
+
+            {/* Your Next Workout - Most Prominent Element */}
+            <Card className="bg-gradient-to-r from-teal-500 to-teal-600 border-0 shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="flex items-start justify-between text-white mb-4">
+                  <div>
+                    <p className="text-sm font-medium text-teal-100 mb-1">YOUR NEXT WORKOUT</p>
+                    <h2 className="text-2xl font-bold mb-2">{recommendedWorkout.title}</h2>
+                    <p className="text-teal-100 mb-3">{recommendedWorkout.description}</p>
+                  </div>
+                  <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
+                    <recommendedWorkout.icon className="w-8 h-8" />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="bg-white/10 rounded-lg p-3 backdrop-blur-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Clock className="w-4 h-4 text-teal-100" />
+                      <span className="text-sm text-teal-100">Duration</span>
+                    </div>
+                    <p className="text-lg font-semibold">{recommendedWorkout.duration} min</p>
+                  </div>
+                  <div className="bg-white/10 rounded-lg p-3 backdrop-blur-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Target className="w-4 h-4 text-teal-100" />
+                      <span className="text-sm text-teal-100">Exercises</span>
+                    </div>
+                    <p className="text-lg font-semibold">{recommendedWorkout.exercises} exercises</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-4">
+                    <div>
+                      <p className="text-xs text-teal-100">Difficulty</p>
+                      <p className="text-sm font-medium">{recommendedWorkout.difficulty}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-teal-100">Type</p>
+                      <p className="text-sm font-medium">{recommendedWorkout.type}</p>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={handleStartWorkout}
+                    size="lg"
+                    className="bg-white text-teal-600 hover:bg-white/90 font-semibold px-8"
+                    data-testid="button-start-session"
+                  >
+                    Start Session
+                  </Button>
+                </div>
               </CardContent>
             </Card>
+
+            {/* Workout Template Selector Modal */}
+            {showTemplateSelector && (
+              <LazyWorkoutTemplateSelector
+                isOpen={showTemplateSelector}
+                onClose={() => setShowTemplateSelector(false)}
+                onSelectTemplate={handleTemplateSelection}
+              />
+            )}
+
+            {/* Discover Templates Section */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h2 className="text-xl font-bold text-slate-900 dark:text-white">Discover Templates</h2>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300"
+                  onClick={() => setShowTemplateSelector(true)}
+                  data-testid="button-view-all-templates"
+                >
+                  View All
+                </Button>
+              </div>
+
+              {/* Horizontally Scrollable Template Cards */}
+              <div className="overflow-x-auto pb-2">
+                <div className="flex gap-4 min-w-max">
+                  {workoutTemplates.map((template) => {
+                    const IconComponent = template.icon
+                    return (
+                      <Card
+                        key={template.id}
+                        className="min-w-[280px] bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl hover:shadow-lg hover:shadow-teal-500/10 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                        onClick={() => handleSelectTemplateFromCard(template)}
+                        data-testid={`template-card-${template.id}`}
+                      >
+                        <CardContent className="p-4">
+                          <div className="flex items-start justify-between mb-3">
+                            <div className="p-2 bg-teal-600/20 rounded-lg">
+                              <IconComponent className="w-5 h-5 text-teal-400" />
+                            </div>
+                            <span className="text-xs bg-teal-100 dark:bg-teal-900 text-teal-700 dark:text-teal-300 px-2 py-1 rounded-full">
+                              {template.difficulty}
+                            </span>
+                          </div>
+                          
+                          <h3 className="font-semibold text-slate-900 dark:text-white mb-1">{template.title}</h3>
+                          <p className="text-sm text-slate-600 dark:text-slate-300 mb-3">{template.description}</p>
+                          
+                          <div className="flex items-center justify-between text-sm">
+                            <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
+                              <Clock className="w-3 h-3" />
+                              {template.duration} min
+                            </div>
+                            <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400">
+                              <Target className="w-3 h-3" />
+                              {template.exercises} exercises
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
 
             {/* Quick Stats */}
             {workouts.length > 0 && (
               <div className="grid grid-cols-2 gap-4">
                 <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50">
                   <CardContent className="p-4 text-center">
-                    <p className="text-2xl font-bold text-slate-900 dark:text-white">{workouts.length}</p>
+                    <p className="text-2xl font-bold text-teal-600 dark:text-teal-400">{workouts.length}</p>
                     <p className="text-sm text-slate-600 dark:text-slate-300">Total Workouts</p>
                   </CardContent>
                 </Card>
                 <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50">
                   <CardContent className="p-4 text-center">
-                    <p className="text-2xl font-bold text-slate-900 dark:text-white">
+                    <p className="text-2xl font-bold text-teal-600 dark:text-teal-400">
                       {workouts.reduce((total, workout) => 
                         total + workout.exercises.reduce((sets, ex) => sets + ex.sets.length, 0), 0
                       )}
