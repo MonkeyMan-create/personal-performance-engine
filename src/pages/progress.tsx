@@ -3,7 +3,7 @@ import { useAuth } from '../contexts/AuthContext'
 import AuthPrompt from '../components/AuthPrompt'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts'
-import { TrendingUp, Calendar, Dumbbell, Apple, Target, Flame } from 'lucide-react'
+import { TrendingUp, Calendar, Dumbbell, Apple, Target, Flame, Trophy, Award, Star, Zap, Shield, Crown, Medal, BadgeCheck } from 'lucide-react'
 import { getWorkoutsLocally, getMealsLocally, getProgressLocally, GuestWorkout, GuestMeal, GuestProgress } from '../utils/guestStorage'
 
 interface WorkoutStats {
@@ -213,70 +213,99 @@ export default function ProgressPage() {
         </div>
 
         {isLoading ? (
-          <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+          <Card 
+            data-testid="card-loading-progress"
+            className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl"
+          >
             <CardContent className="p-6">
-              <p className="text-slate-600 dark:text-slate-300">Loading your progress data...</p>
+              <p data-testid="text-loading-message" className="text-slate-600 dark:text-slate-300">Loading your progress data...</p>
             </CardContent>
           </Card>
         ) : (
           <>
-            {/* Stats Overview */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-                <CardContent className="p-4 text-center">
-                  <div className="flex items-center justify-center mb-2">
-                    <Dumbbell className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
-                  </div>
-                  <div className="text-2xl font-bold text-slate-900 dark:text-white">{workoutStats.totalWorkouts}</div>
-                  <div className="text-xs text-slate-600 dark:text-slate-300">Total Workouts</div>
-                </CardContent>
-              </Card>
+            {/* My Highlights Section */}
+            <div className="space-y-3">
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white">My Highlights</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <Card 
+                  data-testid="card-total-workouts"
+                  className="bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/40 dark:to-teal-800/40 border-teal-200 dark:border-teal-700 hover:shadow-lg transition-all duration-200"
+                >
+                  <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
+                    <div className="w-12 h-12 mx-auto bg-teal-500 dark:bg-teal-600 rounded-full flex items-center justify-center">
+                      <Dumbbell className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="space-y-1">
+                      <div data-testid="text-total-workouts" className="text-3xl font-bold text-teal-700 dark:text-teal-300">{workoutStats.totalWorkouts}</div>
+                      <div className="text-sm font-medium text-teal-600 dark:text-teal-400">Total Workouts</div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-              <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-                <CardContent className="p-4 text-center">
-                  <div className="flex items-center justify-center mb-2">
-                    <Calendar className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                  </div>
-                  <div className="text-2xl font-bold text-slate-900 dark:text-white">{workoutStats.currentStreak}</div>
-                  <div className="text-xs text-slate-600 dark:text-slate-300">Day Streak</div>
-                </CardContent>
-              </Card>
+                <Card 
+                  data-testid="card-day-streak"
+                  className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/40 dark:to-emerald-800/40 border-emerald-200 dark:border-emerald-700 hover:shadow-lg transition-all duration-200"
+                >
+                  <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
+                    <div className="w-12 h-12 mx-auto bg-emerald-500 dark:bg-emerald-600 rounded-full flex items-center justify-center">
+                      <Calendar className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="space-y-1">
+                      <div data-testid="text-day-streak" className="text-3xl font-bold text-emerald-700 dark:text-emerald-300">{workoutStats.currentStreak}</div>
+                      <div className="text-sm font-medium text-emerald-600 dark:text-emerald-400">Day Streak</div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-              <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-                <CardContent className="p-4 text-center">
-                  <div className="flex items-center justify-center mb-2">
-                    <Apple className="w-5 h-5 text-red-600 dark:text-red-400" />
-                  </div>
-                  <div className="text-2xl font-bold text-slate-900 dark:text-white">{nutritionStats.totalMealsLogged}</div>
-                  <div className="text-xs text-slate-600 dark:text-slate-300">Meals Logged</div>
-                </CardContent>
-              </Card>
+                <Card 
+                  data-testid="card-meals-logged"
+                  className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/40 dark:to-orange-800/40 border-orange-200 dark:border-orange-700 hover:shadow-lg transition-all duration-200"
+                >
+                  <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
+                    <div className="w-12 h-12 mx-auto bg-orange-500 dark:bg-orange-600 rounded-full flex items-center justify-center">
+                      <Apple className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="space-y-1">
+                      <div data-testid="text-meals-logged" className="text-3xl font-bold text-orange-700 dark:text-orange-300">{nutritionStats.totalMealsLogged}</div>
+                      <div className="text-sm font-medium text-orange-600 dark:text-orange-400">Meals Logged</div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-              <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-                <CardContent className="p-4 text-center">
-                  <div className="flex items-center justify-center mb-2">
-                    <Flame className="w-5 h-5 text-orange-600 dark:text-orange-400" />
-                  </div>
-                  <div className="text-2xl font-bold text-slate-900 dark:text-white">{nutritionStats.averageCaloriesPerDay}</div>
-                  <div className="text-xs text-slate-600 dark:text-slate-300">Avg Calories/Day</div>
-                </CardContent>
-              </Card>
+                <Card 
+                  data-testid="card-avg-calories"
+                  className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/40 dark:to-red-800/40 border-red-200 dark:border-red-700 hover:shadow-lg transition-all duration-200"
+                >
+                  <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
+                    <div className="w-12 h-12 mx-auto bg-red-500 dark:bg-red-600 rounded-full flex items-center justify-center">
+                      <Flame className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="space-y-1">
+                      <div data-testid="text-avg-calories" className="text-3xl font-bold text-red-700 dark:text-red-300">{nutritionStats.averageCaloriesPerDay}</div>
+                      <div className="text-sm font-medium text-red-600 dark:text-red-400">Avg Calories/Day</div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
 
             {/* Weight Trend Section */}
             {weightTrendData.length > 0 ? (
-              <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+              <Card 
+                data-testid="card-weight-trend"
+                className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl"
+              >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
-                    <CardTitle className="text-slate-900 dark:text-white">Weight Trend</CardTitle>
+                    <TrendingUp className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+                    <CardTitle className="text-xl text-slate-900 dark:text-white">Weight Trend</CardTitle>
                   </div>
                   <CardDescription className="text-slate-600 dark:text-slate-300">
                     Track your weight changes over time {isGuestMode && '(from your local progress entries)'}
                   </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <div className="h-64 w-full">
+                <CardContent className="space-y-6">
+                  <div className="h-72 w-full">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={weightTrendData}>
                         <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
@@ -299,35 +328,338 @@ export default function ProgressPage() {
                         <Line 
                           type="monotone" 
                           dataKey="weight" 
-                          stroke="hsl(var(--primary))" 
+                          stroke="#14B8A6" 
                           strokeWidth={3}
-                          dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2, r: 4 }}
+                          dot={{ fill: '#14B8A6', strokeWidth: 2, r: 5 }}
                         />
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
+                  
+                  {/* Motivational Insights */}
+                  <div 
+                    data-testid="weight-insights"
+                    className="bg-gradient-to-r from-teal-50 to-emerald-50 dark:from-teal-900/30 dark:to-emerald-900/30 rounded-lg p-4 border border-teal-200 dark:border-teal-700"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 bg-teal-500 dark:bg-teal-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <TrendingUp className="w-4 h-4 text-white" />
+                      </div>
+                      <div className="space-y-1">
+                        <h4 className="font-semibold text-teal-700 dark:text-teal-300">Weight Progress Insight</h4>
+                        <p data-testid="text-weight-insight" className="text-sm text-teal-600 dark:text-teal-400">
+                          {(() => {
+                            if (weightTrendData.length < 2) {
+                              return "Keep logging your weight to see meaningful trends and insights!"
+                            }
+                            
+                            const firstWeight = weightTrendData[0].weight
+                            const lastWeight = weightTrendData[weightTrendData.length - 1].weight
+                            const weightChange = lastWeight - firstWeight
+                            const percentChange = ((weightChange / firstWeight) * 100)
+                            
+                            if (Math.abs(weightChange) < 1) {
+                              return "Excellent consistency! You're maintaining your weight within a healthy range. Keep up the great work!"
+                            } else if (weightChange < -5) {
+                              return `Outstanding progress! You've lost ${Math.abs(weightChange).toFixed(1)} lbs (${Math.abs(percentChange).toFixed(1)}% reduction). Your dedication is paying off!`
+                            } else if (weightChange < -2) {
+                              return `Great progress! You've lost ${Math.abs(weightChange).toFixed(1)} lbs. Steady and sustainable weight loss is the key to long-term success!`
+                            } else if (weightChange < 0) {
+                              return `Nice work! You've lost ${Math.abs(weightChange).toFixed(1)} lbs. Every pound counts toward your health goals!`
+                            } else if (weightChange > 5) {
+                              return `You've gained ${weightChange.toFixed(1)} lbs. If this aligns with your goals (muscle building), great! Otherwise, consider reviewing your nutrition and exercise plan.`
+                            } else if (weightChange > 2) {
+                              return `You've gained ${weightChange.toFixed(1)} lbs. Monitor your progress and adjust your approach if needed to stay on track with your goals.`
+                            } else {
+                              return `You've gained ${weightChange.toFixed(1)} lbs. Small fluctuations are normal - focus on the overall trend and keep consistency!`
+                            }
+                          })()}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             ) : (
-              <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+              <Card 
+                data-testid="card-weight-trend-empty"
+                className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl"
+              >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
-                    <CardTitle className="text-slate-900 dark:text-white">Weight Trend</CardTitle>
+                    <TrendingUp className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+                    <CardTitle className="text-xl text-slate-900 dark:text-white">Weight Trend</CardTitle>
                   </div>
                   <CardDescription className="text-slate-600 dark:text-slate-300">
                     No weight data available yet. Start logging your weight in the profile section to see trends.
                   </CardDescription>
                 </CardHeader>
+                <CardContent>
+                  <div className="bg-gradient-to-r from-teal-50 to-emerald-50 dark:from-teal-900/30 dark:to-emerald-900/30 rounded-lg p-6 border border-teal-200 dark:border-teal-700 text-center">
+                    <div className="w-12 h-12 mx-auto bg-teal-500 dark:bg-teal-600 rounded-full flex items-center justify-center mb-3">
+                      <TrendingUp className="w-6 h-6 text-white" />
+                    </div>
+                    <h4 className="font-semibold text-teal-700 dark:text-teal-300 mb-2">Ready to Track Your Progress?</h4>
+                    <p className="text-sm text-teal-600 dark:text-teal-400">
+                      Start logging your weight regularly to visualize your fitness journey and get personalized insights!
+                    </p>
+                  </div>
+                </CardContent>
               </Card>
             )}
 
+            {/* Badges & Achievements Section */}
+            <div className="space-y-3">
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white">Badges & Achievements</h2>
+              <Card 
+                data-testid="card-badges-achievements"
+                className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl"
+              >
+                <CardHeader>
+                  <div className="flex items-center gap-2">
+                    <Trophy className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+                    <CardTitle className="text-xl text-slate-900 dark:text-white">Your Achievements</CardTitle>
+                  </div>
+                  <CardDescription className="text-slate-600 dark:text-slate-300">
+                    Unlock badges by hitting milestones in your fitness journey!
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div 
+                    data-testid="badges-scroll-container"
+                    className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide"
+                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                  >
+                    {(() => {
+                      const achievements = [
+                        {
+                          id: 'first-workout',
+                          title: 'First Step',
+                          description: 'Complete your first workout',
+                          icon: Dumbbell,
+                          color: 'from-teal-400 to-teal-600',
+                          earned: workoutStats.totalWorkouts >= 1,
+                          target: 1,
+                          current: workoutStats.totalWorkouts
+                        },
+                        {
+                          id: 'week-warrior',
+                          title: 'Week Warrior',
+                          description: 'Maintain a 7-day streak',
+                          icon: Calendar,
+                          color: 'from-emerald-400 to-emerald-600',
+                          earned: workoutStats.currentStreak >= 7,
+                          target: 7,
+                          current: workoutStats.currentStreak
+                        },
+                        {
+                          id: 'workout-dozen',
+                          title: 'Dirty Dozen',
+                          description: 'Complete 12 workouts',
+                          icon: Target,
+                          color: 'from-blue-400 to-blue-600',
+                          earned: workoutStats.totalWorkouts >= 12,
+                          target: 12,
+                          current: workoutStats.totalWorkouts
+                        },
+                        {
+                          id: 'meal-master',
+                          title: 'Meal Master',
+                          description: 'Log 25 meals',
+                          icon: Apple,
+                          color: 'from-orange-400 to-orange-600',
+                          earned: nutritionStats.totalMealsLogged >= 25,
+                          target: 25,
+                          current: nutritionStats.totalMealsLogged
+                        },
+                        {
+                          id: 'consistency-king',
+                          title: 'Consistency King',
+                          description: 'Achieve a 14-day streak',
+                          icon: Crown,
+                          color: 'from-purple-400 to-purple-600',
+                          earned: workoutStats.currentStreak >= 14,
+                          target: 14,
+                          current: workoutStats.currentStreak
+                        },
+                        {
+                          id: 'half-century',
+                          title: 'Half Century',
+                          description: 'Complete 50 workouts',
+                          icon: Medal,
+                          color: 'from-amber-400 to-amber-600',
+                          earned: workoutStats.totalWorkouts >= 50,
+                          target: 50,
+                          current: workoutStats.totalWorkouts
+                        },
+                        {
+                          id: 'nutrition-ninja',
+                          title: 'Nutrition Ninja',
+                          description: 'Log 100 meals',
+                          icon: Zap,
+                          color: 'from-red-400 to-red-600',
+                          earned: nutritionStats.totalMealsLogged >= 100,
+                          target: 100,
+                          current: nutritionStats.totalMealsLogged
+                        },
+                        {
+                          id: 'century-club',
+                          title: 'Century Club',
+                          description: 'Complete 100 workouts',
+                          icon: BadgeCheck,
+                          color: 'from-teal-400 to-cyan-600',
+                          earned: workoutStats.totalWorkouts >= 100,
+                          target: 100,
+                          current: workoutStats.totalWorkouts
+                        },
+                        {
+                          id: 'dedication-legend',
+                          title: 'Dedication Legend',
+                          description: 'Maintain a 30-day streak',
+                          icon: Star,
+                          color: 'from-pink-400 to-pink-600',
+                          earned: workoutStats.currentStreak >= 30,
+                          target: 30,
+                          current: workoutStats.currentStreak
+                        },
+                        {
+                          id: 'ultimate-warrior',
+                          title: 'Ultimate Warrior',
+                          description: 'Complete 500 workouts',
+                          icon: Shield,
+                          color: 'from-indigo-400 to-indigo-600',
+                          earned: workoutStats.totalWorkouts >= 500,
+                          target: 500,
+                          current: workoutStats.totalWorkouts
+                        }
+                      ]
+
+                      return achievements.map((achievement) => {
+                        const IconComponent = achievement.icon
+                        const progressPercent = Math.min((achievement.current / achievement.target) * 100, 100)
+                        
+                        return (
+                          <div
+                            key={achievement.id}
+                            data-testid={`badge-${achievement.id}`}
+                            className="flex-shrink-0 w-24 text-center group cursor-pointer"
+                          >
+                            <div className="relative">
+                              <div 
+                                className={`
+                                  w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-2 transition-all duration-300 
+                                  ${achievement.earned 
+                                    ? `bg-gradient-to-br ${achievement.color} shadow-lg group-hover:shadow-xl group-hover:scale-105` 
+                                    : 'bg-slate-200 dark:bg-slate-700 group-hover:bg-slate-300 dark:group-hover:bg-slate-600'
+                                  }
+                                `}
+                              >
+                                <IconComponent 
+                                  className={`w-7 h-7 ${achievement.earned ? 'text-white' : 'text-slate-400 dark:text-slate-500'}`} 
+                                />
+                              </div>
+                              
+                              {/* Progress ring for locked badges */}
+                              {!achievement.earned && achievement.current > 0 && (
+                                <div className="absolute inset-0 w-16 h-16 mx-auto">
+                                  <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 60 60">
+                                    <circle
+                                      cx="30"
+                                      cy="30"
+                                      r="28"
+                                      stroke="currentColor"
+                                      strokeWidth="2"
+                                      fill="none"
+                                      className="text-slate-200 dark:text-slate-600"
+                                    />
+                                    <circle
+                                      cx="30"
+                                      cy="30"
+                                      r="28"
+                                      stroke="#14B8A6"
+                                      strokeWidth="2"
+                                      fill="none"
+                                      strokeDasharray={`${progressPercent * 1.76} 176`}
+                                      className="transition-all duration-500"
+                                    />
+                                  </svg>
+                                </div>
+                              )}
+
+                              {/* Achievement notification dot */}
+                              {achievement.earned && (
+                                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-800 flex items-center justify-center">
+                                  <svg className="w-2 h-2 text-white" viewBox="0 0 10 10" fill="currentColor">
+                                    <path d="M4 5.5L6.5 3l1 1L4 7.5 1.5 5l1-1L4 5.5z"/>
+                                  </svg>
+                                </div>
+                              )}
+                            </div>
+                            
+                            <div className="space-y-1">
+                              <h4 
+                                data-testid={`text-badge-title-${achievement.id}`}
+                                className={`text-xs font-semibold ${achievement.earned ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-400'}`}
+                              >
+                                {achievement.title}
+                              </h4>
+                              <p 
+                                data-testid={`text-badge-progress-${achievement.id}`}
+                                className="text-xs text-slate-500 dark:text-slate-400"
+                              >
+                                {achievement.earned ? '✓ Earned!' : `${achievement.current}/${achievement.target}`}
+                              </p>
+                            </div>
+                          </div>
+                        )
+                      })
+                    })()}
+                  </div>
+                  
+                  {/* Achievement Summary */}
+                  <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Award className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+                        <span className="font-medium text-slate-900 dark:text-white">Achievement Progress</span>
+                      </div>
+                      <div 
+                        data-testid="text-achievement-summary"
+                        className="text-sm text-slate-600 dark:text-slate-300"
+                      >
+                        {(() => {
+                          const totalAchievements = 10
+                          const earnedCount = [
+                            workoutStats.totalWorkouts >= 1,
+                            workoutStats.currentStreak >= 7,
+                            workoutStats.totalWorkouts >= 12,
+                            nutritionStats.totalMealsLogged >= 25,
+                            workoutStats.currentStreak >= 14,
+                            workoutStats.totalWorkouts >= 50,
+                            nutritionStats.totalMealsLogged >= 100,
+                            workoutStats.totalWorkouts >= 100,
+                            workoutStats.currentStreak >= 30,
+                            workoutStats.totalWorkouts >= 500
+                          ].filter(Boolean).length
+
+                          return `${earnedCount} of ${totalAchievements} earned`
+                        })()}
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
             {/* Daily Calories Chart */}
-            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+            <Card 
+              data-testid="card-daily-calories"
+              className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl"
+            >
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Flame className="w-5 h-5 text-orange-600 dark:text-orange-400" />
-                  <CardTitle className="text-slate-900 dark:text-white">Daily Calories (Last 7 Days)</CardTitle>
+                  <Flame className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+                  <CardTitle className="text-xl text-slate-900 dark:text-white">Daily Calories (Last 7 Days)</CardTitle>
                 </div>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
                   Your daily calorie intake {isGuestMode && '(from your logged meals)'}
@@ -357,8 +689,8 @@ export default function ProgressPage() {
                         />
                         <Bar 
                           dataKey="calories" 
-                          fill="hsl(var(--primary))"
-                          radius={[2, 2, 0, 0]}
+                          fill="#14B8A6"
+                          radius={[4, 4, 0, 0]}
                         />
                       </BarChart>
                     </ResponsiveContainer>
@@ -372,11 +704,14 @@ export default function ProgressPage() {
             </Card>
 
             {/* Workout Consistency Section */}
-            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+            <Card 
+              data-testid="card-workout-details"
+              className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl"
+            >
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Target className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                  <CardTitle className="text-slate-900 dark:text-white">Workout Details</CardTitle>
+                  <Target className="w-6 h-6 text-teal-600 dark:text-teal-400" />
+                  <CardTitle className="text-xl text-slate-900 dark:text-white">Workout Details</CardTitle>
                 </div>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
                   Your workout performance and consistency metrics
@@ -384,20 +719,29 @@ export default function ProgressPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="text-center p-4 bg-slate-100/80 dark:bg-slate-700/50 rounded-lg backdrop-blur-sm">
-                    <div className="text-2xl font-bold text-cyan-600 dark:text-cyan-400">{workoutStats.workoutsThisMonth}</div>
-                    <div className="text-sm text-slate-600 dark:text-slate-300">Workouts This Month</div>
+                  <div 
+                    data-testid="card-workouts-this-month"
+                    className="text-center p-4 bg-teal-50/80 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-700 rounded-lg backdrop-blur-sm"
+                  >
+                    <div data-testid="text-workouts-this-month" className="text-2xl font-bold text-teal-600 dark:text-teal-400">{workoutStats.workoutsThisMonth}</div>
+                    <div className="text-sm text-teal-700 dark:text-teal-300">Workouts This Month</div>
                   </div>
-                  <div className="text-center p-4 bg-slate-100/80 dark:bg-slate-700/50 rounded-lg backdrop-blur-sm">
-                    <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{workoutStats.totalSets}</div>
-                    <div className="text-sm text-slate-600 dark:text-slate-300">Total Sets Completed</div>
+                  <div 
+                    data-testid="card-total-sets"
+                    className="text-center p-4 bg-emerald-50/80 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-700 rounded-lg backdrop-blur-sm"
+                  >
+                    <div data-testid="text-total-sets" className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">{workoutStats.totalSets}</div>
+                    <div className="text-sm text-emerald-700 dark:text-emerald-300">Total Sets Completed</div>
                   </div>
                 </div>
                 
                 {workoutStats.averageRIR > 0 && (
-                  <div className="text-center p-4 bg-slate-100/80 dark:bg-slate-700/50 rounded-lg backdrop-blur-sm">
-                    <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">{workoutStats.averageRIR}</div>
-                    <div className="text-sm text-slate-600 dark:text-slate-300">Average RIR (Reps in Reserve)</div>
+                  <div 
+                    data-testid="card-average-rir"
+                    className="text-center p-4 bg-teal-50/80 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-700 rounded-lg backdrop-blur-sm"
+                  >
+                    <div data-testid="text-average-rir" className="text-2xl font-bold text-teal-600 dark:text-teal-400">{workoutStats.averageRIR}</div>
+                    <div className="text-sm text-teal-700 dark:text-teal-300">Average RIR (Reps in Reserve)</div>
                   </div>
                 )}
 
