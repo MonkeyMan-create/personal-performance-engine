@@ -5,7 +5,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
 import { Badge } from '../components/ui/badge'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { 
   Search, 
   Barcode, 
@@ -16,8 +15,11 @@ import {
   Utensils,
   Loader2,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   X,
-  Check
+  Check,
+  ExternalLink
 } from 'lucide-react'
 import { saveMealLocally, getMealsByDateLocally, GuestMeal } from '../utils/guestStorage'
 import { toast } from '../hooks/use-toast'
@@ -51,8 +53,9 @@ export default function NutritionPage() {
   const [servings, setServings] = useState(1)
   const [todayMeals, setTodayMeals] = useState<GuestMeal[]>([])
   const [recentFoods, setRecentFoods] = useState<FoodItem[]>([])
-  const [activeTab, setActiveTab] = useState('search')
-  const [showCustomForm, setShowCustomForm] = useState(false)
+  const [showBarcodeSection, setShowBarcodeSection] = useState(false)
+  const [showRecentSection, setShowRecentSection] = useState(false)  
+  const [showCustomSection, setShowCustomSection] = useState(false)
   const [customFood, setCustomFood] = useState({
     name: '',
     calories: '',
@@ -258,7 +261,6 @@ export default function NutritionPage() {
     setTodayMeals(meals)
     
     // Reset form
-    setShowCustomForm(false)
     setCustomFood({
       name: '',
       calories: '',
@@ -314,269 +316,416 @@ export default function NutritionPage() {
           ))}
         </div>
 
-        {/* Main Content Tabs */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
-          <TabsList className="grid w-full grid-cols-4 bg-white/70 dark:bg-slate-800/80">
-            <TabsTrigger value="search" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white">
-              <Search className="w-4 h-4 mr-1" />
-              Search
-            </TabsTrigger>
-            <TabsTrigger value="barcode" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white">
-              <Barcode className="w-4 h-4 mr-1" />
-              Scan
-            </TabsTrigger>
-            <TabsTrigger value="recent" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white">
-              <History className="w-4 h-4 mr-1" />
-              Recent
-            </TabsTrigger>
-            <TabsTrigger value="custom" className="data-[state=active]:bg-emerald-600 data-[state=active]:text-white">
-              <ChefHat className="w-4 h-4 mr-1" />
-              Custom
-            </TabsTrigger>
-          </TabsList>
-
-          {/* Search Tab */}
-          <TabsContent value="search" className="space-y-4">
-            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-              <CardContent className="p-4">
-                <form onSubmit={handleSearch} className="flex gap-2">
+        {/* Primary Search Interface */}
+        <div className="space-y-6">
+          {/* Prominent Search Bar */}
+          <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+            <CardContent className="p-6">
+              <div className="text-center mb-4">
+                <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
+                  Search Foods
+                </h2>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Find nutrition info for millions of foods
+                </p>
+              </div>
+              <form onSubmit={handleSearch} className="space-y-4">
+                <div className="relative">
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
                   <Input
                     type="text"
                     placeholder="Search for any food..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="flex-1"
+                    className="h-14 pl-12 pr-20 text-lg bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 focus:border-emerald-500 dark:focus:border-emerald-400 rounded-xl"
                     data-testid="input-food-search"
                   />
                   <Button 
-                    type="submit" 
-                    disabled={isSearching}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white"
-                    data-testid="button-search-food"
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 h-10 w-10 p-0 text-slate-400 hover:text-emerald-600"
+                    onClick={() => setShowBarcodeSection(!showBarcodeSection)}
+                    data-testid="button-barcode-toggle"
                   >
-                    {isSearching ? <Loader2 className="w-4 h-4 animate-spin" /> : <Search className="w-4 h-4" />}
+                    <Barcode className="w-5 h-5" />
                   </Button>
-                </form>
+                </div>
+                <Button 
+                  type="submit" 
+                  disabled={isSearching || !searchQuery.trim()}
+                  className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-medium rounded-xl"
+                  data-testid="button-search-food"
+                >
+                  {isSearching ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Searching...
+                    </>
+                  ) : (
+                    <>
+                      <Search className="w-5 h-5 mr-2" />
+                      Search Foods
+                    </>
+                  )}
+                </Button>
+              </form>
+              
+              {/* Open Food Facts Attribution */}
+              <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-600">
+                <p className="text-xs text-slate-500 dark:text-slate-400 text-center flex items-center justify-center gap-1">
+                  Powered by 
+                  <a 
+                    href="https://openfoodfacts.org" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 font-medium inline-flex items-center gap-1"
+                  >
+                    Open Food Facts
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                  © Open Food Facts contributors
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Search Results */}
+          {isSearching && searchQuery.trim() && (
+            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  Searching Foods...
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3" data-testid="search-loading">
+                {/* Loading Skeletons */}
+                {[1, 2, 3].map((index) => (
+                  <div
+                    key={index}
+                    className="p-4 bg-slate-50/50 dark:bg-slate-700/30 rounded-xl border border-slate-200/50 dark:border-slate-600/50 animate-pulse"
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1 space-y-2">
+                        <div className="h-5 bg-slate-200 dark:bg-slate-600 rounded w-3/4"></div>
+                        <div className="h-4 bg-slate-200 dark:bg-slate-600 rounded w-1/2"></div>
+                        <div className="flex gap-4">
+                          <div className="h-4 bg-slate-200 dark:bg-slate-600 rounded w-16"></div>
+                          <div className="h-4 bg-slate-200 dark:bg-slate-600 rounded w-12"></div>
+                          <div className="h-4 bg-slate-200 dark:bg-slate-600 rounded w-12"></div>
+                        </div>
+                      </div>
+                      <div className="h-5 w-5 bg-slate-200 dark:bg-slate-600 rounded"></div>
+                    </div>
+                  </div>
+                ))}
               </CardContent>
             </Card>
-
-            {/* Search Results */}
-            {searchResults.length > 0 && (
-              <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-                <CardHeader>
-                  <CardTitle className="text-lg">Search Results</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2 max-h-96 overflow-y-auto">
-                  {searchResults.map((food) => (
-                    <div
-                      key={food.id}
-                      className="p-3 bg-slate-50/50 dark:bg-slate-700/30 rounded-lg hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer"
-                      onClick={() => setSelectedFood(food)}
-                      data-testid={`search-result-${food.id}`}
-                    >
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1">
-                          <h4 className="font-medium text-slate-900 dark:text-white">
-                            {food.name}
-                          </h4>
-                          {food.brand && (
-                            <p className="text-xs text-slate-600 dark:text-slate-400">{food.brand}</p>
-                          )}
-                          <div className="flex items-center gap-3 mt-1 text-sm text-slate-600 dark:text-slate-400">
-                            <span className="font-medium">{food.calories} cal</span>
-                            {food.protein && <span>P: {food.protein}g</span>}
-                            {food.carbs && <span>C: {food.carbs}g</span>}
-                            {food.fat && <span>F: {food.fat}g</span>}
-                          </div>
-                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                            per {food.serving || '100g'}
-                          </p>
+          )}
+          
+          {searchResults.length > 0 && !isSearching && (
+            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+              <CardHeader>
+                <CardTitle className="text-lg flex items-center gap-2">
+                  <Search className="w-5 h-5" />
+                  Search Results ({searchResults.length})
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3 max-h-96 overflow-y-auto">
+                {searchResults.map((food) => (
+                  <div
+                    key={food.id}
+                    className="p-4 bg-slate-50/50 dark:bg-slate-700/30 rounded-xl hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer border border-slate-200/50 dark:border-slate-600/50"
+                    onClick={() => setSelectedFood(food)}
+                    data-testid={`search-result-${food.id}`}
+                  >
+                    <div className="flex items-start justify-between">
+                      <div className="flex-1">
+                        <h4 className="font-medium text-slate-900 dark:text-white text-base">
+                          {food.name}
+                        </h4>
+                        {food.brand && (
+                          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{food.brand}</p>
+                        )}
+                        <div className="flex items-center gap-4 mt-2 text-sm text-slate-600 dark:text-slate-400">
+                          <span className="font-medium text-emerald-600 dark:text-emerald-400">{food.calories} cal</span>
+                          {food.protein && <span>P: {food.protein}g</span>}
+                          {food.carbs && <span>C: {food.carbs}g</span>}
+                          {food.fat && <span>F: {food.fat}g</span>}
                         </div>
-                        <ChevronRight className="w-4 h-4 text-slate-400 mt-1" />
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                          per {food.serving || '100g'}
+                        </p>
                       </div>
+                      <ChevronRight className="w-5 h-5 text-slate-400 mt-1" />
                     </div>
-                  ))}
+                  </div>
+                ))}
+              </CardContent>
+            </Card>
+          )}
+          
+          {searchResults.length === 0 && !isSearching && searchQuery.trim() && (
+            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+              <CardContent className="p-8 text-center" data-testid="search-empty-state">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-full flex items-center justify-center">
+                    <Search className="w-8 h-8 text-slate-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
+                      No foods found
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-400">
+                      We couldn't find any foods matching "{searchQuery}". Try a different search term or add a custom food below.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Secondary Options */}
+          <div className="space-y-4">
+            {/* Quick Action Buttons */}
+            <div className="grid grid-cols-2 gap-3">
+              <Button
+                variant="outline"
+                onClick={() => setShowRecentSection(!showRecentSection)}
+                className="h-12 bg-white/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700/50"
+                data-testid="button-recent-toggle"
+              >
+                <History className="w-5 h-5 mr-2" />
+                Recent Foods
+                {showRecentSection ? <ChevronUp className="w-4 h-4 ml-auto" /> : <ChevronDown className="w-4 h-4 ml-auto" />}
+              </Button>
+              <Button
+                variant="outline"
+                onClick={() => setShowCustomSection(!showCustomSection)}
+                className="h-12 bg-white/50 dark:bg-slate-800/50 border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700/50"
+                data-testid="button-custom-toggle"
+              >
+                <ChefHat className="w-5 h-5 mr-2" />
+                Custom Food
+                {showCustomSection ? <ChevronUp className="w-4 h-4 ml-auto" /> : <ChevronDown className="w-4 h-4 ml-auto" />}
+              </Button>
+            </div>
+
+            {/* Barcode Section (Collapsible) */}
+            {showBarcodeSection && (
+              <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-medium text-slate-900 dark:text-white">
+                      Scan Barcode
+                    </h3>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setShowBarcodeSection(false)}
+                      className="h-8 w-8 p-0"
+                    >
+                      <X className="w-4 h-4" />
+                    </Button>
+                  </div>
+                  <div className="space-y-4">
+                    <p className="text-slate-600 dark:text-slate-400">
+                      Enter a barcode number to find product information
+                    </p>
+                    <Input
+                      type="text"
+                      placeholder="Enter barcode number..."
+                      className="h-12"
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && e.currentTarget.value) {
+                          scanBarcode(e.currentTarget.value)
+                          setShowBarcodeSection(false)
+                        }
+                      }}
+                      data-testid="input-barcode"
+                    />
+                    <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
+                      Camera scanning coming soon!
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             )}
-          </TabsContent>
 
-          {/* Barcode Tab */}
-          <TabsContent value="barcode" className="space-y-4">
-            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-              <CardContent className="p-6 text-center space-y-4">
-                <div className="w-20 h-20 mx-auto bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center">
-                  <Barcode className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
-                    Scan Barcode
-                  </h3>
-                  <p className="text-slate-600 dark:text-slate-400 mb-4">
-                    Enter a barcode number to find product information
-                  </p>
-                  <Input
-                    type="text"
-                    placeholder="Enter barcode number..."
-                    className="max-w-xs mx-auto mb-4"
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' && e.currentTarget.value) {
-                        scanBarcode(e.currentTarget.value)
-                      }
-                    }}
-                    data-testid="input-barcode"
-                  />
-                  <p className="text-xs text-slate-500 dark:text-slate-400">
-                    Camera scanning coming soon!
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Recent Foods Tab */}
-          <TabsContent value="recent" className="space-y-4">
-            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-              <CardHeader>
-                <CardTitle className="text-lg">Recent Foods</CardTitle>
-                <CardDescription>Quick access to foods you've logged before</CardDescription>
-              </CardHeader>
-              <CardContent>
-                {recentFoods.length === 0 ? (
-                  <p className="text-center py-8 text-slate-600 dark:text-slate-400">
-                    No recent foods yet. Start logging to build your history!
-                  </p>
-                ) : (
-                  <div className="space-y-2">
-                    {recentFoods.map((food) => (
-                      <div
-                        key={food.id}
-                        className="p-3 bg-slate-50/50 dark:bg-slate-700/30 rounded-lg hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer"
-                        onClick={() => setSelectedFood(food)}
-                        data-testid={`recent-food-${food.id}`}
-                      >
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <h4 className="font-medium text-slate-900 dark:text-white">
-                              {food.name}
-                            </h4>
-                            <div className="flex items-center gap-3 mt-1 text-sm text-slate-600 dark:text-slate-400">
-                              <span className="font-medium">{food.calories} cal</span>
-                              {food.protein && <span>P: {food.protein}g</span>}
-                              {food.carbs && <span>C: {food.carbs}g</span>}
-                              {food.fat && <span>F: {food.fat}g</span>}
+            {/* Recent Foods Section (Collapsible) */}
+            {showRecentSection && (
+              <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-medium text-slate-900 dark:text-white">
+                      Recent Foods
+                    </h3>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setShowRecentSection(false)}
+                      className="h-8 w-8 p-0"
+                    >
+                      <X className="w-4 h-4" />
+                    </Button>
+                  </div>
+                  {recentFoods.length === 0 ? (
+                    <p className="text-center py-8 text-slate-600 dark:text-slate-400">
+                      No recent foods yet. Start logging to build your history!
+                    </p>
+                  ) : (
+                    <div className="space-y-3">
+                      {recentFoods.map((food) => (
+                        <div
+                          key={food.id}
+                          className="p-3 bg-slate-50/50 dark:bg-slate-700/30 rounded-lg hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer"
+                          onClick={() => setSelectedFood(food)}
+                          data-testid={`recent-food-${food.id}`}
+                        >
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <h4 className="font-medium text-slate-900 dark:text-white">
+                                {food.name}
+                              </h4>
+                              <div className="flex items-center gap-3 mt-1 text-sm text-slate-600 dark:text-slate-400">
+                                <span className="font-medium text-emerald-600 dark:text-emerald-400">{food.calories} cal</span>
+                                {food.protein && <span>P: {food.protein}g</span>}
+                                {food.carbs && <span>C: {food.carbs}g</span>}
+                                {food.fat && <span>F: {food.fat}g</span>}
+                              </div>
                             </div>
+                            <Plus className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mt-1" />
                           </div>
-                          <Plus className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mt-1" />
                         </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            )}
 
-          {/* Custom Food Tab */}
-          <TabsContent value="custom" className="space-y-4">
-            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-              <CardHeader>
-                <CardTitle className="text-lg">Custom Food</CardTitle>
-                <CardDescription>Create a custom food entry</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
-                    Food Name
-                  </label>
-                  <Input
-                    type="text"
-                    placeholder="e.g., Homemade Salad"
-                    value={customFood.name}
-                    onChange={(e) => setCustomFood({...customFood, name: e.target.value})}
-                    data-testid="input-custom-name"
-                  />
-                </div>
-                
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
-                      Calories
-                    </label>
-                    <Input
-                      type="number"
-                      placeholder="0"
-                      value={customFood.calories}
-                      onChange={(e) => setCustomFood({...customFood, calories: e.target.value})}
-                      data-testid="input-custom-calories"
-                    />
+            {/* Custom Food Section (Collapsible) */}
+            {showCustomSection && (
+              <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-lg font-medium text-slate-900 dark:text-white">
+                      Custom Food
+                    </h3>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setShowCustomSection(false)}
+                      className="h-8 w-8 p-0"
+                    >
+                      <X className="w-4 h-4" />
+                    </Button>
                   </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
-                      Serving Size
-                    </label>
-                    <Input
-                      type="text"
-                      placeholder="100g"
-                      value={customFood.serving}
-                      onChange={(e) => setCustomFood({...customFood, serving: e.target.value})}
-                      data-testid="input-custom-serving"
-                    />
+                  <div className="space-y-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                        Food Name
+                      </label>
+                      <Input
+                        type="text"
+                        placeholder="e.g., Homemade Salad"
+                        value={customFood.name}
+                        onChange={(e) => setCustomFood({...customFood, name: e.target.value})}
+                        className="h-12"
+                        data-testid="input-custom-name"
+                      />
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                          Calories
+                        </label>
+                        <Input
+                          type="number"
+                          placeholder="0"
+                          value={customFood.calories}
+                          onChange={(e) => setCustomFood({...customFood, calories: e.target.value})}
+                          className="h-12"
+                          data-testid="input-custom-calories"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                          Serving Size
+                        </label>
+                        <Input
+                          type="text"
+                          placeholder="100g"
+                          value={customFood.serving}
+                          onChange={(e) => setCustomFood({...customFood, serving: e.target.value})}
+                          className="h-12"
+                          data-testid="input-custom-serving"
+                        />
+                      </div>
+                    </div>
+                    
+                    <div className="grid grid-cols-3 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                          Protein (g)
+                        </label>
+                        <Input
+                          type="number"
+                          placeholder="0"
+                          value={customFood.protein}
+                          onChange={(e) => setCustomFood({...customFood, protein: e.target.value})}
+                          className="h-12"
+                          data-testid="input-custom-protein"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                          Carbs (g)
+                        </label>
+                        <Input
+                          type="number"
+                          placeholder="0"
+                          value={customFood.carbs}
+                          onChange={(e) => setCustomFood({...customFood, carbs: e.target.value})}
+                          className="h-12"
+                          data-testid="input-custom-carbs"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                          Fat (g)
+                        </label>
+                        <Input
+                          type="number"
+                          placeholder="0"
+                          value={customFood.fat}
+                          onChange={(e) => setCustomFood({...customFood, fat: e.target.value})}
+                          className="h-12"
+                          data-testid="input-custom-fat"
+                        />
+                      </div>
+                    </div>
+                    
+                    <Button
+                      onClick={() => {
+                        logCustomFood()
+                        setShowCustomSection(false)
+                      }}
+                      disabled={!customFood.name || !customFood.calories}
+                      className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-white"
+                      data-testid="button-log-custom"
+                    >
+                      <Plus className="w-5 h-5 mr-2" />
+                      Log Custom Food
+                    </Button>
                   </div>
-                </div>
-                
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
-                      Protein (g)
-                    </label>
-                    <Input
-                      type="number"
-                      placeholder="0"
-                      value={customFood.protein}
-                      onChange={(e) => setCustomFood({...customFood, protein: e.target.value})}
-                      data-testid="input-custom-protein"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
-                      Carbs (g)
-                    </label>
-                    <Input
-                      type="number"
-                      placeholder="0"
-                      value={customFood.carbs}
-                      onChange={(e) => setCustomFood({...customFood, carbs: e.target.value})}
-                      data-testid="input-custom-carbs"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
-                      Fat (g)
-                    </label>
-                    <Input
-                      type="number"
-                      placeholder="0"
-                      value={customFood.fat}
-                      onChange={(e) => setCustomFood({...customFood, fat: e.target.value})}
-                      data-testid="input-custom-fat"
-                    />
-                  </div>
-                </div>
-                
-                <Button
-                  onClick={logCustomFood}
-                  disabled={!customFood.name || !customFood.calories}
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
-                  data-testid="button-log-custom"
-                >
-                  <Plus className="w-4 h-4 mr-2" />
-                  Log Custom Food
-                </Button>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        </div>
 
         {/* Selected Food Modal */}
         {selectedFood && (
@@ -597,6 +746,7 @@ export default function NutritionPage() {
                     size="icon"
                     onClick={() => setSelectedFood(null)}
                     className="text-slate-600 dark:text-slate-300"
+                    data-testid="button-close-modal"
                   >
                     <X className="w-4 h-4" />
                   </Button>
@@ -639,6 +789,7 @@ export default function NutritionPage() {
                       size="icon"
                       onClick={() => setServings(Math.max(0.5, servings - 0.5))}
                       className="h-10 w-10"
+                      data-testid="button-decrease-servings"
                     >
                       -
                     </Button>
@@ -656,6 +807,7 @@ export default function NutritionPage() {
                       size="icon"
                       onClick={() => setServings(servings + 0.5)}
                       className="h-10 w-10"
+                      data-testid="button-increase-servings"
                     >
                       +
                     </Button>
