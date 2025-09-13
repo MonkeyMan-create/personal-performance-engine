@@ -81,6 +81,10 @@ export default function NutritionPage() {
   // Photo logging state
   const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
+  
+  // Hydration tracking state
+  const [waterGlasses, setWaterGlasses] = useState(0)
+  const [showHydrationToast, setShowHydrationToast] = useState(false)
 
   // Load today's meals and recent foods
   useEffect(() => {
@@ -104,6 +108,14 @@ export default function NutritionPage() {
     else if (hour < 14) setMealType('lunch')
     else if (hour < 18) setMealType('snack')
     else setMealType('dinner')
+  }, [])
+
+  // Load water count on mount
+  useEffect(() => {
+    const stored = localStorage.getItem('waterGlasses')
+    if (stored) {
+      setWaterGlasses(parseInt(stored))
+    }
   }, [])
 
   if (!user && !isGuestMode) {
@@ -313,10 +325,7 @@ export default function NutritionPage() {
   const caloriesProgress = (todayStats.calories / nutritionGoals.calories) * 100
   const proteinProgress = (todayStats.protein / nutritionGoals.protein) * 100
   const fatProgress = (todayStats.fat / nutritionGoals.fat) * 100
-
-  // Hydration tracking state
-  const [waterGlasses, setWaterGlasses] = useState(0)
-  const [showHydrationToast, setShowHydrationToast] = useState(false)
+  const hydrationProgress = (waterGlasses / 8) * 100
 
   const addWaterGlass = () => {
     const newCount = waterGlasses + 1
@@ -335,14 +344,6 @@ export default function NutritionPage() {
       })
     }
   }
-
-  // Load water count on mount
-  useEffect(() => {
-    const stored = localStorage.getItem('waterGlasses')
-    if (stored) {
-      setWaterGlasses(parseInt(stored))
-    }
-  }, [])
 
   // Barcode scanner handlers
   const openCameraScanner = () => {
@@ -416,7 +417,7 @@ export default function NutritionPage() {
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Nutrition</h1>
           
           {/* Progress Rings */}
-          <div className="flex items-center justify-center gap-8">
+          <div className="flex items-center justify-center gap-6">
             {/* Protein Ring */}
             <div className="flex flex-col items-center">
               <ProgressRing
@@ -462,6 +463,29 @@ export default function NutritionPage() {
                 size="sm"
                 className="drop-shadow-lg [&>*]:!stroke-yellow-500 [&_text]:!fill-yellow-500"
               />
+            </div>
+
+            {/* Hydration Ring */}
+            <div className="flex flex-col items-center">
+              <ProgressRing
+                progress={hydrationProgress}
+                current={waterGlasses}
+                goal={8}
+                label="Hydration"
+                unit="glasses"
+                size="sm"
+                className="drop-shadow-lg [&>*]:!stroke-blue-500 [&_text]:!fill-blue-500"
+                data-testid="progress-ring-hydration"
+              />
+              <Button
+                onClick={addWaterGlass}
+                size="sm"
+                className="mt-2 h-8 px-3 bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium rounded-full shadow-lg transition-all duration-200 hover:scale-105"
+                data-testid="button-add-water-inline"
+              >
+                <Droplets className="w-3 h-3 mr-1" />
+                Add Glass
+              </Button>
             </div>
           </div>
         </div>
@@ -1252,26 +1276,6 @@ export default function NutritionPage() {
         </Dialog>
       </div>
 
-      {/* Persistent Hydration FAB */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <Button
-          onClick={addWaterGlass}
-          className="h-14 px-6 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-semibold rounded-full shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-sm"
-          data-testid="button-hydration-fab"
-        >
-          <Droplets className="w-5 h-5 mr-2" />
-          <span>Add Glass</span>
-          {waterGlasses > 0 && (
-            <Badge 
-              variant="secondary"
-              className="ml-2 bg-white/20 text-white border-white/30 text-xs"
-              data-testid="water-count-badge"
-            >
-              {waterGlasses}/8
-            </Badge>
-          )}
-        </Button>
-      </div>
     </div>
   )
 }

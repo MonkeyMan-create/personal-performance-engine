@@ -256,6 +256,43 @@ export default function WorkoutsPage() {
     return { totalSets, uniqueExercises }
   }
 
+  const getDifficultyColors = (difficulty: string) => {
+    switch (difficulty) {
+      case 'Beginner':
+        return {
+          bg: 'bg-green-100 dark:bg-green-900/30',
+          text: 'text-green-700 dark:text-green-300',
+          border: 'border-green-200 dark:border-green-700',
+          iconBg: 'bg-green-500/20',
+          iconColor: 'text-green-600 dark:text-green-400'
+        }
+      case 'Intermediate':
+        return {
+          bg: 'bg-orange-100 dark:bg-orange-900/30',
+          text: 'text-orange-700 dark:text-orange-300',
+          border: 'border-orange-200 dark:border-orange-700',
+          iconBg: 'bg-orange-500/20',
+          iconColor: 'text-orange-600 dark:text-orange-400'
+        }
+      case 'Advanced':
+        return {
+          bg: 'bg-red-100 dark:bg-red-900/30',
+          text: 'text-red-700 dark:text-red-300',
+          border: 'border-red-200 dark:border-red-700',
+          iconBg: 'bg-red-500/20',
+          iconColor: 'text-red-600 dark:text-red-400'
+        }
+      default:
+        return {
+          bg: 'bg-purple-100 dark:bg-purple-900/30',
+          text: 'text-purple-700 dark:text-purple-300',
+          border: 'border-purple-200 dark:border-purple-700',
+          iconBg: 'bg-purple-500/20',
+          iconColor: 'text-purple-600 dark:text-purple-400'
+        }
+    }
+  }
+
   const formatSessionDuration = () => {
     if (!currentSession) return '0:00'
     
@@ -682,6 +719,7 @@ export default function WorkoutsPage() {
                 <div className="flex gap-4 min-w-max">
                   {workoutTemplates.map((template) => {
                     const IconComponent = template.icon
+                    const colors = getDifficultyColors(template.difficulty)
                     return (
                       <Card
                         key={template.id}
@@ -691,10 +729,10 @@ export default function WorkoutsPage() {
                       >
                         <CardContent className="p-4">
                           <div className="flex items-start justify-between mb-3">
-                            <div className="p-2 bg-purple-600/20 rounded-lg">
-                              <IconComponent className="w-5 h-5 text-purple-400" />
+                            <div className={`p-2 ${colors.iconBg} rounded-lg`}>
+                              <IconComponent className={`w-5 h-5 ${colors.iconColor}`} />
                             </div>
-                            <span className="text-xs bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 px-2 py-1 rounded-full">
+                            <span className={`text-xs ${colors.bg} ${colors.text} ${colors.border} px-2 py-1 rounded-full border`}>
                               {template.difficulty}
                             </span>
                           </div>
