@@ -23,11 +23,15 @@ import {
   ExternalLink,
   Camera,
   CameraOff,
-  AlertCircle
+  AlertCircle,
+  Droplets,
+  Target,
+  ImageIcon
 } from 'lucide-react'
 import { saveMealLocally, getMealsByDateLocally, GuestMeal } from '../utils/guestStorage'
 import { toast } from '../hooks/use-toast'
 import LazyBarcodeScanner from '../components/LazyBarcodeScanner'
+import ProgressRing from '../components/ProgressRing'
 
 interface FoodItem {
   id: string
@@ -59,6 +63,7 @@ export default function NutritionPage() {
   const [todayMeals, setTodayMeals] = useState<GuestMeal[]>([])
   const [recentFoods, setRecentFoods] = useState<FoodItem[]>([])
   const [showBarcodeSection, setShowBarcodeSection] = useState(false)
+  const [showSearch, setShowSearch] = useState(false)
   const [showRecentSection, setShowRecentSection] = useState(false)  
   const [showCustomSection, setShowCustomSection] = useState(false)
   const [customFood, setCustomFood] = useState({
@@ -72,6 +77,10 @@ export default function NutritionPage() {
   
   // Camera scanning state
   const [isCameraModalOpen, setIsCameraModalOpen] = useState(false)
+  
+  // Photo logging state
+  const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   // Load today's meals and recent foods
   useEffect(() => {
@@ -291,6 +300,50 @@ export default function NutritionPage() {
     fat: acc.fat + (meal.fat || 0)
   }), { calories: 0, protein: 0, carbs: 0, fat: 0 })
 
+  // Daily nutrition goals
+  const nutritionGoals = {
+    calories: 2000,
+    protein: 120,
+    carbs: 250,
+    fat: 80
+  }
+
+  // Calculate progress percentages
+  const caloriesRemaining = nutritionGoals.calories - todayStats.calories
+  const caloriesProgress = (todayStats.calories / nutritionGoals.calories) * 100
+  const proteinProgress = (todayStats.protein / nutritionGoals.protein) * 100
+  const fatProgress = (todayStats.fat / nutritionGoals.fat) * 100
+
+  // Hydration tracking state
+  const [waterGlasses, setWaterGlasses] = useState(0)
+  const [showHydrationToast, setShowHydrationToast] = useState(false)
+
+  const addWaterGlass = () => {
+    const newCount = waterGlasses + 1
+    setWaterGlasses(newCount)
+    localStorage.setItem('waterGlasses', newCount.toString())
+    
+    toast({
+      title: 'Water logged!',
+      description: `Glass ${newCount} added to your daily hydration.`
+    })
+
+    if (newCount === 8) {
+      toast({
+        title: '🎉 Hydration goal reached!',
+        description: 'Excellent job staying hydrated today!'
+      })
+    }
+  }
+
+  // Load water count on mount
+  useEffect(() => {
+    const stored = localStorage.getItem('waterGlasses')
+    if (stored) {
+      setWaterGlasses(parseInt(stored))
+    }
+  }, [])
+
   // Barcode scanner handlers
   const openCameraScanner = () => {
     setIsCameraModalOpen(true)
@@ -308,18 +361,108 @@ export default function NutritionPage() {
     setShowBarcodeSection(true)
   }
 
+  // Photo logging handlers
+  const openPhotoCapture = () => {
+    setIsPhotoModalOpen(true)
+  }
+
+  const handlePhotoCapture = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click()
+    }
+  }
+
+  const handlePhotoSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (file) {
+      // Log a placeholder meal entry for photo
+      const today = new Date().toISOString().split('T')[0]
+      const mealToLog: Omit<GuestMeal, 'id'> = {
+        mealType,
+        foodItem: `Photo meal - ${file.name}`,
+        calories: 300, // Placeholder calories
+        protein: 15,
+        carbs: 30,
+        fat: 10,
+        date: today
+      }
+      
+      saveMealLocally(mealToLog)
+      
+      // Refresh today's meals
+      const meals = getMealsByDateLocally(today)
+      setTodayMeals(meals)
+      
+      setIsPhotoModalOpen(false)
+      
+      toast({
+        title: 'Photo meal logged!',
+        description: `Added photo meal to ${mealType}. Estimated nutrition values.`
+      })
+      
+      // Reset file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ''
+      }
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         
-        {/* Header */}
-        <div className="pt-4">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Nutrition</h1>
-          <div className="flex items-center gap-4 text-sm text-slate-600 dark:text-slate-400">
-            <span>Today: {todayStats.calories} cal</span>
-            {todayStats.protein > 0 && <span>P: {todayStats.protein}g</span>}
-            {todayStats.carbs > 0 && <span>C: {todayStats.carbs}g</span>}
-            {todayStats.fat > 0 && <span>F: {todayStats.fat}g</span>}
+        {/* Daily Summary Section */}
+        <div className="pt-8 text-center space-y-6">
+          <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Nutrition</h1>
+          
+          {/* Progress Rings */}
+          <div className="flex items-center justify-center gap-8">
+            {/* Protein Ring */}
+            <div className="flex flex-col items-center">
+              <ProgressRing
+                progress={proteinProgress}
+                current={Math.round(todayStats.protein)}
+                goal={nutritionGoals.protein}
+                label="Protein"
+                unit="g"
+                size="sm"
+                className="drop-shadow-lg"
+              />
+            </div>
+
+            {/* Central Calorie Ring */}
+            <div className="flex flex-col items-center">
+              <ProgressRing
+                progress={caloriesProgress}
+                current={todayStats.calories}
+                goal={nutritionGoals.calories}
+                label="Calories Remaining"
+                unit="cal"
+                size="lg"
+                className="drop-shadow-2xl"
+              />
+              <div className="mt-3 text-center">
+                <p className="text-lg font-bold text-teal-600 dark:text-teal-400" data-testid="calories-remaining">
+                  {caloriesRemaining > 0 ? caloriesRemaining : 0} cal remaining
+                </p>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  {todayMeals.length} meals logged today
+                </p>
+              </div>
+            </div>
+
+            {/* Fat Ring */}
+            <div className="flex flex-col items-center">
+              <ProgressRing
+                progress={fatProgress}
+                current={Math.round(todayStats.fat)}
+                goal={nutritionGoals.fat}
+                label="Fat"
+                unit="g"
+                size="sm"
+                className="drop-shadow-lg"
+              />
+            </div>
           </div>
         </div>
 
@@ -332,7 +475,7 @@ export default function NutritionPage() {
               size="sm"
               onClick={() => setMealType(type)}
               className={mealType === type 
-                ? 'bg-emerald-600 hover:bg-emerald-700 text-white' 
+                ? 'bg-teal-600 hover:bg-teal-700 text-white' 
                 : 'border-slate-300 dark:border-slate-600'}
               data-testid={`button-meal-type-${type}`}
             >
@@ -341,79 +484,117 @@ export default function NutritionPage() {
           ))}
         </div>
 
-        {/* Primary Search Interface */}
-        <div className="space-y-6">
-          {/* Prominent Search Bar */}
-          <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-            <CardContent className="p-6">
-              <div className="text-center mb-4">
-                <h2 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
-                  Search Foods
-                </h2>
-                <p className="text-sm text-slate-600 dark:text-slate-400">
-                  Find nutrition info for millions of foods
-                </p>
-              </div>
-              <form onSubmit={handleSearch} className="space-y-4">
-                <div className="relative">
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
-                  <Input
-                    type="text"
-                    placeholder="Search for any food..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="h-14 pl-12 pr-20 text-lg bg-white dark:bg-slate-700 border-2 border-slate-200 dark:border-slate-600 focus:border-emerald-500 dark:focus:border-emerald-400 rounded-xl"
-                    data-testid="input-food-search"
-                  />
-                  <Button 
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="absolute right-2 top-1/2 transform -translate-y-1/2 h-10 w-10 p-0 text-slate-400 hover:text-emerald-600"
-                    onClick={openCameraScanner}
-                    data-testid="button-barcode-scan"
-                  >
-                    <Barcode className="w-5 h-5" />
-                  </Button>
-                </div>
-                <Button 
-                  type="submit" 
-                  disabled={isSearching || !searchQuery.trim()}
-                  className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-medium rounded-xl"
-                  data-testid="button-search-food"
-                >
-                  {isSearching ? (
-                    <>
-                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      Searching...
-                    </>
-                  ) : (
-                    <>
-                      <Search className="w-5 h-5 mr-2" />
-                      Search Foods
-                    </>
-                  )}
-                </Button>
-              </form>
+        {/* Quick Log Section */}
+        <Card className="bg-white/80 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl shadow-xl">
+          <CardContent className="p-6">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+                Quick Log
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400">
+                Add food to your {mealType} log
+              </p>
+            </div>
+            
+            {/* Primary Search Button */}
+            <Button
+              onClick={() => setShowSearch(true)}
+              className="w-full h-16 mb-4 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-xl font-bold rounded-2xl shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              data-testid="button-search-food-primary"
+            >
+              <Search className="w-6 h-6 mr-3" />
+              Search Food
+            </Button>
+            
+            {/* Secondary Action Buttons */}
+            <div className="grid grid-cols-3 gap-3">
+              <Button
+                variant="outline"
+                onClick={openCameraScanner}
+                className="h-12 bg-white/50 dark:bg-slate-800/50 border-teal-200 dark:border-teal-700 hover:bg-teal-50 dark:hover:bg-teal-900/20 hover:border-teal-300 dark:hover:border-teal-600 transition-colors"
+                data-testid="button-barcode-scan-secondary"
+              >
+                <Barcode className="w-5 h-5 mr-2 text-teal-600 dark:text-teal-400" />
+                <span className="text-slate-700 dark:text-slate-300">Scan Barcode</span>
+              </Button>
               
-              {/* Open Food Facts Attribution */}
-              <div className="mt-4 pt-4 border-t border-slate-200 dark:border-slate-600">
-                <p className="text-xs text-slate-500 dark:text-slate-400 text-center flex items-center justify-center gap-1">
-                  Powered by 
-                  <a 
-                    href="https://openfoodfacts.org" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-emerald-600 hover:text-emerald-700 dark:text-emerald-400 font-medium inline-flex items-center gap-1"
+              <Button
+                variant="outline"
+                onClick={openPhotoCapture}
+                className="h-12 bg-white/50 dark:bg-slate-800/50 border-teal-200 dark:border-teal-700 hover:bg-teal-50 dark:hover:bg-teal-900/20 hover:border-teal-300 dark:hover:border-teal-600 transition-colors"
+                data-testid="button-photo-logging-secondary"
+              >
+                <ImageIcon className="w-5 h-5 mr-2 text-teal-600 dark:text-teal-400" />
+                <span className="text-slate-700 dark:text-slate-300">Photo Log</span>
+              </Button>
+              
+              <Button
+                variant="outline"
+                onClick={() => setShowCustomSection(!showCustomSection)}
+                className="h-12 bg-white/50 dark:bg-slate-800/50 border-teal-200 dark:border-teal-700 hover:bg-teal-50 dark:hover:bg-teal-900/20 hover:border-teal-300 dark:hover:border-teal-600 transition-colors"
+                data-testid="button-custom-food-secondary"
+              >
+                <Plus className="w-5 h-5 mr-2 text-teal-600 dark:text-teal-400" />
+                <span className="text-slate-700 dark:text-slate-300">Add Custom</span>
+              </Button>
+            </div>
+            
+            {/* Search Interface (appears when Search Food is clicked) */}
+            {showSearch && (
+              <div className="mt-6 space-y-4">
+                <form onSubmit={handleSearch} className="space-y-4">
+                  <div className="relative">
+                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+                    <Input
+                      type="text"
+                      placeholder="Search for any food..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="h-12 pl-12 text-base bg-white dark:bg-slate-700 border-2 border-teal-200 dark:border-teal-700 focus:border-teal-500 dark:focus:border-teal-400 rounded-xl"
+                      data-testid="input-food-search"
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    disabled={isSearching || !searchQuery.trim()}
+                    className="w-full h-10 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-xl"
+                    data-testid="button-search-food"
                   >
-                    Open Food Facts
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                  © Open Food Facts contributors
-                </p>
+                    {isSearching ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        Searching...
+                      </>
+                    ) : (
+                      <>
+                        <Search className="w-4 h-4 mr-2" />
+                        Search Foods
+                      </>
+                    )}
+                  </Button>
+                </form>
+                
+                {/* Open Food Facts Attribution */}
+                <div className="pt-3 border-t border-slate-200 dark:border-slate-600">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 text-center flex items-center justify-center gap-1">
+                    Powered by 
+                    <a 
+                      href="https://openfoodfacts.org" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-teal-600 hover:text-teal-700 dark:text-teal-400 font-medium inline-flex items-center gap-1"
+                    >
+                      Open Food Facts
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </p>
+                </div>
               </div>
-            </CardContent>
-          </Card>
+            )}
+          </CardContent>
+        </Card>
+        
+        <div className="space-y-6">
 
           {/* Search Results */}
           {isSearching && searchQuery.trim() && (
@@ -474,7 +655,7 @@ export default function NutritionPage() {
                           <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{food.brand}</p>
                         )}
                         <div className="flex items-center gap-4 mt-2 text-sm text-slate-600 dark:text-slate-400">
-                          <span className="font-medium text-emerald-600 dark:text-emerald-400">{food.calories} cal</span>
+                          <span className="font-medium text-teal-600 dark:text-teal-400">{food.calories} cal</span>
                           {food.protein && <span>P: {food.protein}g</span>}
                           {food.carbs && <span>C: {food.carbs}g</span>}
                           {food.fat && <span>F: {food.fat}g</span>}
@@ -556,9 +737,9 @@ export default function NutritionPage() {
                   </div>
                   <div className="space-y-4">
                     {/* Camera Scan Option */}
-                    <div className="p-4 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-lg">
+                    <div className="p-4 bg-teal-50 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-800 rounded-lg">
                       <div className="flex items-center gap-3 mb-3">
-                        <Camera className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                        <Camera className="w-5 h-5 text-teal-600 dark:text-teal-400" />
                         <h4 className="font-medium text-slate-900 dark:text-white">Camera Scan</h4>
                       </div>
                       <p className="text-slate-600 dark:text-slate-400 text-sm mb-3">
@@ -569,7 +750,7 @@ export default function NutritionPage() {
                           setShowBarcodeSection(false)
                           openCameraScanner()
                         }}
-                        className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                        className="w-full bg-teal-600 hover:bg-teal-700 text-white"
                         data-testid="button-open-camera"
                       >
                         <Camera className="w-4 h-4 mr-2" />
@@ -643,13 +824,13 @@ export default function NutritionPage() {
                                 {food.name}
                               </h4>
                               <div className="flex items-center gap-3 mt-1 text-sm text-slate-600 dark:text-slate-400">
-                                <span className="font-medium text-emerald-600 dark:text-emerald-400">{food.calories} cal</span>
+                                <span className="font-medium text-teal-600 dark:text-teal-400">{food.calories} cal</span>
                                 {food.protein && <span>P: {food.protein}g</span>}
                                 {food.carbs && <span>C: {food.carbs}g</span>}
                                 {food.fat && <span>F: {food.fat}g</span>}
                               </div>
                             </div>
-                            <Plus className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mt-1" />
+                            <Plus className="w-4 h-4 text-teal-600 dark:text-teal-400 mt-1" />
                           </div>
                         </div>
                       ))}
@@ -768,7 +949,7 @@ export default function NutritionPage() {
                         setShowCustomSection(false)
                       }}
                       disabled={!customFood.name || !customFood.calories}
-                      className="w-full h-12 bg-emerald-600 hover:bg-emerald-700 text-white"
+                      className="w-full h-12 bg-teal-600 hover:bg-teal-700 text-white"
                       data-testid="button-log-custom"
                     >
                       <Plus className="w-5 h-5 mr-2" />
@@ -870,7 +1051,7 @@ export default function NutritionPage() {
                 
                 <Button
                   onClick={() => logFood(selectedFood)}
-                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white"
+                  className="w-full bg-teal-600 hover:bg-teal-700 text-white"
                   data-testid="button-confirm-log"
                 >
                   <Check className="w-4 h-4 mr-2" />
@@ -881,50 +1062,129 @@ export default function NutritionPage() {
           </div>
         )}
 
-        {/* Today's Summary */}
-        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-          <CardHeader>
-            <CardTitle className="text-slate-900 dark:text-white">Today's Meals</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {todayMeals.length === 0 ? (
-              <p className="text-center py-8 text-slate-600 dark:text-slate-400">
-                No meals logged yet today
-              </p>
-            ) : (
-              <div className="space-y-2">
-                {todayMeals.map((meal) => (
-                  <div
+        {/* Today's Meals Log */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Today's Meals</h2>
+            <Badge 
+              variant="secondary" 
+              className="bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-700"
+            >
+              {todayMeals.length} logged
+            </Badge>
+          </div>
+          
+          {todayMeals.length === 0 ? (
+            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+              <CardContent className="p-12 text-center">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="w-16 h-16 bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
+                    <Utensils className="w-8 h-8 text-teal-600 dark:text-teal-400" />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
+                      No meals logged yet
+                    </h3>
+                    <p className="text-slate-600 dark:text-slate-400">
+                      Start your day by logging your first meal!
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            <div className="space-y-4">
+              {todayMeals.map((meal) => {
+                // Generate insights based on meal macros
+                const getInsightMessage = (meal: GuestMeal) => {
+                  if (meal.protein && meal.protein > 25) {
+                    return "💪 Excellent protein choice! This supports muscle growth and recovery."
+                  }
+                  if (meal.calories > 500) {
+                    return "🍽️ Substantial meal! This will keep you energized for hours."
+                  }
+                  if (meal.fat && meal.fat > 15) {
+                    return "🥑 Great healthy fats! Perfect for brain function and satiety."
+                  }
+                  if (meal.carbs && meal.carbs > 30) {
+                    return "⚡ Good carb source! Ideal fuel for your workouts and brain."
+                  }
+                  if (meal.mealType === 'breakfast') {
+                    return "🌅 Perfect way to start your day with energy!"
+                  }
+                  return "✅ Nice addition to your daily nutrition goals!"
+                }
+
+                return (
+                  <Card 
                     key={meal.id}
-                    className="p-3 bg-slate-50/50 dark:bg-slate-700/30 rounded-lg"
-                    data-testid={`logged-meal-${meal.id}`}
+                    className="bg-white/80 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl hover:shadow-lg transition-all duration-300"
+                    data-testid={`meal-card-${meal.id}`}
                   >
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h4 className="font-medium text-slate-900 dark:text-white">
-                          {meal.foodItem}
-                        </h4>
-                        <Badge variant="secondary" className="text-xs mt-1">
-                          {meal.mealType}
-                        </Badge>
-                      </div>
-                      <div className="text-right">
-                        <span className="font-semibold text-slate-900 dark:text-white">
-                          {meal.calories} cal
-                        </span>
-                        <div className="flex gap-2 text-xs text-slate-600 dark:text-slate-400 mt-1">
-                          {meal.protein && <span>P:{meal.protein}g</span>}
-                          {meal.carbs && <span>C:{meal.carbs}g</span>}
-                          {meal.fat && <span>F:{meal.fat}g</span>}
+                    <CardContent className="p-6">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-2">
+                            <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                              {meal.foodItem}
+                            </h3>
+                            <Badge 
+                              variant="secondary"
+                              className="text-xs bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 border-teal-200 dark:border-teal-700"
+                            >
+                              {meal.mealType}
+                            </Badge>
+                          </div>
+                          
+                          {/* Macro breakdown */}
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+                            <div className="text-center">
+                              <div className="text-2xl font-bold text-teal-600 dark:text-teal-400" data-testid={`meal-calories-${meal.id}`}>
+                                {meal.calories}
+                              </div>
+                              <div className="text-xs text-slate-500 dark:text-slate-400">Calories</div>
+                            </div>
+                            {meal.protein && (
+                              <div className="text-center">
+                                <div className="text-lg font-semibold text-slate-700 dark:text-slate-300" data-testid={`meal-protein-${meal.id}`}>
+                                  {meal.protein}g
+                                </div>
+                                <div className="text-xs text-slate-500 dark:text-slate-400">Protein</div>
+                              </div>
+                            )}
+                            {meal.carbs && (
+                              <div className="text-center">
+                                <div className="text-lg font-semibold text-slate-700 dark:text-slate-300" data-testid={`meal-carbs-${meal.id}`}>
+                                  {meal.carbs}g
+                                </div>
+                                <div className="text-xs text-slate-500 dark:text-slate-400">Carbs</div>
+                              </div>
+                            )}
+                            {meal.fat && (
+                              <div className="text-center">
+                                <div className="text-lg font-semibold text-slate-700 dark:text-slate-300" data-testid={`meal-fat-${meal.id}`}>
+                                  {meal.fat}g
+                                </div>
+                                <div className="text-xs text-slate-500 dark:text-slate-400">Fat</div>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Insight message */}
+                          <div className="p-3 bg-teal-50 dark:bg-teal-900/20 border border-teal-200 dark:border-teal-800 rounded-lg">
+                            <p className="text-sm text-teal-700 dark:text-teal-300 font-medium" data-testid={`meal-insight-${meal.id}`}>
+                              {getInsightMessage(meal)}
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
+                    </CardContent>
+                  </Card>
+                )
+              })}
+            </div>
+          )}
+        </div>
 
         {/* Lazy-loaded Barcode Scanner */}
         <LazyBarcodeScanner
@@ -933,6 +1193,84 @@ export default function NutritionPage() {
           onBarcodeScanned={handleBarcodeScanned}
           onManualEntry={handleManualBarcodeEntry}
         />
+        
+        {/* Hidden File Input for Photo Capture */}
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          onChange={handlePhotoSelected}
+          className="hidden"
+          data-testid="input-photo-capture"
+        />
+        
+        {/* Photo Logging Dialog */}
+        <Dialog open={isPhotoModalOpen} onOpenChange={setIsPhotoModalOpen}>
+          <DialogContent className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700" aria-describedby="photo-dialog-description">
+            <DialogHeader>
+              <DialogTitle className="text-slate-900 dark:text-white">Photo Logging</DialogTitle>
+              <DialogDescription id="photo-dialog-description" className="text-slate-600 dark:text-slate-400">
+                Take a photo of your meal to quickly log it with estimated nutrition values.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 pt-4">
+              <div className="text-center space-y-4">
+                <div className="w-20 h-20 mx-auto bg-teal-100 dark:bg-teal-900/30 rounded-full flex items-center justify-center">
+                  <ImageIcon className="w-10 h-10 text-teal-600 dark:text-teal-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
+                    Capture Your Meal
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                    Take a photo and we'll log it with estimated nutrition values for your {mealType}.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex gap-3">
+                <Button
+                  onClick={handlePhotoCapture}
+                  className="flex-1 bg-teal-600 hover:bg-teal-700 text-white"
+                  data-testid="button-take-photo"
+                >
+                  <Camera className="w-4 h-4 mr-2" />
+                  Take Photo
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => setIsPhotoModalOpen(false)}
+                  className="flex-1 border-slate-300 dark:border-slate-600"
+                  data-testid="button-cancel-photo"
+                >
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      </div>
+
+      {/* Persistent Hydration FAB */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button
+          onClick={addWaterGlass}
+          className="h-14 px-6 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-semibold rounded-full shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-105 active:scale-95 backdrop-blur-sm"
+          data-testid="button-hydration-fab"
+        >
+          <Droplets className="w-5 h-5 mr-2" />
+          <span>Add Glass</span>
+          {waterGlasses > 0 && (
+            <Badge 
+              variant="secondary"
+              className="ml-2 bg-white/20 text-white border-white/30 text-xs"
+              data-testid="water-count-badge"
+            >
+              {waterGlasses}/8
+            </Badge>
+          )}
+        </Button>
       </div>
     </div>
   )
