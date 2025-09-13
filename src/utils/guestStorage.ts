@@ -218,6 +218,186 @@ export function getPreferencesLocally(): GuestPreferences {
   })
 }
 
+// ===== SMART PRE-FILLING FUNCTIONS =====
+
+export function getExerciseHistory(exerciseName: string): {
+  lastWeight?: number
+  lastReps?: number
+  lastRir?: number
+  totalSets?: number
+  lastWorkoutDate?: string
+} | null {
+  const workouts = getWorkoutsLocally()
+  
+  // Find the most recent workout containing this exercise
+  const workoutsWithExercise = workouts
+    .filter(workout => 
+      workout.exercises.some(exercise => 
+        exercise.name.toLowerCase() === exerciseName.toLowerCase()
+      )
+    )
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  
+  if (workoutsWithExercise.length === 0) return null
+  
+  const lastWorkout = workoutsWithExercise[0]
+  const exercise = lastWorkout.exercises.find(ex => 
+    ex.name.toLowerCase() === exerciseName.toLowerCase()
+  )
+  
+  if (!exercise || exercise.sets.length === 0) return null
+  
+  // Get the last set from the most recent workout
+  const lastSet = exercise.sets[exercise.sets.length - 1]
+  
+  return {
+    lastWeight: lastSet.weight,
+    lastReps: lastSet.reps,
+    lastRir: lastSet.rir,
+    totalSets: exercise.sets.length,
+    lastWorkoutDate: lastWorkout.date
+  }
+}
+
+export function getUniqueExerciseNames(): string[] {
+  const workouts = getWorkoutsLocally()
+  const exerciseNames = new Set<string>()
+  
+  workouts.forEach(workout => {
+    workout.exercises.forEach(exercise => {
+      exerciseNames.add(exercise.name)
+    })
+  })
+  
+  return Array.from(exerciseNames).sort()
+}
+
+export function getSmartDefaults(exerciseName?: string): {
+  weight: string
+  reps: string
+  rir: string
+} {
+  const preferences = getPreferencesLocally()
+  
+  if (exerciseName) {
+    const history = getExerciseHistory(exerciseName)
+    if (history) {
+      return {
+        weight: history.lastWeight?.toString() || '',
+        reps: history.lastReps?.toString() || '8',
+        rir: history.lastRir?.toString() || preferences.defaultRIR.toString()
+      }
+    }
+  }
+  
+  return {
+    weight: '',
+    reps: '8',
+    rir: preferences.defaultRIR.toString()
+  }
+}
+
+// ===== CURRENT WORKOUT SESSION FUNCTIONS =====
+
+export interface CurrentWorkoutSession {
+  id: string
+  startTime: string
+  exercises: {
+    name: string
+    sets: {
+      weight: number
+      reps: number
+      rir: number
+      timestamp: string
+    }[]
+  }[]
+  isActive: boolean
+}
+
+const CURRENT_SESSION_KEY = 'current_workout_session'
+
+export function startWorkoutSession(): string {
+  const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+  const session: CurrentWorkoutSession = {
+    id: sessionId,
+    startTime: new Date().toISOString(),
+    exercises: [],
+    isActive: true
+  }
+  
+  saveStorageData(CURRENT_SESSION_KEY, session)
+  return sessionId
+}
+
+export function getCurrentWorkoutSession(): CurrentWorkoutSession | null {
+  const session = parseStorageData<CurrentWorkoutSession | null>(CURRENT_SESSION_KEY, null)
+  return session?.isActive ? session : null
+}
+
+export function addSetToCurrentSession(exerciseName: string, weight: number, reps: number, rir: number): boolean {
+  const session = getCurrentWorkoutSession()
+  if (!session) return false
+  
+  const exerciseIndex = session.exercises.findIndex(ex => ex.name === exerciseName)
+  
+  const newSet = {
+    weight,
+    reps,
+    rir,
+    timestamp: new Date().toISOString()
+  }
+  
+  if (exerciseIndex >= 0) {
+    // Add set to existing exercise
+    session.exercises[exerciseIndex].sets.push(newSet)
+  } else {
+    // Create new exercise
+    session.exercises.push({
+      name: exerciseName,
+      sets: [newSet]
+    })
+  }
+  
+  return saveStorageData(CURRENT_SESSION_KEY, session)
+}
+
+export function finishWorkoutSession(duration?: number, notes?: string): string | null {
+  const session = getCurrentWorkoutSession()
+  if (!session) return null
+  
+  // Convert session to GuestWorkout format
+  const workout: Omit<GuestWorkout, 'id'> = {
+    date: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
+    exercises: session.exercises.map(exercise => ({
+      name: exercise.name,
+      sets: exercise.sets.map(set => ({
+        weight: set.weight,
+        reps: set.reps,
+        rir: set.rir
+      }))
+    })),
+    duration,
+    notes
+  }
+  
+  // Save as completed workout
+  const workoutId = saveWorkoutLocally(workout)
+  
+  // Clear current session
+  localStorage.removeItem(CURRENT_SESSION_KEY)
+  
+  return workoutId
+}
+
+export function cancelWorkoutSession(): boolean {
+  try {
+    localStorage.removeItem(CURRENT_SESSION_KEY)
+    return true
+  } catch {
+    return false
+  }
+}
+
 // ===== UTILITY FUNCTIONS =====
 
 export function clearAllGuestDataLocally(): boolean {
