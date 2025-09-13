@@ -60,7 +60,7 @@ export default function SettingsPage() {
   }
 
   // Settings list item component
-  const SettingsItem = ({ icon: Icon, title, subtitle, action, showToggle = false, toggleState = false, showChevron = true }: {
+  const SettingsItem = ({ icon: Icon, title, subtitle, action, showToggle = false, toggleState = false, showChevron = true, testId }: {
     icon: any
     title: string
     subtitle?: string
@@ -68,16 +68,20 @@ export default function SettingsPage() {
     showToggle?: boolean
     toggleState?: boolean
     showChevron?: boolean
+    testId?: string
   }) => (
     <div 
-      className="flex items-center justify-between p-4 hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer"
+      className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
       onClick={showToggle ? undefined : action}
+      data-testid={testId}
     >
-      <div className="flex items-center gap-3">
-        <Icon className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+      <div className="flex items-center gap-4">
+        <div className="p-2 bg-slate-700/30 rounded-xl">
+          <Icon className="w-5 h-5 text-slate-300" />
+        </div>
         <div>
-          <p className="font-medium text-slate-900 dark:text-white">{title}</p>
-          {subtitle && <p className="text-sm text-slate-600 dark:text-slate-400">{subtitle}</p>}
+          <p className="font-semibold text-white">{title}</p>
+          {subtitle && <p className="text-sm text-slate-400 mt-0.5">{subtitle}</p>}
         </div>
       </div>
       
@@ -87,33 +91,37 @@ export default function SettingsPage() {
             e.stopPropagation()
             action?.()
           }}
-          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 ${
-            toggleState ? 'bg-cyan-500' : 'bg-slate-400/30 dark:bg-slate-600/50'
+          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-slate-800 ${
+            toggleState ? 'bg-gradient-to-r from-teal-500 to-teal-600 shadow-lg shadow-teal-500/25' : 'bg-slate-600'
           }`}
+          data-testid={`${testId}-toggle`}
         >
           <span
-            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+            className={`inline-block h-4 w-4 transform rounded-full bg-white shadow-md transition-transform duration-300 ${
               toggleState ? 'translate-x-6' : 'translate-x-1'
             }`}
           />
         </button>
       ) : showChevron ? (
-        <ChevronRight className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+        <ChevronRight className="w-5 h-5 text-slate-400" />
       ) : null}
     </div>
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <div className="container mx-auto p-4 space-y-6 pb-24">
-        <h1 className="text-2xl font-bold pt-4 text-slate-900 dark:text-white">Settings</h1>
+        <div className="pt-8 text-center">
+          <h1 className="text-3xl font-bold text-white" data-testid="page-title">Settings</h1>
+          <p className="text-slate-300 mt-2">Customize your experience and manage your account</p>
+        </div>
         
         {/* User Header */}
-        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
               {/* User Avatar */}
-              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-cyan-400/30">
+              <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-teal-400/30 shadow-xl" data-testid="user-avatar">
                 {!isGuestMode && user?.photoURL ? (
                   <img 
                     src={user.photoURL} 
@@ -121,145 +129,185 @@ export default function SettingsPage() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center text-white font-semibold">
+                  <div className="w-full h-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-white font-bold text-xl">
                     {isGuestMode ? 'G' : getInitials(user?.displayName)}
                   </div>
                 )}
               </div>
-              <div>
-                <p className="font-semibold text-lg text-slate-900 dark:text-white">
+              <div className="flex-1">
+                <h2 className="font-bold text-2xl text-white" data-testid="user-name">
                   {isGuestMode ? 'Guest User' : user?.displayName}
-                </p>
-                <p className="text-sm text-slate-600 dark:text-slate-300">
+                </h2>
+                <p className="text-slate-300 font-medium">
                   {isGuestMode ? 'Guest Session' : `Member since ${getMemberSinceDate()}`}
                 </p>
+                {!isGuestMode && user?.email && (
+                  <p className="text-sm text-slate-400 mt-1" data-testid="user-email">{user.email}</p>
+                )}
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Account Settings Section */}
-        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-          <CardHeader>
-            <CardTitle className="text-slate-900 dark:text-white">Account Settings</CardTitle>
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
+              <Settings className="w-6 h-6 text-teal-400" />
+              Account Settings
+            </CardTitle>
+            <CardDescription className="text-slate-300">
+              Manage your profile and app preferences
+            </CardDescription>
           </CardHeader>
-        <CardContent className="p-0">
-          <div className="divide-y">
+          <CardContent className="p-2 space-y-2">
             <SettingsItem
               icon={User}
               title="My Profile & Account"
               subtitle="View and edit your profile information"
               action={() => {/* Placeholder */}}
+              testId="settings-profile"
             />
             <SettingsItem
               icon={theme === 'dark' ? Moon : Sun}
               title="Dark Mode"
-              subtitle="Toggle dark mode appearance"
+              subtitle={`Currently ${theme === 'dark' ? 'enabled' : 'disabled'}`}
               action={handleThemeToggle}
               showToggle={true}
               toggleState={theme === 'dark'}
               showChevron={false}
+              testId="settings-dark-mode"
             />
             <SettingsItem
               icon={Scale}
               title="Measurement Units"
-              subtitle={`Currently using ${measurementUnit}`}
+              subtitle={`Using ${measurementUnit.toUpperCase()} for weights`}
               action={handleMeasurementToggle}
               showToggle={true}
               toggleState={measurementUnit === 'kg'}
               showChevron={false}
+              testId="settings-measurement-units"
             />
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
         {/* Data Management Section */}
-        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-          <CardHeader>
-            <CardTitle className="text-slate-900 dark:text-white">Data Management</CardTitle>
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
+              <Download className="w-6 h-6 text-purple-400" />
+              Data Management
+            </CardTitle>
+            <CardDescription className="text-slate-300">
+              Manage your health data and account information
+            </CardDescription>
           </CardHeader>
-        <CardContent className="p-0">
-          <div className="divide-y">
+          <CardContent className="p-2 space-y-2">
             <Link href="/health-connections">
-              <div className="flex items-center justify-between p-4 hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer">
-                <div className="flex items-center gap-3">
-                  <Smartphone className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+              <div 
+                className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                data-testid="link-health-connections"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-slate-700/30 rounded-xl">
+                    <Smartphone className="w-5 h-5 text-slate-300" />
+                  </div>
                   <div>
-                    <p className="font-medium text-slate-900 dark:text-white">Health Data Connections</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-300">Connect Google Health & Apple HealthKit</p>
+                    <p className="font-semibold text-white">Health Data Connections</p>
+                    <p className="text-sm text-slate-400 mt-0.5">Connect Google Health & Apple HealthKit</p>
                   </div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-slate-400" />
+                <ChevronRight className="w-5 h-5 text-slate-400" />
               </div>
             </Link>
             <SettingsItem
               icon={Download}
-              title="Data Export"
-              subtitle="Download your fitness data"
+              title="Export Data"
+              subtitle="Download your fitness and nutrition data"
               action={() => {/* Placeholder */}}
+              testId="settings-export-data"
             />
             <SettingsItem
               icon={Trash2}
-              title="Account & Data Deletion"
-              subtitle="Permanently delete your account and data"
+              title="Delete Account"
+              subtitle="Permanently remove your account and all data"
               action={() => {/* Placeholder */}}
+              testId="settings-delete-account"
             />
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
         {/* Support Section */}
-        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-          <CardHeader>
-            <CardTitle className="text-slate-900 dark:text-white">Support</CardTitle>
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
+              <HelpCircle className="w-6 h-6 text-blue-400" />
+              Support & Help
+            </CardTitle>
+            <CardDescription className="text-slate-300">
+              Get help and learn more about the app
+            </CardDescription>
           </CardHeader>
-        <CardContent className="p-0">
-          <div className="divide-y">
+          <CardContent className="p-2 space-y-2">
             <Link href="/mission">
-              <div className="flex items-center justify-between p-4 hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer">
-                <div className="flex items-center gap-3">
-                  <Info className="w-5 h-5 text-slate-600 dark:text-slate-400" />
+              <div 
+                className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                data-testid="link-mission-model"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-slate-700/30 rounded-xl">
+                    <Info className="w-5 h-5 text-slate-300" />
+                  </div>
                   <div>
-                    <p className="font-medium text-slate-900 dark:text-white">Our Mission & Model</p>
-                    <p className="text-sm text-slate-600 dark:text-slate-300">Transparency about our free features and future plans</p>
+                    <p className="font-semibold text-white">Our Mission & Model</p>
+                    <p className="text-sm text-slate-400 mt-0.5">Learn about our commitment to free fitness tools</p>
                   </div>
                 </div>
-                <ChevronRight className="w-4 h-4 text-slate-400" />
+                <ChevronRight className="w-5 h-5 text-slate-400" />
               </div>
             </Link>
             <SettingsItem
               icon={HelpCircle}
               title="Help Center"
-              subtitle="Get help and find answers"
+              subtitle="Find answers to common questions"
               action={() => {/* Placeholder */}}
+              testId="settings-help-center"
             />
             <SettingsItem
               icon={MessageCircle}
-              title="Contact Us"
+              title="Contact Support"
               subtitle="Get in touch with our support team"
               action={() => {/* Placeholder */}}
+              testId="settings-contact-support"
             />
             <SettingsItem
               icon={FileText}
-              title="Legal"
-              subtitle="Privacy policy and terms of service"
+              title="Privacy & Terms"
+              subtitle="View our privacy policy and terms of service"
               action={() => {/* Placeholder */}}
+              testId="settings-legal"
             />
-          </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
 
-        {/* Sign Out Button */}
-        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+        {/* Sign Out Section */}
+        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
           <CardContent className="p-6">
+            <div className="text-center mb-4">
+              <p className="text-slate-400 text-sm">Ready to take a break?</p>
+            </div>
             <Button 
               variant="destructive" 
               onClick={logout}
-              className="w-full flex items-center gap-2 h-12 bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800"
+              className="w-full flex items-center justify-center gap-3 h-14 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-red-600/25 hover:shadow-red-600/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              data-testid="button-sign-out"
             >
-              <LogOut className="w-5 h-5" />
+              <LogOut className="w-6 h-6" />
               Sign Out
             </Button>
+            <p className="text-xs text-slate-500 text-center mt-3">
+              {isGuestMode ? 'End guest session' : 'You can always sign back in'}
+            </p>
           </CardContent>
         </Card>
       </div>
