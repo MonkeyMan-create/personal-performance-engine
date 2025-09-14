@@ -19,8 +19,8 @@ export default function PrivacyTermsPage() {
   const renderPrivacyPolicy = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Information We Collect</h3>
-        <div className="space-y-3 text-slate-300">
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Information We Collect</h3>
+        <div className="space-y-3 text-[var(--color-text-secondary)]">
           <p>We collect information you provide directly to us, such as:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Account information (name, email, profile photo)</li>
@@ -32,8 +32,8 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">How We Use Your Information</h3>
-        <div className="space-y-3 text-slate-300">
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">How We Use Your Information</h3>
+        <div className="space-y-3 text-[var(--color-text-secondary)]">
           <p>We use the information we collect to:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Provide, maintain, and improve our fitness tracking service</li>
@@ -45,8 +45,8 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Information Sharing</h3>
-        <div className="space-y-3 text-slate-300">
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Information Sharing</h3>
+        <div className="space-y-3 text-[var(--color-text-secondary)]">
           <p><strong>We do not sell your personal data.</strong> We may share your information only in these limited circumstances:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>With your explicit consent</li>
@@ -58,8 +58,8 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Data Retention</h3>
-        <div className="space-y-3 text-slate-300">
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Data Retention</h3>
+        <div className="space-y-3 text-[var(--color-text-secondary)]">
           <p>We retain your personal information only as long as necessary for the purposes outlined in this policy, including:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>As long as your account is active</li>
@@ -75,15 +75,15 @@ export default function PrivacyTermsPage() {
   const renderTermsOfService = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Acceptance of Terms</h3>
-        <p className="text-slate-300">
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Acceptance of Terms</h3>
+        <p className="text-[var(--color-text-secondary)]">
           By accessing and using this fitness tracking application, you accept and agree to be bound by the terms and provision of this agreement.
         </p>
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Use License</h3>
-        <div className="space-y-3 text-slate-300">
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Use License</h3>
+        <div className="space-y-3 text-[var(--color-text-secondary)]">
           <p>Permission is granted to temporarily use this application for personal, non-commercial transitory viewing only. This includes:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Personal fitness tracking and goal setting</li>
@@ -94,8 +94,8 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Prohibited Uses</h3>
-        <div className="space-y-3 text-slate-300">
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Prohibited Uses</h3>
+        <div className="space-y-3 text-[var(--color-text-secondary)]">
           <p>You may not:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Use the app for any unlawful purpose</li>
@@ -108,9 +108,9 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Health and Fitness Disclaimer</h3>
-        <div className="p-4 bg-amber-50/10 dark:bg-amber-900/20 rounded-lg border border-amber-200/30 dark:border-amber-800/50">
-          <p className="text-amber-200 text-sm">
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Health and Fitness Disclaimer</h3>
+        <div className="p-4 bg-[var(--color-warning)]/10 rounded-lg border border-[var(--color-warning)]/30">
+          <p className="text-[var(--color-warning)] text-sm">
             <strong>Important:</strong> This app is for informational purposes only and should not be considered medical advice. 
             Always consult with healthcare professionals before starting any fitness or nutrition program.
           </p>
@@ -118,8 +118,8 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Service Availability</h3>
-        <p className="text-slate-300">
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Service Availability</h3>
+        <p className="text-[var(--color-text-secondary)]">
           We strive to maintain high availability but cannot guarantee uninterrupted service. We reserve the right to modify or discontinue features with reasonable notice.
         </p>
       </div>
@@ -129,11 +129,11 @@ export default function PrivacyTermsPage() {
   const renderDataUsage = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Data Collection Principles</h3>
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Data Collection Principles</h3>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="p-4 bg-green-50/10 dark:bg-green-900/20 rounded-lg border border-green-200/30 dark:border-green-800/50">
-            <h4 className="font-semibold text-green-200 mb-2">✓ What We Do</h4>
-            <ul className="text-green-300 text-sm space-y-1">
+          <div className="p-4 bg-[var(--color-success)]/10 rounded-lg border border-[var(--color-success)]/30">
+            <h4 className="font-semibold text-[var(--color-success)] mb-2">✓ What We Do</h4>
+            <ul className="text-[var(--color-success)] text-sm space-y-1">
               <li>Collect only necessary data</li>
               <li>Use data to improve your experience</li>
               <li>Encrypt sensitive information</li>
@@ -142,9 +142,9 @@ export default function PrivacyTermsPage() {
             </ul>
           </div>
           
-          <div className="p-4 bg-red-50/10 dark:bg-red-900/20 rounded-lg border border-red-200/30 dark:border-red-800/50">
-            <h4 className="font-semibold text-red-200 mb-2">✗ What We Don't Do</h4>
-            <ul className="text-red-300 text-sm space-y-1">
+          <div className="p-4 bg-[var(--color-error)]/10 rounded-lg border border-[var(--color-error)]/30">
+            <h4 className="font-semibold text-[var(--color-error)] mb-2">✗ What We Don't Do</h4>
+            <ul className="text-[var(--color-error)] text-sm space-y-1">
               <li>Sell your personal data</li>
               <li>Share data without consent</li>
               <li>Track you across other websites</li>
@@ -156,7 +156,7 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Data Categories</h3>
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Data Categories</h3>
         <div className="space-y-4">
           {[
             { 
@@ -180,12 +180,12 @@ export default function PrivacyTermsPage() {
               retention: '7 days after deletion request'
             }
           ].map((category, index) => (
-            <div key={index} className="p-4 bg-slate-700/30 rounded-lg border border-slate-600">
+            <div key={index} className="p-4 bg-[var(--color-surface)]/60 rounded-lg border border-[var(--color-border)]">
               <div className="flex justify-between items-start mb-2">
-                <h4 className="font-semibold text-white">{category.name}</h4>
-                <span className="text-xs bg-slate-600 text-slate-300 px-2 py-1 rounded">{category.retention}</span>
+                <h4 className="font-semibold text-[var(--color-text-primary)]">{category.name}</h4>
+                <span className="text-xs bg-[var(--color-surface)] text-[var(--color-text-secondary)] px-2 py-1 rounded">{category.retention}</span>
               </div>
-              <p className="text-slate-300 text-sm">{category.description}</p>
+              <p className="text-[var(--color-text-secondary)] text-sm">{category.description}</p>
             </div>
           ))}
         </div>
@@ -196,7 +196,7 @@ export default function PrivacyTermsPage() {
   const renderSecurity = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Security Measures</h3>
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Security Measures</h3>
         <div className="grid md:grid-cols-2 gap-4">
           {[
             {
@@ -220,20 +220,20 @@ export default function PrivacyTermsPage() {
               icon: '🎯'
             }
           ].map((measure, index) => (
-            <div key={index} className="p-4 bg-slate-700/30 rounded-lg border border-slate-600">
-              <h4 className="font-semibold text-white mb-2 flex items-center gap-2">
+            <div key={index} className="p-4 bg-[var(--color-surface)]/60 rounded-lg border border-[var(--color-border)]">
+              <h4 className="font-semibold text-[var(--color-text-primary)] mb-2 flex items-center gap-2">
                 <span>{measure.icon}</span>
                 {measure.title}
               </h4>
-              <p className="text-slate-300 text-sm">{measure.description}</p>
+              <p className="text-[var(--color-text-secondary)] text-sm">{measure.description}</p>
             </div>
           ))}
         </div>
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Your Role in Security</h3>
-        <div className="space-y-3 text-slate-300">
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Your Role in Security</h3>
+        <div className="space-y-3 text-[var(--color-text-secondary)]">
           <p>Help us keep your data secure by:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Using a strong, unique password for your account</li>
@@ -245,9 +245,9 @@ export default function PrivacyTermsPage() {
         </div>
       </div>
 
-      <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
-        <h4 className="font-semibold text-primary mb-2">Security Incident Response</h4>
-        <p className="text-primary/80 text-sm">
+      <div className="p-4 bg-[var(--color-action)]/10 rounded-lg border border-[var(--color-action)]/30">
+        <h4 className="font-semibold text-[var(--color-action)] mb-2">Security Incident Response</h4>
+        <p className="text-[var(--color-action)]/80 text-sm">
           In the unlikely event of a security incident, we will notify affected users within 72 hours 
           and provide detailed information about the incident and remediation steps.
         </p>
@@ -258,7 +258,7 @@ export default function PrivacyTermsPage() {
   const renderYourRights = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Data Protection Rights</h3>
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Data Protection Rights</h3>
         <div className="space-y-4">
           {[
             {
@@ -292,21 +292,21 @@ export default function PrivacyTermsPage() {
               action: 'Contact support for processing restrictions'
             }
           ].map((right, index) => (
-            <div key={index} className="p-4 bg-slate-700/30 rounded-lg border border-slate-600">
+            <div key={index} className="p-4 bg-[var(--color-surface)]/60 rounded-lg border border-[var(--color-border)]">
               <div className="flex justify-between items-start mb-2">
-                <h4 className="font-semibold text-white">{right.right}</h4>
-                <span className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded">Available</span>
+                <h4 className="font-semibold text-[var(--color-text-primary)]">{right.right}</h4>
+                <span className="text-xs bg-[var(--color-action)] text-[var(--color-action-text)] px-2 py-1 rounded">Available</span>
               </div>
-              <p className="text-slate-300 text-sm mb-2">{right.description}</p>
-              <p className="text-primary/80 text-xs font-medium">How to exercise: {right.action}</p>
+              <p className="text-[var(--color-text-secondary)] text-sm mb-2">{right.description}</p>
+              <p className="text-[var(--color-action)]/80 text-xs font-medium">How to exercise: {right.action}</p>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
-        <h4 className="font-semibold text-primary mb-2">Response Time</h4>
-        <p className="text-primary/80 text-sm">
+      <div className="p-4 bg-[var(--color-action)]/10 rounded-lg border border-[var(--color-action)]/30">
+        <h4 className="font-semibold text-[var(--color-action)] mb-2">Response Time</h4>
+        <p className="text-[var(--color-action)]/80 text-sm">
           We aim to respond to all data rights requests within 30 days. Complex requests may take longer, 
           but we'll keep you informed of our progress.
         </p>
@@ -317,12 +317,12 @@ export default function PrivacyTermsPage() {
   const renderContactInfo = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Data Protection Officer</h3>
-        <div className="p-4 bg-slate-700/30 rounded-lg border border-slate-600">
-          <p className="text-slate-300 mb-2">
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Data Protection Officer</h3>
+        <div className="p-4 bg-[var(--color-surface)]/60 rounded-lg border border-[var(--color-border)]">
+          <p className="text-[var(--color-text-secondary)] mb-2">
             For privacy-related questions, data rights requests, or concerns about our data practices:
           </p>
-          <div className="space-y-2 text-slate-300">
+          <div className="space-y-2 text-[var(--color-text-secondary)]">
             <p><strong>Email:</strong> privacy@fitnessapp.com</p>
             <p><strong>Response Time:</strong> Within 5 business days</p>
             <p><strong>Languages:</strong> English</p>
@@ -331,23 +331,23 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">General Support</h3>
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">General Support</h3>
         <div className="grid md:grid-cols-2 gap-4">
           <Link href="/contact-support">
-            <div className="p-4 bg-slate-700/30 rounded-lg border border-slate-600 cursor-pointer hover:bg-slate-600/30 transition-all">
-              <h4 className="font-semibold text-white mb-2">Support Team</h4>
-              <p className="text-slate-300 text-sm mb-3">General questions, technical issues, and account help</p>
-              <Button variant="outline" size="sm" className="w-full border-primary/50 text-primary">
+            <div className="p-4 bg-[var(--color-surface)]/60 rounded-lg border border-[var(--color-border)] cursor-pointer hover:bg-[var(--color-surface)]/80 transition-all">
+              <h4 className="font-semibold text-[var(--color-text-primary)] mb-2">Support Team</h4>
+              <p className="text-[var(--color-text-secondary)] text-sm mb-3">General questions, technical issues, and account help</p>
+              <Button variant="outline" size="sm" className="w-full border-[var(--color-action)]/50 text-[var(--color-action)]">
                 Contact Support
               </Button>
             </div>
           </Link>
 
           <Link href="/help-center">
-            <div className="p-4 bg-slate-700/30 rounded-lg border border-slate-600 cursor-pointer hover:bg-slate-600/30 transition-all">
-              <h4 className="font-semibold text-white mb-2">Help Center</h4>
-              <p className="text-slate-300 text-sm mb-3">Self-service resources and frequently asked questions</p>
-              <Button variant="outline" size="sm" className="w-full border-green-400/50 text-green-400">
+            <div className="p-4 bg-[var(--color-surface)]/60 rounded-lg border border-[var(--color-border)] cursor-pointer hover:bg-[var(--color-surface)]/80 transition-all">
+              <h4 className="font-semibold text-[var(--color-text-primary)] mb-2">Help Center</h4>
+              <p className="text-[var(--color-text-secondary)] text-sm mb-3">Self-service resources and frequently asked questions</p>
+              <Button variant="outline" size="sm" className="w-full border-[var(--color-action)]/50 text-[var(--color-action)]">
                 Visit Help Center
               </Button>
             </div>
@@ -356,8 +356,8 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Regulatory Information</h3>
-        <div className="space-y-3 text-slate-300 text-sm">
+        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3">Regulatory Information</h3>
+        <div className="space-y-3 text-[var(--color-text-secondary)] text-sm">
           <p><strong>Jurisdiction:</strong> This app operates under [Your Jurisdiction] data protection laws</p>
           <p><strong>Supervisory Authority:</strong> [Your Data Protection Authority]</p>
           <p><strong>Last Updated:</strong> September 2025</p>
@@ -380,12 +380,12 @@ export default function PrivacyTermsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-[var(--color-background)]">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         {/* Header */}
         <div className="flex items-center gap-4 pt-8">
           <Link href="/profile">
-            <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white" data-testid="button-back">
+            <Button variant="ghost" size="sm" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]" data-testid="button-back">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Settings
             </Button>
@@ -393,43 +393,43 @@ export default function PrivacyTermsPage() {
         </div>
 
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-white" data-testid="page-title">Privacy & Terms</h1>
-          <p className="text-slate-300 mt-2">Your privacy rights and our terms of service</p>
+          <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Privacy & Terms</h1>
+          <p className="text-[var(--color-text-secondary)] mt-2">Your privacy rights and our terms of service</p>
         </div>
 
         {/* Quick Actions */}
         <div className="grid md:grid-cols-3 gap-4">
           <Link href="/data-export">
-            <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-slate-700/40 transition-all">
+            <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-[var(--color-surface)]/80 transition-all">
               <CardContent className="p-4 text-center space-y-3">
-                <Download className="w-8 h-8 text-primary mx-auto" />
+                <Download className="w-8 h-8 text-[var(--color-action)] mx-auto" />
                 <div>
-                  <h3 className="font-bold text-white">Export Data</h3>
-                  <p className="text-slate-300 text-sm">Download your information</p>
+                  <h3 className="font-bold text-[var(--color-text-primary)]">Export Data</h3>
+                  <p className="text-[var(--color-text-secondary)] text-sm">Download your information</p>
                 </div>
               </CardContent>
             </Card>
           </Link>
 
           <Link href="/contact-support">
-            <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-slate-700/40 transition-all">
+            <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-[var(--color-surface)]/80 transition-all">
               <CardContent className="p-4 text-center space-y-3">
-                <Globe className="w-8 h-8 text-green-400 mx-auto" />
+                <Globe className="w-8 h-8 text-[var(--color-action)] mx-auto" />
                 <div>
-                  <h3 className="font-bold text-white">Contact Support</h3>
-                  <p className="text-slate-300 text-sm">Privacy questions</p>
+                  <h3 className="font-bold text-[var(--color-text-primary)]">Contact Support</h3>
+                  <p className="text-[var(--color-text-secondary)] text-sm">Privacy questions</p>
                 </div>
               </CardContent>
             </Card>
           </Link>
 
           <Link href="/delete-account">
-            <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-slate-700/40 transition-all">
+            <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-[var(--color-surface)]/80 transition-all">
               <CardContent className="p-4 text-center space-y-3">
-                <UserCheck className="w-8 h-8 text-primary mx-auto" />
+                <UserCheck className="w-8 h-8 text-[var(--color-action)] mx-auto" />
                 <div>
-                  <h3 className="font-bold text-white">Delete Account</h3>
-                  <p className="text-slate-300 text-sm">Exercise your rights</p>
+                  <h3 className="font-bold text-[var(--color-text-primary)]">Delete Account</h3>
+                  <p className="text-[var(--color-text-secondary)] text-sm">Exercise your rights</p>
                 </div>
               </CardContent>
             </Card>
@@ -438,9 +438,9 @@ export default function PrivacyTermsPage() {
 
         <div className="grid lg:grid-cols-4 gap-6">
           {/* Navigation Sidebar */}
-          <Card className="lg:col-span-1 bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+          <Card className="lg:col-span-1 bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
             <CardHeader>
-              <CardTitle className="text-white text-lg font-bold">Sections</CardTitle>
+              <CardTitle className="text-[var(--color-text-primary)] text-lg font-bold">Sections</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               {sections.map((section) => {
@@ -451,8 +451,8 @@ export default function PrivacyTermsPage() {
                     onClick={() => setActiveSection(section.id)}
                     className={`w-full p-3 rounded-lg text-left transition-all duration-200 flex items-center gap-3 ${
                       activeSection === section.id
-                        ? 'bg-primary/20 text-primary border border-primary/30'
-                        : 'text-slate-300 hover:bg-slate-700/50 hover:text-white'
+                        ? 'bg-[var(--color-action)]/20 text-[var(--color-action)] border border-[var(--color-action)]/30'
+                        : 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface)]/80 hover:text-[var(--color-text-primary)]'
                     }`}
                     data-testid={`nav-${section.id}`}
                   >
@@ -465,12 +465,12 @@ export default function PrivacyTermsPage() {
           </Card>
 
           {/* Content Area */}
-          <Card className="lg:col-span-3 bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+          <Card className="lg:col-span-3 bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
             <CardHeader>
-              <CardTitle className="text-white text-2xl font-bold">
+              <CardTitle className="text-[var(--color-text-primary)] text-2xl font-bold">
                 {sections.find(s => s.id === activeSection)?.title}
               </CardTitle>
-              <CardDescription className="text-slate-300">
+              <CardDescription className="text-[var(--color-text-secondary)]">
                 {activeSection === 'privacy' && 'How we collect, use, and protect your personal information'}
                 {activeSection === 'terms' && 'Terms and conditions for using our fitness tracking service'}
                 {activeSection === 'data' && 'Detailed breakdown of how we handle your data'}
@@ -486,11 +486,11 @@ export default function PrivacyTermsPage() {
         </div>
 
         {/* Last Updated Notice */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardContent className="p-4 text-center">
-            <p className="text-slate-400 text-sm">
+            <p className="text-[var(--color-text-secondary)] text-sm">
               Last updated: September 13, 2025 | Next review: March 2026 | 
-              <Link href="/contact-support" className="text-primary hover:text-primary/80 ml-2">
+              <Link href="/contact-support" className="text-[var(--color-action)] hover:text-[var(--color-action)]/80 ml-2">
                 Questions? Contact us
               </Link>
             </p>

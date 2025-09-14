@@ -63,12 +63,12 @@ export default function DeleteAccountPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-[var(--color-background)]">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         {/* Header */}
         <div className="flex items-center gap-4 pt-8">
           <Link href="/profile">
-            <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white" data-testid="button-back">
+            <Button variant="ghost" size="sm" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]" data-testid="button-back">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Settings
             </Button>
@@ -76,41 +76,41 @@ export default function DeleteAccountPage() {
         </div>
 
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-white" data-testid="page-title">Delete Account</h1>
-          <p className="text-slate-300 mt-2">Permanently remove your account and all associated data</p>
+          <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Delete Account</h1>
+          <p className="text-[var(--color-text-secondary)] mt-2">Permanently remove your account and all associated data</p>
         </div>
 
         {/* Critical Warning */}
-        <Card className="bg-red-50/10 dark:bg-red-900/20 border-red-200/30 dark:border-red-800/50">
+        <Card className="bg-[var(--color-error)]/10 border-[var(--color-error)]/30">
           <CardContent className="p-6">
             <div className="flex items-start gap-4">
-              <AlertTriangle className="w-8 h-8 text-red-500 mt-1 flex-shrink-0" />
+              <AlertTriangle className="w-8 h-8 text-[var(--color-error)] mt-1 flex-shrink-0" />
               <div>
-                <h3 className="font-bold text-red-200 text-xl mb-3">
+                <h3 className="font-bold text-[var(--color-error)] text-xl mb-3">
                   ⚠️ PERMANENT ACTION WARNING
                 </h3>
-                <p className="text-red-300 mb-4">
+                <p className="text-[var(--color-error)] mb-4">
                   Account deletion is <strong>IRREVERSIBLE</strong>. Once deleted, you will lose:
                 </p>
-                <ul className="space-y-2 text-red-300">
+                <ul className="space-y-2 text-[var(--color-error)]">
                   <li className="flex items-center gap-2">
-                    <XCircle className="w-4 h-4 text-red-400" />
+                    <XCircle className="w-4 h-4 text-[var(--color-error)]" />
                     All workout history and exercise logs
                   </li>
                   <li className="flex items-center gap-2">
-                    <XCircle className="w-4 h-4 text-red-400" />
+                    <XCircle className="w-4 h-4 text-[var(--color-error)]" />
                     Nutrition data and meal tracking
                   </li>
                   <li className="flex items-center gap-2">
-                    <XCircle className="w-4 h-4 text-red-400" />
+                    <XCircle className="w-4 h-4 text-[var(--color-error)]" />
                     Progress photos and body measurements
                   </li>
                   <li className="flex items-center gap-2">
-                    <XCircle className="w-4 h-4 text-red-400" />
+                    <XCircle className="w-4 h-4 text-[var(--color-error)]" />
                     Custom workout templates and routines
                   </li>
                   <li className="flex items-center gap-2">
-                    <XCircle className="w-4 h-4 text-red-400" />
+                    <XCircle className="w-4 h-4 text-[var(--color-error)]" />
                     Achievement milestones and personal records
                   </li>
                 </ul>
@@ -120,19 +120,19 @@ export default function DeleteAccountPage() {
         </Card>
 
         {/* Export Data First */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <Download className="w-6 h-6 text-primary" />
+            <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold flex items-center gap-2">
+              <Download className="w-6 h-6 text-[var(--color-action)]" />
               Export Your Data First
             </CardTitle>
-            <CardDescription className="text-slate-300">
+            <CardDescription className="text-[var(--color-text-secondary)]">
               We strongly recommend downloading your data before deletion
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
-              <p className="text-primary text-sm">
+            <div className="p-4 bg-[var(--color-action)]/10 rounded-lg border border-[var(--color-action)]/30">
+              <p className="text-[var(--color-action)] text-sm">
                 <strong>Pro Tip:</strong> Export your data to keep a personal backup of your fitness journey. 
                 You can import this data into other fitness apps or keep it for your records.
               </p>
@@ -141,7 +141,7 @@ export default function DeleteAccountPage() {
             <Link href="/data-export">
               <Button 
                 variant="outline" 
-                className="w-full h-12 border-primary/50 text-primary hover:bg-primary/10"
+                className="w-full h-12 border-[var(--color-action)]/50 text-[var(--color-action)] hover:bg-[var(--color-action)]/10"
                 data-testid="button-export-data"
               >
                 <Download className="w-4 h-4 mr-2" />
@@ -152,21 +152,21 @@ export default function DeleteAccountPage() {
         </Card>
 
         {/* Account Information */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <Shield className="w-6 h-6 text-primary" />
+            <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold flex items-center gap-2">
+              <Shield className="w-6 h-6 text-[var(--color-action)]" />
               Account Information
             </CardTitle>
-            <CardDescription className="text-slate-300">
+            <CardDescription className="text-[var(--color-text-secondary)]">
               Review the account that will be deleted
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-300">Account Type:</label>
-                <p className="text-white font-medium">
+                <label className="text-sm font-medium text-[var(--color-text-secondary)]">Account Type:</label>
+                <p className="text-[var(--color-text-primary)] font-medium">
                   {isGuestMode ? 'Guest Account' : 'Registered Account'}
                 </p>
               </div>
@@ -174,22 +174,22 @@ export default function DeleteAccountPage() {
               {!isGuestMode && (
                 <>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-300">Email:</label>
-                    <p className="text-white font-medium" data-testid="account-email">
+                    <label className="text-sm font-medium text-[var(--color-text-secondary)]">Email:</label>
+                    <p className="text-[var(--color-text-primary)] font-medium" data-testid="account-email">
                       {user?.email || 'Not available'}
                     </p>
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-300">Display Name:</label>
-                    <p className="text-white font-medium" data-testid="account-name">
+                    <label className="text-sm font-medium text-[var(--color-text-secondary)]">Display Name:</label>
+                    <p className="text-[var(--color-text-primary)] font-medium" data-testid="account-name">
                       {user?.displayName || 'Not set'}
                     </p>
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="text-sm font-medium text-slate-300">Member Since:</label>
-                    <p className="text-white font-medium">
+                    <label className="text-sm font-medium text-[var(--color-text-secondary)]">Member Since:</label>
+                    <p className="text-[var(--color-text-primary)] font-medium">
                       {user?.metadata?.creationTime 
                         ? new Date(user.metadata.creationTime).toLocaleDateString()
                         : 'Recently'
@@ -201,8 +201,8 @@ export default function DeleteAccountPage() {
             </div>
             
             {isGuestMode && (
-              <div className="p-4 bg-amber-50/10 dark:bg-amber-900/20 rounded-lg border border-amber-200/30 dark:border-amber-800/50">
-                <p className="text-amber-200 text-sm">
+              <div className="p-4 bg-[var(--color-warning)]/10 rounded-lg border border-[var(--color-warning)]/30">
+                <p className="text-[var(--color-warning)] text-sm">
                   <strong>Guest Mode:</strong> Your data is stored locally on this device. 
                   Clearing your browser data or switching devices will already remove this information.
                 </p>
@@ -212,29 +212,29 @@ export default function DeleteAccountPage() {
         </Card>
 
         {/* Deletion Process */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <Trash2 className="w-6 h-6 text-red-400" />
+            <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold flex items-center gap-2">
+              <Trash2 className="w-6 h-6 text-[var(--color-error)]" />
               Deletion Process
             </CardTitle>
-            <CardDescription className="text-slate-300">
+            <CardDescription className="text-[var(--color-text-secondary)]">
               Complete all steps to proceed with account deletion
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Step 1: Understand Consequences */}
             <div className="space-y-3">
-              <h3 className="font-semibold text-white">Step 1: Confirm Understanding</h3>
+              <h3 className="font-semibold text-[var(--color-text-primary)]">Step 1: Confirm Understanding</h3>
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={hasConfirmedWarnings}
                   onChange={(e) => setHasConfirmedWarnings(e.target.checked)}
-                  className="mt-1 w-4 h-4 text-red-500 rounded border-slate-600 focus:ring-red-500"
+                  className="mt-1 w-4 h-4 text-[var(--color-error)] rounded border-[var(--color-border)] focus:ring-[var(--color-error)]"
                   data-testid="checkbox-confirm-warnings"
                 />
-                <span className="text-slate-300 text-sm">
+                <span className="text-[var(--color-text-secondary)] text-sm">
                   I understand that deleting my account is permanent and irreversible. 
                   All my data will be permanently lost and cannot be recovered.
                 </span>
@@ -243,24 +243,24 @@ export default function DeleteAccountPage() {
 
             {/* Step 2: Type Confirmation */}
             <div className="space-y-3">
-              <h3 className="font-semibold text-white">Step 2: Type Confirmation Phrase</h3>
-              <p className="text-slate-400 text-sm">
-                To confirm, type <strong className="text-red-400">"{confirmationPhrase}"</strong> in the box below:
+              <h3 className="font-semibold text-[var(--color-text-primary)]">Step 2: Type Confirmation Phrase</h3>
+              <p className="text-[var(--color-text-secondary)] text-sm">
+                To confirm, type <strong className="text-[var(--color-error)]">"{confirmationPhrase}"</strong> in the box below:
               </p>
               <Input
                 value={confirmationText}
                 onChange={(e) => setConfirmationText(e.target.value)}
                 placeholder={confirmationPhrase}
-                className={`bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-500 ${
-                  confirmationText && !isConfirmationValid ? 'border-red-500' : ''
-                } ${isConfirmationValid ? 'border-green-500' : ''}`}
+                className={`bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)] ${
+                  confirmationText && !isConfirmationValid ? 'border-[var(--color-error)]' : ''
+                } ${isConfirmationValid ? 'border-[var(--color-success)]' : ''}`}
                 data-testid="input-confirmation"
               />
               {confirmationText && !isConfirmationValid && (
-                <p className="text-red-400 text-sm">Confirmation phrase doesn't match</p>
+                <p className="text-[var(--color-error)] text-sm">Confirmation phrase doesn't match</p>
               )}
               {isConfirmationValid && (
-                <p className="text-green-400 text-sm flex items-center gap-2">
+                <p className="text-[var(--color-success)] text-sm flex items-center gap-2">
                   <CheckCircle className="w-4 h-4" />
                   Confirmation phrase correct
                 </p>
@@ -268,16 +268,16 @@ export default function DeleteAccountPage() {
             </div>
 
             {/* Delete Button */}
-            <div className="pt-4 border-t border-slate-700">
+            <div className="pt-4 border-t border-[var(--color-border)]">
               <Button
                 onClick={handleDeleteAccount}
                 disabled={!isConfirmationValid || !hasConfirmedWarnings || isDeleting}
-                className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold h-14 rounded-xl shadow-xl shadow-red-600/25 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[var(--color-error)] hover:bg-[var(--color-error)]/80 text-[var(--color-error-text)] font-bold h-14 rounded-xl shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 data-testid="button-delete-account"
               >
                 {isDeleting ? (
                   <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <div className="w-4 h-4 border-2 border-[var(--color-error-text)] border-t-transparent rounded-full animate-spin" />
                     Deleting Account...
                   </div>
                 ) : (
@@ -288,7 +288,7 @@ export default function DeleteAccountPage() {
                 )}
               </Button>
               
-              <p className="text-xs text-slate-500 text-center mt-4">
+              <p className="text-xs text-[var(--color-text-secondary)] text-center mt-4">
                 This action cannot be undone. Your account will be deleted within 24 hours.
               </p>
             </div>
@@ -296,34 +296,34 @@ export default function DeleteAccountPage() {
         </Card>
 
         {/* Alternative Options */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-white text-xl font-bold">
+            <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold">
               Consider These Alternatives
             </CardTitle>
-            <CardDescription className="text-slate-300">
+            <CardDescription className="text-[var(--color-text-secondary)]">
               Before deleting, you might want to try these options instead
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="p-4 bg-slate-700/30 rounded-lg border border-slate-600">
-                <h3 className="font-semibold text-white mb-2">Take a Break</h3>
-                <p className="text-slate-300 text-sm mb-3">
+              <div className="p-4 bg-[var(--color-surface)]/60 rounded-lg border border-[var(--color-border)]">
+                <h3 className="font-semibold text-[var(--color-text-primary)] mb-2">Take a Break</h3>
+                <p className="text-[var(--color-text-secondary)] text-sm mb-3">
                   Simply stop using the app. Your data will remain safe if you want to return later.
                 </p>
-                <Button variant="outline" size="sm" className="w-full border-slate-500 text-slate-300">
+                <Button variant="outline" size="sm" className="w-full border-[var(--color-border)] text-[var(--color-text-secondary)]">
                   Just Log Out
                 </Button>
               </div>
               
               <Link href="/data-export">
-                <div className="p-4 bg-slate-700/30 rounded-lg border border-slate-600 cursor-pointer hover:bg-slate-600/30 transition-all">
-                  <h3 className="font-semibold text-white mb-2">Export & Keep Data</h3>
-                  <p className="text-slate-300 text-sm mb-3">
+                <div className="p-4 bg-[var(--color-surface)]/60 rounded-lg border border-[var(--color-border)] cursor-pointer hover:bg-[var(--color-surface)] transition-all">
+                  <h3 className="font-semibold text-[var(--color-text-primary)] mb-2">Export & Keep Data</h3>
+                  <p className="text-[var(--color-text-secondary)] text-sm mb-3">
                     Download your data to keep your fitness journey history forever.
                   </p>
-                  <Button variant="outline" size="sm" className="w-full border-primary/50 text-primary">
+                  <Button variant="outline" size="sm" className="w-full border-[var(--color-action)]/50 text-[var(--color-action)]">
                     Export Data
                   </Button>
                 </div>

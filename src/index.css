@@ -35,6 +35,11 @@
     --color-carbs: #818CF8; /* Static blue/purple for carbs */
     --color-fat: #FBBF24; /* Static yellow/amber for fat */
 
+    /* STATIC DIFFICULTY COLORS - Not themeable */
+    --color-difficulty-beginner: #22c55e; /* Static green for beginner */
+    --color-difficulty-intermediate: #f59e0b; /* Static amber for intermediate */
+    --color-difficulty-advanced: #ef4444; /* Static red for advanced */
+
     /* STATIC UI COLORS - Light Mode */
     --color-background: #ffffff;
     --color-surface: #f8fafc;

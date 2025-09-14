@@ -55,12 +55,12 @@ export default function ContactSupportPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-[var(--color-background)]">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         {/* Header */}
         <div className="flex items-center gap-4 pt-8">
           <Link href="/profile">
-            <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white" data-testid="button-back">
+            <Button variant="ghost" size="sm" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]" data-testid="button-back">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Settings
             </Button>
@@ -68,27 +68,27 @@ export default function ContactSupportPage() {
         </div>
 
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-white" data-testid="page-title">Contact Support</h1>
-          <p className="text-slate-300 mt-2">Get help with your account, technical issues, or general questions</p>
+          <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Contact Support</h1>
+          <p className="text-[var(--color-text-secondary)] mt-2">Get help with your account, technical issues, or general questions</p>
         </div>
 
         {/* Contact Options */}
         <div className="grid md:grid-cols-3 gap-6">
-          <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+          <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
             <CardContent className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl mx-auto flex items-center justify-center">
-                <MessageCircle className="w-8 h-8 text-primary" />
+              <div className="w-16 h-16 bg-[var(--color-action)]/10 rounded-xl mx-auto flex items-center justify-center">
+                <MessageCircle className="w-8 h-8 text-[var(--color-action)]" />
               </div>
               <div>
-                <h3 className="font-bold text-white text-lg">Live Chat</h3>
-                <p className="text-slate-300 text-sm mt-2">
+                <h3 className="font-bold text-[var(--color-text-primary)] text-lg">Live Chat</h3>
+                <p className="text-[var(--color-text-secondary)] text-sm mt-2">
                   Get instant help from our support team
                 </p>
-                <p className="text-slate-400 text-xs mt-2">Available 9 AM - 6 PM EST</p>
+                <p className="text-[var(--color-text-secondary)] text-xs mt-2">Available 9 AM - 6 PM EST</p>
               </div>
               <Button 
                 variant="outline" 
-                className="w-full border-primary/50 text-primary hover:bg-primary/10"
+                className="w-full border-[var(--color-action)]/50 text-[var(--color-action)] hover:bg-[var(--color-action)]/10"
                 disabled
                 data-testid="button-live-chat"
               >
@@ -97,21 +97,21 @@ export default function ContactSupportPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+          <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
             <CardContent className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-xl mx-auto flex items-center justify-center">
-                <Mail className="w-8 h-8 text-green-600 dark:text-green-400" />
+              <div className="w-16 h-16 bg-[var(--color-action)]/20 rounded-xl mx-auto flex items-center justify-center">
+                <Mail className="w-8 h-8 text-[var(--color-action)]" />
               </div>
               <div>
-                <h3 className="font-bold text-white text-lg">Email Support</h3>
-                <p className="text-slate-300 text-sm mt-2">
+                <h3 className="font-bold text-[var(--color-text-primary)] text-lg">Email Support</h3>
+                <p className="text-[var(--color-text-secondary)] text-sm mt-2">
                   Send us a detailed message about your issue
                 </p>
-                <p className="text-slate-400 text-xs mt-2">Response within 24 hours</p>
+                <p className="text-[var(--color-text-secondary)] text-xs mt-2">Response within 24 hours</p>
               </div>
               <Button 
                 variant="outline" 
-                className="w-full border-green-400/50 text-green-400 hover:bg-green-400/10"
+                className="w-full border-[var(--color-action)]/50 text-[var(--color-action)] hover:bg-[var(--color-action)]/10"
                 data-testid="button-email-support"
               >
                 Use Form Below
@@ -119,22 +119,22 @@ export default function ContactSupportPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+          <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
             <CardContent className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl mx-auto flex items-center justify-center">
-                <HelpCircle className="w-8 h-8 text-primary" />
+              <div className="w-16 h-16 bg-[var(--color-action)]/10 rounded-xl mx-auto flex items-center justify-center">
+                <HelpCircle className="w-8 h-8 text-[var(--color-action)]" />
               </div>
               <div>
-                <h3 className="font-bold text-white text-lg">Help Center</h3>
-                <p className="text-slate-300 text-sm mt-2">
+                <h3 className="font-bold text-[var(--color-text-primary)] text-lg">Help Center</h3>
+                <p className="text-[var(--color-text-secondary)] text-sm mt-2">
                   Browse our knowledge base and FAQ
                 </p>
-                <p className="text-slate-400 text-xs mt-2">Self-service resources</p>
+                <p className="text-[var(--color-text-secondary)] text-xs mt-2">Self-service resources</p>
               </div>
               <Link href="/help-center">
                 <Button 
                   variant="outline" 
-                  className="w-full border-primary/50 text-primary hover:bg-primary/10"
+                  className="w-full border-[var(--color-action)]/50 text-[var(--color-action)] hover:bg-[var(--color-action)]/10"
                   data-testid="button-help-center"
                 >
                   Visit Help Center
@@ -145,33 +145,33 @@ export default function ContactSupportPage() {
         </div>
 
         {/* Contact Form */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <Send className="w-6 h-6 text-primary" />
+            <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold flex items-center gap-2">
+              <Send className="w-6 h-6 text-[var(--color-action)]" />
               Send Support Message
             </CardTitle>
-            <CardDescription className="text-slate-300">
+            <CardDescription className="text-[var(--color-text-secondary)]">
               Fill out the form below and we'll get back to you as soon as possible
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">
                   Full Name *
                 </label>
                 <Input
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
                   placeholder="Enter your full name"
-                  className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400"
+                  className="bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)]"
                   data-testid="input-name"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">
                   Email Address *
                 </label>
                 <Input
@@ -179,14 +179,14 @@ export default function ContactSupportPage() {
                   onChange={(e) => handleInputChange('email', e.target.value)}
                   placeholder="Enter your email"
                   type="email"
-                  className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400"
+                  className="bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)]"
                   data-testid="input-email"
                 />
               </div>
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">
                 Subject
               </label>
               <Input
@@ -199,7 +199,7 @@ export default function ContactSupportPage() {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-[var(--color-text-secondary)] mb-2">
                 Message *
               </label>
               <textarea
@@ -207,7 +207,7 @@ export default function ContactSupportPage() {
                 onChange={(e) => handleInputChange('message', e.target.value)}
                 placeholder="Please describe your issue or question in detail..."
                 rows={6}
-                className="w-full p-3 bg-slate-700/50 border border-slate-600 rounded-md text-white placeholder:text-slate-400 resize-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                className="w-full p-3 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-md text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)] resize-none focus:outline-none focus:ring-2 focus:ring-[var(--color-action)] focus:border-[var(--color-action)]"
                 data-testid="input-message"
               />
             </div>
@@ -216,12 +216,12 @@ export default function ContactSupportPage() {
               <Button 
                 onClick={handleSubmitForm}
                 disabled={isSubmitting}
-                className="flex-1 bg-gradient-to-r from-primary to-primary hover:from-primary/90 hover:to-primary/80 text-white font-bold h-12 rounded-xl shadow-xl shadow-primary/25"
+                className="flex-1 bg-[var(--color-action)] hover:bg-[var(--color-action-hover)] text-[var(--color-action-text)] font-bold h-12 rounded-xl shadow-xl"
                 data-testid="button-submit-support"
               >
                 {isSubmitting ? (
                   <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <div className="w-4 h-4 border-2 border-[var(--color-action-text)] border-t-transparent rounded-full animate-spin" />
                     Sending...
                   </div>
                 ) : (
@@ -233,36 +233,36 @@ export default function ContactSupportPage() {
               </Button>
             </div>
             
-            <p className="text-xs text-slate-500 text-center">
+            <p className="text-xs text-[var(--color-text-secondary)] text-center">
               We typically respond to support requests within 24 hours during business days.
             </p>
           </CardContent>
         </Card>
 
         {/* Response Time Info */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardContent className="p-6">
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div className="space-y-2">
-                <Clock className="w-8 h-8 text-amber-400 mx-auto" />
-                <h3 className="font-semibold text-white">Response Time</h3>
-                <p className="text-sm text-slate-300">
+                <Clock className="w-8 h-8 text-[var(--color-warning)] mx-auto" />
+                <h3 className="font-semibold text-[var(--color-text-primary)]">Response Time</h3>
+                <p className="text-sm text-[var(--color-text-secondary)]">
                   Most inquiries answered within 4-6 hours during business hours
                 </p>
               </div>
               
               <div className="space-y-2">
-                <CheckCircle className="w-8 h-8 text-green-400 mx-auto" />
-                <h3 className="font-semibold text-white">Resolution Rate</h3>
-                <p className="text-sm text-slate-300">
+                <CheckCircle className="w-8 h-8 text-[var(--color-success)] mx-auto" />
+                <h3 className="font-semibold text-[var(--color-text-primary)]">Resolution Rate</h3>
+                <p className="text-sm text-[var(--color-text-secondary)]">
                   95% of issues resolved on first contact
                 </p>
               </div>
               
               <div className="space-y-2">
-                <MessageCircle className="w-8 h-8 text-primary mx-auto" />
-                <h3 className="font-semibold text-white">Follow-up</h3>
-                <p className="text-sm text-slate-300">
+                <MessageCircle className="w-8 h-8 text-[var(--color-action)] mx-auto" />
+                <h3 className="font-semibold text-[var(--color-text-primary)]">Follow-up</h3>
+                <p className="text-sm text-[var(--color-text-secondary)]">
                   We'll check in to ensure your issue is fully resolved
                 </p>
               </div>
