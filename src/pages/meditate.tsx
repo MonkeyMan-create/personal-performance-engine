@@ -525,7 +525,7 @@ export default function MeditatePage() {
                       onClick={stopSession}
                       variant="outline"
                       size="lg"
-                      className="border-2 border-red-400/50 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/40 px-8 py-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
+                      className="border-2 border-[var(--color-error)]/50 bg-gradient-to-br from-[var(--color-error)]/10 to-[var(--color-error)]/20 text-[var(--color-error)] hover:bg-[var(--color-error)]/30 px-8 py-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
                       data-testid="button-stop"
                     >
                       <Square className="w-6 h-6 mr-3" />

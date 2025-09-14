@@ -231,10 +231,9 @@ export default function ProgressPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Card 
                   data-testid="card-total-workouts"
-                  className="border border-[var(--color-activity)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="border border-[var(--color-activity)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200 bg-gradient-to-br from-[var(--color-activity)]/60 to-[var(--color-activity)]/70"
                   style={{
-                    background: `linear-gradient(to bottom right, rgb(139 92 246 / 0.6), rgb(139 92 246 / 0.7))`,
-                    boxShadow: `0 10px 15px -3px rgb(139 92 246 / 0.2), 0 4px 6px -2px rgb(139 92 246 / 0.05)`
+                    boxShadow: `0 10px 15px -3px rgba(var(--color-activity-rgb), 0.2), 0 4px 6px -2px rgba(var(--color-activity-rgb), 0.05)`
                   }}
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
@@ -250,10 +249,9 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-day-streak"
-                  className="border border-[var(--color-success)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="border border-[var(--color-success)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200 bg-gradient-to-br from-[var(--color-success)]/60 to-[var(--color-success)]/70"
                   style={{
-                    background: `linear-gradient(to bottom right, rgb(34 197 94 / 0.6), rgb(34 197 94 / 0.7))`,
-                    boxShadow: `0 10px 15px -3px rgb(34 197 94 / 0.2), 0 4px 6px -2px rgb(34 197 94 / 0.05)`
+                    boxShadow: `0 10px 15px -3px rgba(var(--color-success-rgb), 0.2), 0 4px 6px -2px rgba(var(--color-success-rgb), 0.05)`
                   }}
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
@@ -269,10 +267,9 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-meals-logged"
-                  className="border border-[var(--color-nutrition)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="border border-[var(--color-nutrition)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200 bg-gradient-to-br from-[var(--color-nutrition)]/60 to-[var(--color-nutrition)]/70"
                   style={{
-                    background: `linear-gradient(to bottom right, rgb(249 115 22 / 0.6), rgb(249 115 22 / 0.7))`,
-                    boxShadow: `0 10px 15px -3px rgb(249 115 22 / 0.2), 0 4px 6px -2px rgb(249 115 22 / 0.05)`
+                    boxShadow: `0 10px 15px -3px rgba(var(--color-nutrition-rgb), 0.2), 0 4px 6px -2px rgba(var(--color-nutrition-rgb), 0.05)`
                   }}
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
@@ -288,10 +285,9 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-avg-calories"
-                  className="border border-[var(--color-warning)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="border border-[var(--color-warning)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200 bg-gradient-to-br from-[var(--color-warning)]/60 to-[var(--color-warning)]/70"
                   style={{
-                    background: `linear-gradient(to bottom right, rgb(245 158 11 / 0.6), rgb(245 158 11 / 0.7))`,
-                    boxShadow: `0 10px 15px -3px rgb(245 158 11 / 0.2), 0 4px 6px -2px rgb(245 158 11 / 0.05)`
+                    boxShadow: `0 10px 15px -3px rgba(var(--color-warning-rgb), 0.2), 0 4px 6px -2px rgba(var(--color-warning-rgb), 0.05)`
                   }}
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
@@ -311,10 +307,9 @@ export default function ProgressPage() {
             {weightTrendData.length > 0 ? (
               <Card 
                 data-testid="card-weight-trend"
-                className="border border-[var(--color-border)] backdrop-blur-xl shadow-lg"
+                className="border border-[var(--color-border)] backdrop-blur-xl shadow-lg bg-gradient-to-br from-[var(--color-activity)]/30 to-[var(--color-activity)]/40"
                 style={{
-                  background: `linear-gradient(to bottom right, rgb(139 92 246 / 0.3), rgb(139 92 246 / 0.4))`,
-                  boxShadow: `0 10px 15px -3px rgb(139 92 246 / 0.2), 0 4px 6px -2px rgb(139 92 246 / 0.05)`
+                  boxShadow: `0 10px 15px -3px rgba(var(--color-activity-rgb), 0.2), 0 4px 6px -2px rgba(var(--color-activity-rgb), 0.05)`
                 }}
               >
                 <CardHeader>
@@ -411,10 +406,9 @@ export default function ProgressPage() {
             ) : (
               <Card 
                 data-testid="card-weight-trend-empty"
-                className="border border-[var(--color-border)] backdrop-blur-xl shadow-lg"
+                className="border border-[var(--color-border)] backdrop-blur-xl shadow-lg bg-gradient-to-br from-[var(--color-activity)]/30 to-[var(--color-activity)]/40"
                 style={{
-                  background: `linear-gradient(to bottom right, rgb(139 92 246 / 0.3), rgb(139 92 246 / 0.4))`,
-                  boxShadow: `0 10px 15px -3px rgb(139 92 246 / 0.2), 0 4px 6px -2px rgb(139 92 246 / 0.05)`
+                  boxShadow: `0 10px 15px -3px rgba(var(--color-activity-rgb), 0.2), 0 4px 6px -2px rgba(var(--color-activity-rgb), 0.05)`
                 }}
               >
                 <CardHeader>
@@ -491,7 +485,7 @@ export default function ProgressPage() {
                           title: 'Dirty Dozen',
                           description: 'Complete 12 workouts',
                           icon: Target,
-                          color: 'from-blue-400 to-blue-600',
+                          color: 'from-[var(--color-action)] to-[var(--color-action)]/80',
                           earned: workoutStats.totalWorkouts >= 12,
                           target: 12,
                           current: workoutStats.totalWorkouts
@@ -521,7 +515,7 @@ export default function ProgressPage() {
                           title: 'Half Century',
                           description: 'Complete 50 workouts',
                           icon: Medal,
-                          color: 'from-amber-400 to-amber-600',
+                          color: 'from-[var(--color-warning)] to-[var(--color-warning)]/80',
                           earned: workoutStats.totalWorkouts >= 50,
                           target: 50,
                           current: workoutStats.totalWorkouts
@@ -531,7 +525,7 @@ export default function ProgressPage() {
                           title: 'Nutrition Ninja',
                           description: 'Log 100 meals',
                           icon: Zap,
-                          color: 'from-red-400 to-red-600',
+                          color: 'from-[var(--color-nutrition)] to-[var(--color-nutrition)]/80',
                           earned: nutritionStats.totalMealsLogged >= 100,
                           target: 100,
                           current: nutritionStats.totalMealsLogged
@@ -551,7 +545,7 @@ export default function ProgressPage() {
                           title: 'Dedication Legend',
                           description: 'Maintain a 30-day streak',
                           icon: Star,
-                          color: 'from-pink-400 to-pink-600',
+                          color: 'from-[var(--color-activity)] to-[var(--color-activity)]/80',
                           earned: workoutStats.currentStreak >= 30,
                           target: 30,
                           current: workoutStats.currentStreak
@@ -561,7 +555,7 @@ export default function ProgressPage() {
                           title: 'Ultimate Warrior',
                           description: 'Complete 500 workouts',
                           icon: Shield,
-                          color: 'from-indigo-400 to-indigo-600',
+                          color: 'from-[var(--color-wellness)] to-[var(--color-wellness)]/80',
                           earned: workoutStats.totalWorkouts >= 500,
                           target: 500,
                           current: workoutStats.totalWorkouts
@@ -688,10 +682,9 @@ export default function ProgressPage() {
             {/* Daily Calories Chart */}
             <Card 
               data-testid="card-daily-calories"
-              className="border border-[var(--color-border)] backdrop-blur-xl shadow-lg"
+              className="border border-[var(--color-border)] backdrop-blur-xl shadow-lg bg-gradient-to-br from-[var(--color-nutrition)]/30 to-[var(--color-nutrition)]/40"
               style={{
-                background: `linear-gradient(to bottom right, rgb(249 115 22 / 0.3), rgb(249 115 22 / 0.4))`,
-                boxShadow: `0 10px 15px -3px rgb(249 115 22 / 0.2), 0 4px 6px -2px rgb(249 115 22 / 0.05)`
+                boxShadow: `0 10px 15px -3px rgba(var(--color-nutrition-rgb), 0.2), 0 4px 6px -2px rgba(var(--color-nutrition-rgb), 0.05)`
               }}
             >
               <CardHeader>

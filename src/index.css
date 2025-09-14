@@ -12,23 +12,30 @@
     --color-action: #0D9488; /* Teal - For primary buttons, active navigation */
     --color-action-hover: #0F766E; /* 10% darker */
     --color-action-text: #FFFFFF; /* White text on teal */
+    --color-action-rgb: 13, 148, 136; /* RGB channels for rgba() usage */
     
-    --color-activity: #8B5CF6; /* Purple - For workout stats and progress */
-    --color-activity-hover: #7C3AED; /* 10% darker */
+    --color-activity: #EC4899; /* Pink - For workout stats and progress */
+    --color-activity-hover: #DB2777; /* 10% darker */
     --color-activity-text: #FFFFFF; /* White text on purple */
+    --color-activity-rgb: 236, 72, 153; /* RGB channels for rgba() usage */
     
-    --color-nutrition: #F97316; /* Orange - For calorie ring and food logging */
-    --color-nutrition-hover: #EA580C; /* 10% darker */
+    --color-nutrition: #10B981; /* Green - For calorie ring and food logging */
+    --color-nutrition-hover: #059669; /* 10% darker */
     --color-nutrition-text: #FFFFFF; /* White text on orange */
+    --color-nutrition-rgb: 16, 185, 129; /* RGB channels for rgba() usage */
     
     --color-wellness: #4F46E5; /* Indigo - For meditation and mood */
     --color-wellness-hover: #4338CA; /* 10% darker */
     --color-wellness-text: #FFFFFF; /* White text on indigo */
+    --color-wellness-rgb: 79, 70, 229; /* RGB channels for rgba() usage */
 
     /* STATIC INFORMATIONAL COLORS - Not themeable */
     --color-success: #22c55e; /* Static green for success states */
+    --color-success-rgb: 34, 197, 94; /* RGB channels for rgba() usage */
     --color-error: #ef4444; /* Static red for errors */
+    --color-error-rgb: 239, 68, 68; /* RGB channels for rgba() usage */
     --color-warning: #f59e0b; /* Static yellow for warnings */
+    --color-warning-rgb: 245, 158, 11; /* RGB channels for rgba() usage */
 
     /* STATIC DATA VISUALIZATION COLORS - Not themeable */
     --color-protein: #FB7185; /* Static red/pink for protein */
@@ -70,8 +77,8 @@
 
     /* CHART COLORS - Using semantic colors for consistency */
     --chart-1: 13 148 136; /* action - teal */
-    --chart-2: 139 92 246; /* activity - purple */
-    --chart-3: 249 115 22; /* nutrition - orange */
+    --chart-2: 236 72 153; /* activity - pink */
+    --chart-3: 16 185 129; /* nutrition - green */
     --chart-4: 79 70 229; /* wellness - indigo */
     --chart-5: 251 113 133; /* protein - pink */
 
@@ -109,8 +116,8 @@
 
     /* CHART COLORS - Dark Mode (same as light mode for consistency) */
     --chart-1: 13 148 136; /* action - teal */
-    --chart-2: 139 92 246; /* activity - purple */
-    --chart-3: 249 115 22; /* nutrition - orange */
+    --chart-2: 236 72 153; /* activity - pink */
+    --chart-3: 16 185 129; /* nutrition - green */
     --chart-4: 79 70 229; /* wellness - indigo */
     --chart-5: 251 113 133; /* protein - pink */
   }
