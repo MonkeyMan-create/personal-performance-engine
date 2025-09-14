@@ -41,10 +41,14 @@ export default function WorkoutTemplateSelector({
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'beginner': return 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400'
-      case 'intermediate': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400'
-      case 'advanced': return 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400'
-      default: return 'bg-slate-100 text-slate-800 dark:bg-slate-900/20 dark:text-slate-400'
+      case 'beginner': 
+        return 'bg-[var(--color-difficulty-beginner)] text-white'
+      case 'intermediate': 
+        return 'bg-[var(--color-difficulty-intermediate)] text-white'
+      case 'advanced': 
+        return 'bg-[var(--color-difficulty-advanced)] text-white'
+      default: 
+        return 'bg-[var(--color-text-secondary)] text-white'
     }
   }
 
