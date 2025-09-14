@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import tinycolor from 'tinycolor2'
+// Lazy load tinycolor2 to keep it out of main bundle
 import { Button } from './ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Palette, RotateCcw, Check } from 'lucide-react'
@@ -69,8 +69,9 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
     }
   }, [colorTheme])
 
-  // Calculate color variations using tinycolor2
-  const calculateColorVariations = useCallback((hexColor: string): CustomColorData => {
+  // Calculate color variations using lazy-loaded tinycolor2
+  const calculateColorVariations = useCallback(async (hexColor: string): Promise<CustomColorData> => {
+    const { default: tinycolor } = await import('tinycolor2')
     const baseColor = tinycolor(hexColor)
     
     // Calculate hover color (10% lighter for both light and dark modes)
@@ -87,8 +88,9 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
   }, [])
 
   // Apply custom color to CSS variables
-  const applyCustomColor = useCallback((hexColor: string) => {
-    const colorData = calculateColorVariations(hexColor)
+  const applyCustomColor = useCallback(async (hexColor: string) => {
+    const { default: tinycolor } = await import('tinycolor2')
+    const colorData = await calculateColorVariations(hexColor)
     const root = document.documentElement
 
     // Apply custom CSS variables
@@ -147,18 +149,36 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
   }
 
   // Handle apply button click
-  const handleApplyColor = () => {
-    applyCustomColor(selectedColor)
-    setShowColorPicker(false)
-    
-    toast({
-      title: "Custom Color Applied!",
-      description: `Your theme is now using ${selectedColor.toUpperCase()} as the primary color.`,
-    })
+  const handleApplyColor = async () => {
+    try {
+      await applyCustomColor(selectedColor)
+      setShowColorPicker(false)
+      
+      toast({
+        title: "Custom Color Applied!",
+        description: `Your theme is now using ${selectedColor.toUpperCase()} as the primary color.`,
+      })
+    } catch (error) {
+      console.error('Failed to apply custom color:', error)
+      toast({
+        title: "Error",
+        description: "Failed to apply custom color. Please try again.",
+        variant: "destructive"
+      })
+    }
   }
 
   // Get preview of calculated colors
-  const previewColors = calculateColorVariations(selectedColor)
+  const [previewColors, setPreviewColors] = useState<CustomColorData>({
+    primary: selectedColor,
+    primaryHover: selectedColor,
+    primaryText: '#FFFFFF'
+  })
+
+  // Update preview colors when selectedColor changes
+  useEffect(() => {
+    calculateColorVariations(selectedColor).then(setPreviewColors).catch(console.error)
+  }, [selectedColor, calculateColorVariations])
 
   return (
     <Card className="bg-card/60 border border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
@@ -357,10 +377,11 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
 }
 
 // Utility function to initialize custom color on app startup
-export const initializeCustomColor = () => {
+export const initializeCustomColor = async () => {
   try {
     const savedCustomColor = localStorage.getItem(CUSTOM_COLOR_STORAGE_KEY)
     if (savedCustomColor) {
+      const { default: tinycolor } = await import('tinycolor2')
       const colorData = JSON.parse(savedCustomColor)
       const root = document.documentElement
 

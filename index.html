@@ -84,13 +84,8 @@
     <meta name="theme-color" content="#06b6d4" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="./src/main.tsx" as="script" crossorigin>
-    <link rel="preload" href="./src/index.css" as="style">
-    <link rel="modulepreload" href="./src/main.tsx">
-    
-    <!-- Optimized JavaScript loading with performance attributes -->
-    <script type="module" src="./src/main.tsx" defer></script>
+    <!-- Vite handles resource hints automatically for optimal performance -->
+    <script type="module" src="./src/main.tsx"></script>
   </head>
   <body>
     <div id="root">
