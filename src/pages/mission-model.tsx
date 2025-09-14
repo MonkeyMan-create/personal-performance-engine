@@ -78,21 +78,21 @@ export default function MissionModelPage() {
                   Our Commitments
                 </h3>
                 <div className="space-y-3">
-                  <div className="p-4 bg-[var(--color-action)]/10 rounded-lg border border-[var(--color-action)]/30">
-                    <p className="text-[var(--color-action)] font-medium">✓ 100% Ad-Free</p>
-                    <p className="text-[var(--color-action)]/80 text-sm mt-1">
+                  <div className="p-4 bg-gradient-to-br from-[var(--color-action)]/60 to-[var(--color-action)]/70 rounded-lg border border-[var(--color-action)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-action)]/20">
+                    <p className="text-white font-medium">✓ 100% Ad-Free</p>
+                    <p className="text-white/90 text-sm mt-1">
                       No banner ads, video ads, or sponsored content ever
                     </p>
                   </div>
-                  <div className="p-4 bg-[var(--color-action)]/10 rounded-lg border border-[var(--color-action)]/30">
-                    <p className="text-[var(--color-action)] font-medium">✓ Your Data, Your Control</p>
-                    <p className="text-[var(--color-action)]/80 text-sm mt-1">
+                  <div className="p-4 bg-gradient-to-br from-[var(--color-activity)]/60 to-[var(--color-activity)]/70 rounded-lg border border-[var(--color-activity)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-activity)]/20">
+                    <p className="text-white font-medium">✓ Your Data, Your Control</p>
+                    <p className="text-white/90 text-sm mt-1">
                       We never sell your data or share it with third parties
                     </p>
                   </div>
-                  <div className="p-4 bg-[var(--color-success)]/20 rounded-lg border border-[var(--color-success)]/50">
-                    <p className="text-[var(--color-success)] font-medium">✓ Core Features Forever</p>
-                    <p className="text-[var(--color-success)] text-sm mt-1">
+                  <div className="p-4 bg-gradient-to-br from-[var(--color-success)]/60 to-[var(--color-success)]/70 rounded-lg border border-[var(--color-success)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-success)]/20">
+                    <p className="text-white font-medium">✓ Core Features Forever</p>
+                    <p className="text-white/90 text-sm mt-1">
                       Essential fitness tracking will always be free
                     </p>
                   </div>
