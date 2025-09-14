@@ -311,7 +311,11 @@ export default function ProgressPage() {
             {weightTrendData.length > 0 ? (
               <Card 
                 data-testid="card-weight-trend"
-                className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl"
+                className="border-[var(--color-activity)]/50 backdrop-blur-xl shadow-lg"
+                style={{
+                  background: `linear-gradient(to bottom right, rgb(139 92 246 / 0.3), rgb(139 92 246 / 0.4))`,
+                  boxShadow: `0 10px 15px -3px rgb(139 92 246 / 0.2), 0 4px 6px -2px rgb(139 92 246 / 0.05)`
+                }}
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
@@ -407,7 +411,11 @@ export default function ProgressPage() {
             ) : (
               <Card 
                 data-testid="card-weight-trend-empty"
-                className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl"
+                className="border-[var(--color-activity)]/50 backdrop-blur-xl shadow-lg"
+                style={{
+                  background: `linear-gradient(to bottom right, rgb(139 92 246 / 0.3), rgb(139 92 246 / 0.4))`,
+                  boxShadow: `0 10px 15px -3px rgb(139 92 246 / 0.2), 0 4px 6px -2px rgb(139 92 246 / 0.05)`
+                }}
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
@@ -678,7 +686,11 @@ export default function ProgressPage() {
             {/* Daily Calories Chart */}
             <Card 
               data-testid="card-daily-calories"
-              className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl"
+              className="border-[var(--color-nutrition)]/50 backdrop-blur-xl shadow-lg"
+              style={{
+                background: `linear-gradient(to bottom right, rgb(249 115 22 / 0.3), rgb(249 115 22 / 0.4))`,
+                boxShadow: `0 10px 15px -3px rgb(249 115 22 / 0.2), 0 4px 6px -2px rgb(249 115 22 / 0.05)`
+              }}
             >
               <CardHeader>
                 <div className="flex items-center gap-2">
