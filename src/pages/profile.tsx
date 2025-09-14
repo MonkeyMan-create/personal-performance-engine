@@ -334,14 +334,14 @@ export default function SettingsPage() {
               >
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <Globe className="w-5 h-5 text-muted-foreground" />
+                    <Globe className="w-5 h-5 text-[var(--color-action)]" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Country/Region</p>
                     <p className="text-sm text-muted-foreground mt-0.5">{getCountryDisplay()}</p>
                   </div>
                 </div>
-                <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-200 ${showCountryDropdown ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-5 h-5 text-[var(--color-action)] transition-transform duration-200 ${showCountryDropdown ? 'rotate-180' : ''}`} />
               </div>
               
               {showCountryDropdown && (
@@ -388,14 +388,14 @@ export default function SettingsPage() {
               >
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <Trophy className="w-5 h-5 text-muted-foreground" />
+                    <Trophy className="w-5 h-5 text-[var(--color-success)]" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Year in Review</p>
                     <p className="text-sm text-muted-foreground mt-0.5">See your fitness journey and achievements</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
               </div>
             </Link>
             <Link href="/health-connections">
@@ -405,42 +405,42 @@ export default function SettingsPage() {
               >
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <Smartphone className="w-5 h-5 text-muted-foreground" />
+                    <Smartphone className="w-5 h-5 text-[var(--color-action)]" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Health Data Connections</p>
                     <p className="text-sm text-muted-foreground mt-0.5">Connect Google Health & Apple HealthKit</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
               </div>
             </Link>
             <Link href="/data-export">
               <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-export-data">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <Download className="w-5 h-5 text-muted-foreground" />
+                    <Download className="w-5 h-5 text-[var(--color-action)]" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Export Data</p>
                     <p className="text-sm text-muted-foreground mt-0.5">Download your fitness and nutrition data</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
               </div>
             </Link>
             <Link href="/delete-account">
               <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-delete-account">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <Trash2 className="w-5 h-5 text-muted-foreground" />
+                    <Trash2 className="w-5 h-5 text-[var(--color-warning)]" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Delete Account</p>
                     <p className="text-sm text-muted-foreground mt-0.5">Permanently remove your account and all data</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
               </div>
             </Link>
           </CardContent>
@@ -468,56 +468,56 @@ export default function SettingsPage() {
               >
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <Info className="w-5 h-5 text-muted-foreground" />
+                    <Info className="w-5 h-5 text-[var(--color-action)]" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Our Mission & Model</p>
                     <p className="text-sm text-muted-foreground mt-0.5">Learn about our commitment to free fitness tools</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
               </div>
             </Link>
             <Link href="/help-center">
               <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-help-center">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <HelpCircle className="w-5 h-5 text-muted-foreground" />
+                    <HelpCircle className="w-5 h-5 text-[var(--color-action)]" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Help Center</p>
                     <p className="text-sm text-muted-foreground mt-0.5">Find answers to common questions</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
               </div>
             </Link>
             <Link href="/contact-support">
               <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-contact-support">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <MessageCircle className="w-5 h-5 text-muted-foreground" />
+                    <MessageCircle className="w-5 h-5 text-[var(--color-action)]" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Contact Support</p>
                     <p className="text-sm text-muted-foreground mt-0.5">Get in touch with our support team</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
               </div>
             </Link>
             <Link href="/privacy-terms">
               <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-legal">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <FileText className="w-5 h-5 text-muted-foreground" />
+                    <FileText className="w-5 h-5 text-[var(--color-action)]" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Privacy & Terms</p>
                     <p className="text-sm text-muted-foreground mt-0.5">View our privacy policy and terms of service</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground" />
+                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
               </div>
             </Link>
           </CardContent>

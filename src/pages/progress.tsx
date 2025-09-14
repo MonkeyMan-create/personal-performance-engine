@@ -299,7 +299,7 @@ export default function ProgressPage() {
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="w-6 h-6 text-[var(--color-primary)]" />
+                    <TrendingUp className="w-6 h-6 text-[var(--color-activity)]" />
                     <CardTitle className="text-xl text-[var(--color-text-primary)]">Weight Trend</CardTitle>
                   </div>
                   <CardDescription className="text-[var(--color-text-secondary)]">
@@ -395,7 +395,7 @@ export default function ProgressPage() {
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="w-6 h-6 text-[var(--color-primary)]" />
+                    <TrendingUp className="w-6 h-6 text-[var(--color-activity)]" />
                     <CardTitle className="text-xl text-[var(--color-text-primary)]">Weight Trend</CardTitle>
                   </div>
                   <CardDescription className="text-[var(--color-text-secondary)]">
@@ -425,7 +425,7 @@ export default function ProgressPage() {
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <Trophy className="w-6 h-6 text-[var(--color-primary)]" />
+                    <Trophy className="w-6 h-6 text-[var(--color-success)]" />
                     <CardTitle className="text-xl text-[var(--color-text-primary)]">Your Achievements</CardTitle>
                   </div>
                   <CardDescription className="text-[var(--color-text-secondary)]">

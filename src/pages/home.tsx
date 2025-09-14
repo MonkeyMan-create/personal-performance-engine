@@ -397,7 +397,7 @@ export default function HomePage() {
         <Card className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-[var(--color-text-primary)] flex items-center gap-2">
-              <Apple className="w-5 h-5 text-[var(--color-action)]" />
+              <Apple className="w-5 h-5 text-[var(--color-nutrition)]" />
               Nutrition Snapshot
             </CardTitle>
             <CardDescription className="text-[var(--color-text-secondary)]">

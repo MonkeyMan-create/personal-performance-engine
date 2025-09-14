@@ -86,7 +86,7 @@ export default function ExerciseImage({
   // Placeholder component
   const PlaceholderContent = () => (
     <div className={cn(
-      "flex flex-col items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 text-slate-600 dark:text-slate-400",
+      "flex flex-col items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 text-[var(--color-activity)] dark:text-[var(--color-activity)]",
       sizeClasses[size]
     )}>
       {fallbackType === 'dumbbell' ? (
@@ -105,7 +105,7 @@ export default function ExerciseImage({
   // Loading component
   const LoadingContent = () => (
     <div className={cn(
-      "flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400",
+      "flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-700 text-[var(--color-activity)] dark:text-[var(--color-activity)]",
       sizeClasses[size]
     )}>
       <Loader2 className={cn(iconSizes[size], "animate-spin mb-1")} />
@@ -133,7 +133,7 @@ export default function ExerciseImage({
           "flex items-center justify-center bg-slate-50 dark:bg-slate-800",
           sizeClasses[size]
         )}>
-          <Eye className={cn(iconSizes[size], "text-slate-400")} />
+          <Eye className={cn(iconSizes[size], "text-[var(--color-activity)]")} />
         </div>
       ) : !src || hasError ? (
         // No image or error placeholder
