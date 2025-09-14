@@ -43,7 +43,7 @@ export default function BottomNavigation() {
   }
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 border-t border-[--color-border]/50 bg-[--color-surface]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[--color-surface]/80 shadow-2xl">
+    <nav className="fixed bottom-0 left-0 right-0 border-t border-[var(--color-border)]/50 bg-[var(--color-surface)]/80 backdrop-blur-xl supports-[backdrop-filter]:bg-[var(--color-surface)]/80 shadow-2xl">
       <div className="grid grid-cols-5 gap-2 p-4 max-w-md mx-auto">
         {navItems.map(({ href, icon: Icon, label }) => {
           const isActive = location === href
@@ -58,8 +58,8 @@ export default function BottomNavigation() {
                 className={cn(
                   'flex flex-col items-center justify-center p-3 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 relative',
                   isActive
-                    ? 'text-[--color-primary] bg-gradient-to-br from-[--color-primary]/20 to-[--color-primary]/20 shadow-lg shadow-[--color-primary]/25 border border-[--color-primary]/30'
-                    : 'text-[--color-text-secondary] hover:text-[--color-text-primary] hover:bg-[--color-primary]/10 hover:shadow-sm'
+                    ? 'text-[var(--color-action)] bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/20 shadow-lg shadow-[var(--color-action)]/25 border border-[var(--color-action)]/30'
+                    : 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-action)]/10 hover:shadow-sm'
                 )}
               >
                 <Icon className={cn(
@@ -68,11 +68,11 @@ export default function BottomNavigation() {
                 )} />
                 <span className={cn(
                   'text-xs font-medium tracking-wide transition-all duration-300',
-                  isActive ? 'font-semibold text-[--color-primary]' : ''
+                  isActive ? 'font-semibold text-[var(--color-action)]' : ''
                 )}>{label}</span>
                 {/* Active indicator dot */}
                 {isActive && (
-                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-br from-[--color-primary] to-[--color-primary] rounded-full shadow-sm animate-pulse"></div>
+                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-br from-[var(--color-action)] to-[var(--color-action)] rounded-full shadow-sm animate-pulse"></div>
                 )}
               </div>
             </a>

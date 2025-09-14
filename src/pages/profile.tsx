@@ -10,8 +10,7 @@ import { Link } from 'wouter'
 import { useLocalization, SUPPORTED_LANGUAGES, SUPPORTED_COUNTRIES } from '../contexts/LocalizationContext'
 import { getProfileDataLocally, ProfileData } from '../utils/guestStorage'
 import { useToast } from '../hooks/use-toast'
-import ColorThemeSelector from '../components/ColorThemeSelector'
-import DynamicColorPicker from '../components/DynamicColorPicker'
+import SemanticThemeEditor from '../components/SemanticThemeEditor'
 
 export default function SettingsPage() {
   const { user, logout, isGuestMode } = useAuth()
@@ -166,11 +165,11 @@ export default function SettingsPage() {
   )
 
   return (
-    <div className="min-h-screen bg-[--color-background]">
+    <div className="min-h-screen bg-[var(--color-background)]">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         <div className="pt-8 text-center">
-          <h1 className="text-3xl font-bold text-[--color-text-primary]" data-testid="page-title">Settings</h1>
-          <p className="text-[--color-text-secondary] mt-2">Customize your experience and manage your account</p>
+          <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Settings</h1>
+          <p className="text-[var(--color-text-secondary)] mt-2">Customize your experience and manage your account</p>
         </div>
         
         {/* User Header */}
@@ -256,23 +255,9 @@ export default function SettingsPage() {
               testId="settings-measurement-units"
             />
             
-            {/* Color Theme Selector */}
-            <div className="p-4 rounded-lg mx-2" data-testid="settings-color-theme">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="p-2 bg-muted/30 rounded-xl">
-                  <Palette className="w-5 h-5 text-muted-foreground" />
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">App Color Theme</p>
-                  <p className="text-sm text-muted-foreground mt-0.5">Choose your preferred accent color</p>
-                </div>
-              </div>
-              <ColorThemeSelector />
-            </div>
-            
-            {/* Dynamic Color Picker Section */}
-            <div className="space-y-4 mx-2" data-testid="settings-dynamic-color">
-              <DynamicColorPicker />
+            {/* Semantic Theme Editor */}
+            <div className="p-4 rounded-lg mx-2" data-testid="settings-semantic-theme">
+              <SemanticThemeEditor />
             </div>
             
             {/* Language Dropdown */}
@@ -515,13 +500,13 @@ export default function SettingsPage() {
             <Button 
               variant="destructive" 
               onClick={logout}
-              className="w-full flex items-center justify-center gap-3 h-14 bg-gradient-to-r from-[--color-error] to-[--color-error] hover:from-[--color-error]/90 hover:to-[--color-error]/90 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-[--color-error]/25 hover:shadow-[--color-error]/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full flex items-center justify-center gap-3 h-14 bg-gradient-to-r from-[var(--color-error)] to-[var(--color-error)] hover:from-[var(--color-error)]/90 hover:to-[var(--color-error)]/90 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-[var(--color-error)]/25 hover:shadow-[var(--color-error)]/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               data-testid="button-sign-out"
             >
               <LogOut className="w-6 h-6" />
               Sign Out
             </Button>
-            <p className="text-xs text-[--color-text-secondary] text-center mt-3">
+            <p className="text-xs text-[var(--color-text-secondary)] text-center mt-3">
               {isGuestMode ? 'End guest session' : 'You can always sign back in'}
             </p>
           </CardContent>

@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Router, Route, Switch } from 'wouter'
 import { AuthProvider } from './contexts/AuthContext'
@@ -7,6 +7,7 @@ import { MeasurementProvider } from './contexts/MeasurementContext'
 import { LocalizationProvider } from './contexts/LocalizationContext'
 import BottomNavigation from './components/bottom-navigation'
 import { Toaster } from './components/ui/toaster'
+import tinycolor from 'tinycolor2'
 
 // Original pages
 const HomePage = React.lazy(() => import('./pages/home'))
@@ -41,6 +42,45 @@ const queryClient = new QueryClient({
   },
 })
 
+// Default semantic theme colors
+const DEFAULT_SEMANTIC_COLORS = {
+  action: '#0D9488',
+  activity: '#8B5CF6',
+  nutrition: '#F97316',
+  wellness: '#4F46E5'
+}
+
+// Function to apply semantic colors globally
+const applySemanticColors = (colors: typeof DEFAULT_SEMANTIC_COLORS) => {
+  const root = document.documentElement
+  
+  Object.entries(colors).forEach(([category, color]) => {
+    const baseColor = tinycolor(color)
+    const hoverColor = baseColor.clone().darken(10)
+    const textColor = baseColor.isLight() ? '#000000' : '#FFFFFF'
+    
+    root.style.setProperty(`--color-${category}`, color)
+    root.style.setProperty(`--color-${category}-hover`, hoverColor.toHexString())
+    root.style.setProperty(`--color-${category}-text`, textColor)
+  })
+}
+
+// Initialize semantic colors on app startup
+const initializeSemanticColors = () => {
+  try {
+    const savedColors = localStorage.getItem('semantic-theme-colors')
+    if (savedColors) {
+      const colors = JSON.parse(savedColors)
+      applySemanticColors(colors)
+    } else {
+      applySemanticColors(DEFAULT_SEMANTIC_COLORS)
+    }
+  } catch (error) {
+    console.warn('Failed to load semantic colors:', error)
+    applySemanticColors(DEFAULT_SEMANTIC_COLORS)
+  }
+}
+
 // Loading fallback component
 const PageLoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
@@ -65,6 +105,11 @@ const PageLoadingFallback = () => (
 )
 
 function App() {
+  // Initialize semantic colors on app startup
+  useEffect(() => {
+    initializeSemanticColors()
+  }, [])
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>

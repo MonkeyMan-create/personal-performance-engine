@@ -65,9 +65,9 @@ export default function WorkoutsPage() {
     icon: template.category === 'strength' ? Dumbbell : 
           template.category === 'cardio' ? Heart : 
           template.category === 'hybrid' ? Activity : Target,
-    color: template.difficulty === 'beginner' ? 'from-[--color-primary] to-[--color-primary]/80' :
-           template.difficulty === 'intermediate' ? 'from-[--color-primary] to-[--color-primary]/80' :
-           'from-[--color-primary] to-[--color-primary]/80'
+    color: template.difficulty === 'beginner' ? 'from-[var(--color-activity)] to-[var(--color-activity)]/80' :
+           template.difficulty === 'intermediate' ? 'from-[var(--color-activity)] to-[var(--color-activity)]/80' :
+           'from-[var(--color-activity)] to-[var(--color-activity)]/80'
   }))
 
   // Recommended workout (featured)
@@ -226,13 +226,13 @@ export default function WorkoutsPage() {
   }
 
   const getDifficultyColors = (difficulty: string) => {
-    // Use primary theme colors for all difficulty levels to ensure consistency with theme system
+    // Use activity theme colors for all difficulty levels to ensure consistency with theme system
     return {
-      bg: 'bg-[--color-primary]/10',
-      text: 'text-[--color-primary]',
-      border: 'border-[--color-primary]/20',
-      iconBg: 'bg-[--color-primary]/20',
-      iconColor: 'text-[--color-primary]'
+      bg: 'bg-[var(--color-activity)]/10',
+      text: 'text-[var(--color-activity)]',
+      border: 'border-[var(--color-activity)]/20',
+      iconBg: 'bg-[var(--color-activity)]/20',
+      iconColor: 'text-[var(--color-activity)]'
     }
   }
 
@@ -252,7 +252,7 @@ export default function WorkoutsPage() {
   switch (viewMode) {
     case 'exercise-selection':
       return (
-        <div className="min-h-screen bg-[--color-background]">
+        <div className="min-h-screen bg-[var(--color-background)]">
           <div className="container mx-auto p-4 space-y-6 pb-24">
             {/* Header with session info */}
             <div className="flex items-center justify-between pt-4">
@@ -267,7 +267,7 @@ export default function WorkoutsPage() {
               <div className="flex gap-2">
                 <Button
                   onClick={handleFinishWorkout}
-                  className="bg-[--color-success] hover:bg-[--color-success]/90 text-white"
+                  className="bg-[var(--color-success)] hover:bg-[var(--color-success)]/90 text-white"
                   data-testid="button-finish-workout"
                 >
                   <CheckCircle className="w-4 h-4 mr-2" />
@@ -276,7 +276,7 @@ export default function WorkoutsPage() {
                 <Button
                   onClick={handleCancelWorkout}
                   variant="outline"
-                  className="border-[--color-error] text-[--color-error] hover:bg-[--color-error]/10"
+                  className="border-[var(--color-error)] text-[var(--color-error)] hover:bg-[var(--color-error)]/10"
                   data-testid="button-cancel-workout"
                 >
                   Cancel
@@ -346,7 +346,7 @@ export default function WorkoutsPage() {
 
     case 'finish-workout':
       return (
-        <div className="min-h-screen bg-[--color-background] flex items-center justify-center p-4">
+        <div className="min-h-screen bg-[var(--color-background)] flex items-center justify-center p-4">
           <Card className="w-full max-w-md bg-white/90 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
@@ -429,7 +429,7 @@ export default function WorkoutsPage() {
 
     case 'history':
       return (
-        <div className="min-h-screen bg-[--color-background]">
+        <div className="min-h-screen bg-[var(--color-background)]">
           <div className="container mx-auto p-4 space-y-6 pb-24">
             <div className="flex items-center justify-between pt-4">
               <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Workout History</h1>
@@ -518,7 +518,7 @@ export default function WorkoutsPage() {
 
     default: // 'overview'
       return (
-        <div className="min-h-screen bg-[--color-background]">
+        <div className="min-h-screen bg-[var(--color-background)]">
           <div className="container mx-auto p-4 space-y-6 pb-24">
             {/* Header */}
             <div className="flex items-center justify-between pt-4">
@@ -562,7 +562,7 @@ export default function WorkoutsPage() {
               <div className="flex gap-3">
                 <Button
                   onClick={() => setShowTemplateSelector(true)}
-                  className="flex-1 h-12 bg-gradient-to-r from-primary to-primary hover:from-primary/90 hover:to-primary/80 text-white shadow-lg hover:shadow-xl hover:shadow-primary/25"
+                  className="flex-1 h-12 bg-gradient-to-r from-[var(--color-action)] to-[var(--color-action)] hover:from-[var(--color-action)]/90 hover:to-[var(--color-action)]/80 text-white shadow-lg hover:shadow-xl hover:shadow-[var(--color-action)]/25"
                   data-testid="button-find-workout"
                 >
                   <Search className="w-5 h-5 mr-2" />
@@ -571,7 +571,7 @@ export default function WorkoutsPage() {
                 <Button
                   onClick={handleStartWorkout}
                   variant="outline"
-                  className="flex-1 h-12 border-primary/50 text-primary hover:bg-primary/10 dark:text-primary dark:hover:bg-primary/20 dark:border-primary/50"
+                  className="flex-1 h-12 border-[var(--color-action)]/50 text-[var(--color-action)] hover:bg-[var(--color-action)]/10 dark:text-[var(--color-action)] dark:hover:bg-[var(--color-action)]/20 dark:border-[var(--color-action)]/50"
                   data-testid="button-create-custom"
                 >
                   <Plus className="w-5 h-5 mr-2" />
@@ -581,7 +581,7 @@ export default function WorkoutsPage() {
             </div>
 
             {/* Your Next Workout - Most Prominent Element */}
-            <Card className="bg-gradient-to-r from-primary to-primary border-0 shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-300">
+            <Card className="bg-gradient-to-r from-[var(--color-activity)] to-[var(--color-activity)] border-0 shadow-2xl shadow-[var(--color-activity)]/25 hover:shadow-[var(--color-activity)]/40 transition-all duration-300">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between text-white mb-4">
                   <div>
@@ -707,13 +707,13 @@ export default function WorkoutsPage() {
               <div className="grid grid-cols-2 gap-4">
                 <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50">
                   <CardContent className="p-4 text-center">
-                    <p className="text-2xl font-bold text-primary dark:text-primary">{workouts.length}</p>
+                    <p className="text-2xl font-bold text-[var(--color-activity)] dark:text-[var(--color-activity)]">{workouts.length}</p>
                     <p className="text-sm text-slate-600 dark:text-slate-300">Total Workouts</p>
                   </CardContent>
                 </Card>
                 <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50">
                   <CardContent className="p-4 text-center">
-                    <p className="text-2xl font-bold text-primary dark:text-primary">
+                    <p className="text-2xl font-bold text-[var(--color-activity)] dark:text-[var(--color-activity)]">
                       {workouts.reduce((total, workout) => 
                         total + workout.exercises.reduce((sets, ex) => sets + ex.sets.length, 0), 0
                       )}

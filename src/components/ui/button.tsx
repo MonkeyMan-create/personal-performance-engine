@@ -4,20 +4,20 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[--color-primary] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-action)] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-[--color-primary] text-[--color-primary-text] shadow hover:bg-[--color-primary-hover]",
+          "bg-[var(--color-action)] text-[var(--color-action-text)] shadow hover:bg-[var(--color-action-hover)]",
         destructive:
-          "bg-[--color-error] text-white shadow-sm hover:bg-[--color-error]/90",
+          "bg-[var(--color-error)] text-white shadow-sm hover:bg-[var(--color-error)]/90",
         outline:
-          "border border-[--color-border] bg-[--color-surface] shadow-sm hover:bg-[--color-primary]/10 hover:text-[--color-primary]",
+          "border border-[var(--color-border)] bg-[var(--color-surface)] shadow-sm hover:bg-[var(--color-action)]/10 hover:text-[var(--color-action)]",
         secondary:
-          "bg-[--color-surface] text-[--color-text-primary] shadow-sm hover:bg-[--color-border]/50 border border-[--color-border]",
-        ghost: "hover:bg-[--color-primary]/10 hover:text-[--color-primary]",
-        link: "text-[--color-primary] underline-offset-4 hover:underline hover:text-[--color-primary-hover]",
+          "bg-[var(--color-surface)] text-[var(--color-text-primary)] shadow-sm hover:bg-[var(--color-border)]/50 border border-[var(--color-border)]",
+        ghost: "hover:bg-[var(--color-action)]/10 hover:text-[var(--color-action)]",
+        link: "text-[var(--color-action)] underline-offset-4 hover:underline hover:text-[var(--color-action-hover)]",
       },
       size: {
         default: "h-9 px-4 py-2",

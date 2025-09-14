@@ -203,10 +203,10 @@ export default function ProgressPage() {
   })()
 
   return (
-    <div className="min-h-screen bg-[--color-background]">
+    <div className="min-h-screen bg-[var(--color-background)]">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         <div className="flex items-center justify-between pt-4">
-          <h1 className="text-2xl font-bold text-[--color-text-primary]">My Progress</h1>
+          <h1 className="text-2xl font-bold text-[var(--color-text-primary)]">My Progress</h1>
           {isGuestMode && (
             <span className="text-xs bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 px-2 py-1 rounded">
               Guest Mode - Local Data
@@ -217,29 +217,29 @@ export default function ProgressPage() {
         {isLoading ? (
           <Card 
             data-testid="card-loading-progress"
-            className="bg-[--color-surface]/90 border-[--color-border] backdrop-blur-xl"
+            className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl"
           >
             <CardContent className="p-6">
-              <p data-testid="text-loading-message" className="text-[--color-text-secondary]">Loading your progress data...</p>
+              <p data-testid="text-loading-message" className="text-[var(--color-text-secondary)]">Loading your progress data...</p>
             </CardContent>
           </Card>
         ) : (
           <>
             {/* My Highlights Section */}
             <div className="space-y-3">
-              <h2 className="text-xl font-semibold text-[--color-text-primary]">My Highlights</h2>
+              <h2 className="text-xl font-semibold text-[var(--color-text-primary)]">My Highlights</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Card 
                   data-testid="card-total-workouts"
-                  className="bg-gradient-to-br from-[--color-primary]/10 to-[--color-primary]/20 border-[--color-primary]/30 hover:shadow-lg transition-all duration-200"
+                  className="bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/20 border-[var(--color-primary)]/30 hover:shadow-lg transition-all duration-200"
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
-                    <div className="w-12 h-12 mx-auto bg-[--color-primary] rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 mx-auto bg-[var(--color-primary)] rounded-full flex items-center justify-center">
                       <Dumbbell className="w-6 h-6 text-white" />
                     </div>
                     <div className="space-y-1">
-                      <div data-testid="text-total-workouts" className="text-3xl font-bold text-[--color-primary] dark:text-[--color-primary]">{workoutStats.totalWorkouts}</div>
-                      <div className="text-sm font-medium text-[--color-primary]/80 dark:text-[--color-primary]/80">Total Workouts</div>
+                      <div data-testid="text-total-workouts" className="text-3xl font-bold text-[var(--color-primary)] dark:text-[var(--color-primary)]">{workoutStats.totalWorkouts}</div>
+                      <div className="text-sm font-medium text-[var(--color-primary)]/80 dark:text-[var(--color-primary)]/80">Total Workouts</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -261,15 +261,15 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-meals-logged"
-                  className="bg-gradient-to-br from-[--color-primary]/10 to-[--color-primary]/20 border-[--color-primary]/30 hover:shadow-lg transition-all duration-200"
+                  className="bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/20 border-[var(--color-primary)]/30 hover:shadow-lg transition-all duration-200"
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
-                    <div className="w-12 h-12 mx-auto bg-[--color-primary] rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 mx-auto bg-[var(--color-primary)] rounded-full flex items-center justify-center">
                       <Apple className="w-6 h-6 text-white" />
                     </div>
                     <div className="space-y-1">
-                      <div data-testid="text-meals-logged" className="text-3xl font-bold text-[--color-primary] dark:text-[--color-primary]">{nutritionStats.totalMealsLogged}</div>
-                      <div className="text-sm font-medium text-[--color-primary]/80 dark:text-[--color-primary]/80">Meals Logged</div>
+                      <div data-testid="text-meals-logged" className="text-3xl font-bold text-[var(--color-primary)] dark:text-[var(--color-primary)]">{nutritionStats.totalMealsLogged}</div>
+                      <div className="text-sm font-medium text-[var(--color-primary)]/80 dark:text-[var(--color-primary)]/80">Meals Logged</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -295,14 +295,14 @@ export default function ProgressPage() {
             {weightTrendData.length > 0 ? (
               <Card 
                 data-testid="card-weight-trend"
-                className="bg-[--color-surface]/90 border-[--color-border] backdrop-blur-xl"
+                className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl"
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="w-6 h-6 text-[--color-primary]" />
-                    <CardTitle className="text-xl text-[--color-text-primary]">Weight Trend</CardTitle>
+                    <TrendingUp className="w-6 h-6 text-[var(--color-primary)]" />
+                    <CardTitle className="text-xl text-[var(--color-text-primary)]">Weight Trend</CardTitle>
                   </div>
-                  <CardDescription className="text-[--color-text-secondary]">
+                  <CardDescription className="text-[var(--color-text-secondary)]">
                     Track your weight changes over time {isGuestMode && '(from your local progress entries)'}
                   </CardDescription>
                 </CardHeader>
@@ -331,9 +331,9 @@ export default function ProgressPage() {
                         <Line 
                           type="monotone" 
                           dataKey="weight" 
-                          stroke="hsl(var(--primary))" 
+                          stroke="var(--color-activity)" 
                           strokeWidth={3}
-                          dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2, r: 5 }}
+                          dot={{ fill: 'var(--color-activity)', strokeWidth: 2, r: 5 }}
                         />
                       </LineChart>
                     </ResponsiveContainer>
@@ -342,15 +342,15 @@ export default function ProgressPage() {
                   {/* Motivational Insights */}
                   <div 
                     data-testid="weight-insights"
-                    className="bg-gradient-to-r from-[--color-primary]/10 to-[--color-primary]/20 rounded-lg p-4 border border-[--color-primary]/30"
+                    className="bg-gradient-to-r from-[var(--color-primary)]/10 to-[var(--color-primary)]/20 rounded-lg p-4 border border-[var(--color-primary)]/30"
                   >
                     <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-[--color-primary] rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 bg-[var(--color-primary)] rounded-full flex items-center justify-center flex-shrink-0">
                         <TrendingUp className="w-4 h-4 text-white" />
                       </div>
                       <div className="space-y-1">
-                        <h4 className="font-semibold text-[--color-primary] dark:text-[--color-primary]">Weight Progress Insight</h4>
-                        <p data-testid="text-weight-insight" className="text-sm text-[--color-primary]/80 dark:text-[--color-primary]/80">
+                        <h4 className="font-semibold text-[var(--color-primary)] dark:text-[var(--color-primary)]">Weight Progress Insight</h4>
+                        <p data-testid="text-weight-insight" className="text-sm text-[var(--color-primary)]/80 dark:text-[var(--color-primary)]/80">
                           {(() => {
                             if (weightTrendData.length < 2) {
                               return "Keep logging your weight to see meaningful trends and insights!"
@@ -391,24 +391,24 @@ export default function ProgressPage() {
             ) : (
               <Card 
                 data-testid="card-weight-trend-empty"
-                className="bg-[--color-surface]/90 border-[--color-border] backdrop-blur-xl"
+                className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl"
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="w-6 h-6 text-[--color-primary]" />
-                    <CardTitle className="text-xl text-[--color-text-primary]">Weight Trend</CardTitle>
+                    <TrendingUp className="w-6 h-6 text-[var(--color-primary)]" />
+                    <CardTitle className="text-xl text-[var(--color-text-primary)]">Weight Trend</CardTitle>
                   </div>
-                  <CardDescription className="text-[--color-text-secondary]">
+                  <CardDescription className="text-[var(--color-text-secondary)]">
                     No weight data available yet. Start logging your weight in the profile section to see trends.
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="bg-gradient-to-r from-[--color-primary]/10 to-[--color-primary]/20 rounded-lg p-6 border border-[--color-primary]/30 text-center">
-                    <div className="w-12 h-12 mx-auto bg-[--color-primary] rounded-full flex items-center justify-center mb-3">
+                  <div className="bg-gradient-to-r from-[var(--color-primary)]/10 to-[var(--color-primary)]/20 rounded-lg p-6 border border-[var(--color-primary)]/30 text-center">
+                    <div className="w-12 h-12 mx-auto bg-[var(--color-primary)] rounded-full flex items-center justify-center mb-3">
                       <TrendingUp className="w-6 h-6 text-white" />
                     </div>
-                    <h4 className="font-semibold text-[--color-primary] dark:text-[--color-primary] mb-2">Ready to Track Your Progress?</h4>
-                    <p className="text-sm text-[--color-primary]/80 dark:text-[--color-primary]/80">
+                    <h4 className="font-semibold text-[var(--color-primary)] dark:text-[var(--color-primary)] mb-2">Ready to Track Your Progress?</h4>
+                    <p className="text-sm text-[var(--color-primary)]/80 dark:text-[var(--color-primary)]/80">
                       Start logging your weight regularly to visualize your fitness journey and get personalized insights!
                     </p>
                   </div>
@@ -418,17 +418,17 @@ export default function ProgressPage() {
 
             {/* Badges & Achievements Section */}
             <div className="space-y-3">
-              <h2 className="text-xl font-semibold text-[--color-text-primary]">Badges & Achievements</h2>
+              <h2 className="text-xl font-semibold text-[var(--color-text-primary)]">Badges & Achievements</h2>
               <Card 
                 data-testid="card-badges-achievements"
-                className="bg-[--color-surface]/90 border-[--color-border] backdrop-blur-xl"
+                className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl"
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <Trophy className="w-6 h-6 text-[--color-primary]" />
-                    <CardTitle className="text-xl text-[--color-text-primary]">Your Achievements</CardTitle>
+                    <Trophy className="w-6 h-6 text-[var(--color-primary)]" />
+                    <CardTitle className="text-xl text-[var(--color-text-primary)]">Your Achievements</CardTitle>
                   </div>
-                  <CardDescription className="text-[--color-text-secondary]">
+                  <CardDescription className="text-[var(--color-text-secondary)]">
                     Unlock badges by hitting milestones in your fitness journey!
                   </CardDescription>
                 </CardHeader>
@@ -607,7 +607,7 @@ export default function ProgressPage() {
                             <div className="space-y-1">
                               <h4 
                                 data-testid={`text-badge-title-${achievement.id}`}
-                                className={`text-xs font-semibold ${achievement.earned ? 'text-[--color-text-primary]' : 'text-slate-500 dark:text-slate-400'}`}
+                                className={`text-xs font-semibold ${achievement.earned ? 'text-[var(--color-text-primary)]' : 'text-slate-500 dark:text-slate-400'}`}
                               >
                                 {achievement.title}
                               </h4>
@@ -628,12 +628,12 @@ export default function ProgressPage() {
                   <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Award className="w-5 h-5 text-[--color-primary]" />
-                        <span className="font-medium text-[--color-text-primary]">Achievement Progress</span>
+                        <Award className="w-5 h-5 text-[var(--color-primary)]" />
+                        <span className="font-medium text-[var(--color-text-primary)]">Achievement Progress</span>
                       </div>
                       <div 
                         data-testid="text-achievement-summary"
-                        className="text-sm text-[--color-text-secondary]"
+                        className="text-sm text-[var(--color-text-secondary)]"
                       >
                         {(() => {
                           const totalAchievements = 10
@@ -662,14 +662,14 @@ export default function ProgressPage() {
             {/* Daily Calories Chart */}
             <Card 
               data-testid="card-daily-calories"
-              className="bg-[--color-surface]/90 border-[--color-border] backdrop-blur-xl"
+              className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl"
             >
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Flame className="w-6 h-6 text-[--color-primary]" />
-                  <CardTitle className="text-xl text-[--color-text-primary]">Daily Calories (Last 7 Days)</CardTitle>
+                  <Flame className="w-6 h-6 text-[var(--color-primary)]" />
+                  <CardTitle className="text-xl text-[var(--color-text-primary)]">Daily Calories (Last 7 Days)</CardTitle>
                 </div>
-                <CardDescription className="text-[--color-text-secondary]">
+                <CardDescription className="text-[var(--color-text-secondary)]">
                   Your daily calorie intake {isGuestMode && '(from your logged meals)'}
                 </CardDescription>
               </CardHeader>
@@ -697,14 +697,14 @@ export default function ProgressPage() {
                         />
                         <Bar 
                           dataKey="calories" 
-                          fill="hsl(var(--primary))"
+                          fill="var(--color-nutrition)"
                           radius={[4, 4, 0, 0]}
                         />
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
                 ) : (
-                  <p className="text-[--color-text-secondary] text-center py-8">
+                  <p className="text-[var(--color-text-secondary)] text-center py-8">
                     No meals logged yet. Start tracking your nutrition to see daily calorie trends!
                   </p>
                 )}
@@ -714,14 +714,14 @@ export default function ProgressPage() {
             {/* Workout Consistency Section */}
             <Card 
               data-testid="card-workout-details"
-              className="bg-[--color-surface]/90 border-[--color-border] backdrop-blur-xl"
+              className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl"
             >
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Target className="w-6 h-6 text-[--color-primary]" />
-                  <CardTitle className="text-xl text-[--color-text-primary]">Workout Details</CardTitle>
+                  <Target className="w-6 h-6 text-[var(--color-primary)]" />
+                  <CardTitle className="text-xl text-[var(--color-text-primary)]">Workout Details</CardTitle>
                 </div>
-                <CardDescription className="text-[--color-text-secondary]">
+                <CardDescription className="text-[var(--color-text-secondary)]">
                   Your workout performance and consistency metrics
                 </CardDescription>
               </CardHeader>
@@ -731,8 +731,8 @@ export default function ProgressPage() {
                     data-testid="card-workouts-this-month"
                     className="text-center p-4 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 rounded-lg backdrop-blur-sm"
                   >
-                    <div data-testid="text-workouts-this-month" className="text-2xl font-bold text-[--color-primary]">{workoutStats.workoutsThisMonth}</div>
-                    <div className="text-sm text-[--color-primary]/80">Workouts This Month</div>
+                    <div data-testid="text-workouts-this-month" className="text-2xl font-bold text-[var(--color-primary)]">{workoutStats.workoutsThisMonth}</div>
+                    <div className="text-sm text-[var(--color-primary)]/80">Workouts This Month</div>
                   </div>
                   <div 
                     data-testid="card-total-sets"
@@ -748,20 +748,20 @@ export default function ProgressPage() {
                     data-testid="card-average-rir"
                     className="text-center p-4 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 rounded-lg backdrop-blur-sm"
                   >
-                    <div data-testid="text-average-rir" className="text-2xl font-bold text-[--color-primary]">{workoutStats.averageRIR}</div>
-                    <div className="text-sm text-[--color-primary]/80">Average RIR (Reps in Reserve)</div>
+                    <div data-testid="text-average-rir" className="text-2xl font-bold text-[var(--color-primary)]">{workoutStats.averageRIR}</div>
+                    <div className="text-sm text-[var(--color-primary)]/80">Average RIR (Reps in Reserve)</div>
                   </div>
                 )}
 
                 {workoutStats.totalWorkouts > 0 ? (
-                  <p className="text-sm text-[--color-text-secondary]">
+                  <p className="text-sm text-[var(--color-text-secondary)]">
                     {workoutStats.currentStreak > 0 
                       ? `Great consistency! You're on a ${workoutStats.currentStreak}-day streak. Keep up the momentum!`
                       : "Keep building your consistency! Try to workout regularly to build a streak."
                     }
                   </p>
                 ) : (
-                  <p className="text-sm text-[--color-text-secondary]">
+                  <p className="text-sm text-[var(--color-text-secondary)]">
                     Start logging workouts to see your consistency metrics and progress over time.
                   </p>
                 )}

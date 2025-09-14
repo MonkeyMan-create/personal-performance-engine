@@ -1,4 +1,5 @@
 import React from 'react'
+import tinycolor from 'tinycolor2'
 
 interface ProgressRingProps {
   progress: number // 0-100
@@ -8,6 +9,7 @@ interface ProgressRingProps {
   unit?: string
   size?: 'sm' | 'md' | 'lg'
   className?: string
+  color?: string // Dynamic color support
 }
 
 export default function ProgressRing({ 
@@ -17,7 +19,8 @@ export default function ProgressRing({
   label, 
   unit = '',
   size = 'lg',
-  className = ''
+  className = '',
+  color
 }: ProgressRingProps) {
   // Size configurations
   const sizeConfig = {
@@ -30,6 +33,31 @@ export default function ProgressRing({
   const radius = (config.diameter - config.strokeWidth) / 2
   const circumference = 2 * Math.PI * radius
   const strokeDashoffset = circumference - (Math.min(100, progress) / 100) * circumference
+
+  // Resolve color from CSS variable or use default
+  let resolvedColor = '#6366F1' // Default fallback
+  if (color) {
+    if (color.startsWith('var(')) {
+      // Extract CSS variable and get computed value
+      const cssVar = color.slice(4, -1) // Remove 'var(' and ')'
+      const computedColor = getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim()
+      if (computedColor) {
+        resolvedColor = computedColor
+      }
+    } else {
+      resolvedColor = color
+    }
+  }
+
+  // Generate gradient colors from base color
+  const gradientColors = {
+    start: resolvedColor,
+    middle: tinycolor(resolvedColor).darken(5).toString(),
+    end: tinycolor(resolvedColor).darken(10).toString()
+  }
+
+  // Generate unique gradient ID to avoid conflicts
+  const gradientId = `progressGradient-${label.toLowerCase().replace(/\s+/g, '-')}`
 
   return (
     <div className={`relative ${className}`} data-testid={`progress-ring-${label.toLowerCase().replace(' ', '-')}`}>
@@ -48,12 +76,12 @@ export default function ProgressRing({
           fill="none"
           className="text-slate-700/40"
         />
-        {/* Progress circle with teal gradient */}
+        {/* Progress circle with dynamic gradient */}
         <circle
           cx={config.diameter / 2}
           cy={config.diameter / 2}
           r={radius}
-          stroke="url(#progressGradient)"
+          stroke={`url(#${gradientId})`}
           strokeWidth={config.strokeWidth}
           fill="none"
           strokeDasharray={circumference}
@@ -61,15 +89,15 @@ export default function ProgressRing({
           strokeLinecap="round"
           className="transition-all duration-1000 ease-out"
           style={{
-            filter: 'drop-shadow(0 0 8px rgba(99, 102, 241, 0.4))'
+            filter: `drop-shadow(0 0 8px ${tinycolor(resolvedColor).setAlpha(0.4).toString()})`
           }}
         />
-        {/* Gradient definition */}
+        {/* Dynamic gradient definition */}
         <defs>
-          <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#6366F1" />
-            <stop offset="50%" stopColor="#4F46E5" />
-            <stop offset="100%" stopColor="#4338CA" />
+          <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor={gradientColors.start} />
+            <stop offset="50%" stopColor={gradientColors.middle} />
+            <stop offset="100%" stopColor={gradientColors.end} />
           </linearGradient>
         </defs>
       </svg>
