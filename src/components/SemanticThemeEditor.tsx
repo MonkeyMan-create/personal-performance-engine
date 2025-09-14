@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { SketchPicker, ColorResult } from 'react-color'
 import { Button } from './ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Palette, RotateCcw, Check, ChevronDown, ChevronUp } from 'lucide-react'
 import { useToast } from '../hooks/use-toast'
 import tinycolor from 'tinycolor2'
+
+interface ColorResult {
+  hex: string
+}
 
 interface SemanticTheme {
   action: string      // Default: '#0D9488'
@@ -65,7 +68,24 @@ const STORAGE_KEY = 'semantic-theme-colors'
 export default function SemanticThemeEditor() {
   const [currentTheme, setCurrentTheme] = useState<SemanticTheme>(DEFAULT_THEME)
   const [expandedSection, setExpandedSection] = useState<keyof SemanticTheme | null>(null)
+  const [SketchPicker, setSketchPicker] = useState<any>(null)
+  const [isColorPickerLoading, setIsColorPickerLoading] = useState(false)
   const { toast } = useToast()
+
+  // Lazy load SketchPicker when needed
+  const loadColorPicker = async () => {
+    if (SketchPicker) return
+    
+    setIsColorPickerLoading(true)
+    try {
+      const { SketchPicker: Picker } = await import('react-color')
+      setSketchPicker(() => Picker)
+    } catch (error) {
+      console.error('Failed to load color picker:', error)
+    } finally {
+      setIsColorPickerLoading(false)
+    }
+  }
 
   // Function to apply semantic colors with dynamic calculations
   const applySemanticColors = (colors: SemanticTheme) => {
@@ -167,7 +187,11 @@ export default function SemanticThemeEditor() {
     })
   }
 
-  const toggleSection = (categoryId: keyof SemanticTheme) => {
+  const toggleSection = async (categoryId: keyof SemanticTheme) => {
+    if (expandedSection !== categoryId) {
+      // Load color picker when expanding a section
+      await loadColorPicker()
+    }
     setExpandedSection(expandedSection === categoryId ? null : categoryId)
   }
 
@@ -227,11 +251,24 @@ export default function SemanticThemeEditor() {
                 <div className="space-y-4">
                   {/* Color Picker */}
                   <div className="flex justify-center">
-                    <SketchPicker
-                      color={currentTheme[category.id]}
-                      onChange={(color) => handleColorChange(category.id, color)}
-                      data-testid={`color-picker-${category.id}`}
-                    />
+                    {isColorPickerLoading ? (
+                      <div className="w-60 h-60 bg-muted/30 rounded-lg flex items-center justify-center">
+                        <div className="flex items-center gap-2">
+                          <div className="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                          <span className="text-sm text-muted-foreground">Loading color picker...</span>
+                        </div>
+                      </div>
+                    ) : SketchPicker ? (
+                      <SketchPicker
+                        color={currentTheme[category.id]}
+                        onChange={(color: ColorResult) => handleColorChange(category.id, color)}
+                        data-testid={`color-picker-${category.id}`}
+                      />
+                    ) : (
+                      <div className="w-60 h-60 bg-muted/30 rounded-lg flex items-center justify-center">
+                        <span className="text-sm text-muted-foreground">Color picker not loaded</span>
+                      </div>
+                    )}
                   </div>
                   
                   {/* Actions */}

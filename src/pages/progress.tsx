@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import AuthPrompt from '../components/AuthPrompt'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts'
 import { TrendingUp, Calendar, Dumbbell, Apple, Target, Flame, Trophy, Award, Star, Zap, Shield, Crown, Medal, BadgeCheck } from 'lucide-react'
 import { getWorkoutsLocally, getMealsLocally, getProgressLocally, GuestWorkout, GuestMeal, GuestProgress } from '../utils/guestStorage'
 import { useMeasurement } from '../contexts/MeasurementContext'
@@ -39,6 +38,8 @@ export default function ProgressPage() {
   const [meals, setMeals] = useState<GuestMeal[]>([])
   const [progressData, setProgressData] = useState<GuestProgress[]>([])
   const [isLoading, setIsLoading] = useState(false)
+  const [chartsLoading, setChartsLoading] = useState(true)
+  const [chartComponents, setChartComponents] = useState<any>(null)
   const [workoutStats, setWorkoutStats] = useState<WorkoutStats>({
     totalWorkouts: 0,
     workoutsThisMonth: 0,
@@ -52,6 +53,32 @@ export default function ProgressPage() {
     totalCalories: 0,
     mealsThisWeek: 0
   })
+
+  // Lazy load chart components
+  useEffect(() => {
+    const loadChartComponents = async () => {
+      try {
+        const recharts = await import('recharts')
+        setChartComponents({
+          LineChart: recharts.LineChart,
+          Line: recharts.Line,
+          XAxis: recharts.XAxis,
+          YAxis: recharts.YAxis,
+          CartesianGrid: recharts.CartesianGrid,
+          Tooltip: recharts.Tooltip,
+          ResponsiveContainer: recharts.ResponsiveContainer,
+          BarChart: recharts.BarChart,
+          Bar: recharts.Bar
+        })
+      } catch (error) {
+        console.error('Failed to load chart components:', error)
+      } finally {
+        setChartsLoading(false)
+      }
+    }
+
+    loadChartComponents()
+  }, [])
 
   // Load data and calculate stats on component mount
   useEffect(() => {
@@ -323,35 +350,48 @@ export default function ProgressPage() {
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="h-72 w-full">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={weightTrendData}>
-                        <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                        <XAxis 
-                          dataKey="date" 
-                          tick={{ fontSize: 12 }}
-                          className="text-muted-foreground"
-                        />
-                        <YAxis 
-                          tick={{ fontSize: 12 }}
-                          className="text-muted-foreground"
-                        />
-                        <Tooltip 
-                          contentStyle={{ 
-                            backgroundColor: 'var(--color-surface)',
-                            border: '1px solid var(--color-border)',
-                            borderRadius: '8px'
-                          }}
-                          formatter={(value: number) => [`${value.toFixed(1)} ${unit}`, 'Weight']}
-                        />
-                        <Line 
-                          type="monotone" 
-                          dataKey="weight" 
-                          stroke="var(--color-activity)" 
-                          strokeWidth={3}
-                          dot={{ fill: 'var(--color-activity)', strokeWidth: 2, r: 5 }}
-                        />
-                      </LineChart>
-                    </ResponsiveContainer>
+                    {chartsLoading ? (
+                      <div className="flex items-center justify-center h-full bg-muted/20 rounded-lg border border-border">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                          <span className="text-muted-foreground">Loading chart...</span>
+                        </div>
+                      </div>
+                    ) : chartComponents ? (
+                      <chartComponents.ResponsiveContainer width="100%" height="100%">
+                        <chartComponents.LineChart data={weightTrendData}>
+                          <chartComponents.CartesianGrid strokeDasharray="3 3" className="opacity-30" />
+                          <chartComponents.XAxis 
+                            dataKey="date" 
+                            tick={{ fontSize: 12 }}
+                            className="text-muted-foreground"
+                          />
+                          <chartComponents.YAxis 
+                            tick={{ fontSize: 12 }}
+                            className="text-muted-foreground"
+                          />
+                          <chartComponents.Tooltip 
+                            contentStyle={{ 
+                              backgroundColor: 'var(--color-surface)',
+                              border: '1px solid var(--color-border)',
+                              borderRadius: '8px'
+                            }}
+                            formatter={(value: number) => [`${value.toFixed(1)} ${unit}`, 'Weight']}
+                          />
+                          <chartComponents.Line 
+                            type="monotone" 
+                            dataKey="weight" 
+                            stroke="var(--color-activity)" 
+                            strokeWidth={3}
+                            dot={{ fill: 'var(--color-activity)', strokeWidth: 2, r: 5 }}
+                          />
+                        </chartComponents.LineChart>
+                      </chartComponents.ResponsiveContainer>
+                    ) : (
+                      <div className="flex items-center justify-center h-full bg-muted/20 rounded-lg border border-border">
+                        <span className="text-muted-foreground">Chart unavailable</span>
+                      </div>
+                    )}
                   </div>
                   
                   {/* Motivational Insights */}
@@ -699,32 +739,45 @@ export default function ProgressPage() {
               <CardContent>
                 {calorieChartData.some(data => data.calories > 0) ? (
                   <div className="h-64 w-full">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <BarChart data={calorieChartData}>
-                        <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                        <XAxis 
-                          dataKey="date" 
-                          tick={{ fontSize: 12 }}
-                          className="text-muted-foreground"
-                        />
-                        <YAxis 
-                          tick={{ fontSize: 12 }}
-                          className="text-muted-foreground"
-                        />
-                        <Tooltip 
-                          contentStyle={{ 
-                            backgroundColor: 'var(--color-surface)',
-                            border: '1px solid var(--color-border)',
-                            borderRadius: '8px'
-                          }}
-                        />
-                        <Bar 
-                          dataKey="calories" 
-                          fill="var(--color-nutrition)"
-                          radius={[4, 4, 0, 0]}
-                        />
-                      </BarChart>
-                    </ResponsiveContainer>
+                    {chartsLoading ? (
+                      <div className="flex items-center justify-center h-full bg-muted/20 rounded-lg border border-border">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                          <span className="text-muted-foreground">Loading chart...</span>
+                        </div>
+                      </div>
+                    ) : chartComponents ? (
+                      <chartComponents.ResponsiveContainer width="100%" height="100%">
+                        <chartComponents.BarChart data={calorieChartData}>
+                          <chartComponents.CartesianGrid strokeDasharray="3 3" className="opacity-30" />
+                          <chartComponents.XAxis 
+                            dataKey="date" 
+                            tick={{ fontSize: 12 }}
+                            className="text-muted-foreground"
+                          />
+                          <chartComponents.YAxis 
+                            tick={{ fontSize: 12 }}
+                            className="text-muted-foreground"
+                          />
+                          <chartComponents.Tooltip 
+                            contentStyle={{ 
+                              backgroundColor: 'var(--color-surface)',
+                              border: '1px solid var(--color-border)',
+                              borderRadius: '8px'
+                            }}
+                          />
+                          <chartComponents.Bar 
+                            dataKey="calories" 
+                            fill="var(--color-nutrition)"
+                            radius={[4, 4, 0, 0]}
+                          />
+                        </chartComponents.BarChart>
+                      </chartComponents.ResponsiveContainer>
+                    ) : (
+                      <div className="flex items-center justify-center h-full bg-muted/20 rounded-lg border border-border">
+                        <span className="text-muted-foreground">Chart unavailable</span>
+                      </div>
+                    )}
                   </div>
                 ) : (
                   <p className="text-[var(--color-text-secondary)] text-center py-8">

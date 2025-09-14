@@ -3,7 +3,6 @@ import { useAuth } from '../contexts/AuthContext'
 import AuthPrompt from '../components/AuthPrompt'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Badge } from '../components/ui/badge'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts'
 import { 
   Calendar, 
   Dumbbell, 
@@ -60,6 +59,8 @@ export default function YearInReviewPage() {
   const [yearlyStats, setYearlyStats] = useState<YearlyStats | null>(null)
   const [achievements, setAchievements] = useState<Achievement[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [chartsLoading, setChartsLoading] = useState(true)
+  const [chartComponents, setChartComponents] = useState<any>(null)
   const [currentYear] = useState(new Date().getFullYear())
 
   // Colors for different chart elements
@@ -69,6 +70,33 @@ export default function YearInReviewPage() {
     accent: 'hsl(var(--color-wellness))',
     muted: 'hsl(var(--color-surface))'
   }
+
+  // Lazy load chart components
+  useEffect(() => {
+    const loadChartComponents = async () => {
+      try {
+        const recharts = await import('recharts')
+        setChartComponents({
+          LineChart: recharts.LineChart,
+          Line: recharts.Line,
+          XAxis: recharts.XAxis,
+          YAxis: recharts.YAxis,
+          CartesianGrid: recharts.CartesianGrid,
+          Tooltip: recharts.Tooltip,
+          ResponsiveContainer: recharts.ResponsiveContainer,
+          BarChart: recharts.BarChart,
+          Bar: recharts.Bar,
+          Cell: recharts.Cell
+        })
+      } catch (error) {
+        console.error('Failed to load chart components:', error)
+      } finally {
+        setChartsLoading(false)
+      }
+    }
+
+    loadChartComponents()
+  }, [])
 
   useEffect(() => {
     const calculateYearlyStats = async () => {
@@ -506,29 +534,42 @@ export default function YearInReviewPage() {
           </CardHeader>
           <CardContent>
             <div className="h-64 w-full" data-testid="monthly-activity-chart">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={yearlyStats.monthlyWorkouts}>
-                  <CartesianGrid strokeDasharray="3 3" className="opacity-30" />
-                  <XAxis 
-                    dataKey="month" 
-                    tick={{ fontSize: 12 }}
-                    className="text-muted-foreground"
-                  />
-                  <YAxis 
-                    tick={{ fontSize: 12 }}
-                    className="text-muted-foreground"
-                  />
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: 'var(--color-surface)',
-                      border: '1px solid var(--color-border)',
-                      borderRadius: '8px'
-                    }}
-                    formatter={(value: number) => [`${value} workouts`, 'Workouts']}
-                  />
-                  <Bar dataKey="workouts" fill={chartColors.primary} radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+              {chartsLoading ? (
+                <div className="flex items-center justify-center h-full bg-muted/20 rounded-lg border border-border">
+                  <div className="flex items-center gap-3">
+                    <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                    <span className="text-muted-foreground">Loading chart...</span>
+                  </div>
+                </div>
+              ) : chartComponents ? (
+                <chartComponents.ResponsiveContainer width="100%" height="100%">
+                  <chartComponents.BarChart data={yearlyStats.monthlyWorkouts}>
+                    <chartComponents.CartesianGrid strokeDasharray="3 3" className="opacity-30" />
+                    <chartComponents.XAxis 
+                      dataKey="month" 
+                      tick={{ fontSize: 12 }}
+                      className="text-muted-foreground"
+                    />
+                    <chartComponents.YAxis 
+                      tick={{ fontSize: 12 }}
+                      className="text-muted-foreground"
+                    />
+                    <chartComponents.Tooltip 
+                      contentStyle={{ 
+                        backgroundColor: 'var(--color-surface)',
+                        border: '1px solid var(--color-border)',
+                        borderRadius: '8px'
+                      }}
+                      formatter={(value: number) => [`${value} workouts`, 'Workouts']}
+                    />
+                    <chartComponents.Bar dataKey="workouts" fill={chartColors.primary} radius={[4, 4, 0, 0]} />
+                  </chartComponents.BarChart>
+                </chartComponents.ResponsiveContainer>
+              ) : (
+                <div className="flex items-center justify-center h-full bg-muted/20 rounded-lg border border-border">
+                  <span className="text-muted-foreground">Chart unavailable</span>
+                </div>
+              )}
             </div>
           </CardContent>
         </Card>

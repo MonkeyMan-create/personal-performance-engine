@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog'
 import { Button } from './ui/button'
 import { Camera, CameraOff, AlertCircle } from 'lucide-react'
-import { useZxing } from 'react-zxing'
+// Removed direct import for lazy loading
 import { toast } from '../hooks/use-toast'
 
 interface BarcodeScannerProps {
@@ -20,40 +20,63 @@ export default function BarcodeScanner({
 }: BarcodeScannerProps) {
   const [cameraError, setCameraError] = useState<string | null>(null)
   const [isCameraReady, setIsCameraReady] = useState(false)
+  const [scannerLoading, setScannerLoading] = useState(false)
+  const [zxingRef, setZxingRef] = useState<any>(null)
   const isScanningRef = useRef(false)
   const videoStreamRef = useRef<MediaStream | null>(null)
+  const scannerSetupRef = useRef(false)
 
-  // Camera barcode scanning with react-zxing
-  const { ref: cameraRef } = useZxing({
-    onDecodeResult: useCallback((result: any) => {
-      const barcode = result.getText()
-      if (barcode && !isScanningRef.current) {
-        isScanningRef.current = true
-        onBarcodeScanned(barcode)
-        onClose()
-        toast({
-          title: 'Barcode detected!',
-          description: `Scanning product: ${barcode}`
-        })
+  // Lazy load react-zxing when scanner is needed
+  const setupBarcodeScanner = useCallback(async () => {
+    if (scannerSetupRef.current || scannerLoading) return
+    
+    setScannerLoading(true)
+    scannerSetupRef.current = true
+    
+    try {
+      const { useZxing } = await import('react-zxing')
+      
+      const scannerConfig = {
+        onDecodeResult: (result: any) => {
+          const barcode = result.getText()
+          if (barcode && !isScanningRef.current) {
+            isScanningRef.current = true
+            onBarcodeScanned(barcode)
+            onClose()
+            toast({
+              title: 'Barcode detected!',
+              description: `Scanning product: ${barcode}`
+            })
+          }
+        },
+        onDecodeError: (error: any) => {
+          // Silently handle decode errors - this is normal during scanning
+          console.debug('Barcode decode error:', error)
+        },
+        constraints: {
+          video: {
+            facingMode: 'environment', // Use back camera on mobile
+            width: { ideal: 640 },
+            height: { ideal: 480 }
+          }
+        },
+        timeBetweenDecodingAttempts: 300
       }
-    }, [onBarcodeScanned, onClose]),
-    onDecodeError: useCallback((error: any) => {
-      // Silently handle decode errors - this is normal during scanning
-      console.debug('Barcode decode error:', error)
-    }, []),
-    constraints: {
-      video: {
-        facingMode: 'environment', // Use back camera on mobile
-        width: { ideal: 640 },
-        height: { ideal: 480 }
-      }
-    },
-    timeBetweenDecodingAttempts: 300
-  })
+      
+      // Return the scanner ref setup function
+      setZxingRef(() => useZxing(scannerConfig))
+    } catch (error) {
+      console.error('Failed to load barcode scanner:', error)
+      setCameraError('Failed to load barcode scanner. Please try again or enter barcode manually.')
+    } finally {
+      setScannerLoading(false)
+    }
+  }, [onBarcodeScanned, onClose])
 
   const handleDialogOpenChange = (open: boolean) => {
     if (open) {
-      // Opening - initialize camera
+      // Opening - setup scanner and initialize camera
+      setupBarcodeScanner()
       initializeCamera()
     } else {
       // Closing - cleanup camera
@@ -116,6 +139,9 @@ export default function BarcodeScanner({
     isScanningRef.current = false
     setIsCameraReady(false)
     setCameraError(null)
+    scannerSetupRef.current = false
+    setZxingRef(null)
+    setScannerLoading(false)
     onClose()
   }
 
@@ -156,7 +182,7 @@ export default function BarcodeScanner({
             <div className="relative">
               <div className="aspect-video bg-black rounded-lg overflow-hidden relative">
                 <video
-                  ref={cameraRef as React.RefObject<HTMLVideoElement>}
+                  ref={zxingRef?.ref as React.RefObject<HTMLVideoElement>}
                   className="w-full h-full object-cover"
                   autoPlay
                   muted
@@ -178,8 +204,16 @@ export default function BarcodeScanner({
                   </div>
                 </div>
                 
-                {/* Loading indicator */}
-                {!isCameraReady && (
+                {/* Loading indicators */}
+                {scannerLoading && (
+                  <div className="absolute inset-0 bg-black/75 flex items-center justify-center">
+                    <div className="text-white text-center">
+                      <div className="w-8 h-8 mx-auto mb-2 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      <p className="text-sm">Loading scanner...</p>
+                    </div>
+                  </div>
+                )}
+                {!scannerLoading && !isCameraReady && (
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
                     <div className="text-white text-center">
                       <CameraOff className="w-8 h-8 mx-auto mb-2 animate-pulse" />

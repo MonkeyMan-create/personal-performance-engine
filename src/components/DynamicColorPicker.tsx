@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { SketchPicker, ColorResult } from 'react-color'
 import tinycolor from 'tinycolor2'
 import { Button } from './ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Palette, RotateCcw, Check } from 'lucide-react'
 import { useToast } from '../hooks/use-toast'
 import { useTheme } from './theme-provider'
+
+interface ColorResult {
+  hex: string
+}
 
 interface DynamicColorPickerProps {
   onColorApply?: (color: string) => void
@@ -23,8 +26,30 @@ const CUSTOM_COLOR_STORAGE_KEY = 'custom-theme-color'
 export default function DynamicColorPicker({ onColorApply, onReset }: DynamicColorPickerProps) {
   const [selectedColor, setSelectedColor] = useState('#14B8A6') // Default teal
   const [showColorPicker, setShowColorPicker] = useState(false)
+  const [SketchPicker, setSketchPicker] = useState<any>(null)
+  const [isColorPickerLoading, setIsColorPickerLoading] = useState(false)
   const { toast } = useToast()
   const { colorTheme, setColorTheme, hasCustomColor, clearCustomColor } = useTheme()
+
+  // Lazy load SketchPicker when needed
+  const loadColorPicker = async () => {
+    if (SketchPicker) return
+    
+    setIsColorPickerLoading(true)
+    try {
+      const { SketchPicker: Picker } = await import('react-color')
+      setSketchPicker(() => Picker)
+    } catch (error) {
+      console.error('Failed to load color picker:', error)
+      toast({
+        title: 'Loading Error',
+        description: 'Failed to load color picker. Please try again.',
+        variant: 'destructive'
+      })
+    } finally {
+      setIsColorPickerLoading(false)
+    }
+  }
 
   // Sync selectedColor with theme provider state
   useEffect(() => {
@@ -154,7 +179,12 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
           <div className="flex items-center gap-4">
             {/* Color Swatch */}
             <button
-              onClick={() => setShowColorPicker(!showColorPicker)}
+              onClick={async () => {
+                if (!showColorPicker) {
+                  await loadColorPicker()
+                }
+                setShowColorPicker(!showColorPicker)
+              }}
               className="w-16 h-16 rounded-xl border-4 border-[var(--color-border)] shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
               style={{ backgroundColor: selectedColor }}
               data-testid="color-swatch-button"
@@ -202,29 +232,50 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
           <div className="relative">
             <div className="absolute top-0 left-0 z-50">
               <div className="relative">
-                <SketchPicker
-                  color={selectedColor}
-                  onChange={handleColorChange}
-                  disableAlpha={true}
-                  presetColors={[
-                    '#14B8A6', // Teal
-                    '#3B82F6', // Blue
-                    '#F97316', // Orange
-                    '#8B5CF6', // Purple
-                    '#dc2626', // Ruby
-                    '#16a34a', // Forest
-                    '#d97706', // Amber
-                    '#1d4ed8', // Sapphire
-                    '#FF6B6B', // Coral
-                    '#4ECDC4', // Mint
-                    '#45B7D1', // Sky
-                    '#96CEB4', // Sage
-                    '#FECA57', // Gold
-                    '#FF9FF3', // Pink
-                    '#54A0FF', // Electric Blue
-                    '#5F27CD', // Deep Purple
-                  ]}
-                />
+                {isColorPickerLoading ? (
+                  <div className="w-60 h-80 bg-muted/30 rounded-lg flex items-center justify-center border border-[var(--color-border)]">
+                    <div className="flex flex-col items-center gap-3">
+                      <div className="w-6 h-6 border-2 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                      <span className="text-sm text-muted-foreground">Loading color picker...</span>
+                    </div>
+                  </div>
+                ) : SketchPicker ? (
+                  <SketchPicker
+                    color={selectedColor}
+                    onChange={handleColorChange}
+                    disableAlpha={true}
+                    presetColors={[
+                      '#14B8A6', // Teal
+                      '#3B82F6', // Blue
+                      '#F97316', // Orange
+                      '#8B5CF6', // Purple
+                      '#dc2626', // Ruby
+                      '#16a34a', // Forest
+                      '#d97706', // Amber
+                      '#1d4ed8', // Sapphire
+                      '#FF6B6B', // Coral
+                      '#4ECDC4', // Mint
+                      '#45B7D1', // Sky
+                      '#96CEB4', // Sage
+                      '#FECA57', // Gold
+                      '#FF9FF3', // Pink
+                      '#54A0FF', // Electric Blue
+                      '#5F27CD', // Deep Purple
+                    ]}
+                  />
+                ) : (
+                  <div className="w-60 h-80 bg-muted/30 rounded-lg flex items-center justify-center border border-[var(--color-border)]">
+                    <div className="flex flex-col items-center gap-3">
+                      <span className="text-sm text-muted-foreground">Failed to load color picker</span>
+                      <button 
+                        onClick={loadColorPicker}
+                        className="text-xs text-primary hover:underline"
+                      >
+                        Try again
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div className="h-80 w-full" /> {/* Spacer for picker */}
