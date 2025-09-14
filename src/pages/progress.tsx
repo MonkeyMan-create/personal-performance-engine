@@ -231,7 +231,11 @@ export default function ProgressPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Card 
                   data-testid="card-total-workouts"
-                  className="bg-gradient-to-br from-[var(--color-activity)]/60 to-[var(--color-activity)]/70 border-[var(--color-activity)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-activity)]/20 hover:shadow-xl transition-all duration-200"
+                  className="border-[var(--color-activity)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+                  style={{
+                    background: `linear-gradient(to bottom right, rgb(139 92 246 / 0.6), rgb(139 92 246 / 0.7))`,
+                    boxShadow: `0 10px 15px -3px rgb(139 92 246 / 0.2), 0 4px 6px -2px rgb(139 92 246 / 0.05)`
+                  }}
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
                     <div className="w-12 h-12 mx-auto bg-[var(--color-activity)] rounded-full flex items-center justify-center">
@@ -246,7 +250,11 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-day-streak"
-                  className="bg-gradient-to-br from-[var(--color-success)]/60 to-[var(--color-success)]/70 border-[var(--color-success)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-success)]/20 hover:shadow-xl transition-all duration-200"
+                  className="border-[var(--color-success)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+                  style={{
+                    background: `linear-gradient(to bottom right, rgb(34 197 94 / 0.6), rgb(34 197 94 / 0.7))`,
+                    boxShadow: `0 10px 15px -3px rgb(34 197 94 / 0.2), 0 4px 6px -2px rgb(34 197 94 / 0.05)`
+                  }}
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
                     <div className="w-12 h-12 mx-auto bg-white/20 rounded-full flex items-center justify-center">
@@ -261,7 +269,11 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-meals-logged"
-                  className="bg-gradient-to-br from-[var(--color-nutrition)]/60 to-[var(--color-nutrition)]/70 border-[var(--color-nutrition)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-nutrition)]/20 hover:shadow-xl transition-all duration-200"
+                  className="border-[var(--color-nutrition)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+                  style={{
+                    background: `linear-gradient(to bottom right, rgb(249 115 22 / 0.6), rgb(249 115 22 / 0.7))`,
+                    boxShadow: `0 10px 15px -3px rgb(249 115 22 / 0.2), 0 4px 6px -2px rgb(249 115 22 / 0.05)`
+                  }}
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
                     <div className="w-12 h-12 mx-auto bg-[var(--color-nutrition)] rounded-full flex items-center justify-center">
@@ -276,7 +288,11 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-avg-calories"
-                  className="bg-gradient-to-br from-[var(--color-warning)]/60 to-[var(--color-warning)]/70 border-[var(--color-warning)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-warning)]/20 hover:shadow-xl transition-all duration-200"
+                  className="border-[var(--color-warning)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+                  style={{
+                    background: `linear-gradient(to bottom right, rgb(245 158 11 / 0.6), rgb(245 158 11 / 0.7))`,
+                    boxShadow: `0 10px 15px -3px rgb(245 158 11 / 0.2), 0 4px 6px -2px rgb(245 158 11 / 0.05)`
+                  }}
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
                     <div className="w-12 h-12 mx-auto bg-white/20 rounded-full flex items-center justify-center">
