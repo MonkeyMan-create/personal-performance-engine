@@ -115,8 +115,8 @@ export default function SettingsPage() {
     return 'Recently'
   }
 
-  // Settings list item component
-  const SettingsItem = ({ icon: Icon, title, subtitle, action, showToggle = false, toggleState = false, showChevron = true, testId }: {
+  // Settings list item component with vibrant card backgrounds
+  const SettingsItem = ({ icon: Icon, title, subtitle, action, showToggle = false, toggleState = false, showChevron = true, testId, semanticColor = 'action' }: {
     icon: any
     title: string
     subtitle?: string
@@ -125,19 +125,20 @@ export default function SettingsPage() {
     toggleState?: boolean
     showChevron?: boolean
     testId?: string
+    semanticColor?: 'action' | 'wellness' | 'success' | 'warning' | 'activity'
   }) => (
     <div 
-      className="flex items-center justify-between p-5 hover:bg-[var(--color-action)]/10 transition-all duration-200 cursor-pointer rounded-xl mx-3 hover:shadow-lg border border-transparent hover:border-[var(--color-action)]/20"
+      className={`flex items-center justify-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl bg-gradient-to-br from-[var(--color-${semanticColor})]/60 to-[var(--color-${semanticColor})]/70 border border-[var(--color-${semanticColor})]/50 backdrop-blur-sm shadow-[var(--color-${semanticColor})]/20 hover:from-[var(--color-${semanticColor})]/70 hover:to-[var(--color-${semanticColor})]/80`}
       onClick={showToggle ? undefined : action}
       data-testid={testId}
     >
       <div className="flex items-center gap-4">
-        <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-xl shadow-md">
-          <Icon className="w-5 h-5 text-[var(--color-action)]" />
+        <div className="p-3 bg-white/20 rounded-xl shadow-lg backdrop-blur-sm">
+          <Icon className="w-5 h-5 text-white" />
         </div>
         <div>
-          <p className="font-bold text-[var(--color-text-primary)] text-lg">{title}</p>
-          {subtitle && <p className="text-[var(--color-text-secondary)] mt-1 font-medium">{subtitle}</p>}
+          <p className="font-bold text-white text-lg">{title}</p>
+          {subtitle && <p className="text-white/90 mt-1 font-medium">{subtitle}</p>}
         </div>
       </div>
       
@@ -147,20 +148,20 @@ export default function SettingsPage() {
             e.stopPropagation()
             action?.()
           }}
-          className={`relative inline-flex h-8 w-14 items-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--color-action)] focus:ring-offset-2 focus:ring-offset-background shadow-lg ${
-            toggleState ? 'bg-gradient-to-r from-[var(--color-action)] to-[var(--color-action)]/90 shadow-[var(--color-action)]/30' : 'bg-[var(--color-muted)]'
+          className={`relative inline-flex h-8 w-14 items-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent shadow-lg ${
+            toggleState ? 'bg-gradient-to-r from-white to-white/90 shadow-white/30' : 'bg-white/30'
           }`}
           data-testid={`${testId}-toggle`}
         >
           <span
-            className={`inline-block h-6 w-6 transform rounded-full bg-white shadow-lg transition-transform duration-300 ${
-              toggleState ? 'translate-x-7' : 'translate-x-1'
+            className={`inline-block h-6 w-6 transform rounded-full shadow-lg transition-transform duration-300 ${
+              toggleState ? `translate-x-7 bg-[var(--color-${semanticColor})]` : 'translate-x-1 bg-white'
             }`}
           />
         </button>
       ) : showChevron ? (
-        <div className="p-2 bg-[var(--color-action)]/20 rounded-lg">
-          <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
+        <div className="p-2 bg-white/20 rounded-lg shadow-lg backdrop-blur-sm">
+          <ChevronRight className="w-5 h-5 text-white" />
         </div>
       ) : null}
     </div>
@@ -243,18 +244,18 @@ export default function SettingsPage() {
           </CardHeader>
           <CardContent className="p-2 space-y-2">
             <Link href="/profile-edit">
-              <div className="flex items-center justify-between p-5 hover:bg-[var(--color-action)]/10 transition-all duration-200 cursor-pointer rounded-xl mx-3 hover:shadow-lg border border-transparent hover:border-[var(--color-action)]/20" data-testid="settings-profile">
+              <div className="flex items-center justify-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl bg-gradient-to-br from-[var(--color-action)]/60 to-[var(--color-action)]/70 border border-[var(--color-action)]/50 backdrop-blur-sm shadow-[var(--color-action)]/20 hover:from-[var(--color-action)]/70 hover:to-[var(--color-action)]/80" data-testid="settings-profile">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-xl shadow-md">
-                    <User className="w-5 h-5 text-[var(--color-action)]" />
+                  <div className="p-3 bg-white/20 rounded-xl shadow-lg backdrop-blur-sm">
+                    <User className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <p className="font-bold text-[var(--color-text-primary)] text-lg">My Profile & Account</p>
-                    <p className="text-[var(--color-text-secondary)] mt-1 font-medium">View and edit your profile information</p>
+                    <p className="font-bold text-white text-lg">My Profile & Account</p>
+                    <p className="text-white/90 mt-1 font-medium">View and edit your profile information</p>
                   </div>
                 </div>
-                <div className="p-2 bg-[var(--color-action)]/20 rounded-lg">
-                  <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
+                <div className="p-2 bg-white/20 rounded-lg shadow-lg backdrop-blur-sm">
+                  <ChevronRight className="w-5 h-5 text-white" />
                 </div>
               </div>
             </Link>
@@ -267,6 +268,7 @@ export default function SettingsPage() {
               toggleState={theme === 'dark'}
               showChevron={false}
               testId="settings-dark-mode"
+              semanticColor="activity"
             />
             <SettingsItem
               icon={Scale}
@@ -277,6 +279,7 @@ export default function SettingsPage() {
               toggleState={measurementUnit === 'kg'}
               showChevron={false}
               testId="settings-measurement-units"
+              semanticColor="success"
             />
             
             {/* Semantic Theme Editor */}
@@ -287,21 +290,21 @@ export default function SettingsPage() {
             {/* Language Dropdown */}
             <div className="relative">
               <div 
-                className="flex items-center justify-between p-5 hover:bg-[var(--color-action)]/10 transition-all duration-200 cursor-pointer rounded-xl mx-3 hover:shadow-lg border border-transparent hover:border-[var(--color-action)]/20"
+                className="flex items-center justify-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl bg-gradient-to-br from-[var(--color-warning)]/60 to-[var(--color-warning)]/70 border border-[var(--color-warning)]/50 backdrop-blur-sm shadow-[var(--color-warning)]/20 hover:from-[var(--color-warning)]/70 hover:to-[var(--color-warning)]/80"
                 onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
                 data-testid="settings-language"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-xl shadow-md">
-                    <Languages className="w-5 h-5 text-[var(--color-action)]" />
+                  <div className="p-3 bg-white/20 rounded-xl shadow-lg backdrop-blur-sm">
+                    <Languages className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <p className="font-bold text-[var(--color-text-primary)] text-lg">Language</p>
-                    <p className="text-[var(--color-text-secondary)] mt-1 font-medium">{getLanguageDisplay()}</p>
+                    <p className="font-bold text-white text-lg">Language</p>
+                    <p className="text-white/90 mt-1 font-medium">{getLanguageDisplay()}</p>
                   </div>
                 </div>
-                <div className="p-2 bg-[var(--color-action)]/20 rounded-lg">
-                  <ChevronDown className={`w-5 h-5 text-[var(--color-action)] transition-transform duration-200 ${showLanguageDropdown ? 'rotate-180' : ''}`} />
+                <div className="p-2 bg-white/20 rounded-lg shadow-lg backdrop-blur-sm">
+                  <ChevronDown className={`w-5 h-5 text-white transition-transform duration-200 ${showLanguageDropdown ? 'rotate-180' : ''}`} />
                 </div>
               </div>
               
@@ -328,36 +331,38 @@ export default function SettingsPage() {
             {/* Country Dropdown */}
             <div className="relative">
               <div 
-                className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                className="flex items-center justify-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl bg-gradient-to-br from-[var(--color-wellness)]/60 to-[var(--color-wellness)]/70 border border-[var(--color-wellness)]/50 backdrop-blur-sm shadow-[var(--color-wellness)]/20 hover:from-[var(--color-wellness)]/70 hover:to-[var(--color-wellness)]/80"
                 onClick={() => setShowCountryDropdown(!showCountryDropdown)}
                 data-testid="settings-country"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-muted/30 rounded-xl">
-                    <Globe className="w-5 h-5 text-[var(--color-action)]" />
+                  <div className="p-3 bg-white/20 rounded-xl shadow-lg backdrop-blur-sm">
+                    <Globe className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Country/Region</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">{getCountryDisplay()}</p>
+                    <p className="font-bold text-white text-lg">Country/Region</p>
+                    <p className="text-white/90 mt-1 font-medium">{getCountryDisplay()}</p>
                   </div>
                 </div>
-                <ChevronDown className={`w-5 h-5 text-[var(--color-action)] transition-transform duration-200 ${showCountryDropdown ? 'rotate-180' : ''}`} />
+                <div className="p-2 bg-white/20 rounded-lg shadow-lg backdrop-blur-sm">
+                  <ChevronDown className={`w-5 h-5 text-white transition-transform duration-200 ${showCountryDropdown ? 'rotate-180' : ''}`} />
+                </div>
               </div>
               
               {showCountryDropdown && (
-                <div className="absolute top-full left-2 right-2 z-50 mt-1 bg-card border border-[var(--color-border)] rounded-lg shadow-xl overflow-hidden max-h-64 overflow-y-auto">
+                <div className="absolute top-full left-3 right-3 z-50 mt-2 bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border border-[var(--color-wellness)]/30 rounded-xl shadow-2xl overflow-hidden backdrop-blur-xl max-h-64 overflow-y-auto">
                   {SUPPORTED_COUNTRIES.map((country_) => (
                     <button
                       key={country_.code}
                       onClick={() => handleCountrySelect(country_.code)}
-                      className={`w-full text-left px-4 py-3 hover:bg-muted/50 transition-colors flex items-center gap-3 ${
-                        country === country_.code ? 'bg-muted/30 text-primary' : 'text-foreground'
+                      className={`w-full text-left px-5 py-4 hover:bg-[var(--color-wellness)]/10 transition-all duration-200 flex items-center gap-4 border-b border-[var(--color-wellness)]/10 last:border-b-0 ${
+                        country === country_.code ? 'bg-[var(--color-wellness)]/10 text-[var(--color-wellness)]' : 'text-[var(--color-text-primary)]'
                       }`}
                       data-testid={`country-option-${country_.code}`}
                     >
-                      <span className="text-lg">{country_.flag}</span>
-                      <span className="font-medium">{country_.name}</span>
-                      {country === country_.code && <span className="ml-auto text-primary">✓</span>}
+                      <span className="text-xl">{country_.flag}</span>
+                      <span className="font-bold text-lg">{country_.name}</span>
+                      {country === country_.code && <span className="ml-auto text-[var(--color-wellness)] font-bold text-xl">✓</span>}
                     </button>
                   ))}
                 </div>

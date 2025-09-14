@@ -46,27 +46,27 @@ export default function MissionModelPage() {
                   Forever Free Core Features
                 </h3>
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 p-3 bg-[var(--color-surface)]/60 rounded-lg">
-                    <div className="w-2 h-2 bg-[var(--color-success)] rounded-full"></div>
-                    <span className="text-[var(--color-text-primary)]">
+                  <div className="flex items-center gap-3 p-4 bg-gradient-to-br from-[var(--color-success)]/60 to-[var(--color-success)]/70 rounded-lg border border-[var(--color-success)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-success)]/20">
+                    <div className="w-3 h-3 bg-white rounded-full shadow-lg"></div>
+                    <span className="text-white font-bold">
                       <strong>Workout Logging</strong> - Track exercises, sets, reps, and RIR
                     </span>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-[var(--color-surface)]/60 rounded-lg">
-                    <div className="w-2 h-2 bg-[var(--color-success)] rounded-full"></div>
-                    <span className="text-[var(--color-text-primary)]">
+                  <div className="flex items-center gap-3 p-4 bg-gradient-to-br from-[var(--color-activity)]/60 to-[var(--color-activity)]/70 rounded-lg border border-[var(--color-activity)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-activity)]/20">
+                    <div className="w-3 h-3 bg-white rounded-full shadow-lg"></div>
+                    <span className="text-white font-bold">
                       <strong>Nutrition Tracking</strong> - Log meals and monitor calorie intake
                     </span>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-[var(--color-surface)]/60 rounded-lg">
-                    <div className="w-2 h-2 bg-[var(--color-success)] rounded-full"></div>
-                    <span className="text-[var(--color-text-primary)]">
+                  <div className="flex items-center gap-3 p-4 bg-gradient-to-br from-[var(--color-wellness)]/60 to-[var(--color-wellness)]/70 rounded-lg border border-[var(--color-wellness)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-wellness)]/20">
+                    <div className="w-3 h-3 bg-white rounded-full shadow-lg"></div>
+                    <span className="text-white font-bold">
                       <strong>Progress Analytics</strong> - Charts, trends, and achievement tracking
                     </span>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-[var(--color-surface)]/60 rounded-lg">
-                    <div className="w-2 h-2 bg-[var(--color-success)] rounded-full"></div>
-                    <span className="text-[var(--color-text-primary)]">
+                  <div className="flex items-center gap-3 p-4 bg-gradient-to-br from-[var(--color-warning)]/60 to-[var(--color-warning)]/70 rounded-lg border border-[var(--color-warning)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-warning)]/20">
+                    <div className="w-3 h-3 bg-white rounded-full shadow-lg"></div>
+                    <span className="text-white font-bold">
                       <strong>Guest Mode</strong> - Full functionality without requiring registration
                     </span>
                   </div>
@@ -127,17 +127,17 @@ export default function MissionModelPage() {
                   Where Your Donations Go
                 </h3>
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-[var(--color-surface)]/60 rounded-lg">
-                    <span className="text-[var(--color-text-primary)]">Server & Infrastructure</span>
-                    <Badge variant="secondary" className="bg-[var(--color-surface)] text-[var(--color-text-secondary)]">~60%</Badge>
+                  <div className="flex items-center justify-between p-4 bg-gradient-to-br from-[var(--color-activity)]/60 to-[var(--color-activity)]/70 rounded-lg border border-[var(--color-activity)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-activity)]/20">
+                    <span className="text-white font-bold">Server & Infrastructure</span>
+                    <Badge variant="secondary" className="bg-white/20 text-white font-bold backdrop-blur-sm">~60%</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-[var(--color-surface)]/60 rounded-lg">
-                    <span className="text-[var(--color-text-primary)]">New Free Feature Development</span>
-                    <Badge variant="secondary" className="bg-[var(--color-surface)] text-[var(--color-text-secondary)]">~30%</Badge>
+                  <div className="flex items-center justify-between p-4 bg-gradient-to-br from-[var(--color-success)]/60 to-[var(--color-success)]/70 rounded-lg border border-[var(--color-success)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-success)]/20">
+                    <span className="text-white font-bold">New Free Feature Development</span>
+                    <Badge variant="secondary" className="bg-white/20 text-white font-bold backdrop-blur-sm">~30%</Badge>
                   </div>
-                  <div className="flex items-center justify-between p-3 bg-[var(--color-surface)]/60 rounded-lg">
-                    <span className="text-[var(--color-text-primary)]">Platform Maintenance</span>
-                    <Badge variant="secondary" className="bg-[var(--color-surface)] text-[var(--color-text-secondary)]">~10%</Badge>
+                  <div className="flex items-center justify-between p-4 bg-gradient-to-br from-[var(--color-wellness)]/60 to-[var(--color-wellness)]/70 rounded-lg border border-[var(--color-wellness)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-wellness)]/20">
+                    <span className="text-white font-bold">Platform Maintenance</span>
+                    <Badge variant="secondary" className="bg-white/20 text-white font-bold backdrop-blur-sm">~10%</Badge>
                   </div>
                 </div>
               </div>
@@ -147,15 +147,15 @@ export default function MissionModelPage() {
                   Future Vision
                 </h3>
                 <div className="space-y-3">
-                  <div className="p-4 bg-[var(--color-action)]/20 rounded-lg border border-[var(--color-action)]/50">
-                    <p className="text-[var(--color-action)] font-medium">🎯 Charity Integration</p>
-                    <p className="text-[var(--color-action)] text-sm mt-1">
+                  <div className="p-4 bg-gradient-to-br from-[var(--color-action)]/60 to-[var(--color-action)]/70 rounded-lg border border-[var(--color-action)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-action)]/20">
+                    <p className="text-white font-bold">🎯 Charity Integration</p>
+                    <p className="text-white/90 text-sm mt-1">
                       Option to direct donations to fitness-related charities
                     </p>
                   </div>
-                  <div className="p-4 bg-[var(--color-warning)]/20 rounded-lg border border-[var(--color-warning)]/50">
-                    <p className="text-[var(--color-warning)] font-medium">🌟 Community Features</p>
-                    <p className="text-[var(--color-warning)] text-sm mt-1">
+                  <div className="p-4 bg-gradient-to-br from-[var(--color-warning)]/60 to-[var(--color-warning)]/70 rounded-lg border border-[var(--color-warning)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-warning)]/20">
+                    <p className="text-white font-bold">🌟 Community Features</p>
+                    <p className="text-white/90 text-sm mt-1">
                       Donation-funded community challenges and features
                     </p>
                   </div>
@@ -194,12 +194,12 @@ export default function MissionModelPage() {
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Important Notice */}
-            <div className="p-4 bg-gradient-to-br from-[var(--color-warning)]/15 to-[var(--color-warning)]/5 rounded-lg border border-[var(--color-warning)]/30">
+            <div className="p-4 bg-gradient-to-br from-[var(--color-warning)]/60 to-[var(--color-warning)]/70 rounded-lg border border-[var(--color-warning)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-warning)]/20">
               <div className="flex items-center gap-2 mb-2">
-                <Clock className="w-5 h-5 text-[var(--color-warning)]" />
-                <p className="font-medium text-[var(--color-warning)]">Development Status</p>
+                <Clock className="w-5 h-5 text-white" />
+                <p className="font-bold text-white">Development Status</p>
               </div>
-              <p className="text-[var(--color-warning)] text-sm">
+              <p className="text-white/90 text-sm">
                 These premium features are <strong>currently deferred</strong> while we focus on building a strong user base 
                 with our free core features. Premium development will begin once the platform is financially sustainable.
               </p>
@@ -213,25 +213,25 @@ export default function MissionModelPage() {
               
               <div className="space-y-4">
                 {/* AI Coach Feature */}
-                <div className="border border-[var(--color-border)] rounded-lg overflow-hidden bg-gradient-to-br from-[var(--color-surface)]/60 to-[var(--color-surface)]/40">
-                  <div className="bg-gradient-to-br from-[var(--color-surface)]/80 to-[var(--color-surface)]/60 p-4 border-b border-[var(--color-border)]">
+                <div className="border border-[var(--color-action)]/50 rounded-lg overflow-hidden bg-gradient-to-br from-[var(--color-action)]/60 to-[var(--color-action)]/70 backdrop-blur-sm shadow-lg shadow-[var(--color-action)]/20">
+                  <div className="bg-gradient-to-br from-white/20 to-white/10 p-4 border-b border-white/20">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <Brain className="w-6 h-6 text-[var(--color-action)]" />
-                        <h4 className="font-semibold text-[var(--color-text-primary)]">AI Personal Coach</h4>
+                        <Brain className="w-6 h-6 text-white" />
+                        <h4 className="font-bold text-white">AI Personal Coach</h4>
                       </div>
-                      <Badge variant="outline" className="border-[var(--color-action)]/30 text-[var(--color-action)]">
+                      <Badge variant="outline" className="border-white/30 text-white bg-white/20 font-bold">
                         ~$5-8/month
                       </Badge>
                     </div>
                   </div>
                   <div className="p-4 grid md:grid-cols-2 gap-4">
                     <div>
-                      <h5 className="font-medium text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                        <DollarSign className="w-4 h-4 text-red-600 dark:text-red-400" />
+                      <h5 className="font-bold text-white mb-2 flex items-center gap-2">
+                        <DollarSign className="w-4 h-4 text-white" />
                         Why It Costs Money
                       </h5>
-                      <ul className="text-sm text-slate-600 dark:text-slate-300 space-y-1">
+                      <ul className="text-sm text-white/90 space-y-1">
                         <li>• Advanced AI processing ($3-4/month per user)</li>
                         <li>• Real-time workout analysis and feedback</li>
                         <li>• Personalized nutrition recommendations</li>
@@ -239,11 +239,11 @@ export default function MissionModelPage() {
                       </ul>
                     </div>
                     <div>
-                      <h5 className="font-medium text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-green-600 dark:text-green-400" />
+                      <h5 className="font-bold text-white mb-2 flex items-center gap-2">
+                        <TrendingUp className="w-4 h-4 text-white" />
                         What You Get
                       </h5>
-                      <ul className="text-sm text-slate-600 dark:text-slate-300 space-y-1">
+                      <ul className="text-sm text-white/90 space-y-1">
                         <li>• Personalized workout adjustments based on performance</li>
                         <li>• Smart form correction and technique tips</li>
                         <li>• Adaptive meal planning with macro optimization</li>
@@ -254,25 +254,25 @@ export default function MissionModelPage() {
                 </div>
 
                 {/* Smart Recovery Score */}
-                <div className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
-                  <div className="bg-slate-50 dark:bg-slate-800 p-4 border-b border-slate-200 dark:border-slate-700">
+                <div className="border border-[var(--color-success)]/50 rounded-lg overflow-hidden bg-gradient-to-br from-[var(--color-success)]/60 to-[var(--color-success)]/70 backdrop-blur-sm shadow-lg shadow-[var(--color-success)]/20">
+                  <div className="bg-gradient-to-br from-white/20 to-white/10 p-4 border-b border-white/20">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <TrendingUp className="w-6 h-6 text-primary" />
-                        <h4 className="font-semibold text-slate-900 dark:text-white">Smart Recovery Score</h4>
+                        <TrendingUp className="w-6 h-6 text-white" />
+                        <h4 className="font-bold text-white">Smart Recovery Score</h4>
                       </div>
-                      <Badge variant="outline" className="border-primary/30 text-primary">
+                      <Badge variant="outline" className="border-white/30 text-white bg-white/20 font-bold">
                         ~$3-5/month
                       </Badge>
                     </div>
                   </div>
                   <div className="p-4 grid md:grid-cols-2 gap-4">
                     <div>
-                      <h5 className="font-medium text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                        <DollarSign className="w-4 h-4 text-red-600 dark:text-red-400" />
+                      <h5 className="font-bold text-white mb-2 flex items-center gap-2">
+                        <DollarSign className="w-4 h-4 text-white" />
                         Why It Costs Money
                       </h5>
-                      <ul className="text-sm text-slate-600 dark:text-slate-300 space-y-1">
+                      <ul className="text-sm text-white/90 space-y-1">
                         <li>• Health data aggregation APIs ($2-3/month)</li>
                         <li>• Complex algorithmic processing</li>
                         <li>• Sleep and HRV analysis servers</li>
@@ -280,11 +280,11 @@ export default function MissionModelPage() {
                       </ul>
                     </div>
                     <div>
-                      <h5 className="font-medium text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-green-600 dark:text-green-400" />
+                      <h5 className="font-bold text-white mb-2 flex items-center gap-2">
+                        <TrendingUp className="w-4 h-4 text-white" />
                         What You Get
                       </h5>
-                      <ul className="text-sm text-slate-600 dark:text-slate-300 space-y-1">
+                      <ul className="text-sm text-white/90 space-y-1">
                         <li>• Daily recovery score based on sleep & HRV data</li>
                         <li>• Workout intensity recommendations</li>
                         <li>• Optimal training and rest day planning</li>
@@ -295,25 +295,25 @@ export default function MissionModelPage() {
                 </div>
 
                 {/* Health Data Integration */}
-                <div className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
-                  <div className="bg-slate-50 dark:bg-slate-800 p-4 border-b border-slate-200 dark:border-slate-700">
+                <div className="border border-[var(--color-wellness)]/50 rounded-lg overflow-hidden bg-gradient-to-br from-[var(--color-wellness)]/60 to-[var(--color-wellness)]/70 backdrop-blur-sm shadow-lg shadow-[var(--color-wellness)]/20">
+                  <div className="bg-gradient-to-br from-white/20 to-white/10 p-4 border-b border-white/20">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <Users className="w-6 h-6 text-green-600 dark:text-green-400" />
-                        <h4 className="font-semibold text-slate-900 dark:text-white">Health Platform Integration</h4>
+                        <Users className="w-6 h-6 text-white" />
+                        <h4 className="font-bold text-white">Health Platform Integration</h4>
                       </div>
-                      <Badge variant="outline" className="border-green-300 text-green-700 dark:border-green-600 dark:text-green-400">
+                      <Badge variant="outline" className="border-white/30 text-white bg-white/20 font-bold">
                         ~$2-4/month
                       </Badge>
                     </div>
                   </div>
                   <div className="p-4 grid md:grid-cols-2 gap-4">
                     <div>
-                      <h5 className="font-medium text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                        <DollarSign className="w-4 h-4 text-red-600 dark:text-red-400" />
+                      <h5 className="font-bold text-white mb-2 flex items-center gap-2">
+                        <DollarSign className="w-4 h-4 text-white" />
                         Why It Costs Money
                       </h5>
-                      <ul className="text-sm text-slate-600 dark:text-slate-300 space-y-1">
+                      <ul className="text-sm text-white/90 space-y-1">
                         <li>• Third-party health API subscriptions ($1-2/month)</li>
                         <li>• Data processing and synchronization</li>
                         <li>• Secure health data storage and compliance</li>
@@ -321,11 +321,11 @@ export default function MissionModelPage() {
                       </ul>
                     </div>
                     <div>
-                      <h5 className="font-medium text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-green-600 dark:text-green-400" />
+                      <h5 className="font-bold text-white mb-2 flex items-center gap-2">
+                        <TrendingUp className="w-4 h-4 text-white" />
                         What You Get
                       </h5>
-                      <ul className="text-sm text-slate-600 dark:text-slate-300 space-y-1">
+                      <ul className="text-sm text-white/90 space-y-1">
                         <li>• Automatic sync with Apple Health & Google Health Connect</li>
                         <li>• Wearable device integration (Fitbit, Garmin, Oura)</li>
                         <li>• Comprehensive health data analysis</li>
