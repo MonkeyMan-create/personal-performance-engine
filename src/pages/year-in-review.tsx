@@ -520,8 +520,8 @@ export default function YearInReviewPage() {
                   />
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: 'hsl(var(--card))',
-                      border: '1px solid hsl(var(--border))',
+                      backgroundColor: 'var(--color-surface)',
+                      border: '1px solid var(--color-border)',
                       borderRadius: '8px'
                     }}
                     formatter={(value: number) => [`${value} workouts`, 'Workouts']}

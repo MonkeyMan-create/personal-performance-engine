@@ -136,7 +136,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
   const previewColors = calculateColorVariations(selectedColor)
 
   return (
-    <Card className="bg-card/60 border-border backdrop-blur-xl shadow-2xl">
+    <Card className="bg-card/60 border border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
       <CardHeader className="pb-4">
         <CardTitle className="text-foreground text-xl font-bold flex items-center gap-2">
           <Palette className="w-6 h-6 text-primary" />
@@ -155,7 +155,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
             {/* Color Swatch */}
             <button
               onClick={() => setShowColorPicker(!showColorPicker)}
-              className="w-16 h-16 rounded-xl border-4 border-border shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
+              className="w-16 h-16 rounded-xl border-4 border-[var(--color-border)] shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
               style={{ backgroundColor: selectedColor }}
               data-testid="color-swatch-button"
               aria-label={`Selected color: ${selectedColor}. Click to open color picker`}
@@ -181,7 +181,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
                   }}
                 />
                 <div 
-                  className="w-4 h-4 rounded-full shadow-sm border border-border"
+                  className="w-4 h-4 rounded-full shadow-sm border border-[var(--color-border)]"
                   style={{ backgroundColor: selectedColor }}
                 />
               </div>
@@ -237,7 +237,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
           <div className="grid grid-cols-3 gap-3">
             <div className="text-center">
               <div 
-                className="w-full h-12 rounded-lg border border-border shadow-sm mb-2"
+                className="w-full h-12 rounded-lg border border-[var(--color-border)] shadow-sm mb-2"
                 style={{ backgroundColor: previewColors.primary }}
               />
               <div className="text-xs text-muted-foreground">Primary</div>
@@ -245,7 +245,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
             </div>
             <div className="text-center">
               <div 
-                className="w-full h-12 rounded-lg border border-border shadow-sm mb-2"
+                className="w-full h-12 rounded-lg border border-[var(--color-border)] shadow-sm mb-2"
                 style={{ backgroundColor: previewColors.primaryHover }}
               />
               <div className="text-xs text-muted-foreground">Hover</div>
@@ -253,7 +253,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
             </div>
             <div className="text-center">
               <div 
-                className="w-full h-12 rounded-lg border border-border shadow-sm mb-2 flex items-center justify-center text-lg font-bold"
+                className="w-full h-12 rounded-lg border border-[var(--color-border)] shadow-sm mb-2 flex items-center justify-center text-lg font-bold"
                 style={{ 
                   backgroundColor: previewColors.primary,
                   color: previewColors.primaryText 
@@ -282,7 +282,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
             <Button
               onClick={resetCustomColor}
               variant="outline"
-              className="border-border hover:bg-muted/50"
+              className="border border-[var(--color-border)] hover:bg-muted/50"
               data-testid="reset-custom-color-button"
             >
               <RotateCcw className="w-4 h-4 mr-2" />

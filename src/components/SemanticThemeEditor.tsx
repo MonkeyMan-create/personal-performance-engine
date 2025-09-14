@@ -187,7 +187,7 @@ export default function SemanticThemeEditor() {
       {/* Color Categories */}
       <div className="space-y-4">
         {colorCategories.map((category) => (
-          <Card key={category.id} className="bg-card/50 border-border">
+          <Card key={category.id} className="bg-card/50 border border-[var(--color-border)]">
             <CardHeader className="pb-3">
               <div 
                 className="flex items-center justify-between cursor-pointer"
@@ -264,7 +264,7 @@ export default function SemanticThemeEditor() {
       </div>
 
       {/* Global Actions */}
-      <div className="flex justify-center pt-4 border-t border-border">
+      <div className="flex justify-center pt-4 border-t border-[var(--color-border)]">
         <Button
           variant="outline"
           onClick={resetAllColors}

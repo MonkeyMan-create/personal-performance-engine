@@ -185,7 +185,7 @@ export default function SettingsPage() {
         </div>
         
         {/* User Header */}
-        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-action)]/5 via-transparent to-[var(--color-action)]/5 pointer-events-none"></div>
           <CardContent className="p-8 relative">
             <div className="flex items-center gap-6">
@@ -345,7 +345,7 @@ export default function SettingsPage() {
               </div>
               
               {showCountryDropdown && (
-                <div className="absolute top-full left-2 right-2 z-50 mt-1 bg-card border border-border rounded-lg shadow-xl overflow-hidden max-h-64 overflow-y-auto">
+                <div className="absolute top-full left-2 right-2 z-50 mt-1 bg-card border border-[var(--color-border)] rounded-lg shadow-xl overflow-hidden max-h-64 overflow-y-auto">
                   {SUPPORTED_COUNTRIES.map((country_) => (
                     <button
                       key={country_.code}
@@ -367,7 +367,7 @@ export default function SettingsPage() {
         </Card>
 
         {/* Data Management Section */}
-        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-wellness)]/5 via-transparent to-[var(--color-wellness)]/5 pointer-events-none"></div>
           <CardHeader className="pb-6 bg-gradient-to-r from-[var(--color-wellness)]/10 to-[var(--color-wellness)]/5 relative">
             <CardTitle className="text-[var(--color-text-primary)] text-2xl font-bold flex items-center gap-3">
@@ -524,7 +524,7 @@ export default function SettingsPage() {
         </Card>
 
         {/* Sign Out Section */}
-        <Card className="bg-card/60 border-border backdrop-blur-xl shadow-2xl">
+        <Card className="bg-card/60 border border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardContent className="p-6">
             <div className="text-center mb-4">
               <p className="text-muted-foreground text-sm">Ready to take a break?</p>

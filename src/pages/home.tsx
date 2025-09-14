@@ -149,7 +149,7 @@ export default function HomePage() {
         </div>
 
         {/* Mood Check-in */}
-        <Card className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl">
+        <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
           <CardHeader className="text-center">
             <CardTitle className="text-[var(--color-text-primary)] text-xl">How are you feeling today?</CardTitle>
             <CardDescription className="text-[var(--color-text-secondary)]">
@@ -194,7 +194,7 @@ export default function HomePage() {
 
         {/* Key Metrics Grid */}
         <div className="grid grid-cols-2 gap-4">
-          <Card className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl">
+          <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-[var(--color-activity)]/20 rounded-lg">
@@ -216,7 +216,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl">
+          <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-[var(--color-activity)]/20 rounded-lg">
@@ -238,7 +238,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl">
+          <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-[var(--color-wellness)]/20 rounded-lg">
@@ -260,7 +260,7 @@ export default function HomePage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl">
+          <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
                 <div className="p-2 bg-[var(--color-wellness)]/20 rounded-lg">
@@ -353,7 +353,7 @@ export default function HomePage() {
         </div>
 
         {/* Daily Wellness Insights */}
-        <Card className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl">
+        <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-[var(--color-text-primary)] flex items-center gap-2">
               <Lightbulb className="w-5 h-5 text-[var(--color-action)]" />
@@ -394,7 +394,7 @@ export default function HomePage() {
         </Card>
 
         {/* Nutrition Snapshot */}
-        <Card className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl">
+        <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-[var(--color-text-primary)] flex items-center gap-2">
               <Apple className="w-5 h-5 text-[var(--color-nutrition)]" />
@@ -452,7 +452,7 @@ export default function HomePage() {
             </div>
 
             {/* Quick Stats */}
-            <div className="flex justify-between items-center pt-4 border-t border-border">
+            <div className="flex justify-between items-center pt-4 border-t border-[var(--color-border)]">
               <div className="text-center">
                 <p className="text-2xl font-bold text-primary" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
                 <p className="text-xs text-muted-foreground">Meals Logged</p>

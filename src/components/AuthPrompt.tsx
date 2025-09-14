@@ -34,7 +34,7 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
         </div>
 
         {/* Main Content Card */}
-        <Card className="bg-card/80 border-border shadow-2xl backdrop-blur-xl">
+        <Card className="bg-card/80 border border-[var(--color-border)] shadow-2xl backdrop-blur-xl">
           <CardHeader className="text-center space-y-4 pb-4">
             <CardTitle className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary/80 to-primary bg-clip-text text-transparent">
               Personal Performance Engine

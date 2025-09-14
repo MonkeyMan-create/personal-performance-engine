@@ -217,7 +217,7 @@ export default function ProgressPage() {
         {isLoading ? (
           <Card 
             data-testid="card-loading-progress"
-            className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl"
+            className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl"
           >
             <CardContent className="p-6">
               <p data-testid="text-loading-message" className="text-[var(--color-text-secondary)]">Loading your progress data...</p>
@@ -231,7 +231,7 @@ export default function ProgressPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Card 
                   data-testid="card-total-workouts"
-                  className="border-[var(--color-activity)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="border border-[var(--color-activity)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
                   style={{
                     background: `linear-gradient(to bottom right, rgb(139 92 246 / 0.6), rgb(139 92 246 / 0.7))`,
                     boxShadow: `0 10px 15px -3px rgb(139 92 246 / 0.2), 0 4px 6px -2px rgb(139 92 246 / 0.05)`
@@ -250,7 +250,7 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-day-streak"
-                  className="border-[var(--color-success)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="border border-[var(--color-success)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
                   style={{
                     background: `linear-gradient(to bottom right, rgb(34 197 94 / 0.6), rgb(34 197 94 / 0.7))`,
                     boxShadow: `0 10px 15px -3px rgb(34 197 94 / 0.2), 0 4px 6px -2px rgb(34 197 94 / 0.05)`
@@ -269,7 +269,7 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-meals-logged"
-                  className="border-[var(--color-nutrition)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="border border-[var(--color-nutrition)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
                   style={{
                     background: `linear-gradient(to bottom right, rgb(249 115 22 / 0.6), rgb(249 115 22 / 0.7))`,
                     boxShadow: `0 10px 15px -3px rgb(249 115 22 / 0.2), 0 4px 6px -2px rgb(249 115 22 / 0.05)`
@@ -288,7 +288,7 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-avg-calories"
-                  className="border-[var(--color-warning)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
+                  className="border border-[var(--color-warning)]/50 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-200"
                   style={{
                     background: `linear-gradient(to bottom right, rgb(245 158 11 / 0.6), rgb(245 158 11 / 0.7))`,
                     boxShadow: `0 10px 15px -3px rgb(245 158 11 / 0.2), 0 4px 6px -2px rgb(245 158 11 / 0.05)`
@@ -311,7 +311,7 @@ export default function ProgressPage() {
             {weightTrendData.length > 0 ? (
               <Card 
                 data-testid="card-weight-trend"
-                className="border-[var(--color-activity)]/50 backdrop-blur-xl shadow-lg"
+                className="border border-[var(--color-border)] backdrop-blur-xl shadow-lg"
                 style={{
                   background: `linear-gradient(to bottom right, rgb(139 92 246 / 0.3), rgb(139 92 246 / 0.4))`,
                   boxShadow: `0 10px 15px -3px rgb(139 92 246 / 0.2), 0 4px 6px -2px rgb(139 92 246 / 0.05)`
@@ -342,8 +342,8 @@ export default function ProgressPage() {
                         />
                         <Tooltip 
                           contentStyle={{ 
-                            backgroundColor: 'hsl(var(--card))',
-                            border: '1px solid hsl(var(--border))',
+                            backgroundColor: 'var(--color-surface)',
+                            border: '1px solid var(--color-border)',
                             borderRadius: '8px'
                           }}
                           formatter={(value: number) => [`${value.toFixed(1)} ${unit}`, 'Weight']}
@@ -411,7 +411,7 @@ export default function ProgressPage() {
             ) : (
               <Card 
                 data-testid="card-weight-trend-empty"
-                className="border-[var(--color-activity)]/50 backdrop-blur-xl shadow-lg"
+                className="border border-[var(--color-border)] backdrop-blur-xl shadow-lg"
                 style={{
                   background: `linear-gradient(to bottom right, rgb(139 92 246 / 0.3), rgb(139 92 246 / 0.4))`,
                   boxShadow: `0 10px 15px -3px rgb(139 92 246 / 0.2), 0 4px 6px -2px rgb(139 92 246 / 0.05)`
@@ -445,7 +445,7 @@ export default function ProgressPage() {
               <h2 className="text-xl font-semibold text-[var(--color-text-primary)]">Badges & Achievements</h2>
               <Card 
                 data-testid="card-badges-achievements"
-                className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl"
+                className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl"
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
@@ -686,7 +686,7 @@ export default function ProgressPage() {
             {/* Daily Calories Chart */}
             <Card 
               data-testid="card-daily-calories"
-              className="border-[var(--color-nutrition)]/50 backdrop-blur-xl shadow-lg"
+              className="border border-[var(--color-border)] backdrop-blur-xl shadow-lg"
               style={{
                 background: `linear-gradient(to bottom right, rgb(249 115 22 / 0.3), rgb(249 115 22 / 0.4))`,
                 boxShadow: `0 10px 15px -3px rgb(249 115 22 / 0.2), 0 4px 6px -2px rgb(249 115 22 / 0.05)`
@@ -718,8 +718,8 @@ export default function ProgressPage() {
                         />
                         <Tooltip 
                           contentStyle={{ 
-                            backgroundColor: 'hsl(var(--card))',
-                            border: '1px solid hsl(var(--border))',
+                            backgroundColor: 'var(--color-surface)',
+                            border: '1px solid var(--color-border)',
                             borderRadius: '8px'
                           }}
                         />
@@ -742,7 +742,7 @@ export default function ProgressPage() {
             {/* Workout Consistency Section */}
             <Card 
               data-testid="card-workout-details"
-              className="bg-[var(--color-surface)]/90 border-[var(--color-border)] backdrop-blur-xl"
+              className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl"
             >
               <CardHeader>
                 <div className="flex items-center gap-2">
