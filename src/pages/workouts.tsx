@@ -8,7 +8,7 @@ import { convertTemplateToWorkoutForm, WORKOUT_TEMPLATES, getTemplateById } from
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
-import { Play, History, Zap, Plus, CheckCircle, Timer, Target, ArrowLeft, Dumbbell, Heart, Flame, Activity, Search, Clock, Calendar } from 'lucide-react'
+import { Play, History, Zap, Plus, CheckCircle, Timer, Target, ArrowLeft, Dumbbell, Heart, Flame, Activity, Search, Clock, Calendar, Trophy } from 'lucide-react'
 import { 
   getWorkoutsLocally, 
   getCurrentWorkoutSession, 
