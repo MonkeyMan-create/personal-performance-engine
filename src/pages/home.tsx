@@ -82,22 +82,6 @@ export default function HomePage() {
     mealsLogged: 2
   }
 
-  // Color mapping using semantic theming system
-  const colorMap = {
-    purple: {
-      bg: 'bg-[var(--color-activity)]/20',
-      text: 'text-[var(--color-activity)]'
-    },
-    emerald: {
-      bg: 'bg-[var(--color-nutrition)]/20',
-      text: 'text-[var(--color-nutrition)]'
-    },
-    blue: {
-      bg: 'bg-[var(--color-wellness)]/20',
-      text: 'text-[var(--color-wellness)]'
-    }
-  }
-
   // Wellness insights
   const insights = [
     {
@@ -105,43 +89,43 @@ export default function HomePage() {
       icon: Target,
       message: "You're 85% to your step goal! A 10-minute walk will get you there.",
       action: "Take a walk",
-      color: "purple" as keyof typeof colorMap
+      badgeClass: "icon-badge-activity"
     },
     {
       id: 2,
       icon: Award,
       message: "Great job hitting your protein target yesterday!",
       action: "Keep it up",
-      color: "emerald" as keyof typeof colorMap
+      badgeClass: "icon-badge-nutrition"
     },
     {
       id: 3,
       icon: Brain,
       message: "Consider a 5-minute meditation to reduce stress.",
       action: "Meditate",
-      color: "blue" as keyof typeof colorMap
+      badgeClass: "icon-badge-wellness"
     }
   ]
 
   return (
-    <div className="min-h-screen bg-[var(--color-background)]">
-      <div className="container mx-auto p-4 space-y-6 pb-24">
+    <div className="page-container">
+      <div className="section-container space-y-6">
         
         {/* Top Section - Greeting & Time */}
-        <div className="pt-8 text-center space-y-4">
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <GreetingIcon className="w-8 h-8 text-[var(--color-action)]" />
-            <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="greeting-text">
+        <div className="page-header">
+          <div className="flex-center gap-3 mb-2">
+            <GreetingIcon className="w-8 h-8 text-action" />
+            <h1 className="page-title" data-testid="greeting-text">
               {greeting.text}
             </h1>
           </div>
           
-          <div className="flex items-center justify-center gap-4 text-[var(--color-text-secondary)]">
-            <div className="flex items-center gap-2">
+          <div className="flex-center gap-4 text-secondary">
+            <div className="flex-center gap-2">
               <Clock className="w-5 h-5" />
               <span className="text-xl font-semibold" data-testid="current-time">{formatTime(currentTime)}</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex-center gap-2">
               <Calendar className="w-5 h-5" />
               <span className="text-lg" data-testid="current-date">{formatDate(currentTime)}</span>
             </div>
@@ -149,32 +133,34 @@ export default function HomePage() {
         </div>
 
         {/* Mood Check-in */}
-        <Card className="bg-gradient-to-br from-[var(--color-wellness)]/10 via-[var(--color-wellness)]/5 to-transparent border border-[var(--color-wellness)]/20 backdrop-blur-xl shadow-lg shadow-[var(--color-wellness)]/5">
+        <Card className="card-glass">
           <CardHeader className="text-center">
-            <CardTitle className="text-[var(--color-text-primary)] text-xl flex items-center justify-center gap-2">
-              <Brain className="w-6 h-6 text-[var(--color-wellness)]" />
+            <CardTitle className="text-primary text-xl flex-center gap-2">
+              <Brain className="w-6 h-6 text-wellness" />
               How are you feeling today?
             </CardTitle>
-            <CardDescription className="text-[var(--color-text-secondary)]">
+            <CardDescription className="text-secondary">
               Tap an emoji to check in with your mood
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex justify-center gap-4">
+            <div className="flex-center gap-4">
               {moods.map((mood) => (
                 <button
                   key={mood.value}
                   onClick={() => setSelectedMood(mood.value)}
-                  className={`p-4 rounded-2xl transition-all duration-300 hover:scale-110 active:scale-95 ${
-                    selectedMood === mood.value 
-                      ? 'bg-[var(--color-wellness)]/20 ring-4 ring-[var(--color-wellness)]/50 shadow-lg shadow-[var(--color-wellness)]/20' 
-                      : 'bg-[var(--color-surface)] hover:bg-[var(--color-border)]/50 border border-[var(--color-border)]'
-                  }`}
+                  className={`
+                    p-4 rounded-2xl transition-all duration-300 hover:scale-110 active:scale-95
+                    ${selectedMood === mood.value 
+                      ? 'card-wellness' 
+                      : 'card-base hover:bg-surface-secondary'
+                    }
+                  `}
                   data-testid={`mood-${mood.value}`}
                   aria-label={`Select ${mood.label} mood`}
                 >
                   <div className="text-3xl">{mood.emoji}</div>
-                  <div className="text-xs text-[var(--color-text-secondary)] mt-1 font-medium">{mood.label}</div>
+                  <div className="text-xs text-secondary mt-1 font-medium">{mood.label}</div>
                 </button>
               ))}
             </div>
@@ -182,7 +168,7 @@ export default function HomePage() {
         </Card>
 
         {/* Central Progress Ring */}
-        <div className="flex justify-center py-8">
+        <div className="flex-center py-8">
           <ProgressRing
             progress={caloriesProgress}
             current={caloriesData.current}
@@ -196,89 +182,89 @@ export default function HomePage() {
         </div>
 
         {/* Key Metrics Grid */}
-        <div className="grid grid-cols-2 gap-4">
-          <Card className="bg-gradient-to-br from-[var(--color-activity)]/15 via-[var(--color-activity)]/8 to-[var(--color-activity)]/3 border border-[var(--color-activity)]/25 backdrop-blur-xl shadow-lg shadow-[var(--color-activity)]/8">
+        <div className="grid-2">
+          <Card className="card-glass">
             <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-[var(--color-activity)]/25 rounded-xl shadow-sm">
-                  <Activity className="w-5 h-5 text-[var(--color-activity)]" />
+              <div className="flex-center gap-3">
+                <div className="icon-badge icon-badge-activity">
+                  <Activity className="w-5 h-5 text-activity" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-[var(--color-text-secondary)]">Steps</p>
-                  <p className="text-lg font-bold text-[var(--color-text-primary)]" data-testid="steps-count-metric">
+                  <p className="text-sm font-medium text-secondary">Steps</p>
+                  <p className="text-lg font-bold text-primary" data-testid="steps-count-metric">
                     {stepsData.current.toLocaleString()}
                   </p>
                 </div>
               </div>
-              <div className="mt-2 w-full bg-[var(--color-border)]/50 rounded-full h-2">
+              <div className="mt-2 w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-[var(--color-activity)] to-[var(--color-activity)]/80 h-2 rounded-full transition-all duration-1000 shadow-sm"
+                  className="bg-activity h-2 rounded-full transition-all duration-1000 shadow-sm"
                   style={{ width: `${Math.min(100, stepsProgress)}%` }}
                 />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-[var(--color-nutrition)]/15 via-[var(--color-nutrition)]/8 to-[var(--color-nutrition)]/3 border border-[var(--color-nutrition)]/25 backdrop-blur-xl shadow-lg shadow-[var(--color-nutrition)]/8">
+          <Card className="card-glass">
             <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-[var(--color-nutrition)]/25 rounded-xl shadow-sm">
-                  <Flame className="w-5 h-5 text-[var(--color-nutrition)]" />
+              <div className="flex-center gap-3">
+                <div className="icon-badge icon-badge-nutrition">
+                  <Flame className="w-5 h-5 text-nutrition" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-[var(--color-text-secondary)]">Burned</p>
-                  <p className="text-lg font-bold text-[var(--color-text-primary)]" data-testid="calories-burned-metric">
+                  <p className="text-sm font-medium text-secondary">Burned</p>
+                  <p className="text-lg font-bold text-primary" data-testid="calories-burned-metric">
                     420 cal
                   </p>
                 </div>
               </div>
-              <div className="mt-2 w-full bg-[var(--color-border)]/50 rounded-full h-2">
+              <div className="mt-2 w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-[var(--color-nutrition)] to-[var(--color-nutrition)]/80 h-2 rounded-full transition-all duration-1000 shadow-sm"
+                  className="bg-nutrition h-2 rounded-full transition-all duration-1000 shadow-sm"
                   style={{ width: `70%` }}
                 />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-[var(--color-wellness)]/15 via-[var(--color-wellness)]/8 to-[var(--color-wellness)]/3 border border-[var(--color-wellness)]/25 backdrop-blur-xl shadow-lg shadow-[var(--color-wellness)]/8">
+          <Card className="card-glass">
             <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-[var(--color-wellness)]/25 rounded-xl shadow-sm">
-                  <Moon className="w-5 h-5 text-[var(--color-wellness)]" />
+              <div className="flex-center gap-3">
+                <div className="icon-badge icon-badge-wellness">
+                  <Moon className="w-5 h-5 text-wellness" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-[var(--color-text-secondary)]">Sleep</p>
-                  <p className="text-lg font-bold text-[var(--color-text-primary)]" data-testid="sleep-hours-metric">
+                  <p className="text-sm font-medium text-secondary">Sleep</p>
+                  <p className="text-lg font-bold text-primary" data-testid="sleep-hours-metric">
                     {sleepData.current}h
                   </p>
                 </div>
               </div>
-              <div className="mt-2 w-full bg-[var(--color-border)]/50 rounded-full h-2">
+              <div className="mt-2 w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-[var(--color-wellness)] to-[var(--color-wellness)]/80 h-2 rounded-full transition-all duration-1000 shadow-sm"
+                  className="bg-wellness h-2 rounded-full transition-all duration-1000 shadow-sm"
                   style={{ width: `${Math.min(100, sleepProgress)}%` }}
                 />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-to-br from-[var(--color-wellness)]/15 via-[var(--color-wellness)]/8 to-[var(--color-wellness)]/3 border border-[var(--color-wellness)]/25 backdrop-blur-xl shadow-lg shadow-[var(--color-wellness)]/8">
+          <Card className="card-glass">
             <CardContent className="p-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-[var(--color-wellness)]/25 rounded-xl shadow-sm">
-                  <Target className="w-5 h-5 text-[var(--color-wellness)]" />
+              <div className="flex-center gap-3">
+                <div className="icon-badge icon-badge-action">
+                  <Target className="w-5 h-5 text-action" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-[var(--color-text-secondary)]">Water</p>
-                  <p className="text-lg font-bold text-[var(--color-text-primary)]" data-testid="water-glasses-metric">
+                  <p className="text-sm font-medium text-secondary">Water</p>
+                  <p className="text-lg font-bold text-primary" data-testid="water-glasses-metric">
                     {waterData.current} / {waterData.goal}
                   </p>
                 </div>
               </div>
-              <div className="mt-2 w-full bg-[var(--color-border)]/50 rounded-full h-2">
+              <div className="mt-2 w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-[var(--color-wellness)] to-[var(--color-wellness)]/80 h-2 rounded-full transition-all duration-1000 shadow-sm"
+                  className="bg-action h-2 rounded-full transition-all duration-1000 shadow-sm"
                   style={{ width: `${Math.min(100, waterProgress)}%` }}
                 />
               </div>
@@ -290,18 +276,18 @@ export default function HomePage() {
         <div className="space-y-4">
           <Link href="/workouts">
             <Card 
-              className="bg-gradient-to-r from-[var(--color-activity)] to-[var(--color-activity)] border-0 shadow-2xl shadow-[var(--color-activity)]/25 hover:shadow-[var(--color-activity)]/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="card-activity transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               data-testid="card-log-workout"
             >
               <CardContent className="p-6">
-                <div className="flex items-center justify-between text-white">
-                  <div className="flex items-center gap-4">
+                <div className="flex-between">
+                  <div className="flex-start gap-4">
                     <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
                       <Dumbbell className="w-6 h-6" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold">Log Workout</h3>
-                      <p className="text-white/80">Track your training session</p>
+                      <p className="opacity-80">Track your training session</p>
                     </div>
                   </div>
                   <Plus className="w-6 h-6" />
@@ -312,18 +298,18 @@ export default function HomePage() {
 
           <Link href="/nutrition">
             <Card 
-              className="bg-gradient-to-r from-[var(--color-nutrition)] to-[var(--color-nutrition)] border-0 shadow-2xl shadow-[var(--color-nutrition)]/25 hover:shadow-[var(--color-nutrition)]/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="card-nutrition transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               data-testid="card-log-meal"
             >
               <CardContent className="p-6">
-                <div className="flex items-center justify-between text-white">
-                  <div className="flex items-center gap-4">
+                <div className="flex-between">
+                  <div className="flex-start gap-4">
                     <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
                       <Utensils className="w-6 h-6" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold">Log Meal</h3>
-                      <p className="text-white/80">Record what you ate</p>
+                      <p className="opacity-80">Record what you ate</p>
                     </div>
                   </div>
                   <Plus className="w-6 h-6" />
@@ -334,18 +320,18 @@ export default function HomePage() {
 
           <Link href="/meditate">
             <Card 
-              className="bg-gradient-to-r from-[var(--color-wellness)] to-[var(--color-wellness)] border-0 shadow-2xl shadow-[var(--color-wellness)]/25 hover:shadow-[var(--color-wellness)]/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="card-wellness transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
               data-testid="card-meditate"
             >
               <CardContent className="p-6">
-                <div className="flex items-center justify-between text-white">
-                  <div className="flex items-center gap-4">
+                <div className="flex-between">
+                  <div className="flex-start gap-4">
                     <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
                       <Brain className="w-6 h-6" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold">Meditate</h3>
-                      <p className="text-white/80">Find your inner peace</p>
+                      <p className="opacity-80">Find your inner peace</p>
                     </div>
                   </div>
                   <Plus className="w-6 h-6" />
@@ -356,36 +342,35 @@ export default function HomePage() {
         </div>
 
         {/* Daily Wellness Insights */}
-        <Card className="bg-gradient-to-br from-[var(--color-action)]/10 via-[var(--color-action)]/5 to-transparent border border-[var(--color-action)]/20 backdrop-blur-xl shadow-lg shadow-[var(--color-action)]/5">
+        <Card className="card-glass">
           <CardHeader>
-            <CardTitle className="text-[var(--color-text-primary)] flex items-center gap-2">
-              <div className="p-2 bg-[var(--color-action)]/20 rounded-xl">
-                <Lightbulb className="w-5 h-5 text-[var(--color-action)]" />
+            <CardTitle className="text-primary flex-start gap-2">
+              <div className="icon-badge icon-badge-action">
+                <Lightbulb className="w-5 h-5 text-action" />
               </div>
               Daily Wellness Insights
             </CardTitle>
-            <CardDescription className="text-[var(--color-text-secondary)]">
+            <CardDescription className="text-secondary">
               Personalized tips to help you reach your goals
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             {insights.map((insight) => {
               const IconComponent = insight.icon
-              const colors = colorMap[insight.color]
               return (
                 <div 
                   key={insight.id} 
-                  className="p-4 bg-[var(--color-surface)]/50 rounded-lg border border-[var(--color-border)] hover:bg-[var(--color-border)]/30 transition-colors"
+                  className="action-item"
                   data-testid={`insight-${insight.id}`}
                 >
-                  <div className="flex items-start gap-3">
-                    <div className={`p-2 ${colors.bg} rounded-xl flex-shrink-0 shadow-sm`}>
-                      <IconComponent className={`w-4 h-4 ${colors.text}`} />
+                  <div className="flex-start gap-3">
+                    <div className={`icon-badge ${insight.badgeClass}`}>
+                      <IconComponent className="w-4 h-4" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-[var(--color-text-primary)] text-sm leading-relaxed">{insight.message}</p>
+                      <p className="text-primary text-sm leading-relaxed">{insight.message}</p>
                       <button 
-                        className={`mt-2 px-3 py-1 bg-[var(--color-action)]/10 text-[var(--color-action)] text-xs font-medium rounded-full hover:bg-[var(--color-action)]/20 transition-all duration-200 border border-[var(--color-action)]/20`}
+                        className="mt-2 px-3 py-1 bg-action/10 text-action text-xs font-medium rounded-full hover:bg-action/20 transition-all duration-200 border border-action/20"
                         data-testid={`insight-action-${insight.id}`}
                       >
                         {insight.action} →
@@ -399,80 +384,80 @@ export default function HomePage() {
         </Card>
 
         {/* Nutrition Snapshot */}
-        <Card className="bg-gradient-to-br from-[var(--color-nutrition)]/10 via-[var(--color-nutrition)]/5 to-transparent border border-[var(--color-nutrition)]/20 backdrop-blur-xl shadow-lg shadow-[var(--color-nutrition)]/5">
+        <Card className="card-glass">
           <CardHeader>
-            <CardTitle className="text-[var(--color-text-primary)] flex items-center gap-2">
-              <div className="p-2 bg-[var(--color-nutrition)]/20 rounded-xl">
-                <Apple className="w-5 h-5 text-[var(--color-nutrition)]" />
+            <CardTitle className="text-primary flex-start gap-2">
+              <div className="icon-badge icon-badge-nutrition">
+                <Apple className="w-5 h-5 text-nutrition" />
               </div>
               Nutrition Snapshot
             </CardTitle>
-            <CardDescription className="text-[var(--color-text-secondary)]">
+            <CardDescription className="text-secondary">
               Today's nutritional breakdown
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {/* Macros */}
             <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-foreground font-medium">Protein</span>
-                <span className="text-muted-foreground text-sm" data-testid="protein-count">
+              <div className="flex-between">
+                <span className="font-medium text-primary">Protein</span>
+                <span className="text-secondary text-sm" data-testid="protein-count">
                   {nutritionData.protein.current}g / {nutritionData.protein.goal}g
                 </span>
               </div>
               <div className="w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-[var(--color-protein)] to-[var(--color-protein)]/80 h-2 rounded-full transition-all duration-1000"
+                  className="bg-protein h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, (nutritionData.protein.current / nutritionData.protein.goal) * 100)}%` }}
                 />
               </div>
             </div>
 
             <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-foreground font-medium">Carbs</span>
-                <span className="text-muted-foreground text-sm" data-testid="carbs-count">
+              <div className="flex-between">
+                <span className="font-medium text-primary">Carbs</span>
+                <span className="text-secondary text-sm" data-testid="carbs-count">
                   {nutritionData.carbs.current}g / {nutritionData.carbs.goal}g
                 </span>
               </div>
               <div className="w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-[var(--color-carbs)] to-[var(--color-carbs)]/80 h-2 rounded-full transition-all duration-1000"
+                  className="bg-carbs h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, (nutritionData.carbs.current / nutritionData.carbs.goal) * 100)}%` }}
                 />
               </div>
             </div>
 
             <div className="space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="text-foreground font-medium">Fat</span>
-                <span className="text-muted-foreground text-sm" data-testid="fat-count">
+              <div className="flex-between">
+                <span className="font-medium text-primary">Fat</span>
+                <span className="text-secondary text-sm" data-testid="fat-count">
                   {nutritionData.fat.current}g / {nutritionData.fat.goal}g
                 </span>
               </div>
               <div className="w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-[var(--color-fat)] to-[var(--color-fat)]/80 h-2 rounded-full transition-all duration-1000"
+                  className="bg-fat h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, (nutritionData.fat.current / nutritionData.fat.goal) * 100)}%` }}
                 />
               </div>
             </div>
 
             {/* Quick Stats */}
-            <div className="flex justify-between items-center pt-4 border-t border-[var(--color-nutrition)]/20">
-              <div className="text-center p-3 bg-[var(--color-nutrition)]/10 rounded-xl">
-                <p className="text-2xl font-bold text-[var(--color-nutrition)]" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
-                <p className="text-xs text-[var(--color-text-secondary)] font-medium">Meals Logged</p>
+            <div className="flex-between pt-4 border-t border-nutrition/20">
+              <div className="text-center p-3 bg-nutrition/10 rounded-xl">
+                <p className="text-2xl font-bold text-nutrition" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
+                <p className="text-xs text-secondary font-medium">Meals Logged</p>
               </div>
-              <div className="text-center p-3 bg-[var(--color-nutrition)]/10 rounded-xl">
-                <p className="text-2xl font-bold text-[var(--color-nutrition)]" data-testid="calories-remaining">
+              <div className="text-center p-3 bg-nutrition/10 rounded-xl">
+                <p className="text-2xl font-bold text-nutrition" data-testid="calories-remaining">
                   {nutritionData.calories.goal - nutritionData.calories.current}
                 </p>
-                <p className="text-xs text-[var(--color-text-secondary)] font-medium">Calories Left</p>
+                <p className="text-xs text-secondary font-medium">Calories Left</p>
               </div>
-              <div className="text-center p-3 bg-[var(--color-nutrition)]/10 rounded-xl">
-                <p className="text-2xl font-bold text-[var(--color-nutrition)]">73%</p>
-                <p className="text-xs text-[var(--color-text-secondary)] font-medium">Daily Goal</p>
+              <div className="text-center p-3 bg-nutrition/10 rounded-xl">
+                <p className="text-2xl font-bold text-nutrition">73%</p>
+                <p className="text-xs text-secondary font-medium">Daily Goal</p>
               </div>
             </div>
           </CardContent>

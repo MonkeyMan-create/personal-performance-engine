@@ -1060,5 +1060,421 @@
 }
 
 /* ==========================================
+   PAGE FOUNDATION CLASSES
+   ========================================== */
+
+/* Page containers and layouts */
+.page-container {
+  min-height: 100vh;
+  background-color: var(--color-background);
+  padding: var(--spacing-4);
+  padding-bottom: var(--spacing-24);
+}
+
+.page-header {
+  text-align: center;
+  padding-top: var(--spacing-8);
+  margin-bottom: var(--spacing-6);
+}
+
+.page-title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-2);
+}
+
+.page-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.page-back-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding-top: var(--spacing-8);
+  margin-bottom: var(--spacing-6);
+}
+
+.page-back-button {
+  padding: var(--spacing-2);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  transition: all var(--duration-base) var(--easing-ease-out);
+  cursor: pointer;
+}
+
+.page-back-button:hover {
+  background-color: var(--color-interactive-hover);
+  color: var(--color-text-primary);
+}
+
+.page-back-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+}
+
+/* Section utilities */
+.section-spacing {
+  margin-bottom: var(--spacing-6);
+}
+
+.section-container {
+  margin: 0 auto;
+  max-width: 72rem;
+  padding: 0 var(--spacing-4);
+}
+
+/* Grid systems for responsive layouts */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-4);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-4);
+}
+
+/* Responsive grid variants */
+@media (min-width: 768px) {
+  .grid-md-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-md-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .grid-md-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .grid-2, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================
+   ENHANCED CARD FOUNDATION CLASSES
+   ========================================== */
+
+/* Premium glass card with backdrop blur effect */
+.card-glass {
+  background: linear-gradient(135deg, rgba(var(--color-surface-rgb), 0.9), rgba(var(--color-surface-rgb), 0.8));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-2xl);
+  color: var(--color-text-primary);
+}
+
+/* Semantic gradient card variants */
+.card-action {
+  background: linear-gradient(135deg, rgba(var(--color-action-rgb), 0.6), rgba(var(--color-action-rgb), 0.7));
+  border: 1px solid rgba(var(--color-action-rgb), 0.5);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 15px -3px rgba(var(--color-action-rgb), 0.2);
+  color: var(--color-action-text);
+}
+
+.card-activity {
+  background: linear-gradient(135deg, rgba(var(--color-activity-rgb), 0.6), rgba(var(--color-activity-rgb), 0.7));
+  border: 1px solid rgba(var(--color-activity-rgb), 0.5);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 15px -3px rgba(var(--color-activity-rgb), 0.2);
+  color: var(--color-activity-text);
+}
+
+.card-nutrition {
+  background: linear-gradient(135deg, rgba(var(--color-nutrition-rgb), 0.6), rgba(var(--color-nutrition-rgb), 0.7));
+  border: 1px solid rgba(var(--color-nutrition-rgb), 0.5);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 15px -3px rgba(var(--color-nutrition-rgb), 0.2);
+  color: var(--color-nutrition-text);
+}
+
+.card-wellness {
+  background: linear-gradient(135deg, rgba(var(--color-wellness-rgb), 0.6), rgba(var(--color-wellness-rgb), 0.7));
+  border: 1px solid rgba(var(--color-wellness-rgb), 0.5);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 15px -3px rgba(var(--color-wellness-rgb), 0.2);
+  color: var(--color-wellness-text);
+}
+
+.card-success {
+  background: linear-gradient(135deg, rgba(var(--color-success-rgb), 0.6), rgba(var(--color-success-rgb), 0.7));
+  border: 1px solid rgba(var(--color-success-rgb), 0.5);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 15px -3px rgba(var(--color-success-rgb), 0.2);
+  color: var(--color-success-text);
+}
+
+.card-warning {
+  background: linear-gradient(135deg, rgba(var(--color-warning-rgb), 0.6), rgba(var(--color-warning-rgb), 0.7));
+  border: 1px solid rgba(var(--color-warning-rgb), 0.5);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 15px -3px rgba(var(--color-warning-rgb), 0.2);
+  color: var(--color-warning-text);
+}
+
+.card-error {
+  background: linear-gradient(135deg, rgba(var(--color-error-rgb), 0.6), rgba(var(--color-error-rgb), 0.7));
+  border: 1px solid rgba(var(--color-error-rgb), 0.5);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 15px -3px rgba(var(--color-error-rgb), 0.2);
+  color: var(--color-error-text);
+}
+
+/* ==========================================
+   ICON BADGE FOUNDATION CLASSES
+   ========================================== */
+
+/* Base icon badge structure */
+.icon-badge {
+  padding: var(--spacing-3);
+  border-radius: var(--radius-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-base) var(--easing-ease-out);
+}
+
+.icon-badge-sm {
+  padding: var(--spacing-2);
+  border-radius: var(--radius-xl);
+}
+
+.icon-badge-lg {
+  padding: var(--spacing-4);
+  border-radius: var(--radius-2xl);
+}
+
+/* Semantic icon badge variants */
+.icon-badge-action {
+  background: linear-gradient(135deg, rgba(var(--color-action-rgb), 0.2), rgba(var(--color-action-rgb), 0.1));
+  border: 1px solid rgba(var(--color-action-rgb), 0.2);
+}
+
+.icon-badge-activity {
+  background: linear-gradient(135deg, rgba(var(--color-activity-rgb), 0.2), rgba(var(--color-activity-rgb), 0.1));
+  border: 1px solid rgba(var(--color-activity-rgb), 0.2);
+}
+
+.icon-badge-nutrition {
+  background: linear-gradient(135deg, rgba(var(--color-nutrition-rgb), 0.2), rgba(var(--color-nutrition-rgb), 0.1));
+  border: 1px solid rgba(var(--color-nutrition-rgb), 0.2);
+}
+
+.icon-badge-wellness {
+  background: linear-gradient(135deg, rgba(var(--color-wellness-rgb), 0.2), rgba(var(--color-wellness-rgb), 0.1));
+  border: 1px solid rgba(var(--color-wellness-rgb), 0.2);
+}
+
+.icon-badge-success {
+  background: linear-gradient(135deg, rgba(var(--color-success-rgb), 0.2), rgba(var(--color-success-rgb), 0.1));
+  border: 1px solid rgba(var(--color-success-rgb), 0.2);
+}
+
+.icon-badge-warning {
+  background: linear-gradient(135deg, rgba(var(--color-warning-rgb), 0.2), rgba(var(--color-warning-rgb), 0.1));
+  border: 1px solid rgba(var(--color-warning-rgb), 0.2);
+}
+
+.icon-badge-error {
+  background: linear-gradient(135deg, rgba(var(--color-error-rgb), 0.2), rgba(var(--color-error-rgb), 0.1));
+  border: 1px solid rgba(var(--color-error-rgb), 0.2);
+}
+
+.icon-badge-info {
+  background: linear-gradient(135deg, rgba(var(--color-info-rgb), 0.2), rgba(var(--color-info-rgb), 0.1));
+  border: 1px solid rgba(var(--color-info-rgb), 0.2);
+}
+
+/* ==========================================
+   CONTENT LAYOUT UTILITIES
+   ========================================== */
+
+/* Flex layouts */
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-col-start {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Spacing utilities */
+.space-y-2 > * + * {
+  margin-top: var(--spacing-2);
+}
+
+.space-y-3 > * + * {
+  margin-top: var(--spacing-3);
+}
+
+.space-y-4 > * + * {
+  margin-top: var(--spacing-4);
+}
+
+.space-y-6 > * + * {
+  margin-top: var(--spacing-6);
+}
+
+.space-y-8 > * + * {
+  margin-top: var(--spacing-8);
+}
+
+.gap-2 {
+  gap: var(--spacing-2);
+}
+
+.gap-3 {
+  gap: var(--spacing-3);
+}
+
+.gap-4 {
+  gap: var(--spacing-4);
+}
+
+.gap-6 {
+  gap: var(--spacing-6);
+}
+
+/* Text alignment utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Max width utilities */
+.max-w-md {
+  max-width: 28rem;
+}
+
+.max-w-lg {
+  max-width: 32rem;
+}
+
+.max-w-xl {
+  max-width: 36rem;
+}
+
+.max-w-2xl {
+  max-width: 42rem;
+}
+
+.max-w-4xl {
+  max-width: 56rem;
+}
+
+/* Margin auto for centering */
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================
+   INTERACTIVE ELEMENT FOUNDATIONS
+   ========================================== */
+
+/* Action items and clickable cards */
+.action-item {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+  transition: all var(--duration-base) var(--easing-ease-out);
+  cursor: pointer;
+  color: var(--color-text-primary);
+}
+
+.action-item:hover {
+  background-color: var(--color-interactive-hover);
+  border-color: var(--color-action);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.action-item:active {
+  transform: translateY(0);
+}
+
+/* Status indicators */
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.status-success {
+  background-color: rgba(var(--color-success-rgb), 0.1);
+  color: var(--color-success);
+  border: 1px solid rgba(var(--color-success-rgb), 0.2);
+}
+
+.status-warning {
+  background-color: rgba(var(--color-warning-rgb), 0.1);
+  color: var(--color-warning);
+  border: 1px solid rgba(var(--color-warning-rgb), 0.2);
+}
+
+.status-error {
+  background-color: rgba(var(--color-error-rgb), 0.1);
+  color: var(--color-error);
+  border: 1px solid rgba(var(--color-error-rgb), 0.2);
+}
+
+/* ==========================================
    END OF MASTER THEME FILE
    ========================================== */

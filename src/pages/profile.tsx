@@ -176,31 +176,30 @@ export default function SettingsPage() {
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      <div className="container mx-auto p-4 space-y-8 pb-24">
-        <div className="pt-6 text-center space-y-4">
-          <div className="flex items-center justify-center gap-4">
-            <div className="p-3 bg-gradient-to-br from-[var(--color-action)] to-[var(--color-action)]/80 rounded-2xl shadow-lg">
+    <div className="page-container">
+      <div className="section-container space-y-8">
+        <div className="page-header space-y-4">
+          <div className="flex-center gap-4">
+            <div className="icon-badge icon-badge-action icon-badge-lg">
               <Settings className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Settings</h1>
-              <p className="text-[var(--color-text-secondary)] text-lg">Customize your experience</p>
+              <h1 className="page-title" data-testid="page-title">Settings</h1>
+              <p className="text-secondary text-lg">Customize your experience</p>
             </div>
           </div>
-          <div className="bg-gradient-to-r from-[var(--color-action)]/15 via-[var(--color-action)]/10 to-[var(--color-action)]/15 rounded-2xl p-4 border border-[var(--color-action)]/20">
-            <p className="text-[var(--color-text-secondary)] text-lg">Manage your profile and app preferences</p>
+          <div className="action-item text-center">
+            <p className="text-secondary text-lg">Manage your profile and app preferences</p>
           </div>
         </div>
         
         {/* User Header */}
-        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-action)]/5 via-transparent to-[var(--color-action)]/5 pointer-events-none"></div>
-          <CardContent className="p-8 relative">
-            <div className="flex items-center gap-6">
+        <Card className="card-glass">
+          <CardContent className="card-content p-8">
+            <div className="flex-start gap-6">
               {/* User Avatar */}
               <div className="relative">
-                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-[var(--color-action)]/40 shadow-2xl" data-testid="user-avatar">
+                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-action shadow-2xl" data-testid="user-avatar">
                   {(isGuestMode && profileData.profilePicture) || (!isGuestMode && user?.photoURL) ? (
                     <img 
                       src={isGuestMode ? profileData.profilePicture! : user!.photoURL!} 
@@ -209,27 +208,27 @@ export default function SettingsPage() {
                       data-testid="user-avatar-image"
                     />
                   ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-[var(--color-action)] to-[var(--color-action)]/90 flex items-center justify-center text-white font-bold text-2xl shadow-inner" data-testid="user-avatar-initials">
+                    <div className="w-full h-full bg-action flex-center text-white font-bold text-2xl" data-testid="user-avatar-initials">
                       {isGuestMode ? getInitials(profileData.displayName) || 'G' : getInitials(user?.displayName)}
                     </div>
                   )}
                 </div>
-                <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-gradient-to-br from-[var(--color-action)] to-[var(--color-action)]/90 rounded-full flex items-center justify-center shadow-lg">
+                <div className="absolute -bottom-1 -right-1 icon-badge bg-action rounded-full flex-center">
                   <User className="w-4 h-4 text-white" />
                 </div>
               </div>
               <div className="flex-1">
-                <h2 className="font-bold text-3xl text-[var(--color-text-primary)] mb-2" data-testid="user-name">
+                <h2 className="font-bold text-3xl text-primary mb-2" data-testid="user-name">
                   {isGuestMode ? (profileData.displayName || 'Guest User') : user?.displayName}
                 </h2>
-                <p className="text-[var(--color-text-secondary)] font-medium text-lg flex items-center gap-2">
-                  <span className="w-2 h-2 bg-[var(--color-action)] rounded-full"></span>
+                <p className="text-secondary font-medium text-lg flex-start gap-2">
+                  <span className="w-2 h-2 bg-action rounded-full"></span>
                   {isGuestMode ? 'Guest Session' : `Member since ${getMemberSinceDate()}`}
                 </p>
                 {isGuestMode && profileData.email ? (
-                  <p className="text-[var(--color-text-secondary)] mt-2 font-medium" data-testid="user-email">{profileData.email}</p>
+                  <p className="text-secondary mt-2 font-medium" data-testid="user-email">{profileData.email}</p>
                 ) : (!isGuestMode && user?.email && (
-                  <p className="text-[var(--color-text-secondary)] mt-2 font-medium" data-testid="user-email">{user.email}</p>
+                  <p className="text-secondary mt-2 font-medium" data-testid="user-email">{user.email}</p>
                 ))}
               </div>
             </div>
@@ -237,33 +236,32 @@ export default function SettingsPage() {
         </Card>
 
         {/* Account Settings Section */}
-        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-action)]/5 via-transparent to-[var(--color-action)]/5 pointer-events-none"></div>
-          <CardHeader className="pb-6 bg-gradient-to-r from-[var(--color-action)]/10 to-[var(--color-action)]/5 relative">
-            <CardTitle className="text-[var(--color-text-primary)] text-2xl font-bold flex items-center gap-3">
-              <div className="p-2 bg-[var(--color-action)] rounded-xl shadow-lg">
+        <Card className="card-glass">
+          <CardHeader className="card-header">
+            <CardTitle className="card-title text-primary text-2xl font-bold flex-start gap-3">
+              <div className="icon-badge icon-badge-action">
                 <Settings className="w-6 h-6 text-white" />
               </div>
               Account Settings
             </CardTitle>
-            <CardDescription className="text-[var(--color-text-secondary)] text-lg">
+            <CardDescription className="card-description text-secondary text-lg">
               Manage your profile and app preferences
             </CardDescription>
           </CardHeader>
           <CardContent className="p-2 space-y-2">
             <Link href="/profile-edit">
-              <div className="flex items-center justify-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl bg-gradient-to-br from-[var(--color-action)]/60 to-[var(--color-action)]/70 border border-[var(--color-action)]/50 backdrop-blur-sm shadow-[var(--color-action)]/20 hover:from-[var(--color-action)]/70 hover:to-[var(--color-action)]/80" data-testid="settings-profile">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 bg-white/20 rounded-xl shadow-lg backdrop-blur-sm">
-                    <User className="w-5 h-5 text-white" />
+              <div className="action-item card-action" data-testid="settings-profile">
+                <div className="flex-start gap-4">
+                  <div className="icon-badge bg-white rounded-xl">
+                    <User className="w-5 h-5 text-action" />
                   </div>
                   <div>
                     <p className="font-bold text-white text-lg">My Profile & Account</p>
-                    <p className="text-white/90 mt-1 font-medium">View and edit your profile information</p>
+                    <p className="text-white mt-1 font-medium">View and edit your profile information</p>
                   </div>
                 </div>
-                <div className="p-2 bg-white/20 rounded-lg shadow-lg backdrop-blur-sm">
-                  <ChevronRight className="w-5 h-5 text-white" />
+                <div className="icon-badge bg-white rounded-lg">
+                  <ChevronRight className="w-5 h-5 text-action" />
                 </div>
               </div>
             </Link>
@@ -291,7 +289,7 @@ export default function SettingsPage() {
             />
             
             {/* Semantic Theme Editor */}
-            <div className="p-5 rounded-xl mx-3 bg-gradient-to-br from-[var(--color-action)]/5 to-[var(--color-action)]/10 border border-[var(--color-action)]/20" data-testid="settings-semantic-theme">
+            <div className="action-item" data-testid="settings-semantic-theme">
               <SemanticThemeEditor />
             </div>
             
@@ -380,16 +378,15 @@ export default function SettingsPage() {
         </Card>
 
         {/* Data Management Section */}
-        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-wellness)]/5 via-transparent to-[var(--color-wellness)]/5 pointer-events-none"></div>
-          <CardHeader className="pb-6 bg-gradient-to-r from-[var(--color-wellness)]/10 to-[var(--color-wellness)]/5 relative">
-            <CardTitle className="text-[var(--color-text-primary)] text-2xl font-bold flex items-center gap-3">
-              <div className="p-2 bg-[var(--color-wellness)] rounded-xl shadow-lg">
+        <Card className="card-glass">
+          <CardHeader className="card-header">
+            <CardTitle className="card-title text-primary text-2xl font-bold flex-start gap-3">
+              <div className="icon-badge icon-badge-wellness">
                 <Download className="w-6 h-6 text-white" />
               </div>
               Data Management
             </CardTitle>
-            <CardDescription className="text-[var(--color-text-secondary)] text-lg">
+            <CardDescription className="card-description text-secondary text-lg">
               Manage your health data and account information
             </CardDescription>
           </CardHeader>
