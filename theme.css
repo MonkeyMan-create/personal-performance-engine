@@ -1,0 +1,410 @@
+/* ==========================================
+   MASTER THEME FILE - SINGLE SOURCE OF TRUTH
+   ========================================== */
+
+/* This is the definitive design system for the entire application.
+   All colors, spacing, fonts, and design tokens are defined here.
+   No component should define its own styling values. */
+
+:root {
+  /* ==========================================
+     DYNAMIC SEMANTIC COLORS - User Customizable
+     ========================================== */
+  
+  /* PRIMARY ACTION COLOR - Used for primary buttons, active navigation, main CTAs */
+  --color-action: #0D9488; /* Teal - Default */
+  --color-action-hover: #0F766E; /* 10% darker */
+  --color-action-text: #FFFFFF; /* White text on action color */
+  --color-action-rgb: 13, 148, 136; /* RGB channels for rgba() usage */
+  
+  /* ACTIVITY/WORKOUT COLOR - Used for workout stats, progress, fitness features */
+  --color-activity: #EC4899; /* Pink - Default */
+  --color-activity-hover: #DB2777; /* 10% darker */
+  --color-activity-text: #FFFFFF; /* White text on activity color */
+  --color-activity-rgb: 236, 72, 153; /* RGB channels for rgba() usage */
+  
+  /* NUTRITION COLOR - Used for calorie tracking, food logging, nutrition features */
+  --color-nutrition: #10B981; /* Green - Default */
+  --color-nutrition-hover: #059669; /* 10% darker */
+  --color-nutrition-text: #FFFFFF; /* White text on nutrition color */
+  --color-nutrition-rgb: 16, 185, 129; /* RGB channels for rgba() usage */
+  
+  /* WELLNESS COLOR - Used for meditation, mood, mental health features */
+  --color-wellness: #4F46E5; /* Indigo - Default */
+  --color-wellness-hover: #4338CA; /* 10% darker */
+  --color-wellness-text: #FFFFFF; /* White text on wellness color */
+  --color-wellness-rgb: 79, 70, 229; /* RGB channels for rgba() usage */
+
+  /* ==========================================
+     STATIC INFORMATIONAL COLORS - System Fixed
+     ========================================== */
+  
+  --color-success: #22c55e; /* Green for success states */
+  --color-success-hover: #16a34a; /* Darker green for hover */
+  --color-success-text: #FFFFFF; /* White text on success */
+  --color-success-rgb: 34, 197, 94; /* RGB channels */
+  
+  --color-error: #ef4444; /* Red for error states */
+  --color-error-hover: #dc2626; /* Darker red for hover */
+  --color-error-text: #FFFFFF; /* White text on error */
+  --color-error-rgb: 239, 68, 68; /* RGB channels */
+  
+  --color-warning: #f59e0b; /* Yellow for warning states */
+  --color-warning-hover: #d97706; /* Darker yellow for hover */
+  --color-warning-text: #FFFFFF; /* White text on warning */
+  --color-warning-rgb: 245, 158, 11; /* RGB channels */
+  
+  --color-info: #3b82f6; /* Blue for informational states */
+  --color-info-hover: #2563eb; /* Darker blue for hover */
+  --color-info-text: #FFFFFF; /* White text on info */
+  --color-info-rgb: 59, 130, 246; /* RGB channels */
+
+  /* ==========================================
+     STATIC DATA VISUALIZATION COLORS
+     ========================================== */
+  
+  --color-protein: #FB7185; /* Pink/Red for protein macros */
+  --color-carbs: #818CF8; /* Blue/Purple for carbohydrates */
+  --color-fat: #FBBF24; /* Yellow/Amber for fats */
+  --color-fiber: #34D399; /* Green for fiber */
+  --color-sugar: #F472B6; /* Pink for sugar */
+
+  /* ==========================================
+     STATIC DIFFICULTY COLORS
+     ========================================== */
+  
+  --color-difficulty-beginner: #22c55e; /* Green */
+  --color-difficulty-intermediate: #f59e0b; /* Amber */
+  --color-difficulty-advanced: #ef4444; /* Red */
+
+  /* ==========================================
+     BASE UI COLORS - LIGHT MODE
+     ========================================== */
+  
+  /* Backgrounds */
+  --color-background: #ffffff; /* Main page background */
+  --color-surface: #f8fafc; /* Card and panel backgrounds */
+  --color-surface-secondary: #f1f5f9; /* Secondary surface color */
+  --color-surface-hover: #e2e8f0; /* Hover state for surfaces */
+  
+  /* Text Colors */
+  --color-text-primary: #1e293b; /* Primary text color */
+  --color-text-secondary: #64748b; /* Secondary text color */
+  --color-text-tertiary: #94a3b8; /* Tertiary text color */
+  --color-text-disabled: #cbd5e1; /* Disabled text color */
+  
+  /* Border Colors */
+  --color-border: #e2e8f0; /* Primary border color */
+  --color-border-secondary: #cbd5e1; /* Secondary border color */
+  --color-border-focus: var(--color-action); /* Focus state borders */
+  
+  /* Interactive States */
+  --color-interactive-hover: #f1f5f9; /* Hover state background */
+  --color-interactive-active: #e2e8f0; /* Active state background */
+
+  /* ==========================================
+     SPACING SYSTEM
+     ========================================== */
+  
+  --spacing-0: 0px;     /* 0rem */
+  --spacing-1: 4px;     /* 0.25rem */
+  --spacing-2: 8px;     /* 0.5rem */
+  --spacing-3: 12px;    /* 0.75rem */
+  --spacing-4: 16px;    /* 1rem */
+  --spacing-5: 20px;    /* 1.25rem */
+  --spacing-6: 24px;    /* 1.5rem */
+  --spacing-8: 32px;    /* 2rem */
+  --spacing-10: 40px;   /* 2.5rem */
+  --spacing-12: 48px;   /* 3rem */
+  --spacing-16: 64px;   /* 4rem */
+  --spacing-20: 80px;   /* 5rem */
+  --spacing-24: 96px;   /* 6rem */
+  --spacing-32: 128px;  /* 8rem */
+  --spacing-40: 160px;  /* 10rem */
+  --spacing-48: 192px;  /* 12rem */
+  --spacing-56: 224px;  /* 14rem */
+  --spacing-64: 256px;  /* 16rem */
+
+  /* ==========================================
+     TYPOGRAPHY SYSTEM
+     ========================================== */
+  
+  /* Font Families */
+  --font-family-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-serif: 'Georgia', 'Times New Roman', serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  
+  /* Font Sizes */
+  --font-size-xs: 12px;    /* 0.75rem */
+  --font-size-sm: 14px;    /* 0.875rem */
+  --font-size-base: 16px;  /* 1rem */
+  --font-size-lg: 18px;    /* 1.125rem */
+  --font-size-xl: 20px;    /* 1.25rem */
+  --font-size-2xl: 24px;   /* 1.5rem */
+  --font-size-3xl: 30px;   /* 1.875rem */
+  --font-size-4xl: 36px;   /* 2.25rem */
+  --font-size-5xl: 48px;   /* 3rem */
+  --font-size-6xl: 60px;   /* 3.75rem */
+  
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  /* Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  /* ==========================================
+     BORDER RADIUS SYSTEM
+     ========================================== */
+  
+  --radius-none: 0px;
+  --radius-sm: 4px;     /* Small radius */
+  --radius-base: 8px;   /* Base radius */
+  --radius-md: 12px;    /* Medium radius */
+  --radius-lg: 16px;    /* Large radius */
+  --radius-xl: 20px;    /* Extra large radius */
+  --radius-2xl: 24px;   /* 2x large radius */
+  --radius-3xl: 32px;   /* 3x large radius */
+  --radius-full: 9999px; /* Full circular */
+
+  /* ==========================================
+     SHADOW SYSTEM
+     ========================================== */
+  
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-2xl: 0 50px 100px -20px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+
+  /* ==========================================
+     Z-INDEX SYSTEM
+     ========================================== */
+  
+  --z-index-base: 0;
+  --z-index-dropdown: 1000;
+  --z-index-sticky: 1020;
+  --z-index-fixed: 1030;
+  --z-index-modal-backdrop: 1040;
+  --z-index-modal: 1050;
+  --z-index-popover: 1060;
+  --z-index-tooltip: 1070;
+  --z-index-toast: 1080;
+
+  /* ==========================================
+     ANIMATION SYSTEM
+     ========================================== */
+  
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+  
+  --easing-linear: linear;
+  --easing-ease: ease;
+  --easing-ease-in: ease-in;
+  --easing-ease-out: ease-out;
+  --easing-ease-in-out: ease-in-out;
+
+  /* ==========================================
+     SHADCN COMPATIBILITY LAYER
+     ========================================== */
+  
+  /* Base UI Colors */
+  --background: var(--color-background);
+  --foreground: var(--color-text-primary);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text-primary);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-text-primary);
+  --primary: var(--color-action);
+  --primary-foreground: var(--color-action-text);
+  --secondary: var(--color-surface-secondary);
+  --secondary-foreground: var(--color-text-primary);
+  --muted: var(--color-surface);
+  --muted-foreground: var(--color-text-secondary);
+  --accent: var(--color-interactive-hover);
+  --accent-foreground: var(--color-text-primary);
+  --destructive: var(--color-error);
+  --destructive-foreground: var(--color-error-text);
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --ring: var(--color-action);
+  --radius: var(--radius-base);
+  
+  /* Chart Colors */
+  --chart-1: var(--color-action-rgb);
+  --chart-2: var(--color-activity-rgb);
+  --chart-3: var(--color-nutrition-rgb);
+  --chart-4: var(--color-wellness-rgb);
+  --chart-5: var(--color-protein);
+}
+
+/* ==========================================
+   DARK MODE THEME
+   ========================================== */
+
+.dark {
+  /* Base UI Colors - Dark Mode */
+  --color-background: #0f172a; /* Dark slate background */
+  --color-surface: #1e293b; /* Dark slate surface */
+  --color-surface-secondary: #334155; /* Lighter dark surface */
+  --color-surface-hover: #475569; /* Hover state for dark surfaces */
+  
+  /* Text Colors - Dark Mode */
+  --color-text-primary: #f8fafc; /* Light text on dark */
+  --color-text-secondary: #cbd5e1; /* Secondary light text */
+  --color-text-tertiary: #94a3b8; /* Tertiary light text */
+  --color-text-disabled: #64748b; /* Disabled text in dark mode */
+  
+  /* Border Colors - Dark Mode */
+  --color-border: #334155; /* Dark border */
+  --color-border-secondary: #475569; /* Secondary dark border */
+  
+  /* Interactive States - Dark Mode */
+  --color-interactive-hover: #334155; /* Dark hover state */
+  --color-interactive-active: #475569; /* Dark active state */
+  
+  /* Shadow System - Dark Mode */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  --shadow-2xl: 0 50px 100px -20px rgba(0, 0, 0, 0.4);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  
+  /* Shadcn Compatibility - Dark Mode */
+  --background: var(--color-background);
+  --foreground: var(--color-text-primary);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text-primary);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-text-primary);
+  --secondary: var(--color-surface-secondary);
+  --secondary-foreground: var(--color-text-primary);
+  --muted: var(--color-surface);
+  --muted-foreground: var(--color-text-secondary);
+  --accent: var(--color-interactive-hover);
+  --accent-foreground: var(--color-text-primary);
+  --border: var(--color-border);
+  --input: var(--color-border);
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+/* Text utilities */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-tertiary { color: var(--color-text-tertiary); }
+.text-disabled { color: var(--color-text-disabled); }
+
+/* Background utilities */
+.bg-primary { background-color: var(--color-background); }
+.bg-surface { background-color: var(--color-surface); }
+.bg-surface-secondary { background-color: var(--color-surface-secondary); }
+
+/* Border utilities */
+.border-primary { border-color: var(--color-border); }
+.border-secondary { border-color: var(--color-border-secondary); }
+
+/* Semantic color utilities */
+.text-action { color: var(--color-action); }
+.bg-action { background-color: var(--color-action); color: var(--color-action-text); }
+.text-activity { color: var(--color-activity); }
+.bg-activity { background-color: var(--color-activity); color: var(--color-activity-text); }
+.text-nutrition { color: var(--color-nutrition); }
+.bg-nutrition { background-color: var(--color-nutrition); color: var(--color-nutrition-text); }
+.text-wellness { color: var(--color-wellness); }
+.bg-wellness { background-color: var(--color-wellness); color: var(--color-wellness-text); }
+
+/* Status color utilities */
+.text-success { color: var(--color-success); }
+.bg-success { background-color: var(--color-success); color: var(--color-success-text); }
+.text-error { color: var(--color-error); }
+.bg-error { background-color: var(--color-error); color: var(--color-error-text); }
+.text-warning { color: var(--color-warning); }
+.bg-warning { background-color: var(--color-warning); color: var(--color-warning-text); }
+
+/* ==========================================
+   COMPONENT FOUNDATION CLASSES
+   ========================================== */
+
+/* Base interactive element */
+.interactive-base {
+  transition: all var(--duration-base) var(--easing-ease-out);
+  cursor: pointer;
+}
+
+.interactive-base:hover {
+  transform: translateY(-1px);
+}
+
+.interactive-base:active {
+  transform: translateY(0);
+}
+
+/* Card foundation */
+.card-base {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--spacing-6);
+}
+
+/* Button foundation */
+.button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--duration-base) var(--easing-ease-out);
+  cursor: pointer;
+  border: none;
+}
+
+/* Input foundation */
+.input-base {
+  display: flex;
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+  transition: all var(--duration-base) var(--easing-ease-out);
+}
+
+.input-base:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(var(--color-action-rgb), 0.1);
+}
+
+.input-base::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* ==========================================
+   END OF MASTER THEME FILE
+   ========================================== */
