@@ -445,11 +445,13 @@ export default function ProgressPage() {
               <h2 className="text-xl font-semibold text-[var(--color-text-primary)]">Badges & Achievements</h2>
               <Card 
                 data-testid="card-badges-achievements"
-                className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl"
+                className="bg-gradient-to-br from-[var(--color-success)]/15 via-[var(--color-success)]/8 to-[var(--color-success)]/3 border border-[var(--color-success)]/30 backdrop-blur-xl shadow-lg shadow-[var(--color-success)]/10"
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <Trophy className="w-6 h-6 text-[var(--color-success)]" />
+                    <div className="p-2 bg-[var(--color-success)]/20 rounded-xl">
+                      <Trophy className="w-6 h-6 text-[var(--color-success)]" />
+                    </div>
                     <CardTitle className="text-xl text-[var(--color-text-primary)]">Your Achievements</CardTitle>
                   </div>
                   <CardDescription className="text-[var(--color-text-secondary)]">
@@ -469,7 +471,7 @@ export default function ProgressPage() {
                           title: 'First Step',
                           description: 'Complete your first workout',
                           icon: Dumbbell,
-                          color: 'from-purple-400 to-purple-600',
+                          color: 'from-[var(--color-activity)] to-[var(--color-activity)]/80',
                           earned: workoutStats.totalWorkouts >= 1,
                           target: 1,
                           current: workoutStats.totalWorkouts
@@ -479,7 +481,7 @@ export default function ProgressPage() {
                           title: 'Week Warrior',
                           description: 'Maintain a 7-day streak',
                           icon: Calendar,
-                          color: 'from-emerald-400 to-emerald-600',
+                          color: 'from-[var(--color-success)] to-[var(--color-success)]/80',
                           earned: workoutStats.currentStreak >= 7,
                           target: 7,
                           current: workoutStats.currentStreak
@@ -499,7 +501,7 @@ export default function ProgressPage() {
                           title: 'Meal Master',
                           description: 'Log 25 meals',
                           icon: Apple,
-                          color: 'from-orange-400 to-orange-600',
+                          color: 'from-[var(--color-nutrition)] to-[var(--color-nutrition)]/80',
                           earned: nutritionStats.totalMealsLogged >= 25,
                           target: 25,
                           current: nutritionStats.totalMealsLogged
@@ -509,7 +511,7 @@ export default function ProgressPage() {
                           title: 'Consistency King',
                           description: 'Achieve a 14-day streak',
                           icon: Crown,
-                          color: 'from-purple-400 to-purple-600',
+                          color: 'from-[var(--color-activity)] to-[var(--color-activity)]/80',
                           earned: workoutStats.currentStreak >= 14,
                           target: 14,
                           current: workoutStats.currentStreak
@@ -539,7 +541,7 @@ export default function ProgressPage() {
                           title: 'Century Club',
                           description: 'Complete 100 workouts',
                           icon: BadgeCheck,
-                          color: 'from-purple-400 to-purple-600',
+                          color: 'from-[var(--color-activity)] to-[var(--color-activity)]/80',
                           earned: workoutStats.totalWorkouts >= 100,
                           target: 100,
                           current: workoutStats.totalWorkouts

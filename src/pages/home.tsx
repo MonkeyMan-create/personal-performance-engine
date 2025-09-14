@@ -149,9 +149,12 @@ export default function HomePage() {
         </div>
 
         {/* Mood Check-in */}
-        <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-[var(--color-wellness)]/10 via-[var(--color-wellness)]/5 to-transparent border border-[var(--color-wellness)]/20 backdrop-blur-xl shadow-lg shadow-[var(--color-wellness)]/5">
           <CardHeader className="text-center">
-            <CardTitle className="text-[var(--color-text-primary)] text-xl">How are you feeling today?</CardTitle>
+            <CardTitle className="text-[var(--color-text-primary)] text-xl flex items-center justify-center gap-2">
+              <Brain className="w-6 h-6 text-[var(--color-wellness)]" />
+              How are you feeling today?
+            </CardTitle>
             <CardDescription className="text-[var(--color-text-secondary)]">
               Tap an emoji to check in with your mood
             </CardDescription>
@@ -194,14 +197,14 @@ export default function HomePage() {
 
         {/* Key Metrics Grid */}
         <div className="grid grid-cols-2 gap-4">
-          <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
+          <Card className="bg-gradient-to-br from-[var(--color-activity)]/15 via-[var(--color-activity)]/8 to-[var(--color-activity)]/3 border border-[var(--color-activity)]/25 backdrop-blur-xl shadow-lg shadow-[var(--color-activity)]/8">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-[var(--color-activity)]/20 rounded-lg">
+                <div className="p-2 bg-[var(--color-activity)]/25 rounded-xl shadow-sm">
                   <Activity className="w-5 h-5 text-[var(--color-activity)]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm text-[var(--color-text-secondary)]">Steps</p>
+                  <p className="text-sm font-medium text-[var(--color-text-secondary)]">Steps</p>
                   <p className="text-lg font-bold text-[var(--color-text-primary)]" data-testid="steps-count-metric">
                     {stepsData.current.toLocaleString()}
                   </p>
@@ -209,21 +212,21 @@ export default function HomePage() {
               </div>
               <div className="mt-2 w-full bg-[var(--color-border)]/50 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-[var(--color-activity)] to-[var(--color-activity)]/80 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-[var(--color-activity)] to-[var(--color-activity)]/80 h-2 rounded-full transition-all duration-1000 shadow-sm"
                   style={{ width: `${Math.min(100, stepsProgress)}%` }}
                 />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
+          <Card className="bg-gradient-to-br from-[var(--color-nutrition)]/15 via-[var(--color-nutrition)]/8 to-[var(--color-nutrition)]/3 border border-[var(--color-nutrition)]/25 backdrop-blur-xl shadow-lg shadow-[var(--color-nutrition)]/8">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-[var(--color-activity)]/20 rounded-lg">
-                  <Flame className="w-5 h-5 text-[var(--color-activity)]" />
+                <div className="p-2 bg-[var(--color-nutrition)]/25 rounded-xl shadow-sm">
+                  <Flame className="w-5 h-5 text-[var(--color-nutrition)]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm text-[var(--color-text-secondary)]">Burned</p>
+                  <p className="text-sm font-medium text-[var(--color-text-secondary)]">Burned</p>
                   <p className="text-lg font-bold text-[var(--color-text-primary)]" data-testid="calories-burned-metric">
                     420 cal
                   </p>
@@ -231,21 +234,21 @@ export default function HomePage() {
               </div>
               <div className="mt-2 w-full bg-[var(--color-border)]/50 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-[var(--color-activity)] to-[var(--color-activity)]/80 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-[var(--color-nutrition)] to-[var(--color-nutrition)]/80 h-2 rounded-full transition-all duration-1000 shadow-sm"
                   style={{ width: `70%` }}
                 />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
+          <Card className="bg-gradient-to-br from-[var(--color-wellness)]/15 via-[var(--color-wellness)]/8 to-[var(--color-wellness)]/3 border border-[var(--color-wellness)]/25 backdrop-blur-xl shadow-lg shadow-[var(--color-wellness)]/8">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-[var(--color-wellness)]/20 rounded-lg">
+                <div className="p-2 bg-[var(--color-wellness)]/25 rounded-xl shadow-sm">
                   <Moon className="w-5 h-5 text-[var(--color-wellness)]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm text-[var(--color-text-secondary)]">Sleep</p>
+                  <p className="text-sm font-medium text-[var(--color-text-secondary)]">Sleep</p>
                   <p className="text-lg font-bold text-[var(--color-text-primary)]" data-testid="sleep-hours-metric">
                     {sleepData.current}h
                   </p>
@@ -253,21 +256,21 @@ export default function HomePage() {
               </div>
               <div className="mt-2 w-full bg-[var(--color-border)]/50 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-[var(--color-wellness)] to-[var(--color-wellness)]/80 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-[var(--color-wellness)] to-[var(--color-wellness)]/80 h-2 rounded-full transition-all duration-1000 shadow-sm"
                   style={{ width: `${Math.min(100, sleepProgress)}%` }}
                 />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
+          <Card className="bg-gradient-to-br from-[var(--color-wellness)]/15 via-[var(--color-wellness)]/8 to-[var(--color-wellness)]/3 border border-[var(--color-wellness)]/25 backdrop-blur-xl shadow-lg shadow-[var(--color-wellness)]/8">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-[var(--color-wellness)]/20 rounded-lg">
+                <div className="p-2 bg-[var(--color-wellness)]/25 rounded-xl shadow-sm">
                   <Target className="w-5 h-5 text-[var(--color-wellness)]" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm text-[var(--color-text-secondary)]">Water</p>
+                  <p className="text-sm font-medium text-[var(--color-text-secondary)]">Water</p>
                   <p className="text-lg font-bold text-[var(--color-text-primary)]" data-testid="water-glasses-metric">
                     {waterData.current} / {waterData.goal}
                   </p>
@@ -275,7 +278,7 @@ export default function HomePage() {
               </div>
               <div className="mt-2 w-full bg-[var(--color-border)]/50 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-[var(--color-wellness)] to-[var(--color-wellness)]/80 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-[var(--color-wellness)] to-[var(--color-wellness)]/80 h-2 rounded-full transition-all duration-1000 shadow-sm"
                   style={{ width: `${Math.min(100, waterProgress)}%` }}
                 />
               </div>
@@ -353,10 +356,12 @@ export default function HomePage() {
         </div>
 
         {/* Daily Wellness Insights */}
-        <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-[var(--color-action)]/10 via-[var(--color-action)]/5 to-transparent border border-[var(--color-action)]/20 backdrop-blur-xl shadow-lg shadow-[var(--color-action)]/5">
           <CardHeader>
             <CardTitle className="text-[var(--color-text-primary)] flex items-center gap-2">
-              <Lightbulb className="w-5 h-5 text-[var(--color-action)]" />
+              <div className="p-2 bg-[var(--color-action)]/20 rounded-xl">
+                <Lightbulb className="w-5 h-5 text-[var(--color-action)]" />
+              </div>
               Daily Wellness Insights
             </CardTitle>
             <CardDescription className="text-[var(--color-text-secondary)]">
@@ -374,13 +379,13 @@ export default function HomePage() {
                   data-testid={`insight-${insight.id}`}
                 >
                   <div className="flex items-start gap-3">
-                    <div className={`p-2 ${colors.bg} rounded-lg flex-shrink-0`}>
+                    <div className={`p-2 ${colors.bg} rounded-xl flex-shrink-0 shadow-sm`}>
                       <IconComponent className={`w-4 h-4 ${colors.text}`} />
                     </div>
                     <div className="flex-1">
                       <p className="text-[var(--color-text-primary)] text-sm leading-relaxed">{insight.message}</p>
                       <button 
-                        className={`mt-2 text-[var(--color-action)] text-xs font-medium hover:opacity-80 transition-colors`}
+                        className={`mt-2 px-3 py-1 bg-[var(--color-action)]/10 text-[var(--color-action)] text-xs font-medium rounded-full hover:bg-[var(--color-action)]/20 transition-all duration-200 border border-[var(--color-action)]/20`}
                         data-testid={`insight-action-${insight.id}`}
                       >
                         {insight.action} →
@@ -394,10 +399,12 @@ export default function HomePage() {
         </Card>
 
         {/* Nutrition Snapshot */}
-        <Card className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-[var(--color-nutrition)]/10 via-[var(--color-nutrition)]/5 to-transparent border border-[var(--color-nutrition)]/20 backdrop-blur-xl shadow-lg shadow-[var(--color-nutrition)]/5">
           <CardHeader>
             <CardTitle className="text-[var(--color-text-primary)] flex items-center gap-2">
-              <Apple className="w-5 h-5 text-[var(--color-nutrition)]" />
+              <div className="p-2 bg-[var(--color-nutrition)]/20 rounded-xl">
+                <Apple className="w-5 h-5 text-[var(--color-nutrition)]" />
+              </div>
               Nutrition Snapshot
             </CardTitle>
             <CardDescription className="text-[var(--color-text-secondary)]">
@@ -452,20 +459,20 @@ export default function HomePage() {
             </div>
 
             {/* Quick Stats */}
-            <div className="flex justify-between items-center pt-4 border-t border-[var(--color-border)]">
-              <div className="text-center">
-                <p className="text-2xl font-bold text-primary" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
-                <p className="text-xs text-muted-foreground">Meals Logged</p>
+            <div className="flex justify-between items-center pt-4 border-t border-[var(--color-nutrition)]/20">
+              <div className="text-center p-3 bg-[var(--color-nutrition)]/10 rounded-xl">
+                <p className="text-2xl font-bold text-[var(--color-nutrition)]" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
+                <p className="text-xs text-[var(--color-text-secondary)] font-medium">Meals Logged</p>
               </div>
-              <div className="text-center">
-                <p className="text-2xl font-bold text-primary" data-testid="calories-remaining">
+              <div className="text-center p-3 bg-[var(--color-nutrition)]/10 rounded-xl">
+                <p className="text-2xl font-bold text-[var(--color-nutrition)]" data-testid="calories-remaining">
                   {nutritionData.calories.goal - nutritionData.calories.current}
                 </p>
-                <p className="text-xs text-muted-foreground">Calories Left</p>
+                <p className="text-xs text-[var(--color-text-secondary)] font-medium">Calories Left</p>
               </div>
-              <div className="text-center">
-                <p className="text-2xl font-bold text-primary">73%</p>
-                <p className="text-xs text-muted-foreground">Daily Goal</p>
+              <div className="text-center p-3 bg-[var(--color-nutrition)]/10 rounded-xl">
+                <p className="text-2xl font-bold text-[var(--color-nutrition)]">73%</p>
+                <p className="text-xs text-[var(--color-text-secondary)] font-medium">Daily Goal</p>
               </div>
             </div>
           </CardContent>

@@ -383,50 +383,56 @@ export default function SettingsPage() {
           <CardContent className="p-2 space-y-2">
             <Link href="/year-in-review">
               <div 
-                className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                className="flex items-center justify-between p-5 hover:bg-[var(--color-wellness)]/10 transition-all duration-200 cursor-pointer rounded-xl mx-3 hover:shadow-lg border border-transparent hover:border-[var(--color-wellness)]/20"
                 data-testid="link-year-in-review"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-muted/30 rounded-xl">
+                  <div className="p-3 bg-gradient-to-br from-[var(--color-success)]/20 to-[var(--color-success)]/10 rounded-xl shadow-md">
                     <Trophy className="w-5 h-5 text-[var(--color-success)]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Year in Review</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">See your fitness journey and achievements</p>
+                    <p className="font-bold text-[var(--color-text-primary)] text-lg">Year in Review</p>
+                    <p className="text-[var(--color-text-secondary)] mt-1 font-medium">See your fitness journey and achievements</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
+                <div className="p-2 bg-[var(--color-success)]/20 rounded-lg">
+                  <ChevronRight className="w-5 h-5 text-[var(--color-success)]" />
+                </div>
               </div>
             </Link>
             <Link href="/health-connections">
               <div 
-                className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                className="flex items-center justify-between p-5 hover:bg-[var(--color-wellness)]/10 transition-all duration-200 cursor-pointer rounded-xl mx-3 hover:shadow-lg border border-transparent hover:border-[var(--color-wellness)]/20"
                 data-testid="link-health-connections"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-muted/30 rounded-xl">
-                    <Smartphone className="w-5 h-5 text-[var(--color-action)]" />
+                  <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-xl shadow-md">
+                    <Smartphone className="w-5 h-5 text-[var(--color-wellness)]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Health Data Connections</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">Connect Google Health & Apple HealthKit</p>
+                    <p className="font-bold text-[var(--color-text-primary)] text-lg">Health Data Connections</p>
+                    <p className="text-[var(--color-text-secondary)] mt-1 font-medium">Connect Google Health & Apple HealthKit</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
+                <div className="p-2 bg-[var(--color-wellness)]/20 rounded-lg">
+                  <ChevronRight className="w-5 h-5 text-[var(--color-wellness)]" />
+                </div>
               </div>
             </Link>
             <Link href="/data-export">
-              <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-export-data">
+              <div className="flex items-center justify-between p-5 hover:bg-[var(--color-wellness)]/10 transition-all duration-200 cursor-pointer rounded-xl mx-3 hover:shadow-lg border border-transparent hover:border-[var(--color-wellness)]/20" data-testid="settings-export-data">
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-muted/30 rounded-xl">
-                    <Download className="w-5 h-5 text-[var(--color-action)]" />
+                  <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-xl shadow-md">
+                    <Download className="w-5 h-5 text-[var(--color-wellness)]" />
                   </div>
                   <div>
-                    <p className="font-semibold text-foreground">Export Data</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">Download your fitness and nutrition data</p>
+                    <p className="font-bold text-[var(--color-text-primary)] text-lg">Export Data</p>
+                    <p className="text-[var(--color-text-secondary)] mt-1 font-medium">Download your fitness and nutrition data</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
+                <div className="p-2 bg-[var(--color-wellness)]/20 rounded-lg">
+                  <ChevronRight className="w-5 h-5 text-[var(--color-wellness)]" />
+                </div>
               </div>
             </Link>
             <Link href="/delete-account">

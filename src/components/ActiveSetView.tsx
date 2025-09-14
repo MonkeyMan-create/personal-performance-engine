@@ -183,7 +183,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
 
       {/* Main Content */}
       <div className="flex-1 flex items-center justify-center p-4">
-        <Card className="w-full max-w-md bg-[var(--color-surface)]/90 border-[var(--color-border)]/50 backdrop-blur-xl shadow-2xl"
+        <Card className="w-full max-w-md bg-[var(--color-surface)]/90 border-[var(--color-border)]/50 backdrop-blur-xl shadow-2xl">
           <CardHeader className="text-center pb-6">
             <div className="flex items-center justify-center gap-2 mb-3">
               <CardTitle className="text-2xl font-bold text-[var(--color-text-primary)]">
