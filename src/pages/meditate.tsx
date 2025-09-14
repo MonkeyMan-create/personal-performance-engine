@@ -429,7 +429,7 @@ export default function MeditatePage() {
                         <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-2" data-testid="text-breathing-instruction">
                           {getBreathingInstruction()}
                         </h3>
-                        <p className="text-indigo-200" data-testid="text-cycle-count">
+                        <p className="text-primary" data-testid="text-cycle-count">
                           Cycle {breathingState.currentCycle + 1}
                         </p>
                       </div>
@@ -504,7 +504,7 @@ export default function MeditatePage() {
                 <Star className="w-5 h-5 text-primary" />
                 Recent Sessions
               </CardTitle>
-              <CardDescription className="text-indigo-200">
+              <CardDescription className="text-primary">
                 Your mindfulness journey
               </CardDescription>
             </CardHeader>

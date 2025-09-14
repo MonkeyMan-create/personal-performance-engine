@@ -175,7 +175,7 @@ export default function DataExportPage() {
               <Card 
                 key={option.id}
                 className={`bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl transition-all duration-200 ${
-                  isSelected ? 'ring-2 ring-teal-400/50 border-teal-400/50' : ''
+                  isSelected ? 'ring-2 ring-primary/50 border-primary/50' : ''
                 }`}
               >
                 <CardHeader>
@@ -202,7 +202,7 @@ export default function DataExportPage() {
                         onClick={() => toggleSelection(option.id)}
                         className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all ${
                           isSelected 
-                            ? 'bg-teal-500 border-teal-500' 
+                            ? 'bg-primary border-primary' 
                             : 'border-slate-600 hover:border-slate-500'
                         }`}
                         data-testid={`checkbox-${option.id}`}
@@ -220,7 +220,7 @@ export default function DataExportPage() {
                       <ul className="space-y-1">
                         {option.dataTypes.map((dataType, index) => (
                           <li key={index} className="text-sm text-slate-400 flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 bg-teal-400 rounded-full"></div>
+                            <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
                             {dataType}
                           </li>
                         ))}
@@ -242,7 +242,7 @@ export default function DataExportPage() {
                   <Button
                     onClick={() => handleExportData(option.id)}
                     disabled={isCurrentlyExporting || isExporting === 'bulk'}
-                    className="w-full bg-slate-700 hover:bg-slate-600 text-white border border-teal-400/50 hover:border-teal-400"
+                    className="w-full bg-slate-700 hover:bg-slate-600 text-white border border-primary/50 hover:border-primary"
                     data-testid={`button-export-${option.id}`}
                   >
                     {isCurrentlyExporting ? (
@@ -267,7 +267,7 @@ export default function DataExportPage() {
         <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <Database className="w-6 h-6 text-purple-400" />
+              <Database className="w-6 h-6 text-primary" />
               Bulk Export
             </CardTitle>
             <CardDescription className="text-slate-300">
@@ -281,7 +281,7 @@ export default function DataExportPage() {
                 return (
                   <span 
                     key={optionId}
-                    className="px-3 py-1 bg-teal-500/20 text-teal-300 rounded-full text-sm border border-teal-500/30"
+                    className="px-3 py-1 bg-primary/20 text-primary rounded-full text-sm border border-primary/30"
                   >
                     {option?.name}
                   </span>

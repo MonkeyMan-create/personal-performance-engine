@@ -107,8 +107,8 @@ export default function HelpCenterPage() {
         <div className="grid md:grid-cols-3 gap-6">
           <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-slate-700/40 transition-all">
             <CardContent className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-xl mx-auto flex items-center justify-center">
-                <Book className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              <div className="w-16 h-16 bg-primary/10 rounded-xl mx-auto flex items-center justify-center">
+                <Book className="w-8 h-8 text-primary" />
               </div>
               <div>
                 <h3 className="font-bold text-white text-lg">Getting Started</h3>
@@ -138,8 +138,8 @@ export default function HelpCenterPage() {
           <Link href="/mission">
             <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-slate-700/40 transition-all">
               <CardContent className="p-6 text-center space-y-4">
-                <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-xl mx-auto flex items-center justify-center">
-                  <Search className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+                <div className="w-16 h-16 bg-primary/10 rounded-xl mx-auto flex items-center justify-center">
+                  <Search className="w-8 h-8 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-bold text-white text-lg">Our Mission</h3>
@@ -163,7 +163,7 @@ export default function HelpCenterPage() {
                   size="sm"
                   onClick={() => setSelectedCategory(category)}
                   className={selectedCategory === category 
-                    ? "bg-teal-500 hover:bg-teal-600 text-white" 
+                    ? "bg-primary hover:bg-primary/90 text-primary-foreground" 
                     : "border-slate-600 text-slate-300 hover:bg-slate-700/50"
                   }
                   data-testid={`filter-${category.toLowerCase()}`}
@@ -202,7 +202,7 @@ export default function HelpCenterPage() {
                   >
                     <div className="flex-1">
                       <h3 className="font-semibold text-white">{faq.question}</h3>
-                      <span className="text-xs text-teal-400 font-medium">{faq.category}</span>
+                      <span className="text-xs text-primary font-medium">{faq.category}</span>
                     </div>
                     {expandedFAQ === faq.id ? (
                       <ChevronDown className="w-5 h-5 text-slate-400" />
@@ -237,7 +237,7 @@ export default function HelpCenterPage() {
               <Link href="/contact-support">
                 <Button 
                   variant="outline" 
-                  className="w-full h-12 border-teal-400/50 text-teal-400 hover:bg-teal-400/10"
+                  className="w-full h-12 border-primary/50 text-primary hover:bg-primary/10"
                   data-testid="button-contact-support-bottom"
                 >
                   <MessageCircle className="w-4 h-4 mr-2" />
@@ -248,7 +248,7 @@ export default function HelpCenterPage() {
               <Link href="/mission">
                 <Button 
                   variant="outline" 
-                  className="w-full h-12 border-purple-400/50 text-purple-400 hover:bg-purple-400/10"
+                  className="w-full h-12 border-primary/50 text-primary hover:bg-primary/10"
                   data-testid="button-mission-bottom"
                 >
                   <Book className="w-4 h-4 mr-2" />

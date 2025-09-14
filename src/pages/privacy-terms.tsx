@@ -245,9 +245,9 @@ export default function PrivacyTermsPage() {
         </div>
       </div>
 
-      <div className="p-4 bg-blue-50/10 dark:bg-blue-900/20 rounded-lg border border-blue-200/30 dark:border-blue-800/50">
-        <h4 className="font-semibold text-blue-200 mb-2">Security Incident Response</h4>
-        <p className="text-blue-300 text-sm">
+      <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
+        <h4 className="font-semibold text-primary mb-2">Security Incident Response</h4>
+        <p className="text-primary/80 text-sm">
           In the unlikely event of a security incident, we will notify affected users within 72 hours 
           and provide detailed information about the incident and remediation steps.
         </p>
@@ -295,18 +295,18 @@ export default function PrivacyTermsPage() {
             <div key={index} className="p-4 bg-slate-700/30 rounded-lg border border-slate-600">
               <div className="flex justify-between items-start mb-2">
                 <h4 className="font-semibold text-white">{right.right}</h4>
-                <span className="text-xs bg-teal-600 text-teal-100 px-2 py-1 rounded">Available</span>
+                <span className="text-xs bg-primary text-primary-foreground px-2 py-1 rounded">Available</span>
               </div>
               <p className="text-slate-300 text-sm mb-2">{right.description}</p>
-              <p className="text-teal-300 text-xs font-medium">How to exercise: {right.action}</p>
+              <p className="text-primary/80 text-xs font-medium">How to exercise: {right.action}</p>
             </div>
           ))}
         </div>
       </div>
 
-      <div className="p-4 bg-purple-50/10 dark:bg-purple-900/20 rounded-lg border border-purple-200/30 dark:border-purple-800/50">
-        <h4 className="font-semibold text-purple-200 mb-2">Response Time</h4>
-        <p className="text-purple-300 text-sm">
+      <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
+        <h4 className="font-semibold text-primary mb-2">Response Time</h4>
+        <p className="text-primary/80 text-sm">
           We aim to respond to all data rights requests within 30 days. Complex requests may take longer, 
           but we'll keep you informed of our progress.
         </p>
@@ -337,7 +337,7 @@ export default function PrivacyTermsPage() {
             <div className="p-4 bg-slate-700/30 rounded-lg border border-slate-600 cursor-pointer hover:bg-slate-600/30 transition-all">
               <h4 className="font-semibold text-white mb-2">Support Team</h4>
               <p className="text-slate-300 text-sm mb-3">General questions, technical issues, and account help</p>
-              <Button variant="outline" size="sm" className="w-full border-blue-400/50 text-blue-400">
+              <Button variant="outline" size="sm" className="w-full border-primary/50 text-primary">
                 Contact Support
               </Button>
             </div>
@@ -402,7 +402,7 @@ export default function PrivacyTermsPage() {
           <Link href="/data-export">
             <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-slate-700/40 transition-all">
               <CardContent className="p-4 text-center space-y-3">
-                <Download className="w-8 h-8 text-blue-400 mx-auto" />
+                <Download className="w-8 h-8 text-primary mx-auto" />
                 <div>
                   <h3 className="font-bold text-white">Export Data</h3>
                   <p className="text-slate-300 text-sm">Download your information</p>
@@ -426,7 +426,7 @@ export default function PrivacyTermsPage() {
           <Link href="/delete-account">
             <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-slate-700/40 transition-all">
               <CardContent className="p-4 text-center space-y-3">
-                <UserCheck className="w-8 h-8 text-purple-400 mx-auto" />
+                <UserCheck className="w-8 h-8 text-primary mx-auto" />
                 <div>
                   <h3 className="font-bold text-white">Delete Account</h3>
                   <p className="text-slate-300 text-sm">Exercise your rights</p>
@@ -451,7 +451,7 @@ export default function PrivacyTermsPage() {
                     onClick={() => setActiveSection(section.id)}
                     className={`w-full p-3 rounded-lg text-left transition-all duration-200 flex items-center gap-3 ${
                       activeSection === section.id
-                        ? 'bg-teal-500/20 text-teal-300 border border-teal-500/30'
+                        ? 'bg-primary/20 text-primary border border-primary/30'
                         : 'text-slate-300 hover:bg-slate-700/50 hover:text-white'
                     }`}
                     data-testid={`nav-${section.id}`}
@@ -490,7 +490,7 @@ export default function PrivacyTermsPage() {
           <CardContent className="p-4 text-center">
             <p className="text-slate-400 text-sm">
               Last updated: September 13, 2025 | Next review: March 2026 | 
-              <Link href="/contact-support" className="text-teal-400 hover:text-teal-300 ml-2">
+              <Link href="/contact-support" className="text-primary hover:text-primary/80 ml-2">
                 Questions? Contact us
               </Link>
             </p>

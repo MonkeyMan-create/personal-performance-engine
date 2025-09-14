@@ -123,7 +123,7 @@ export default function DeleteAccountPage() {
         <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <Download className="w-6 h-6 text-blue-400" />
+              <Download className="w-6 h-6 text-primary" />
               Export Your Data First
             </CardTitle>
             <CardDescription className="text-slate-300">
@@ -131,8 +131,8 @@ export default function DeleteAccountPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="p-4 bg-blue-50/10 dark:bg-blue-900/20 rounded-lg border border-blue-200/30 dark:border-blue-800/50">
-              <p className="text-blue-200 text-sm">
+            <div className="p-4 bg-primary/10 rounded-lg border border-primary/30">
+              <p className="text-primary text-sm">
                 <strong>Pro Tip:</strong> Export your data to keep a personal backup of your fitness journey. 
                 You can import this data into other fitness apps or keep it for your records.
               </p>
@@ -141,7 +141,7 @@ export default function DeleteAccountPage() {
             <Link href="/data-export">
               <Button 
                 variant="outline" 
-                className="w-full h-12 border-blue-400/50 text-blue-400 hover:bg-blue-400/10"
+                className="w-full h-12 border-primary/50 text-primary hover:bg-primary/10"
                 data-testid="button-export-data"
               >
                 <Download className="w-4 h-4 mr-2" />
@@ -155,7 +155,7 @@ export default function DeleteAccountPage() {
         <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <Shield className="w-6 h-6 text-purple-400" />
+              <Shield className="w-6 h-6 text-primary" />
               Account Information
             </CardTitle>
             <CardDescription className="text-slate-300">
@@ -323,7 +323,7 @@ export default function DeleteAccountPage() {
                   <p className="text-slate-300 text-sm mb-3">
                     Download your data to keep your fitness journey history forever.
                   </p>
-                  <Button variant="outline" size="sm" className="w-full border-blue-400/50 text-blue-400">
+                  <Button variant="outline" size="sm" className="w-full border-primary/50 text-primary">
                     Export Data
                   </Button>
                 </div>

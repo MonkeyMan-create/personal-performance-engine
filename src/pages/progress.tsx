@@ -331,9 +331,9 @@ export default function ProgressPage() {
                         <Line 
                           type="monotone" 
                           dataKey="weight" 
-                          stroke="#3B82F6" 
+                          stroke="hsl(var(--primary))" 
                           strokeWidth={3}
-                          dot={{ fill: '#3B82F6', strokeWidth: 2, r: 5 }}
+                          dot={{ fill: 'hsl(var(--primary))', strokeWidth: 2, r: 5 }}
                         />
                       </LineChart>
                     </ResponsiveContainer>
@@ -584,7 +584,7 @@ export default function ProgressPage() {
                                       cx="30"
                                       cy="30"
                                       r="28"
-                                      stroke="#3B82F6"
+                                      stroke="hsl(var(--primary))"
                                       strokeWidth="2"
                                       fill="none"
                                       strokeDasharray={`${progressPercent * 1.76} 176`}
@@ -697,7 +697,7 @@ export default function ProgressPage() {
                         />
                         <Bar 
                           dataKey="calories" 
-                          fill="#14B8A6"
+                          fill="hsl(var(--primary))"
                           radius={[4, 4, 0, 0]}
                         />
                       </BarChart>
