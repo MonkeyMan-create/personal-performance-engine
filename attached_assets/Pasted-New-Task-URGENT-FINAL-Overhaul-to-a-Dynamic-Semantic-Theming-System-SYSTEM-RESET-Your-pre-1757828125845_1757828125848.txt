@@ -1,0 +1,82 @@
+New Task: URGENT & FINAL - Overhaul to a Dynamic Semantic Theming System
+
+**SYSTEM RESET:** Your previous attempts to fix the theming have **failed**. The visual result is a broken UI. We are starting over with the definitive, final theming architecture. You **must** follow this plan exactly and abandon your previous simplistic approach.
+
+**THE NEW VISION:** The goal is to implement a **Dynamic Semantic Theming System**. The user must be able to independently customize the colors for different categories of information within the app.
+
+---
+
+### Part 1: The New Semantic Palette (The Blueprint)
+
+Your first task is to completely refactor the app's CSS to use a new, expanded palette of semantic CSS variables.
+
+* **Themeable Semantic Colors:** These are the variables the user will be able to change. You must set these default values.
+    * `--color-action`: For primary buttons, active navigation, etc. (Default: Teal `#0D9488`)
+    * `--color-activity`: For workout-related stats and progress. (Default: Purple `#8B5CF6`)
+    * `--color-nutrition`: For the main calorie ring and food-logging elements. (Default: Orange `#F97316`)
+    * `--color-wellness`: For meditation and mood features. (Default: Indigo `#4F46E5`)
+
+* **Static Informational Colors:** These variables **must not** be themeable.
+    * `--color-success`: A static green (`#22c55e`).
+    * `--color-error`: A static red (`#ef4444`).
+    * `--color-warning`: A static yellow (`#f59e0b`).
+
+* **Static Data Colors:** These are for specific data visualizations.
+    * `--color-protein`: A static red/pink (`#FB7185`).
+    * `--color-carbs`: A static blue/purple (`#818CF8`).
+    * `--color-fat`: A static yellow/amber (`#FBBF24`).
+
+* **Static UI Colors:** These define the app's structure and must be implemented correctly for both light and dark modes.
+    * `--color-background`: Main background color.
+    * `--color-surface`: Background for cards, modals, etc.
+    * `--color-border`: Color for dividers and borders.
+    * `--color-text-primary`: Main text color.
+    * `--color-text-secondary`: Muted gray text color.
+
+---
+
+### Part 2: The Advanced Theme Editor UI
+
+You must completely redesign the "App Color Theme" section in the Settings page.
+
+1.  Remove the old list of pre-set themes.
+2.  Create a new section titled **"Customize Your Theme."**
+3.  Inside this section, implement **four separate dynamic color pickers** using the `react-color` library, each with a clear label:
+    * "Action & Navigation"
+    * "Activity & Progress"
+    * "Nutrition"
+    * "Wellness & Mood"
+4.  Each color picker must be initialized with the default color for its category.
+
+---
+
+### Part 3: Component-Level Refactoring
+
+You must now connect every component in the app to the correct semantic variable.
+
+* Main buttons ("Log Workout") and active navigation icons **MUST** use `var(--color-action)`.
+* The main calorie progress ring **MUST** use `var(--color-nutrition)`.
+* The individual macronutrient bars **MUST** use the static data colors (`--color-protein`, `--color-carbs`, `--color-fat`).
+* Steps counters and workout highlight cards **MUST** use `var(--color-activity)`.
+* Meditation interface elements **MUST** use `var(--color-wellness)`.
+* Delete buttons and error messages **MUST** use `var(--color-error)`.
+* All text, card backgrounds, and borders **MUST** use the appropriate static UI color variables.
+
+---
+
+### Part 4: The Dynamic Logic
+
+1.  The state management and `localStorage` must be updated to save an **object containing the four custom color values.**
+2.  You must use the `tinycolor2` library. For **each of the four themeable colors**, you must dynamically calculate and set corresponding `-hover` and `-text` color variables to ensure readability and interactivity.
+
+---
+
+### Part 5: NEW VERIFICATION PROTOCOL
+
+Your previous verification failed because it was not visual. You must prove the new system works by describing the visual output. After you are done, answer these specific questions:
+
+1.  I have set the "Action & Navigation" color to a bright **Red (`#FF0000`)**.
+2.  I have set the "Nutrition" color to a bright **Green (`#00FF00`)**.
+3.  I have set the "Activity & Progress" color to a bright **Blue (`#0000FF`)**.
+
+**Now, describe the visual appearance of the Home page in Dark Mode.** What exact color is the active 'Home' icon in the navigation bar? What color is the calorie progress ring? What color are the bars in the "Nutrition Snapshot"? What color are the data cards for steps and calories burned?
