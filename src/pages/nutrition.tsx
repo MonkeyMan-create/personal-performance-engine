@@ -486,11 +486,11 @@ export default function NutritionPage() {
         {/* Daily Summary Section */}
         <div className="pt-8 space-y-6">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Nutrition</h1>
-            <p className="text-lg font-bold text-primary mt-2" data-testid="calories-remaining">
+            <h1 className="text-3xl font-bold text-[--color-text-primary]">Nutrition</h1>
+            <p className="text-lg font-bold text-[--color-primary] mt-2" data-testid="calories-remaining">
               {caloriesRemaining > 0 ? caloriesRemaining : 0} cal remaining
             </p>
-            <p className="text-sm text-slate-600 dark:text-slate-400">
+            <p className="text-sm text-[--color-text-secondary]">
               {todayMeals.length} meals logged today
             </p>
           </div>
@@ -503,8 +503,8 @@ export default function NutritionPage() {
                 {/* Calories Metric */}
                 <div className="space-y-3" data-testid="metric-calories">
                   <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Calories</h3>
-                    <span className="text-lg font-bold text-primary">
+                    <h3 className="text-lg font-semibold text-[--color-text-primary]">Calories</h3>
+                    <span className="text-lg font-bold text-[--color-primary]">
                       {todayStats.calories.toLocaleString()} / {nutritionGoals.calories.toLocaleString()} cal
                     </span>
                   </div>
@@ -515,7 +515,7 @@ export default function NutritionPage() {
                       data-testid="progress-bar-calories"
                     />
                   </div>
-                  <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
+                  <div className="flex justify-between text-sm text-[--color-text-secondary]">
                     <span>0 cal</span>
                     <span>{Math.round(caloriesProgress)}% of goal</span>
                     <span>{nutritionGoals.calories.toLocaleString()} cal</span>
@@ -525,8 +525,8 @@ export default function NutritionPage() {
                 {/* Protein Metric */}
                 <div className="space-y-3" data-testid="metric-protein">
                   <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Protein</h3>
-                    <span className="text-lg font-bold text-primary">
+                    <h3 className="text-lg font-semibold text-[--color-text-primary]">Protein</h3>
+                    <span className="text-lg font-bold text-[--color-primary]">
                       {Math.round(todayStats.protein)}g / {nutritionGoals.protein}g
                     </span>
                   </div>
@@ -537,7 +537,7 @@ export default function NutritionPage() {
                       data-testid="progress-bar-protein"
                     />
                   </div>
-                  <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
+                  <div className="flex justify-between text-sm text-[--color-text-secondary]">
                     <span>0g</span>
                     <span>{Math.round(proteinProgress)}% of goal</span>
                     <span>{nutritionGoals.protein}g</span>
@@ -547,7 +547,7 @@ export default function NutritionPage() {
                 {/* Fat Metric */}
                 <div className="space-y-3" data-testid="metric-fat">
                   <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Fat</h3>
+                    <h3 className="text-lg font-semibold text-[--color-text-primary]">Fat</h3>
                     <span className="text-lg font-bold text-yellow-600 dark:text-yellow-400">
                       {Math.round(todayStats.fat)}g / {nutritionGoals.fat}g
                     </span>
@@ -559,7 +559,7 @@ export default function NutritionPage() {
                       data-testid="progress-bar-fat"
                     />
                   </div>
-                  <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
+                  <div className="flex justify-between text-sm text-[--color-text-secondary]">
                     <span>0g</span>
                     <span>{Math.round(fatProgress)}% of goal</span>
                     <span>{nutritionGoals.fat}g</span>
@@ -570,15 +570,15 @@ export default function NutritionPage() {
                   {/* Hydration Metric */}
                   <div className="space-y-3" data-testid="metric-hydration">
                     <div className="flex justify-between items-center">
-                      <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Hydration</h3>
+                      <h3 className="text-lg font-semibold text-[--color-text-primary]">Hydration</h3>
                       <div className="flex items-center gap-3">
-                        <span className="text-lg font-bold text-primary">
+                        <span className="text-lg font-bold text-[--color-primary]">
                           {waterGlasses} / 8 glasses
                         </span>
                         <Button
                           onClick={addWaterGlass}
                           size="sm"
-                          className="h-8 px-3 bg-primary hover:bg-primary/90 text-white text-xs font-medium rounded-full shadow-lg transition-all duration-200 hover:scale-105"
+                          className="h-8 px-3 bg-[--color-primary] hover:bg-[--color-primary]/90 text-white text-xs font-medium rounded-full shadow-lg transition-all duration-200 hover:scale-105"
                           data-testid="button-add-water-inline"
                         >
                           <Droplets className="w-3 h-3 mr-1" />
@@ -593,7 +593,7 @@ export default function NutritionPage() {
                         data-testid="progress-bar-hydration"
                       />
                     </div>
-                    <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
+                    <div className="flex justify-between text-sm text-[--color-text-secondary]">
                       <span>0 glasses</span>
                       <span>{Math.round(hydrationProgress)}% of goal</span>
                       <span>8 glasses</span>
@@ -615,7 +615,7 @@ export default function NutritionPage() {
               size="sm"
               onClick={() => setMealType(type)}
               className={mealType === type 
-                ? 'bg-primary hover:bg-primary/90 text-white' 
+                ? 'bg-[--color-primary] hover:bg-[--color-primary]/90 text-white' 
                 : 'border-slate-300 dark:border-slate-600'}
               data-testid={`button-meal-type-${type}`}
             >
@@ -628,10 +628,10 @@ export default function NutritionPage() {
         <Card className="bg-white/80 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl shadow-xl">
           <CardContent className="p-6">
             <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+              <h2 className="text-2xl font-bold text-[--color-text-primary] mb-2">
                 Quick Log
               </h2>
-              <p className="text-slate-600 dark:text-slate-400">
+              <p className="text-[--color-text-secondary]">
                 Add food to your {mealType} log
               </p>
             </div>
@@ -651,31 +651,31 @@ export default function NutritionPage() {
               <Button
                 variant="outline"
                 onClick={openCameraScanner}
-                className="h-12 bg-white/50 dark:bg-slate-800/50 border-primary/30 dark:border-primary/50 hover:bg-primary/10 dark:hover:bg-primary/20 hover:border-primary/50 dark:hover:border-primary/60 transition-colors"
+                className="h-12 bg-white/50 dark:bg-slate-800/50 border-[--color-primary]/30 hover:bg-[--color-primary]/10 hover:border-primary/50 dark:hover:border-primary/60 transition-colors"
                 data-testid="button-barcode-scan-secondary"
               >
-                <Barcode className="w-5 h-5 mr-2 text-primary dark:text-primary" />
-                <span className="text-slate-700 dark:text-slate-300">Scan Barcode</span>
+                <Barcode className="w-5 h-5 mr-2 text-[--color-primary] dark:text-[--color-primary]" />
+                <span className="text-[--color-text-primary]">Scan Barcode</span>
               </Button>
               
               <Button
                 variant="outline"
                 onClick={openPhotoCapture}
-                className="h-12 bg-white/50 dark:bg-slate-800/50 border-primary/30 dark:border-primary/50 hover:bg-primary/10 dark:hover:bg-primary/20 hover:border-primary/50 dark:hover:border-primary/60 transition-colors"
+                className="h-12 bg-white/50 dark:bg-slate-800/50 border-[--color-primary]/30 hover:bg-[--color-primary]/10 hover:border-primary/50 dark:hover:border-primary/60 transition-colors"
                 data-testid="button-photo-logging-secondary"
               >
-                <ImageIcon className="w-5 h-5 mr-2 text-primary dark:text-primary" />
-                <span className="text-slate-700 dark:text-slate-300">Photo Log</span>
+                <ImageIcon className="w-5 h-5 mr-2 text-[--color-primary] dark:text-[--color-primary]" />
+                <span className="text-[--color-text-primary]">Photo Log</span>
               </Button>
               
               <Button
                 variant="outline"
                 onClick={() => setShowCustomSection(!showCustomSection)}
-                className="h-12 bg-white/50 dark:bg-slate-800/50 border-primary/30 dark:border-primary/50 hover:bg-primary/10 dark:hover:bg-primary/20 hover:border-primary/50 dark:hover:border-primary/60 transition-colors"
+                className="h-12 bg-white/50 dark:bg-slate-800/50 border-[--color-primary]/30 hover:bg-[--color-primary]/10 hover:border-primary/50 dark:hover:border-primary/60 transition-colors"
                 data-testid="button-custom-food-secondary"
               >
-                <Plus className="w-5 h-5 mr-2 text-primary dark:text-primary" />
-                <span className="text-slate-700 dark:text-slate-300">Add Custom</span>
+                <Plus className="w-5 h-5 mr-2 text-[--color-primary] dark:text-[--color-primary]" />
+                <span className="text-[--color-text-primary]">Add Custom</span>
               </Button>
             </div>
             
@@ -690,14 +690,14 @@ export default function NutritionPage() {
                       placeholder="Search for any food..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-12 pl-12 text-base bg-white dark:bg-slate-700 border-2 border-primary/30 dark:border-primary/50 focus:border-primary dark:focus:border-primary rounded-xl"
+                      className="h-12 pl-12 text-base bg-white dark:bg-slate-700 border-2 border-[--color-primary]/30 focus:border-primary dark:focus:border-primary rounded-xl"
                       data-testid="input-food-search"
                     />
                   </div>
                   <Button 
                     type="submit" 
                     disabled={isSearching || !searchQuery.trim()}
-                    className="w-full h-10 bg-primary hover:bg-primary/90 text-white font-medium rounded-xl"
+                    className="w-full h-10 bg-[--color-primary] hover:bg-[--color-primary]/90 text-white font-medium rounded-xl"
                     data-testid="button-search-food"
                   >
                     {isSearching ? (
@@ -722,7 +722,7 @@ export default function NutritionPage() {
                       href="https://openfoodfacts.org" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-primary hover:text-primary/80 dark:text-primary font-medium inline-flex items-center gap-1"
+                      className="text-[--color-primary] hover:text-[--color-primary]/80 dark:text-[--color-primary] font-medium inline-flex items-center gap-1"
                     >
                       Open Food Facts
                       <ExternalLink className="w-3 h-3" />
@@ -788,14 +788,14 @@ export default function NutritionPage() {
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <h4 className="font-medium text-slate-900 dark:text-white text-base">
+                        <h4 className="font-medium text-[--color-text-primary] text-base">
                           {food.name}
                         </h4>
                         {food.brand && (
-                          <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{food.brand}</p>
+                          <p className="text-sm text-[--color-text-secondary] mt-1">{food.brand}</p>
                         )}
-                        <div className="flex items-center gap-4 mt-2 text-sm text-slate-600 dark:text-slate-400">
-                          <span className="font-medium text-primary dark:text-primary">{food.calories} cal</span>
+                        <div className="flex items-center gap-4 mt-2 text-sm text-[--color-text-secondary]">
+                          <span className="font-medium text-[--color-primary] dark:text-[--color-primary]">{food.calories} cal</span>
                           {food.protein && <span>P: {food.protein}g</span>}
                           {food.carbs && <span>C: {food.carbs}g</span>}
                           {food.fat && <span>F: {food.fat}g</span>}
@@ -820,10 +820,10 @@ export default function NutritionPage() {
                     <Search className="w-8 h-8 text-slate-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
+                    <h3 className="text-lg font-medium text-[--color-text-primary] mb-2">
                       No foods found
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-400">
+                    <p className="text-[--color-text-secondary]">
                       We couldn't find any foods matching "{searchQuery}". Try a different search term or add a custom food below.
                     </p>
                   </div>
@@ -863,7 +863,7 @@ export default function NutritionPage() {
               <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-medium text-slate-900 dark:text-white">
+                    <h3 className="text-lg font-medium text-[--color-text-primary]">
                       Barcode Options
                     </h3>
                     <Button
@@ -877,12 +877,12 @@ export default function NutritionPage() {
                   </div>
                   <div className="space-y-4">
                     {/* Camera Scan Option */}
-                    <div className="p-4 bg-primary/10 dark:bg-primary/20 border border-primary/30 dark:border-primary/50 rounded-lg">
+                    <div className="p-4 bg-[--color-primary]/10 border border-[--color-primary]/30 rounded-lg">
                       <div className="flex items-center gap-3 mb-3">
-                        <Camera className="w-5 h-5 text-primary dark:text-primary" />
-                        <h4 className="font-medium text-slate-900 dark:text-white">Camera Scan</h4>
+                        <Camera className="w-5 h-5 text-[--color-primary] dark:text-[--color-primary]" />
+                        <h4 className="font-medium text-[--color-text-primary]">Camera Scan</h4>
                       </div>
-                      <p className="text-slate-600 dark:text-slate-400 text-sm mb-3">
+                      <p className="text-[--color-text-secondary] text-sm mb-3">
                         Use your device's camera to scan barcodes automatically
                       </p>
                       <Button
@@ -890,7 +890,7 @@ export default function NutritionPage() {
                           setShowBarcodeSection(false)
                           openCameraScanner()
                         }}
-                        className="w-full bg-primary hover:bg-primary/90 text-white"
+                        className="w-full bg-[--color-primary] hover:bg-[--color-primary]/90 text-white"
                         data-testid="button-open-camera"
                       >
                         <Camera className="w-4 h-4 mr-2" />
@@ -901,10 +901,10 @@ export default function NutritionPage() {
                     {/* Manual Entry Option */}
                     <div className="p-4 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-600 rounded-lg">
                       <div className="flex items-center gap-3 mb-3">
-                        <Barcode className="w-5 h-5 text-slate-600 dark:text-slate-400" />
-                        <h4 className="font-medium text-slate-900 dark:text-white">Manual Entry</h4>
+                        <Barcode className="w-5 h-5 text-[--color-text-secondary]" />
+                        <h4 className="font-medium text-[--color-text-primary]">Manual Entry</h4>
                       </div>
-                      <p className="text-slate-600 dark:text-slate-400 text-sm mb-3">
+                      <p className="text-[--color-text-secondary] text-sm mb-3">
                         Enter a barcode number manually if camera scanning isn't working
                       </p>
                       <Input
@@ -933,7 +933,7 @@ export default function NutritionPage() {
               <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-medium text-slate-900 dark:text-white">
+                    <h3 className="text-lg font-medium text-[--color-text-primary]">
                       Recent Foods
                     </h3>
                     <Button
@@ -946,7 +946,7 @@ export default function NutritionPage() {
                     </Button>
                   </div>
                   {recentFoods.length === 0 ? (
-                    <p className="text-center py-8 text-slate-600 dark:text-slate-400">
+                    <p className="text-center py-8 text-[--color-text-secondary]">
                       No recent foods yet. Start logging to build your history!
                     </p>
                   ) : (
@@ -960,17 +960,17 @@ export default function NutritionPage() {
                         >
                           <div className="flex items-start justify-between">
                             <div className="flex-1">
-                              <h4 className="font-medium text-slate-900 dark:text-white">
+                              <h4 className="font-medium text-[--color-text-primary]">
                                 {food.name}
                               </h4>
-                              <div className="flex items-center gap-3 mt-1 text-sm text-slate-600 dark:text-slate-400">
-                                <span className="font-medium text-primary dark:text-primary">{food.calories} cal</span>
+                              <div className="flex items-center gap-3 mt-1 text-sm text-[--color-text-secondary]">
+                                <span className="font-medium text-[--color-primary] dark:text-[--color-primary]">{food.calories} cal</span>
                                 {food.protein && <span>P: {food.protein}g</span>}
                                 {food.carbs && <span>C: {food.carbs}g</span>}
                                 {food.fat && <span>F: {food.fat}g</span>}
                               </div>
                             </div>
-                            <Plus className="w-4 h-4 text-primary dark:text-primary mt-1" />
+                            <Plus className="w-4 h-4 text-[--color-primary] dark:text-[--color-primary] mt-1" />
                           </div>
                         </div>
                       ))}
@@ -985,7 +985,7 @@ export default function NutritionPage() {
               <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-lg font-medium text-slate-900 dark:text-white">
+                    <h3 className="text-lg font-medium text-[--color-text-primary]">
                       Custom Food
                     </h3>
                     <Button
@@ -999,7 +999,7 @@ export default function NutritionPage() {
                   </div>
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                      <label className="block text-sm font-medium mb-2 text-[--color-text-primary]">
                         Food Name
                       </label>
                       <Input
@@ -1014,7 +1014,7 @@ export default function NutritionPage() {
                     
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                        <label className="block text-sm font-medium mb-2 text-[--color-text-primary]">
                           Calories
                         </label>
                         <Input
@@ -1027,7 +1027,7 @@ export default function NutritionPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                        <label className="block text-sm font-medium mb-2 text-[--color-text-primary]">
                           Serving Size
                         </label>
                         <Input
@@ -1043,7 +1043,7 @@ export default function NutritionPage() {
                     
                     <div className="grid grid-cols-3 gap-4">
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                        <label className="block text-sm font-medium mb-2 text-[--color-text-primary]">
                           Protein (g)
                         </label>
                         <Input
@@ -1056,7 +1056,7 @@ export default function NutritionPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                        <label className="block text-sm font-medium mb-2 text-[--color-text-primary]">
                           Carbs (g)
                         </label>
                         <Input
@@ -1069,7 +1069,7 @@ export default function NutritionPage() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                        <label className="block text-sm font-medium mb-2 text-[--color-text-primary]">
                           Fat (g)
                         </label>
                         <Input
@@ -1089,7 +1089,7 @@ export default function NutritionPage() {
                         setShowCustomSection(false)
                       }}
                       disabled={!customFood.name || !customFood.calories}
-                      className="w-full h-12 bg-primary hover:bg-primary/90 text-white"
+                      className="w-full h-12 bg-[--color-primary] hover:bg-[--color-primary]/90 text-white"
                       data-testid="button-log-custom"
                     >
                       <Plus className="w-5 h-5 mr-2" />
@@ -1109,7 +1109,7 @@ export default function NutritionPage() {
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <div>
-                    <CardTitle className="text-slate-900 dark:text-white">
+                    <CardTitle className="text-[--color-text-primary]">
                       {selectedFood.name}
                     </CardTitle>
                     {selectedFood.brand && (
@@ -1130,24 +1130,24 @@ export default function NutritionPage() {
               <CardContent className="space-y-4">
                 <div className="p-4 bg-slate-100 dark:bg-slate-700 rounded-lg">
                   <div className="text-center mb-2">
-                    <span className="text-2xl font-bold text-slate-900 dark:text-white">
+                    <span className="text-2xl font-bold text-[--color-text-primary]">
                       {Math.round(selectedFood.calories * servings)}
                     </span>
-                    <span className="text-slate-600 dark:text-slate-400 ml-1">cal</span>
+                    <span className="text-[--color-text-secondary] ml-1">cal</span>
                   </div>
                   <div className="flex justify-center gap-4 text-sm">
                     {selectedFood.protein && (
-                      <span className="text-slate-600 dark:text-slate-400">
+                      <span className="text-[--color-text-secondary]">
                         P: {Math.round(selectedFood.protein * servings)}g
                       </span>
                     )}
                     {selectedFood.carbs && (
-                      <span className="text-slate-600 dark:text-slate-400">
+                      <span className="text-[--color-text-secondary]">
                         C: {Math.round(selectedFood.carbs * servings)}g
                       </span>
                     )}
                     {selectedFood.fat && (
-                      <span className="text-slate-600 dark:text-slate-400">
+                      <span className="text-[--color-text-secondary]">
                         F: {Math.round(selectedFood.fat * servings)}g
                       </span>
                     )}
@@ -1155,7 +1155,7 @@ export default function NutritionPage() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium mb-2 text-slate-900 dark:text-white">
+                  <label className="block text-sm font-medium mb-2 text-[--color-text-primary]">
                     Number of Servings ({selectedFood.serving || '100g'} each)
                   </label>
                   <div className="flex items-center gap-2">
@@ -1191,7 +1191,7 @@ export default function NutritionPage() {
                 
                 <Button
                   onClick={() => logFood(selectedFood)}
-                  className="w-full bg-primary hover:bg-primary/90 text-white"
+                  className="w-full bg-[--color-primary] hover:bg-[--color-primary]/90 text-white"
                   data-testid="button-confirm-log"
                 >
                   <Check className="w-4 h-4 mr-2" />
@@ -1205,10 +1205,10 @@ export default function NutritionPage() {
         {/* Today's Meals Log */}
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Today's Meals</h2>
+            <h2 className="text-2xl font-bold text-[--color-text-primary]">Today's Meals</h2>
             <Badge 
               variant="secondary" 
-              className="bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary border-primary/30 dark:border-primary/50"
+              className="bg-[--color-primary]/10 text-[--color-primary] dark:text-[--color-primary] border-[--color-primary]/30"
             >
               {todayMeals.length} logged
             </Badge>
@@ -1218,14 +1218,14 @@ export default function NutritionPage() {
             <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
               <CardContent className="p-12 text-center">
                 <div className="flex flex-col items-center gap-4">
-                  <div className="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center">
-                    <Utensils className="w-8 h-8 text-primary dark:text-primary" />
+                  <div className="w-16 h-16 bg-[--color-primary]/10 rounded-full flex items-center justify-center">
+                    <Utensils className="w-8 h-8 text-[--color-primary] dark:text-[--color-primary]" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
+                    <h3 className="text-lg font-medium text-[--color-text-primary] mb-2">
                       No meals logged yet
                     </h3>
-                    <p className="text-slate-600 dark:text-slate-400">
+                    <p className="text-[--color-text-secondary]">
                       Start your day by logging your first meal!
                     </p>
                   </div>
@@ -1265,12 +1265,12 @@ export default function NutritionPage() {
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
-                            <h3 className="text-lg font-semibold text-slate-900 dark:text-white">
+                            <h3 className="text-lg font-semibold text-[--color-text-primary]">
                               {meal.foodItem}
                             </h3>
                             <Badge 
                               variant="secondary"
-                              className="text-xs bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary border-primary/30 dark:border-primary/50"
+                              className="text-xs bg-[--color-primary]/10 text-[--color-primary] dark:text-[--color-primary] border-[--color-primary]/30"
                             >
                               {meal.mealType}
                             </Badge>
@@ -1279,14 +1279,14 @@ export default function NutritionPage() {
                           {/* Macro breakdown */}
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
                             <div className="text-center">
-                              <div className="text-2xl font-bold text-primary dark:text-primary" data-testid={`meal-calories-${meal.id}`}>
+                              <div className="text-2xl font-bold text-[--color-primary] dark:text-[--color-primary]" data-testid={`meal-calories-${meal.id}`}>
                                 {meal.calories}
                               </div>
                               <div className="text-xs text-slate-500 dark:text-slate-400">Calories</div>
                             </div>
                             {meal.protein && (
                               <div className="text-center">
-                                <div className="text-lg font-semibold text-slate-700 dark:text-slate-300" data-testid={`meal-protein-${meal.id}`}>
+                                <div className="text-lg font-semibold text-[--color-text-primary]" data-testid={`meal-protein-${meal.id}`}>
                                   {meal.protein}g
                                 </div>
                                 <div className="text-xs text-slate-500 dark:text-slate-400">Protein</div>
@@ -1294,7 +1294,7 @@ export default function NutritionPage() {
                             )}
                             {meal.carbs && (
                               <div className="text-center">
-                                <div className="text-lg font-semibold text-slate-700 dark:text-slate-300" data-testid={`meal-carbs-${meal.id}`}>
+                                <div className="text-lg font-semibold text-[--color-text-primary]" data-testid={`meal-carbs-${meal.id}`}>
                                   {meal.carbs}g
                                 </div>
                                 <div className="text-xs text-slate-500 dark:text-slate-400">Carbs</div>
@@ -1302,7 +1302,7 @@ export default function NutritionPage() {
                             )}
                             {meal.fat && (
                               <div className="text-center">
-                                <div className="text-lg font-semibold text-slate-700 dark:text-slate-300" data-testid={`meal-fat-${meal.id}`}>
+                                <div className="text-lg font-semibold text-[--color-text-primary]" data-testid={`meal-fat-${meal.id}`}>
                                   {meal.fat}g
                                 </div>
                                 <div className="text-xs text-slate-500 dark:text-slate-400">Fat</div>
@@ -1311,8 +1311,8 @@ export default function NutritionPage() {
                           </div>
                           
                           {/* Insight message */}
-                          <div className="p-3 bg-primary/10 dark:bg-primary/20 border border-primary/30 dark:border-primary/50 rounded-lg">
-                            <p className="text-sm text-primary dark:text-primary font-medium" data-testid={`meal-insight-${meal.id}`}>
+                          <div className="p-3 bg-[--color-primary]/10 border border-[--color-primary]/30 rounded-lg">
+                            <p className="text-sm text-[--color-primary] dark:text-[--color-primary] font-medium" data-testid={`meal-insight-${meal.id}`}>
                               {getInsightMessage(meal)}
                             </p>
                           </div>
@@ -1349,21 +1349,21 @@ export default function NutritionPage() {
         <Dialog open={isPhotoModalOpen} onOpenChange={setIsPhotoModalOpen}>
           <DialogContent className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700" aria-describedby="photo-dialog-description">
             <DialogHeader>
-              <DialogTitle className="text-slate-900 dark:text-white">Photo Logging</DialogTitle>
-              <DialogDescription id="photo-dialog-description" className="text-slate-600 dark:text-slate-400">
+              <DialogTitle className="text-[--color-text-primary]">Photo Logging</DialogTitle>
+              <DialogDescription id="photo-dialog-description" className="text-[--color-text-secondary]">
                 Take a photo of your meal to quickly log it with estimated nutrition values.
               </DialogDescription>
             </DialogHeader>
             <div className="space-y-4 pt-4">
               <div className="text-center space-y-4">
-                <div className="w-20 h-20 mx-auto bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center">
-                  <ImageIcon className="w-10 h-10 text-primary dark:text-primary" />
+                <div className="w-20 h-20 mx-auto bg-[--color-primary]/10 rounded-full flex items-center justify-center">
+                  <ImageIcon className="w-10 h-10 text-[--color-primary] dark:text-[--color-primary]" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
+                  <h3 className="text-lg font-medium text-[--color-text-primary] mb-2">
                     Capture Your Meal
                   </h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                  <p className="text-sm text-[--color-text-secondary]">
                     Take a photo and we'll log it with estimated nutrition values for your {mealType}.
                   </p>
                 </div>
@@ -1372,7 +1372,7 @@ export default function NutritionPage() {
               <div className="flex gap-3">
                 <Button
                   onClick={handlePhotoCapture}
-                  className="flex-1 bg-primary hover:bg-primary/90 text-white"
+                  className="flex-1 bg-[--color-primary] hover:bg-[--color-primary]/90 text-white"
                   data-testid="button-take-photo"
                 >
                   <Camera className="w-4 h-4 mr-2" />

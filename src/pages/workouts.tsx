@@ -65,9 +65,9 @@ export default function WorkoutsPage() {
     icon: template.category === 'strength' ? Dumbbell : 
           template.category === 'cardio' ? Heart : 
           template.category === 'hybrid' ? Activity : Target,
-    color: template.difficulty === 'beginner' ? 'from-primary to-primary/80' :
-           template.difficulty === 'intermediate' ? 'from-primary to-primary/80' :
-           'from-primary to-primary/80'
+    color: template.difficulty === 'beginner' ? 'from-[--color-primary] to-[--color-primary]/80' :
+           template.difficulty === 'intermediate' ? 'from-[--color-primary] to-[--color-primary]/80' :
+           'from-[--color-primary] to-[--color-primary]/80'
   }))
 
   // Recommended workout (featured)
@@ -228,11 +228,11 @@ export default function WorkoutsPage() {
   const getDifficultyColors = (difficulty: string) => {
     // Use primary theme colors for all difficulty levels to ensure consistency with theme system
     return {
-      bg: 'bg-primary/10',
-      text: 'text-primary',
-      border: 'border-primary/20',
-      iconBg: 'bg-primary/20',
-      iconColor: 'text-primary'
+      bg: 'bg-[--color-primary]/10',
+      text: 'text-[--color-primary]',
+      border: 'border-[--color-primary]/20',
+      iconBg: 'bg-[--color-primary]/20',
+      iconColor: 'text-[--color-primary]'
     }
   }
 
@@ -252,7 +252,7 @@ export default function WorkoutsPage() {
   switch (viewMode) {
     case 'exercise-selection':
       return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        <div className="min-h-screen bg-[--color-background]">
           <div className="container mx-auto p-4 space-y-6 pb-24">
             {/* Header with session info */}
             <div className="flex items-center justify-between pt-4">
@@ -267,7 +267,7 @@ export default function WorkoutsPage() {
               <div className="flex gap-2">
                 <Button
                   onClick={handleFinishWorkout}
-                  className="bg-green-600 hover:bg-green-700 text-white"
+                  className="bg-[--color-success] hover:bg-[--color-success]/90 text-white"
                   data-testid="button-finish-workout"
                 >
                   <CheckCircle className="w-4 h-4 mr-2" />
@@ -276,7 +276,7 @@ export default function WorkoutsPage() {
                 <Button
                   onClick={handleCancelWorkout}
                   variant="outline"
-                  className="border-red-300 text-red-600 hover:bg-red-50 dark:border-red-600 dark:text-red-400 dark:hover:bg-red-900/20"
+                  className="border-[--color-error] text-[--color-error] hover:bg-[--color-error]/10"
                   data-testid="button-cancel-workout"
                 >
                   Cancel
@@ -346,7 +346,7 @@ export default function WorkoutsPage() {
 
     case 'finish-workout':
       return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-[--color-background] flex items-center justify-center p-4">
           <Card className="w-full max-w-md bg-white/90 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
@@ -429,7 +429,7 @@ export default function WorkoutsPage() {
 
     case 'history':
       return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        <div className="min-h-screen bg-[--color-background]">
           <div className="container mx-auto p-4 space-y-6 pb-24">
             <div className="flex items-center justify-between pt-4">
               <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Workout History</h1>
@@ -518,7 +518,7 @@ export default function WorkoutsPage() {
 
     default: // 'overview'
       return (
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+        <div className="min-h-screen bg-[--color-background]">
           <div className="container mx-auto p-4 space-y-6 pb-24">
             {/* Header */}
             <div className="flex items-center justify-between pt-4">

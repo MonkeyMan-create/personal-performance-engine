@@ -165,11 +165,11 @@ export default function SettingsPage() {
   )
 
   return (
-    <div className="min-h-screen bg-background dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <div className="min-h-screen bg-[--color-background]">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         <div className="pt-8 text-center">
-          <h1 className="text-3xl font-bold text-foreground" data-testid="page-title">Settings</h1>
-          <p className="text-muted-foreground mt-2">Customize your experience and manage your account</p>
+          <h1 className="text-3xl font-bold text-[--color-text-primary]" data-testid="page-title">Settings</h1>
+          <p className="text-[--color-text-secondary] mt-2">Customize your experience and manage your account</p>
         </div>
         
         {/* User Header */}
@@ -509,13 +509,13 @@ export default function SettingsPage() {
             <Button 
               variant="destructive" 
               onClick={logout}
-              className="w-full flex items-center justify-center gap-3 h-14 bg-gradient-to-r from-destructive to-destructive hover:from-destructive/90 hover:to-destructive/90 text-destructive-foreground font-bold text-lg rounded-2xl shadow-2xl shadow-destructive/25 hover:shadow-destructive/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full flex items-center justify-center gap-3 h-14 bg-gradient-to-r from-[--color-error] to-[--color-error] hover:from-[--color-error]/90 hover:to-[--color-error]/90 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-[--color-error]/25 hover:shadow-[--color-error]/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               data-testid="button-sign-out"
             >
               <LogOut className="w-6 h-6" />
               Sign Out
             </Button>
-            <p className="text-xs text-slate-500 text-center mt-3">
+            <p className="text-xs text-[--color-text-secondary] text-center mt-3">
               {isGuestMode ? 'End guest session' : 'You can always sign back in'}
             </p>
           </CardContent>

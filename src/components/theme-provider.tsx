@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
 type Theme = 'dark' | 'light' | 'system'
-type ColorTheme = 'teal' | 'blue' | 'orange' | 'purple'
+type ColorTheme = 'teal' | 'blue' | 'orange' | 'purple' | 'ruby' | 'forest' | 'amber' | 'sapphire'
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -51,7 +51,7 @@ export function ThemeProvider({
   const [colorTheme, setColorTheme] = useState<ColorTheme>(() => {
     try {
       const storedColorTheme = localStorage.getItem(colorStorageKey)
-      if (storedColorTheme === 'teal' || storedColorTheme === 'blue' || storedColorTheme === 'orange' || storedColorTheme === 'purple') {
+      if (storedColorTheme === 'teal' || storedColorTheme === 'blue' || storedColorTheme === 'orange' || storedColorTheme === 'purple' || storedColorTheme === 'ruby' || storedColorTheme === 'forest' || storedColorTheme === 'amber' || storedColorTheme === 'sapphire') {
         return storedColorTheme
       }
     } catch (error) {
@@ -83,7 +83,7 @@ export function ThemeProvider({
     const root = window.document.documentElement
 
     // Remove all color theme classes
-    root.classList.remove('color-teal', 'color-blue', 'color-orange', 'color-purple')
+    root.classList.remove('color-teal', 'color-blue', 'color-orange', 'color-purple', 'color-ruby', 'color-forest', 'color-amber', 'color-sapphire')
     
     // Add the current color theme class
     root.classList.add(`color-${colorTheme}`)

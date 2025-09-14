@@ -3,7 +3,7 @@ import { useTheme } from './theme-provider'
 import { Check } from 'lucide-react'
 import { useToast } from '../hooks/use-toast'
 
-type ColorTheme = 'teal' | 'blue' | 'orange' | 'purple'
+type ColorTheme = 'teal' | 'blue' | 'orange' | 'purple' | 'ruby' | 'forest' | 'amber' | 'sapphire'
 
 interface ColorThemeOption {
   id: ColorTheme
@@ -46,6 +46,38 @@ const colorThemes: ColorThemeOption[] = [
     primaryColor: '#8B5CF6',
     gradientFrom: 'from-purple-500',
     gradientTo: 'to-purple-600'
+  },
+  {
+    id: 'ruby',
+    name: 'Ruby Red',
+    description: 'Bold and passionate ruby red',
+    primaryColor: '#dc2626',
+    gradientFrom: 'from-red-600',
+    gradientTo: 'to-red-700'
+  },
+  {
+    id: 'forest',
+    name: 'Forest Green',
+    description: 'Natural and calming forest green',
+    primaryColor: '#16a34a',
+    gradientFrom: 'from-green-600',
+    gradientTo: 'to-green-700'
+  },
+  {
+    id: 'amber',
+    name: 'Amber Yellow',
+    description: 'Warm and energetic amber gold',
+    primaryColor: '#d97706',
+    gradientFrom: 'from-amber-600',
+    gradientTo: 'to-amber-700'
+  },
+  {
+    id: 'sapphire',
+    name: 'Sapphire Blue',
+    description: 'Deep and sophisticated sapphire blue',
+    primaryColor: '#1d4ed8',
+    gradientFrom: 'from-blue-700',
+    gradientTo: 'to-blue-800'
   }
 ]
 
