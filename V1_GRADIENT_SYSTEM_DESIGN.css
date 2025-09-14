@@ -1,0 +1,591 @@
+/* ==========================================
+   V1.0 ENHANCED GRADIENT SYSTEM DESIGN
+   ========================================== */
+
+/* This file contains the CSS design for enhanced gradients that will be integrated into theme.css.
+   It builds on the existing foundation classes while adding vibrant V1.0 aesthetics. */
+
+/* ==========================================
+   ENHANCED COLOR VARIABLES FOR V1.0
+   ========================================== */
+
+:root {
+  /* V1.0 HERO GRADIENT ENDPOINTS - Multi-color combinations for vibrant aesthetics */
+  
+  /* Action Hero: Teal -> Indigo -> Cyan (Professional & Trustworthy) */
+  --gradient-action-hero-start: 13, 148, 136;    /* --color-action-rgb (teal) */
+  --gradient-action-hero-mid: 79, 70, 229;      /* --color-wellness-rgb (indigo) */
+  --gradient-action-hero-end: 6, 182, 212;      /* Cyan accent */
+  
+  /* Activity Hero: Pink -> Purple -> Rose (Energetic & Dynamic) */
+  --gradient-activity-hero-start: 236, 72, 153; /* --color-activity-rgb (pink) */
+  --gradient-activity-hero-mid: 147, 51, 234;   /* Purple accent */
+  --gradient-activity-hero-end: 244, 63, 94;    /* Rose accent */
+  
+  /* Nutrition Hero: Green -> Teal -> Emerald (Fresh & Healthy) */
+  --gradient-nutrition-hero-start: 16, 185, 129; /* --color-nutrition-rgb (green) */
+  --gradient-nutrition-hero-mid: 13, 148, 136;   /* --color-action-rgb (teal) */
+  --gradient-nutrition-hero-end: 5, 150, 105;    /* Emerald accent */
+  
+  /* Wellness Hero: Indigo -> Blue -> Purple (Calm & Mindful) */
+  --gradient-wellness-hero-start: 79, 70, 229;   /* --color-wellness-rgb (indigo) */
+  --gradient-wellness-hero-mid: 59, 130, 246;    /* --color-info-rgb (blue) */
+  --gradient-wellness-hero-end: 168, 85, 247;    /* Purple accent */
+  
+  /* PREMIUM GRADIENT COMBINATIONS - For subscription/premium features */
+  
+  /* Premium Gold: Amber -> Orange -> Yellow (Premium & Luxurious) */
+  --gradient-premium-gold-start: 245, 158, 11;   /* --color-warning-rgb (amber) */
+  --gradient-premium-gold-mid: 249, 115, 22;     /* Orange accent */
+  --gradient-premium-gold-end: 251, 191, 36;     /* Yellow accent */
+  
+  /* Premium Platinum: Slate -> Purple -> Indigo (Elite & Sophisticated) */
+  --gradient-premium-platinum-start: 100, 116, 139; /* Slate accent */
+  --gradient-premium-platinum-mid: 147, 51, 234;    /* Purple accent */
+  --gradient-premium-platinum-end: 99, 102, 241;    /* Indigo accent */
+  
+  /* SUCCESS CELEBRATION: Green -> Emerald -> Teal (Achievement & Success) */
+  --gradient-success-celebration-start: 34, 197, 94;  /* --color-success-rgb */
+  --gradient-success-celebration-mid: 5, 150, 105;    /* Emerald accent */
+  --gradient-success-celebration-end: 20, 184, 166;   /* Teal accent */
+}
+
+/* Dark mode adjustments - Slightly different values for better dark mode appearance */
+.dark {
+  /* Adjusted gradients for dark backgrounds - slightly lighter and more vibrant */
+  --gradient-action-hero-start: 45, 212, 191;    /* Lighter teal */
+  --gradient-action-hero-mid: 129, 140, 248;     /* Lighter indigo */
+  --gradient-action-hero-end: 34, 211, 238;      /* Lighter cyan */
+  
+  --gradient-activity-hero-start: 251, 113, 133; /* Lighter pink */
+  --gradient-activity-hero-mid: 196, 181, 253;   /* Lighter purple */
+  --gradient-activity-hero-end: 251, 113, 133;   /* Lighter rose */
+  
+  --gradient-nutrition-hero-start: 52, 211, 153; /* Lighter green */
+  --gradient-nutrition-hero-mid: 45, 212, 191;   /* Lighter teal */
+  --gradient-nutrition-hero-end: 34, 197, 94;    /* Lighter emerald */
+  
+  --gradient-wellness-hero-start: 129, 140, 248; /* Lighter indigo */
+  --gradient-wellness-hero-mid: 96, 165, 250;    /* Lighter blue */
+  --gradient-wellness-hero-end: 196, 181, 253;   /* Lighter purple */
+}
+
+/* ==========================================
+   V1.0 HERO CARD VARIANTS
+   ========================================== */
+
+/* ACTION HERO CARDS - For primary CTAs and featured actions */
+.card-action-hero {
+  background: linear-gradient(135deg, 
+    rgba(var(--gradient-action-hero-start), 0.9), 
+    rgba(var(--gradient-action-hero-mid), 0.8), 
+    rgba(var(--gradient-action-hero-end), 0.9)
+  );
+  border: 1px solid rgba(var(--gradient-action-hero-mid), 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 20px 25px -5px rgba(var(--gradient-action-hero-start), 0.3),
+    0 8px 10px -6px rgba(var(--gradient-action-hero-mid), 0.2);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-action-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1), 
+    rgba(255, 255, 255, 0.05), 
+    rgba(255, 255, 255, 0.1)
+  );
+  pointer-events: none;
+}
+
+/* ACTIVITY HERO CARDS - For workout features and fitness content */
+.card-activity-hero {
+  background: linear-gradient(135deg, 
+    rgba(var(--gradient-activity-hero-start), 0.9), 
+    rgba(var(--gradient-activity-hero-mid), 0.8), 
+    rgba(var(--gradient-activity-hero-end), 0.9)
+  );
+  border: 1px solid rgba(var(--gradient-activity-hero-mid), 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 20px 25px -5px rgba(var(--gradient-activity-hero-start), 0.3),
+    0 8px 10px -6px rgba(var(--gradient-activity-hero-mid), 0.2);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-activity-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1), 
+    rgba(255, 255, 255, 0.05), 
+    rgba(255, 255, 255, 0.1)
+  );
+  pointer-events: none;
+}
+
+/* NUTRITION HERO CARDS - For meal logging and nutrition features */
+.card-nutrition-hero {
+  background: linear-gradient(135deg, 
+    rgba(var(--gradient-nutrition-hero-start), 0.9), 
+    rgba(var(--gradient-nutrition-hero-mid), 0.8), 
+    rgba(var(--gradient-nutrition-hero-end), 0.9)
+  );
+  border: 1px solid rgba(var(--gradient-nutrition-hero-mid), 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 20px 25px -5px rgba(var(--gradient-nutrition-hero-start), 0.3),
+    0 8px 10px -6px rgba(var(--gradient-nutrition-hero-mid), 0.2);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-nutrition-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1), 
+    rgba(255, 255, 255, 0.05), 
+    rgba(255, 255, 255, 0.1)
+  );
+  pointer-events: none;
+}
+
+/* WELLNESS HERO CARDS - For meditation and mental health features */
+.card-wellness-hero {
+  background: linear-gradient(135deg, 
+    rgba(var(--gradient-wellness-hero-start), 0.9), 
+    rgba(var(--gradient-wellness-hero-mid), 0.8), 
+    rgba(var(--gradient-wellness-hero-end), 0.9)
+  );
+  border: 1px solid rgba(var(--gradient-wellness-hero-mid), 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 20px 25px -5px rgba(var(--gradient-wellness-hero-start), 0.3),
+    0 8px 10px -6px rgba(var(--gradient-wellness-hero-mid), 0.2);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-wellness-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1), 
+    rgba(255, 255, 255, 0.05), 
+    rgba(255, 255, 255, 0.1)
+  );
+  pointer-events: none;
+}
+
+/* ==========================================
+   V1.0 PREMIUM CARD VARIANTS
+   ========================================== */
+
+/* PREMIUM GOLD CARDS - For subscription features */
+.card-premium-gold {
+  background: linear-gradient(135deg, 
+    rgba(var(--gradient-premium-gold-start), 0.9), 
+    rgba(var(--gradient-premium-gold-mid), 0.8), 
+    rgba(var(--gradient-premium-gold-end), 0.9)
+  );
+  border: 1px solid rgba(var(--gradient-premium-gold-mid), 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 20px 25px -5px rgba(var(--gradient-premium-gold-start), 0.3),
+    0 8px 10px -6px rgba(var(--gradient-premium-gold-mid), 0.2);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-premium-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15), 
+    rgba(255, 255, 255, 0.1), 
+    rgba(255, 255, 255, 0.15)
+  );
+  pointer-events: none;
+}
+
+/* PREMIUM PLATINUM CARDS - For elite features */
+.card-premium-platinum {
+  background: linear-gradient(135deg, 
+    rgba(var(--gradient-premium-platinum-start), 0.9), 
+    rgba(var(--gradient-premium-platinum-mid), 0.8), 
+    rgba(var(--gradient-premium-platinum-end), 0.9)
+  );
+  border: 1px solid rgba(var(--gradient-premium-platinum-mid), 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 20px 25px -5px rgba(var(--gradient-premium-platinum-start), 0.3),
+    0 8px 10px -6px rgba(var(--gradient-premium-platinum-mid), 0.2);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-premium-platinum::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15), 
+    rgba(255, 255, 255, 0.1), 
+    rgba(255, 255, 255, 0.15)
+  );
+  pointer-events: none;
+}
+
+/* SUCCESS CELEBRATION CARDS - For achievements and milestones */
+.card-success-celebration {
+  background: linear-gradient(135deg, 
+    rgba(var(--gradient-success-celebration-start), 0.9), 
+    rgba(var(--gradient-success-celebration-mid), 0.8), 
+    rgba(var(--gradient-success-celebration-end), 0.9)
+  );
+  border: 1px solid rgba(var(--gradient-success-celebration-mid), 0.6);
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 20px 25px -5px rgba(var(--gradient-success-celebration-start), 0.3),
+    0 8px 10px -6px rgba(var(--gradient-success-celebration-mid), 0.2);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-success-celebration::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.15), 
+    rgba(255, 255, 255, 0.1), 
+    rgba(255, 255, 255, 0.15)
+  );
+  pointer-events: none;
+}
+
+/* ==========================================
+   V1.0 ENHANCED BUTTON VARIANTS
+   ========================================== */
+
+/* HERO BUTTON - For primary actions on hero cards */
+.button-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4) var(--spacing-8);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--duration-base) var(--easing-ease-out);
+  cursor: pointer;
+  border: none;
+  height: var(--control-height-lg);
+  font-family: var(--font-family-sans);
+  white-space: nowrap;
+  outline: none;
+  position: relative;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.2), 
+    rgba(255, 255, 255, 0.15), 
+    rgba(255, 255, 255, 0.2)
+  );
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  box-shadow: 
+    0 8px 10px -6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.button-hero:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.3), 
+    rgba(255, 255, 255, 0.25), 
+    rgba(255, 255, 255, 0.3)
+  );
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 20px -8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.button-hero:active {
+  transform: translateY(0);
+}
+
+/* PREMIUM BUTTON - For subscription/premium actions */
+.button-premium {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4) var(--spacing-8);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--duration-base) var(--easing-ease-out);
+  cursor: pointer;
+  border: none;
+  height: var(--control-height-lg);
+  font-family: var(--font-family-sans);
+  white-space: nowrap;
+  outline: none;
+  position: relative;
+  background: linear-gradient(135deg, 
+    rgba(var(--gradient-premium-gold-start), 0.9), 
+    rgba(var(--gradient-premium-gold-mid), 0.8), 
+    rgba(var(--gradient-premium-gold-end), 0.9)
+  );
+  color: #ffffff;
+  border: 1px solid rgba(var(--gradient-premium-gold-mid), 0.6);
+  box-shadow: 
+    0 8px 10px -6px rgba(var(--gradient-premium-gold-start), 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.button-premium:hover {
+  background: linear-gradient(135deg, 
+    rgba(var(--gradient-premium-gold-start), 1), 
+    rgba(var(--gradient-premium-gold-mid), 0.9), 
+    rgba(var(--gradient-premium-gold-end), 1)
+  );
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 20px -8px rgba(var(--gradient-premium-gold-start), 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.button-premium:active {
+  transform: translateY(0);
+}
+
+/* ==========================================
+   V1.0 ENHANCED ICON BADGE VARIANTS
+   ========================================== */
+
+/* HERO ICON BADGES - For prominent actions and features */
+.icon-badge-hero {
+  padding: var(--spacing-4);
+  border-radius: var(--radius-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-base) var(--easing-ease-out);
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.2), 
+    rgba(255, 255, 255, 0.15), 
+    rgba(255, 255, 255, 0.2)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  box-shadow: 
+    0 8px 10px -6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.icon-badge-hero:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.3), 
+    rgba(255, 255, 255, 0.25), 
+    rgba(255, 255, 255, 0.3)
+  );
+  transform: scale(1.05);
+}
+
+/* PREMIUM ICON BADGES - For subscription features */
+.icon-badge-premium {
+  padding: var(--spacing-4);
+  border-radius: var(--radius-2xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-base) var(--easing-ease-out);
+  background: linear-gradient(135deg, 
+    rgba(var(--gradient-premium-gold-start), 0.3), 
+    rgba(var(--gradient-premium-gold-mid), 0.2), 
+    rgba(var(--gradient-premium-gold-end), 0.3)
+  );
+  border: 1px solid rgba(var(--gradient-premium-gold-mid), 0.4);
+  box-shadow: 
+    0 8px 10px -6px rgba(var(--gradient-premium-gold-start), 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.icon-badge-premium:hover {
+  background: linear-gradient(135deg, 
+    rgba(var(--gradient-premium-gold-start), 0.4), 
+    rgba(var(--gradient-premium-gold-mid), 0.3), 
+    rgba(var(--gradient-premium-gold-end), 0.4)
+  );
+  transform: scale(1.05);
+}
+
+/* ==========================================
+   V1.0 INTERACTIVE ENHANCEMENTS
+   ========================================== */
+
+/* HERO ACTION ITEMS - For featured clickable cards */
+.action-item-hero {
+  background: linear-gradient(135deg, 
+    rgba(var(--color-surface-rgb), 0.95), 
+    rgba(var(--color-surface-rgb), 0.9)
+  );
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  transition: all var(--duration-base) var(--easing-ease-out);
+  cursor: pointer;
+  color: var(--color-text-primary);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.action-item-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(var(--color-action-rgb), 0.1), 
+    transparent
+  );
+  transition: left var(--duration-slow) var(--easing-ease-out);
+}
+
+.action-item-hero:hover {
+  background: linear-gradient(135deg, 
+    rgba(var(--color-surface-rgb), 1), 
+    rgba(var(--color-surface-rgb), 0.95)
+  );
+  border-color: var(--color-action);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2xl);
+}
+
+.action-item-hero:hover::before {
+  left: 100%;
+}
+
+.action-item-hero:active {
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   V1.0 ENHANCED GLASSMORPHISM
+   ========================================== */
+
+/* PREMIUM GLASS CARD - For modal overlays and premium features */
+.card-glass-premium {
+  background: linear-gradient(135deg, 
+    rgba(var(--color-surface-rgb), 0.85), 
+    rgba(var(--color-surface-rgb), 0.75)
+  );
+  border: 1px solid rgba(var(--color-border-rgb), 0.8);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    var(--shadow-2xl),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: var(--color-text-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-glass-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.3), 
+    transparent
+  );
+}
+
+/* ==========================================
+   USAGE NOTES
+   ========================================== */
+
+/*
+USAGE GUIDELINES:
+
+1. HERO CARDS (.card-*-hero):
+   - Use for main featured content (home page action cards, featured workout templates)
+   - High visual impact, reserved for primary user actions
+   - Example: <div className="card-activity-hero">Featured Workout</div>
+
+2. PREMIUM CARDS (.card-premium-*):
+   - Use for subscription features and premium content
+   - Luxurious gold/platinum gradients
+   - Example: <div className="card-premium-gold">Premium Features</div>
+
+3. HERO BUTTONS (.button-hero):
+   - Use within hero cards for primary actions
+   - White translucent style designed for colored backgrounds
+   - Example: <button className="button-hero">Start Workout</button>
+
+4. HERO ICON BADGES (.icon-badge-hero):
+   - Use within hero cards for icons
+   - Designed to work with vibrant backgrounds
+   - Example: <div className="icon-badge-hero"><DumbbellIcon /></div>
+
+5. BACKWARD COMPATIBILITY:
+   - All existing foundation classes (.card-base, .card-action, etc.) remain unchanged
+   - New classes are additive enhancements
+   - Can mix base and hero classes as needed
+
+6. SEMANTIC MEANING PRESERVED:
+   - action-hero = primary user actions (CTA buttons, main navigation)
+   - activity-hero = fitness/workout related features
+   - nutrition-hero = food/meal related features  
+   - wellness-hero = meditation/mental health features
+   - premium-* = subscription/paid features
+*/
