@@ -5,7 +5,7 @@ import { useTheme } from '../components/theme-provider'
 import { useMeasurement } from '../contexts/MeasurementContext'
 import { Button } from '../components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
-import { User, Moon, Sun, LogOut, ChevronRight, Settings, Download, Trash2, HelpCircle, MessageCircle, FileText, Scale, Smartphone, Info, Globe, Languages, ChevronDown, Palette } from 'lucide-react'
+import { User, Moon, Sun, LogOut, ChevronRight, Settings, Download, Trash2, HelpCircle, MessageCircle, FileText, Scale, Smartphone, Info, Globe, Languages, ChevronDown, Palette, Trophy } from 'lucide-react'
 import { Link } from 'wouter'
 import { useLocalization, SUPPORTED_LANGUAGES, SUPPORTED_COUNTRIES } from '../contexts/LocalizationContext'
 import { getProfileDataLocally, ProfileData } from '../utils/guestStorage'
@@ -361,6 +361,23 @@ export default function SettingsPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="p-2 space-y-2">
+            <Link href="/year-in-review">
+              <div 
+                className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                data-testid="link-year-in-review"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="p-2 bg-slate-700/30 rounded-xl">
+                    <Trophy className="w-5 h-5 text-slate-300" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Year in Review</p>
+                    <p className="text-sm text-slate-400 mt-0.5">See your fitness journey and achievements</p>
+                  </div>
+                </div>
+                <ChevronRight className="w-5 h-5 text-slate-400" />
+              </div>
+            </Link>
             <Link href="/health-connections">
               <div 
                 className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"

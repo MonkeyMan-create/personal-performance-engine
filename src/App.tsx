@@ -29,6 +29,9 @@ const PrivacyTermsPage = React.lazy(() => import('./pages/privacy-terms'))
 // Wellness pages
 const MeditatePage = React.lazy(() => import('./pages/meditate'))
 
+// Analytics pages
+const YearInReviewPage = React.lazy(() => import('./pages/year-in-review'))
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -140,6 +143,11 @@ function App() {
                     <Route path="/meditate">
                       <Suspense fallback={<PageLoadingFallback />}>
                         <MeditatePage />
+                      </Suspense>
+                    </Route>
+                    <Route path="/year-in-review">
+                      <Suspense fallback={<PageLoadingFallback />}>
+                        <YearInReviewPage />
                       </Suspense>
                     </Route>
                     <Route>
