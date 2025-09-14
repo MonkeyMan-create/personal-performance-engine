@@ -18,6 +18,10 @@ export default function SettingsPage() {
   const { language, country, setLanguage, setCountry } = useLocalization()
   const [profileData, setProfileData] = useState<ProfileData>({})
   const { toast } = useToast()
+  
+  // State for dropdown visibility - MUST be declared before any conditional logic
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false)
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false)
 
   // Load profile data including uploaded picture
   useEffect(() => {
@@ -27,6 +31,7 @@ export default function SettingsPage() {
     }
   }, [isGuestMode])
 
+  // Conditional rendering without early return to avoid hooks rule violation
   if (!user && !isGuestMode) {
     return (
       <AuthPrompt 
@@ -53,10 +58,6 @@ export default function SettingsPage() {
       description: `Measurement units changed to ${newUnit.toUpperCase()} successfully.`,
     })
   }
-
-  // State for dropdown visibility
-  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false)
-  const [showCountryDropdown, setShowCountryDropdown] = useState(false)
 
   // Handlers for Language and Country
   const handleLanguageSelect = (langCode: string) => {
