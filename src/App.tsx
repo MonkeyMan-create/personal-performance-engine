@@ -7,7 +7,7 @@ import { MeasurementProvider } from './contexts/MeasurementContext'
 import { LocalizationProvider } from './contexts/LocalizationContext'
 import BottomNavigation from './components/bottom-navigation'
 import { Toaster } from './components/ui/toaster'
-import tinycolor from 'tinycolor2'
+// Lazy load tinycolor2 to reduce main bundle size
 
 // Original pages
 const HomePage = React.lazy(() => import('./pages/home'))
@@ -50,9 +50,12 @@ const DEFAULT_SEMANTIC_COLORS = {
   wellness: '#4F46E5'
 }
 
-// Function to apply semantic colors globally
-const applySemanticColors = (colors: typeof DEFAULT_SEMANTIC_COLORS) => {
+// Function to apply semantic colors globally with lazy-loaded tinycolor2
+const applySemanticColors = async (colors: typeof DEFAULT_SEMANTIC_COLORS) => {
   const root = document.documentElement
+  
+  // Lazy load tinycolor2 to reduce main bundle size
+  const { default: tinycolor } = await import('tinycolor2')
   
   Object.entries(colors).forEach(([category, color]) => {
     const baseColor = tinycolor(color)
@@ -66,18 +69,18 @@ const applySemanticColors = (colors: typeof DEFAULT_SEMANTIC_COLORS) => {
 }
 
 // Initialize semantic colors on app startup
-const initializeSemanticColors = () => {
+const initializeSemanticColors = async () => {
   try {
     const savedColors = localStorage.getItem('semantic-theme-colors')
     if (savedColors) {
       const colors = JSON.parse(savedColors)
-      applySemanticColors(colors)
+      await applySemanticColors(colors)
     } else {
-      applySemanticColors(DEFAULT_SEMANTIC_COLORS)
+      await applySemanticColors(DEFAULT_SEMANTIC_COLORS)
     }
   } catch (error) {
     console.warn('Failed to load semantic colors:', error)
-    applySemanticColors(DEFAULT_SEMANTIC_COLORS)
+    await applySemanticColors(DEFAULT_SEMANTIC_COLORS)
   }
 }
 
@@ -107,7 +110,7 @@ const PageLoadingFallback = () => (
 function App() {
   // Initialize semantic colors on app startup
   useEffect(() => {
-    initializeSemanticColors()
+    initializeSemanticColors().catch(console.error)
   }, [])
 
   return (
