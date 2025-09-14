@@ -86,6 +86,9 @@
   --color-surface: #f8fafc; /* Card and panel backgrounds */
   --color-surface-secondary: #f1f5f9; /* Secondary surface color */
   --color-surface-hover: #e2e8f0; /* Hover state for surfaces */
+  --color-background-rgb: 255, 255, 255; /* RGB channels for background transparency */
+  --color-surface-rgb: 248, 250, 252; /* RGB channels for surface transparency */
+  --color-surface-secondary-rgb: 241, 245, 249; /* RGB channels for secondary surface transparency */
   
   /* Text Colors */
   --color-text-primary: #1e293b; /* Primary text color */
@@ -97,6 +100,8 @@
   --color-border: #e2e8f0; /* Primary border color */
   --color-border-secondary: #cbd5e1; /* Secondary border color */
   --color-border-focus: var(--color-action); /* Focus state borders */
+  --color-border-rgb: 226, 232, 240; /* RGB channels for border transparency */
+  --color-border-secondary-rgb: 203, 213, 225; /* RGB channels for secondary border transparency */
   
   /* Interactive States */
   --color-interactive-hover: #f1f5f9; /* Hover state background */
@@ -290,6 +295,13 @@
   --color-surface: #1e293b; /* Dark slate surface */
   --color-surface-secondary: #334155; /* Lighter dark surface */
   --color-surface-hover: #475569; /* Hover state for dark surfaces */
+  
+  /* RGB Variants for Dark Mode Transparency Effects */
+  --color-background-rgb: 15, 23, 42; /* Dark slate background RGB */
+  --color-surface-rgb: 30, 41, 59; /* Dark slate surface RGB */
+  --color-surface-secondary-rgb: 51, 65, 85; /* Lighter dark surface RGB */
+  --color-border-rgb: 51, 65, 85; /* Dark border RGB */
+  --color-border-secondary-rgb: 71, 85, 105; /* Secondary dark border RGB */
   
   /* Text Colors - Dark Mode */
   --color-text-primary: #f8fafc; /* Light text on dark */
@@ -922,6 +934,129 @@
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   line-height: var(--line-height-relaxed);
+}
+
+/* ==========================================
+   NAVIGATION FOUNDATION CLASSES
+   ========================================== */
+
+/* Bottom navigation container */
+.nav-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid rgba(var(--color-border-rgb), 0.5);
+  background-color: rgba(var(--color-surface-rgb), 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px); /* Safari support */
+  box-shadow: var(--shadow-2xl);
+  z-index: var(--z-index-fixed);
+}
+
+/* Navigation grid container */
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--spacing-2);
+  padding: var(--spacing-4);
+  max-width: 448px; /* max-w-md equivalent */
+  margin: 0 auto;
+}
+
+/* Navigation item base */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3);
+  border-radius: var(--radius-2xl);
+  transition: all var(--duration-base) var(--easing-ease-out);
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Navigation item hover effect */
+.nav-item:hover {
+  transform: scale(1.05);
+}
+
+/* Navigation item active effect */
+.nav-item:active {
+  transform: scale(0.95);
+}
+
+/* Active navigation item */
+.nav-item-active {
+  color: var(--color-action);
+  background: linear-gradient(135deg, rgba(var(--color-action-rgb), 0.2), rgba(var(--color-action-rgb), 0.2));
+  box-shadow: 0 8px 25px -5px rgba(var(--color-action-rgb), 0.25);
+  border: 1px solid rgba(var(--color-action-rgb), 0.3);
+}
+
+/* Inactive navigation item */
+.nav-item-inactive {
+  color: var(--color-text-secondary);
+}
+
+/* Inactive navigation item hover */
+.nav-item-inactive:hover {
+  color: var(--color-text-primary);
+  background-color: rgba(var(--color-action-rgb), 0.1);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Navigation icon */
+.nav-icon {
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  margin-bottom: var(--spacing-2);
+  transition: all var(--duration-base) var(--easing-ease-out);
+}
+
+/* Active navigation icon */
+.nav-icon-active {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Navigation label */
+.nav-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.025em; /* tracking-wide equivalent */
+  transition: all var(--duration-base) var(--easing-ease-out);
+}
+
+/* Active navigation label */
+.nav-label-active {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-action);
+}
+
+/* Navigation active indicator dot */
+.nav-indicator {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: var(--spacing-2);
+  height: var(--spacing-2);
+  background: linear-gradient(135deg, var(--color-action), var(--color-action));
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Pulse animation for active indicator */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* ==========================================
