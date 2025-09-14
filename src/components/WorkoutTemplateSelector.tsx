@@ -63,13 +63,13 @@ export default function WorkoutTemplateSelector({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl">
+      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-[var(--color-background)]/95 backdrop-blur-xl">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <DialogTitle className="text-2xl font-bold text-[var(--color-text-primary)] flex items-center gap-2">
             <Zap className="w-6 h-6 text-primary dark:text-primary" />
             Choose Your Workout
           </DialogTitle>
-          <DialogDescription className="text-slate-600 dark:text-slate-300">
+          <DialogDescription className="text-[var(--color-text-secondary)]">
             Select a pre-designed workout template to get started quickly. You can customize any template after selection.
           </DialogDescription>
         </DialogHeader>
@@ -77,17 +77,17 @@ export default function WorkoutTemplateSelector({
         <div className="space-y-6">
           {/* Filter Tabs */}
           <Tabs value={selectedFilter} onValueChange={(value: any) => setSelectedFilter(value)} className="w-full">
-            <TabsList className="grid w-full grid-cols-4 bg-slate-100 dark:bg-slate-700">
-              <TabsTrigger value="all" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-600">
+            <TabsList className="grid w-full grid-cols-4 bg-[var(--color-surface)]">
+              <TabsTrigger value="all" className="data-[state=active]:bg-[var(--color-background)]">
                 All Levels
               </TabsTrigger>
-              <TabsTrigger value="beginner" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-600">
+              <TabsTrigger value="beginner" className="data-[state=active]:bg-[var(--color-background)]">
                 Beginner
               </TabsTrigger>
-              <TabsTrigger value="intermediate" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-600">
+              <TabsTrigger value="intermediate" className="data-[state=active]:bg-[var(--color-background)]">
                 Intermediate
               </TabsTrigger>
-              <TabsTrigger value="advanced" className="data-[state=active]:bg-white dark:data-[state=active]:bg-slate-600">
+              <TabsTrigger value="advanced" className="data-[state=active]:bg-[var(--color-background)]">
                 Advanced
               </TabsTrigger>
             </TabsList>
@@ -97,14 +97,14 @@ export default function WorkoutTemplateSelector({
                 {filteredTemplates.map((template) => (
                   <Card 
                     key={template.id}
-                    className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl hover:shadow-lg transition-all duration-200 cursor-pointer group"
+                    className="bg-[var(--color-surface)]/70 border-[var(--color-border)]/50 backdrop-blur-xl hover:shadow-lg transition-all duration-200 cursor-pointer group"
                     onClick={() => handleSelectTemplate(template)}
                     data-testid={`template-card-${template.id}`}
                   >
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2 group-hover:text-primary dark:group-hover:text-primary transition-colors">
+                          <CardTitle className="text-lg font-semibold text-[var(--color-text-primary)] flex items-center gap-2 group-hover:text-primary transition-colors">
                             {getCategoryIcon(template.category)}
                             {template.name}
                           </CardTitle>
@@ -119,7 +119,7 @@ export default function WorkoutTemplateSelector({
                         <Badge className={getDifficultyColor(template.difficulty)}>
                           {template.difficulty}
                         </Badge>
-                        <Badge variant="secondary" className="bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300">
+                        <Badge variant="secondary" className="bg-[var(--color-surface)] text-[var(--color-text-secondary)]">
                           {template.category}
                         </Badge>
                       </div>
@@ -170,7 +170,7 @@ export default function WorkoutTemplateSelector({
 
                         {/* Action Button */}
                         <Button 
-                          className="w-full mt-3 bg-slate-700 dark:bg-slate-600 hover:bg-slate-600 dark:hover:bg-slate-500 text-white border-2 border-primary/50 hover:border-primary hover:ring-4 hover:ring-primary/20"
+                          className="w-full mt-3 bg-[var(--color-action)] hover:bg-[var(--color-action-hover)] text-white border-2 border-primary/50 hover:border-primary hover:ring-4 hover:ring-primary/20"
                           onClick={(e) => {
                             e.stopPropagation()
                             handleSelectTemplate(template)
@@ -189,7 +189,7 @@ export default function WorkoutTemplateSelector({
               {filteredTemplates.length === 0 && (
                 <div className="text-center py-8">
                   <Users className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-slate-900 dark:text-white mb-2">
+                  <h3 className="text-lg font-medium text-[var(--color-text-primary)] mb-2">
                     No templates found
                   </h3>
                   <p className="text-slate-600 dark:text-slate-300">
@@ -222,7 +222,7 @@ export default function WorkoutTemplateSelector({
           <Button 
             variant="outline" 
             onClick={onClose}
-            className="flex-1 border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+            className="flex-1 border-[var(--color-border)] text-[var(--color-text-secondary)] hover:bg-[var(--color-surface)]"
             data-testid="button-close-template-selector"
           >
             Cancel

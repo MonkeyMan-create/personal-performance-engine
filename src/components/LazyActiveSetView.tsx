@@ -13,10 +13,10 @@ interface LazyActiveSetViewProps {
 
 // Loading fallback component for the active set view
 const ActiveSetLoadingFallback = () => (
-  <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex items-center justify-center">
-    <Card className="w-full max-w-md bg-white/90 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl shadow-2xl">
+  <div className="min-h-screen bg-gradient-to-br from-[var(--color-background)] via-[var(--color-surface)] to-[var(--color-background)] flex items-center justify-center">
+    <Card className="w-full max-w-md bg-[var(--color-surface)]/90 border-[var(--color-border)]/50 backdrop-blur-xl shadow-2xl">
       <CardHeader className="text-center pb-6">
-        <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
+        <CardTitle className="text-2xl font-bold text-[var(--color-text-primary)] mb-2">
           Loading Workout...
         </CardTitle>
       </CardHeader>
@@ -29,7 +29,7 @@ const ActiveSetLoadingFallback = () => (
         </div>
         <div className="flex items-center justify-center gap-2">
           <Loader2 className="w-5 h-5 animate-spin text-primary" />
-          <span className="text-slate-600 dark:text-slate-300">Preparing your set...</span>
+          <span className="text-[var(--color-text-secondary)]">Preparing your set...</span>
         </div>
       </CardContent>
     </Card>

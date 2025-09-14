@@ -14,15 +14,15 @@ interface LazyExerciseSelectorProps {
 // Loading fallback component for the exercise selector
 const ExerciseSelectorLoadingFallback = ({ onClose }: { onClose: () => void }) => (
   <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-    <Card className="w-full max-w-md max-h-[80vh] bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+    <Card className="w-full max-w-md max-h-[80vh] bg-[var(--color-background)] border-[var(--color-border)]">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-slate-900 dark:text-white">Loading Exercises...</CardTitle>
+          <CardTitle className="text-[var(--color-text-primary)]">Loading Exercises...</CardTitle>
           <Button
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="text-slate-600 dark:text-slate-300"
+            className="text-[var(--color-text-secondary)]"
             data-testid="button-close-exercise-selector"
           >
             <X className="w-4 h-4" />
@@ -39,7 +39,7 @@ const ExerciseSelectorLoadingFallback = ({ onClose }: { onClose: () => void }) =
         </div>
         <div className="flex items-center justify-center gap-2">
           <Loader2 className="w-5 h-5 animate-spin text-primary" />
-          <span className="text-slate-600 dark:text-slate-300">Loading exercise database...</span>
+          <span className="text-[var(--color-text-secondary)]">Loading exercise database...</span>
         </div>
       </CardContent>
     </Card>

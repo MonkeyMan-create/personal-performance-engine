@@ -1,0 +1,17 @@
+## The Final Prompt: Restore V1.0 Aesthetic with V2.0+ Engine & Fix All Bugs
+Project Finale: This is the final task to complete the application. The goal is to perfectly recreate the polished, vibrant, and multi-color visual design of the original prototype, but built entirely on top of the powerful new Dynamic Semantic Theming System. We will keep all new features and fix all remaining visual bugs.
+Visual Guide: You must use the original V1.0 screenshots provided as your non-negotiable visual guide for this task.
+### Part 1: Critical Bug Hunt (Fix These First!)
+ * Fix Dark Mode Text Color Bug: Hunt down and fix the critical bug that causes some text to remain black in dark mode. All text on all pages must be perfectly readable in both light and dark modes.
+ * Eliminate All Black Borders: Find and remove all unwanted black borders from all UI elements across the entire app. Borders must be clean and use the defined --color-border variable only where appropriate, matching the original design.
+### Part 2: Restore the V1.0 Aesthetic
+ * Granular Semantic Colors: Apply the full semantic color palette with nuance to match the V1.0 design. Data cards, specific buttons, and highlights must use their correct semantic colors (--color-activity, --color-nutrition, --color-wellness) to restore the rich, multi-color design.
+ * Vibrant Backgrounds & Displays: Re-implement the colorful, rich backgrounds for graphs, data displays, and informational cards (like the "100% Ad-Free" card). These should use dark, semi-transparent versions of their corresponding semantic colors.
+ * Restore Icons & Emojis: Ensure all icons and emojis from the original design are present and correctly styled with their full, vibrant semantic colors.
+### Part 3: Comprehensive Final Audit
+This restoration must be applied to every single page and component—from the main navigator pages to all auxiliary screens (Help Center, Privacy Policy, etc.)—to ensure a single, cohesive, and perfectly polished design language throughout the entire application.
+### Part 4: Definitive Verification
+After you are done, you must confirm two things:
+ * Confirm that you have fixed the dark mode text bug and removed all unwanted black borders.
+ * Perform a visual description test. With the "Activity & Progress" color set to a custom Pink and the "Nutrition" color set to a custom Green, describe the Home page. What color is the "Steps" data card? What color is the calorie progress ring? This will prove the restoration is complete and the dynamic engine is working correctly.
+

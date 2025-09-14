@@ -14,9 +14,9 @@ interface LazyWorkoutTemplateSelectorProps {
 // Loading fallback component for the workout template selector
 const TemplateLoadingFallback = () => (
   <Dialog open={true}>
-    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl">
+    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-[var(--color-background)]/95 backdrop-blur-xl">
       <DialogHeader>
-        <DialogTitle className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+        <DialogTitle className="text-2xl font-bold text-[var(--color-text-primary)] flex items-center gap-2">
           <Zap className="w-6 h-6 text-primary" />
           Loading Workout Templates...
         </DialogTitle>
@@ -33,11 +33,11 @@ const TemplateLoadingFallback = () => (
         <div className="space-y-2">
           <div className="flex items-center justify-center gap-2">
             <Loader2 className="w-6 h-6 animate-spin text-primary" />
-            <span className="text-lg font-medium text-slate-600 dark:text-slate-300">
+            <span className="text-lg font-medium text-[var(--color-text-secondary)]">
               Loading workout templates...
             </span>
           </div>
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+          <p className="text-sm text-[var(--color-text-secondary)]">
             Preparing your personalized workout options
           </p>
         </div>
@@ -47,16 +47,16 @@ const TemplateLoadingFallback = () => (
           {[1, 2, 3, 4].map((index) => (
             <div
               key={index}
-              className="p-6 bg-slate-100 dark:bg-slate-700 rounded-xl animate-pulse"
+              className="p-6 bg-[var(--color-surface)] rounded-xl animate-pulse"
             >
               <div className="space-y-3">
-                <div className="h-6 bg-slate-200 dark:bg-slate-600 rounded w-3/4"></div>
-                <div className="h-4 bg-slate-200 dark:bg-slate-600 rounded w-full"></div>
+                <div className="h-6 bg-[var(--color-surface)] rounded w-3/4"></div>
+                <div className="h-4 bg-[var(--color-surface)] rounded w-full"></div>
                 <div className="flex gap-2">
-                  <div className="h-6 bg-slate-200 dark:bg-slate-600 rounded w-20"></div>
-                  <div className="h-6 bg-slate-200 dark:bg-slate-600 rounded w-16"></div>
+                  <div className="h-6 bg-[var(--color-surface)] rounded w-20"></div>
+                  <div className="h-6 bg-[var(--color-surface)] rounded w-16"></div>
                 </div>
-                <div className="h-10 bg-slate-200 dark:bg-slate-600 rounded mt-4"></div>
+                <div className="h-10 bg-[var(--color-surface)] rounded mt-4"></div>
               </div>
             </div>
           ))}

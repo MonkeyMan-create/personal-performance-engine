@@ -159,13 +159,13 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-[var(--color-background)] via-[var(--color-surface)] to-[var(--color-background)] flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-slate-200/50 dark:border-slate-700/50 bg-white/70 dark:bg-slate-800/80 backdrop-blur-xl">
+      <div className="flex items-center justify-between p-4 border-b border-[var(--color-border)]/50 bg-[var(--color-surface)]/70 backdrop-blur-xl">
         <Button
           variant="ghost"
           onClick={onBackToSelection}
-          className="text-slate-600 dark:text-slate-300"
+          className="text-[var(--color-text-secondary)]"
           data-testid="button-back-to-selection"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
@@ -174,7 +174,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
         <Button
           variant="outline"
           onClick={onFinishExercise}
-          className="text-slate-600 dark:text-slate-300 border-slate-300 dark:border-slate-600"
+          className="text-[var(--color-text-secondary)] border-[var(--color-border)]"
           data-testid="button-finish-exercise"
         >
           Finish Exercise
@@ -183,10 +183,10 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
 
       {/* Main Content */}
       <div className="flex-1 flex items-center justify-center p-4">
-        <Card className="w-full max-w-md bg-white/90 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="w-full max-w-md bg-[var(--color-surface)]/90 border-[var(--color-border)]/50 backdrop-blur-xl shadow-2xl"
           <CardHeader className="text-center pb-6">
             <div className="flex items-center justify-center gap-2 mb-3">
-              <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">
+              <CardTitle className="text-2xl font-bold text-[var(--color-text-primary)]">
                 {exerciseName}
               </CardTitle>
               {exerciseData && (
@@ -194,7 +194,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   variant="ghost"
                   size="sm"
                   onClick={() => setShowExerciseInfo(true)}
-                  className="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                  className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]"
                   data-testid="button-exercise-info"
                 >
                   <Info className="w-4 h-4" />
@@ -213,14 +213,14 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                     autoPlay
                     muted
                     loop
-                    className="border-2 border-slate-200 dark:border-slate-600 shadow-lg"
+                    className="border-2 border-[var(--color-border)] shadow-lg"
                   />
                 ) : (
                   <ExercisePreview
                     src={exerciseData.image_url}
                     alt={`${exerciseData.name} demonstration`}
                     exerciseName={exerciseData.name}
-                    className="border-2 border-slate-200 dark:border-slate-600 shadow-lg"
+                    className="border-2 border-[var(--color-border)] shadow-lg"
                     onImageClick={() => setShowExerciseInfo(true)}
                   />
                 )}
@@ -255,11 +255,11 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
               </div>
             )}
             
-            <p className="text-lg text-slate-600 dark:text-slate-300 font-medium">
+            <p className="text-lg text-[var(--color-text-secondary)] font-medium">
               Set {currentSetNumber}
             </p>
             {currentSetNumber > 1 && currentExercise && (
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+              <p className="text-sm text-[var(--color-text-secondary)]">
                 Last: {formatWeight(currentExercise.sets[currentExercise.sets.length - 1].weight, 'lbs')} × {currentExercise.sets[currentExercise.sets.length - 1].reps} (RIR {currentExercise.sets[currentExercise.sets.length - 1].rir})
               </p>
             )}
@@ -269,7 +269,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
             {/* Input Fields */}
             <div className="grid grid-cols-3 gap-4">
               <div>
-                <label htmlFor="weight" className="block text-sm font-medium mb-2 text-slate-900 dark:text-white text-center">
+                <label htmlFor="weight" className="block text-sm font-medium mb-2 text-[var(--color-text-primary)] text-center">
                   Weight
                 </label>
                 <Input
@@ -277,17 +277,17 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   type="number"
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
-                  className="text-center text-xl h-14 text-slate-900 dark:text-white bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="text-center text-xl h-14 text-[var(--color-text-primary)] bg-[var(--color-background)] border-[var(--color-border)] focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="135"
                   min="0"
                   step="0.5"
                   data-testid="input-active-weight"
                 />
-                <p className="text-xs text-slate-500 dark:text-slate-400 text-center mt-1">{unit}</p>
+                <p className="text-xs text-[var(--color-text-secondary)] text-center mt-1">{unit}</p>
               </div>
 
               <div>
-                <label htmlFor="reps" className="block text-sm font-medium mb-2 text-slate-900 dark:text-white text-center">
+                <label htmlFor="reps" className="block text-sm font-medium mb-2 text-[var(--color-text-primary)] text-center">
                   Reps
                 </label>
                 <Input
@@ -295,7 +295,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   type="number"
                   value={reps}
                   onChange={(e) => setReps(e.target.value)}
-                  className="text-center text-xl h-14 text-slate-900 dark:text-white bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="text-center text-xl h-14 text-[var(--color-text-primary)] bg-[var(--color-background)] border-[var(--color-border)] focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="8"
                   min="1"
                   data-testid="input-active-reps"
@@ -303,7 +303,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
               </div>
 
               <div>
-                <label htmlFor="rir" className="block text-sm font-medium mb-2 text-slate-900 dark:text-white text-center">
+                <label htmlFor="rir" className="block text-sm font-medium mb-2 text-[var(--color-text-primary)] text-center">
                   RIR
                 </label>
                 <Input
@@ -311,7 +311,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   type="number"
                   value={rir}
                   onChange={(e) => setRir(e.target.value)}
-                  className="text-center text-xl h-14 text-slate-900 dark:text-white bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-primary focus:border-primary"
+                  className="text-center text-xl h-14 text-[var(--color-text-primary)] bg-[var(--color-background)] border-[var(--color-border)] focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="2"
                   min="0"
                   max="10"
@@ -321,7 +321,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
             </div>
 
             {/* RIR Helper Text */}
-            <p className="text-xs text-slate-500 dark:text-slate-400 text-center">
+            <p className="text-xs text-[var(--color-text-secondary)] text-center">
               RIR = Reps in Reserve (how many more reps you could do)
             </p>
 
@@ -349,7 +349,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   <div className="text-3xl font-bold text-primary mb-2">
                     {formatTime(remainingTime)}
                   </div>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">
+                  <p className="text-sm text-[var(--color-text-secondary)]">
                     Rest time remaining
                   </p>
                 </div>
@@ -359,7 +359,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   <Button
                     onClick={handleTogglePause}
                     variant="outline"
-                    className="flex-1 border-slate-300 dark:border-slate-600"
+                    className="flex-1 border-[var(--color-border)]"
                     data-testid="button-toggle-pause-rest"
                   >
                     {isPaused ? (
@@ -377,7 +377,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   <Button
                     onClick={handleSkipRest}
                     variant="outline"
-                    className="flex-1 border-slate-300 dark:border-slate-600"
+                    className="flex-1 border-[var(--color-border)]"
                     data-testid="button-skip-rest"
                   >
                     <SkipForward className="w-4 h-4 mr-2" />
@@ -389,8 +389,8 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
 
             {/* Progress Indicator */}
             {currentExercise && currentExercise.sets.length > 0 && (
-              <div className="bg-slate-50 dark:bg-slate-700 p-3 rounded-lg">
-                <p className="text-sm font-medium text-slate-900 dark:text-white mb-2">
+              <div className="bg-[var(--color-surface)] p-3 rounded-lg">
+                <p className="text-sm font-medium text-[var(--color-text-primary)] mb-2">
                   Today's Sets:
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -430,7 +430,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
             <div className="space-y-4">
               {/* Muscle Groups and Equipment */}
               <div>
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Target Muscles</h3>
+                <h3 className="font-semibold text-[var(--color-text-primary)] mb-2">Target Muscles</h3>
                 <div className="flex flex-wrap gap-2">
                   {exerciseData.muscle_groups.map(mg => (
                     <Badge key={mg} variant="secondary" className="capitalize">
@@ -441,16 +441,16 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
               </div>
               
               <div>
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Equipment</h3>
-                <p className="text-sm text-slate-600 dark:text-slate-400 capitalize">
+                <h3 className="font-semibold text-[var(--color-text-primary)] mb-2">Equipment</h3>
+                <p className="text-sm text-[var(--color-text-secondary)] capitalize">
                   {exerciseData.equipment.join(', ')}
                 </p>
               </div>
 
               {/* Instructions */}
               <div>
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Instructions</h3>
-                <ol className="list-decimal list-inside space-y-1 text-sm text-slate-700 dark:text-slate-300">
+                <h3 className="font-semibold text-[var(--color-text-primary)] mb-2">Instructions</h3>
+                <ol className="list-decimal list-inside space-y-1 text-sm text-[var(--color-text-secondary)]">
                   {exerciseData.instructions.map((instruction, index) => (
                     <li key={index}>{instruction}</li>
                   ))}
@@ -460,8 +460,8 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
               {/* Tips */}
               {exerciseData.tips && exerciseData.tips.length > 0 && (
                 <div>
-                  <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Tips & Safety</h3>
-                  <ul className="list-disc list-inside space-y-1 text-sm text-slate-700 dark:text-slate-300">
+                  <h3 className="font-semibold text-[var(--color-text-primary)] mb-2">Tips & Safety</h3>
+                  <ul className="list-disc list-inside space-y-1 text-sm text-[var(--color-text-secondary)]">
                     {exerciseData.tips.map((tip, index) => (
                       <li key={index}>{tip}</li>
                     ))}

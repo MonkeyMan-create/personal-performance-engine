@@ -178,11 +178,11 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
     <>
       {/* Main Exercise Search Modal */}
       <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-        <Card className="w-full max-w-4xl max-h-[90vh] bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+        <Card className="w-full max-w-4xl max-h-[90vh] bg-[var(--color-background)] border-[var(--color-border)]">
           <CardHeader className="pb-4">
             <div className="flex items-center justify-between">
               <div>
-                <CardTitle className="text-slate-900 dark:text-white">Exercise Database</CardTitle>
+                <CardTitle className="text-[var(--color-text-primary)]">Exercise Database</CardTitle>
                 <CardDescription>Search from 100+ professional exercises</CardDescription>
               </div>
               <Button
@@ -203,7 +203,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                 placeholder="Search exercises by name, muscle group, or equipment..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600"
+                className="pl-10 bg-[var(--color-surface)] border-[var(--color-border)]"
                 data-testid="input-search-exercises"
               />
             </form>
@@ -241,10 +241,10 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
 
             {/* Filters */}
             {showFilters && (
-              <div className="space-y-4 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
+              <div className="space-y-4 p-4 bg-[var(--color-surface)]/50 rounded-lg">
                 {/* Muscle Groups */}
                 <div>
-                  <h4 className="font-medium text-slate-900 dark:text-white mb-2">Muscle Groups</h4>
+                  <h4 className="font-medium text-[var(--color-text-primary)] mb-2">Muscle Groups</h4>
                   <div className="flex flex-wrap gap-2">
                     {muscleGroups.map(mg => (
                       <Button
@@ -267,7 +267,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
 
                 {/* Equipment */}
                 <div>
-                  <h4 className="font-medium text-slate-900 dark:text-white mb-2">Equipment</h4>
+                  <h4 className="font-medium text-[var(--color-text-primary)] mb-2">Equipment</h4>
                   <div className="flex flex-wrap gap-2">
                     {equipment.map(eq => (
                       <Button
@@ -291,7 +291,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                 {/* Difficulty & Category */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-medium text-slate-900 dark:text-white mb-2">Difficulty</h4>
+                    <h4 className="font-medium text-[var(--color-text-primary)] mb-2">Difficulty</h4>
                     <div className="flex flex-wrap gap-2">
                       {difficulties.map(diff => (
                         <Button
@@ -313,7 +313,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                   </div>
 
                   <div>
-                    <h4 className="font-medium text-slate-900 dark:text-white mb-2">Category</h4>
+                    <h4 className="font-medium text-[var(--color-text-primary)] mb-2">Category</h4>
                     <div className="flex flex-wrap gap-2">
                       {categories.map(cat => (
                         <Button
@@ -348,8 +348,8 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                   return (
                     <Card 
                       key={exercise.id} 
-                      className="hover:shadow-lg transition-shadow cursor-pointer border-slate-200 dark:border-slate-600"
-                    >
+                      className="hover:shadow-lg transition-shadow cursor-pointer border-[var(--color-border)]"
+                      onClick={() => handleShowDetails(exercise)}>
                       <CardContent className="p-4">
                         <div className="flex gap-3 mb-3">
                           {/* Exercise Thumbnail */}
@@ -360,7 +360,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                                 poster={exercise.image_url}
                                 exerciseName={exercise.name}
                                 onVideoClick={() => handleShowDetails(exercise)}
-                                className="border-2 border-slate-200 dark:border-slate-600"
+                                className="border-2 border-[var(--color-border)]"
                               />
                             ) : (
                               <ExerciseThumbnail
@@ -368,7 +368,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                                 alt={`${exercise.name} demonstration`}
                                 exerciseName={exercise.name}
                                 onImageClick={() => handleShowDetails(exercise)}
-                                className="border-2 border-slate-200 dark:border-slate-600"
+                                className="border-2 border-[var(--color-border)]"
                               />
                             )}
                           </div>
@@ -376,7 +376,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                           {/* Exercise Info */}
                           <div className="flex-1 min-w-0">
                             <div className="flex items-start justify-between mb-2">
-                              <h3 className="font-semibold text-slate-900 dark:text-white mb-1 truncate">
+                              <h3 className="font-semibold text-[var(--color-text-primary)] mb-1 truncate">
                                 {exercise.name}
                               </h3>
                               <Badge className={`text-xs ${getDifficultyColor(exercise.difficulty)}`}>
@@ -388,7 +388,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                                 <Badge 
                                   key={mg} 
                                   variant="secondary" 
-                                  className="text-xs capitalize bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300"
+                                  className="text-xs capitalize bg-[var(--color-surface)] text-[var(--color-text-secondary)]"
                                 >
                                   {mg}
                                 </Badge>
@@ -487,7 +487,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                 <div className="space-y-4">
                   {selectedExercise.video_url && (
                     <div>
-                      <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                      <h3 className="font-semibold text-[var(--color-text-primary)] mb-3 flex items-center gap-2">
                         <PlayCircle className="w-5 h-5 text-primary" />
                         Exercise Demonstration
                       </h3>
@@ -503,7 +503,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                   
                   {selectedExercise.image_url && !selectedExercise.video_url && (
                     <div>
-                      <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                      <h3 className="font-semibold text-[var(--color-text-primary)] mb-3 flex items-center gap-2">
                         <ImageIcon className="w-5 h-5 text-primary" />
                         Exercise Reference
                       </h3>
@@ -521,7 +521,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
               {/* Muscle Groups and Equipment */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <h4 className="font-medium text-slate-900 dark:text-white mb-2">Target Muscles</h4>
+                  <h4 className="font-medium text-[var(--color-text-primary)] mb-2">Target Muscles</h4>
                   <div className="flex flex-wrap gap-2">
                     {selectedExercise.muscle_groups.map(mg => (
                       <Badge key={mg} variant="secondary" className="capitalize">
@@ -532,7 +532,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                 </div>
                 
                 <div>
-                  <h4 className="font-medium text-slate-900 dark:text-white mb-2">Equipment Needed</h4>
+                  <h4 className="font-medium text-[var(--color-text-primary)] mb-2">Equipment Needed</h4>
                   <div className="text-sm text-slate-600 dark:text-slate-400">
                     {selectedExercise.equipment.join(', ')}
                   </div>
@@ -541,7 +541,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
 
               {/* Instructions */}
               <div>
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-3">Step-by-Step Instructions</h3>
+                <h3 className="font-semibold text-[var(--color-text-primary)] mb-3">Step-by-Step Instructions</h3>
                 <ol className="list-decimal list-inside space-y-2 text-sm text-slate-700 dark:text-slate-300">
                   {selectedExercise.instructions.map((instruction, index) => (
                     <li key={index} className="leading-relaxed">{instruction}</li>
@@ -552,7 +552,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
               {/* Tips */}
               {selectedExercise.tips && selectedExercise.tips.length > 0 && (
                 <div>
-                  <h3 className="font-semibold text-slate-900 dark:text-white mb-3">Tips & Safety</h3>
+                  <h3 className="font-semibold text-[var(--color-text-primary)] mb-3">Tips & Safety</h3>
                   <ul className="list-disc list-inside space-y-2 text-sm text-slate-700 dark:text-slate-300">
                     {selectedExercise.tips.map((tip, index) => (
                       <li key={index} className="leading-relaxed">{tip}</li>

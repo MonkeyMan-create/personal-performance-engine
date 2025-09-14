@@ -45,15 +45,15 @@ export default function ExerciseSelector({ onSelectExercise, onClose }: Exercise
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md max-h-[80vh] bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+      <Card className="w-full max-w-md max-h-[80vh] bg-[var(--color-background)] border-[var(--color-border)]">
         <CardHeader className="pb-3">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-slate-900 dark:text-white">Select Exercise</CardTitle>
+            <CardTitle className="text-[var(--color-text-primary)]">Select Exercise</CardTitle>
             <Button
               variant="ghost"
               size="icon"
               onClick={onClose}
-              className="text-slate-600 dark:text-slate-300"
+              className="text-[var(--color-text-secondary)]"
               data-testid="button-close-exercise-selector"
             >
               ×
@@ -67,7 +67,7 @@ export default function ExerciseSelector({ onSelectExercise, onClose }: Exercise
               placeholder="Search exercises..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 bg-slate-50 dark:bg-slate-700 border-slate-200 dark:border-slate-600"
+              className="pl-10 bg-[var(--color-surface)] border-[var(--color-border)]"
               data-testid="input-search-exercise"
             />
           </div>
@@ -86,12 +86,12 @@ export default function ExerciseSelector({ onSelectExercise, onClose }: Exercise
               Add New Exercise
             </Button>
           ) : (
-            <div className="space-y-2 p-3 bg-slate-50 dark:bg-slate-700 rounded-lg border-2 border-primary/50">
+            <div className="space-y-2 p-3 bg-[var(--color-surface)] rounded-lg border-2 border-primary/50">
               <Input
                 placeholder="Enter exercise name (e.g., Bench Press)"
                 value={newExerciseName}
                 onChange={(e) => setNewExerciseName(e.target.value)}
-                className="bg-white dark:bg-slate-800"
+                className="bg-[var(--color-background)]"
                 autoFocus
                 data-testid="input-new-exercise-name"
               />
@@ -129,15 +129,15 @@ export default function ExerciseSelector({ onSelectExercise, onClose }: Exercise
                     key={exerciseName}
                     onClick={() => handleSelectExercise(exerciseName)}
                     variant="ghost"
-                    className="w-full justify-start h-auto p-3 text-left bg-slate-50/50 dark:bg-slate-700/30 hover:bg-slate-100 dark:hover:bg-slate-700/60 border border-slate-200 dark:border-slate-600"
+                    className="w-full justify-start h-auto p-3 text-left bg-[var(--color-surface)]/50 hover:bg-[var(--color-surface)] border border-[var(--color-border)]"
                     data-testid={`button-select-exercise-${exerciseName.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     <div className="flex-1">
-                      <div className="font-medium text-slate-900 dark:text-white mb-1">
+                      <div className="font-medium text-[var(--color-text-primary)] mb-1">
                         {exerciseName}
                       </div>
                       {history && (
-                        <div className="flex items-center text-xs text-slate-600 dark:text-slate-400 space-x-3">
+                        <div className="flex items-center text-xs text-[var(--color-text-secondary)] space-x-3">
                           <span className="flex items-center">
                             <TrendingUp className="w-3 h-3 mr-1" />
                             {history.lastWeight}lbs × {history.lastReps}
@@ -154,13 +154,13 @@ export default function ExerciseSelector({ onSelectExercise, onClose }: Exercise
               })}
             </div>
           ) : searchQuery ? (
-            <div className="text-center py-8 text-slate-500 dark:text-slate-400">
+            <div className="text-center py-8 text-[var(--color-text-secondary)]">
               <Search className="w-8 h-8 mx-auto mb-2 opacity-50" />
               <p>No exercises found for "{searchQuery}"</p>
               <p className="text-xs mt-1">Try a different search term</p>
             </div>
           ) : exerciseNames.length === 0 ? (
-            <div className="text-center py-8 text-slate-500 dark:text-slate-400">
+            <div className="text-center py-8 text-[var(--color-text-secondary)]">
               <TrendingUp className="w-8 h-8 mx-auto mb-2 opacity-50" />
               <p>No previous exercises</p>
               <p className="text-xs mt-1">Add your first exercise to get started</p>
