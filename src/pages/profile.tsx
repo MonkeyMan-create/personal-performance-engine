@@ -11,6 +11,7 @@ import { useLocalization, SUPPORTED_LANGUAGES, SUPPORTED_COUNTRIES } from '../co
 import { getProfileDataLocally, ProfileData } from '../utils/guestStorage'
 import { useToast } from '../hooks/use-toast'
 import ColorThemeSelector from '../components/ColorThemeSelector'
+import DynamicColorPicker from '../components/DynamicColorPicker'
 
 export default function SettingsPage() {
   const { user, logout, isGuestMode } = useAuth()
@@ -267,6 +268,11 @@ export default function SettingsPage() {
                 </div>
               </div>
               <ColorThemeSelector />
+            </div>
+            
+            {/* Dynamic Color Picker Section */}
+            <div className="space-y-4 mx-2" data-testid="settings-dynamic-color">
+              <DynamicColorPicker />
             </div>
             
             {/* Language Dropdown */}

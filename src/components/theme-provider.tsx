@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
 type Theme = 'dark' | 'light' | 'system'
-type ColorTheme = 'teal' | 'blue' | 'orange' | 'purple' | 'ruby' | 'forest' | 'amber' | 'sapphire'
+type ColorTheme = 'teal' | 'blue' | 'orange' | 'purple' | 'ruby' | 'forest' | 'amber' | 'sapphire' | 'custom'
 
 type ThemeProviderProps = {
   children: React.ReactNode
@@ -16,6 +16,8 @@ type ThemeProviderState = {
   colorTheme: ColorTheme
   setTheme: (theme: Theme) => void
   setColorTheme: (colorTheme: ColorTheme) => void
+  hasCustomColor: boolean
+  clearCustomColor: () => void
 }
 
 const initialState: ThemeProviderState = {
@@ -23,6 +25,8 @@ const initialState: ThemeProviderState = {
   colorTheme: 'teal',
   setTheme: () => null,
   setColorTheme: () => null,
+  hasCustomColor: false,
+  clearCustomColor: () => null,
 }
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
@@ -50,6 +54,12 @@ export function ThemeProvider({
 
   const [colorTheme, setColorTheme] = useState<ColorTheme>(() => {
     try {
+      // Check for custom color first
+      const customColor = localStorage.getItem('custom-theme-color')
+      if (customColor) {
+        return 'custom'
+      }
+      
       const storedColorTheme = localStorage.getItem(colorStorageKey)
       if (storedColorTheme === 'teal' || storedColorTheme === 'blue' || storedColorTheme === 'orange' || storedColorTheme === 'purple' || storedColorTheme === 'ruby' || storedColorTheme === 'forest' || storedColorTheme === 'amber' || storedColorTheme === 'sapphire') {
         return storedColorTheme
@@ -59,6 +69,14 @@ export function ThemeProvider({
       console.warn('Failed to access localStorage for color theme:', error)
     }
     return defaultColorTheme
+  })
+
+  const [hasCustomColor, setHasCustomColor] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem('custom-theme-color') !== null
+    } catch (error) {
+      return false
+    }
   })
 
   useEffect(() => {
@@ -85,9 +103,28 @@ export function ThemeProvider({
     // Remove all color theme classes
     root.classList.remove('color-teal', 'color-blue', 'color-orange', 'color-purple', 'color-ruby', 'color-forest', 'color-amber', 'color-sapphire')
     
-    // Add the current color theme class
-    root.classList.add(`color-${colorTheme}`)
+    // Only add predefined color theme class if not using custom color
+    if (colorTheme !== 'custom') {
+      root.classList.add(`color-${colorTheme}`)
+    }
   }, [colorTheme])
+
+  // Initialize custom color on mount
+  useEffect(() => {
+    try {
+      const savedCustomColor = localStorage.getItem('custom-theme-color')
+      if (savedCustomColor) {
+        // Import and call the initialization function
+        import('./DynamicColorPicker').then(({ initializeCustomColor }) => {
+          initializeCustomColor()
+        })
+        setHasCustomColor(true)
+        setColorTheme('custom')
+      }
+    } catch (error) {
+      console.warn('Failed to initialize custom color:', error)
+    }
+  }, [])
 
   const value = {
     theme,
@@ -102,11 +139,48 @@ export function ThemeProvider({
     },
     setColorTheme: (newColorTheme: ColorTheme) => {
       try {
-        localStorage.setItem(colorStorageKey, newColorTheme)
+        if (newColorTheme !== 'custom') {
+          // Clear custom color when switching to predefined theme
+          localStorage.removeItem('custom-theme-color')
+          setHasCustomColor(false)
+          
+          // Remove custom CSS variables to fall back to theme defaults
+          const root = document.documentElement
+          root.style.removeProperty('--color-primary')
+          root.style.removeProperty('--color-primary-hover')
+          root.style.removeProperty('--color-primary-text')
+          root.style.removeProperty('--primary')
+          root.style.removeProperty('--ring')
+          root.style.removeProperty('--chart-1')
+          
+          localStorage.setItem(colorStorageKey, newColorTheme)
+        }
       } catch (error) {
         console.warn('Failed to save color theme to localStorage:', error)
       }
       setColorTheme(newColorTheme)
+    },
+    hasCustomColor,
+    clearCustomColor: () => {
+      try {
+        localStorage.removeItem('custom-theme-color')
+        setHasCustomColor(false)
+        
+        // Remove custom CSS variables
+        const root = document.documentElement
+        root.style.removeProperty('--color-primary')
+        root.style.removeProperty('--color-primary-hover')
+        root.style.removeProperty('--color-primary-text')
+        root.style.removeProperty('--primary')
+        root.style.removeProperty('--ring')
+        root.style.removeProperty('--chart-1')
+        
+        // Reset to default theme
+        setColorTheme(defaultColorTheme)
+        localStorage.setItem(colorStorageKey, defaultColorTheme)
+      } catch (error) {
+        console.warn('Failed to clear custom color:', error)
+      }
     },
   }
 
