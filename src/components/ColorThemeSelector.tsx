@@ -20,8 +20,8 @@ const colorThemes: ColorThemeOption[] = [
     name: 'Teal',
     description: 'Fresh and energetic teal accents',
     primaryColor: '#14B8A6',
-    gradientFrom: 'from-primary',
-    gradientTo: 'to-primary'
+    gradientFrom: 'from-teal-500',
+    gradientTo: 'to-teal-600'
   },
   {
     id: 'blue',
@@ -92,7 +92,6 @@ export default function ColorThemeSelector() {
               <div 
                 className={`
                   w-8 h-8 rounded-lg shadow-md ring-2 ring-offset-2 ring-offset-card
-                  bg-gradient-to-br ${theme.gradientFrom} ${theme.gradientTo}
                   flex items-center justify-center
                   ${colorTheme === theme.id ? 'ring-primary' : 'ring-transparent'}
                 `}
@@ -118,7 +117,7 @@ export default function ColorThemeSelector() {
             {/* Preview Elements */}
             <div className="flex items-center gap-2 mt-3">
               <div 
-                className="h-2 flex-1 rounded-full bg-gradient-to-r"
+                className="h-2 flex-1 rounded-full"
                 style={{
                   background: `linear-gradient(to right, ${theme.primaryColor}20, ${theme.primaryColor})`
                 }}

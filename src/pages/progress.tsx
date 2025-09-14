@@ -299,7 +299,7 @@ export default function ProgressPage() {
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    <TrendingUp className="w-6 h-6 text-primary" />
                     <CardTitle className="text-xl text-slate-900 dark:text-white">Weight Trend</CardTitle>
                   </div>
                   <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -395,7 +395,7 @@ export default function ProgressPage() {
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    <TrendingUp className="w-6 h-6 text-primary" />
                     <CardTitle className="text-xl text-slate-900 dark:text-white">Weight Trend</CardTitle>
                   </div>
                   <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -425,7 +425,7 @@ export default function ProgressPage() {
               >
                 <CardHeader>
                   <div className="flex items-center gap-2">
-                    <Trophy className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                    <Trophy className="w-6 h-6 text-primary" />
                     <CardTitle className="text-xl text-slate-900 dark:text-white">Your Achievements</CardTitle>
                   </div>
                   <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -628,7 +628,7 @@ export default function ProgressPage() {
                   <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Award className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                        <Award className="w-5 h-5 text-primary" />
                         <span className="font-medium text-slate-900 dark:text-white">Achievement Progress</span>
                       </div>
                       <div 
@@ -666,7 +666,7 @@ export default function ProgressPage() {
             >
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Flame className="w-6 h-6 text-orange-600 dark:text-orange-400" />
+                  <Flame className="w-6 h-6 text-primary" />
                   <CardTitle className="text-xl text-slate-900 dark:text-white">Daily Calories (Last 7 Days)</CardTitle>
                 </div>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -718,7 +718,7 @@ export default function ProgressPage() {
             >
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Target className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                  <Target className="w-6 h-6 text-primary" />
                   <CardTitle className="text-xl text-slate-900 dark:text-white">Workout Details</CardTitle>
                 </div>
                 <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -729,10 +729,10 @@ export default function ProgressPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div 
                     data-testid="card-workouts-this-month"
-                    className="text-center p-4 bg-purple-50/80 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700 rounded-lg backdrop-blur-sm"
+                    className="text-center p-4 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 rounded-lg backdrop-blur-sm"
                   >
-                    <div data-testid="text-workouts-this-month" className="text-2xl font-bold text-purple-600 dark:text-purple-400">{workoutStats.workoutsThisMonth}</div>
-                    <div className="text-sm text-purple-700 dark:text-purple-300">Workouts This Month</div>
+                    <div data-testid="text-workouts-this-month" className="text-2xl font-bold text-primary">{workoutStats.workoutsThisMonth}</div>
+                    <div className="text-sm text-primary/80">Workouts This Month</div>
                   </div>
                   <div 
                     data-testid="card-total-sets"
@@ -746,10 +746,10 @@ export default function ProgressPage() {
                 {workoutStats.averageRIR > 0 && (
                   <div 
                     data-testid="card-average-rir"
-                    className="text-center p-4 bg-purple-50/80 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700 rounded-lg backdrop-blur-sm"
+                    className="text-center p-4 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 rounded-lg backdrop-blur-sm"
                   >
-                    <div data-testid="text-average-rir" className="text-2xl font-bold text-purple-600 dark:text-purple-400">{workoutStats.averageRIR}</div>
-                    <div className="text-sm text-purple-700 dark:text-purple-300">Average RIR (Reps in Reserve)</div>
+                    <div data-testid="text-average-rir" className="text-2xl font-bold text-primary">{workoutStats.averageRIR}</div>
+                    <div className="text-sm text-primary/80">Average RIR (Reps in Reserve)</div>
                   </div>
                 )}
 

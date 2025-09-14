@@ -594,7 +594,7 @@ export default function YearInReviewPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center">
                 <div className="flex items-center justify-center gap-2 mb-2">
-                  <Flame className="w-5 h-5 text-orange-500" />
+                  <Flame className="w-5 h-5 text-primary" />
                   <span className="font-semibold text-slate-700 dark:text-slate-300">Total Calories</span>
                 </div>
                 <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-300" data-testid="stat-total-calories">
@@ -604,7 +604,7 @@ export default function YearInReviewPage() {
               
               <div className="text-center">
                 <div className="flex items-center justify-center gap-2 mb-2">
-                  <Activity className="w-5 h-5 text-blue-500" />
+                  <Activity className="w-5 h-5 text-primary" />
                   <span className="font-semibold text-slate-700 dark:text-slate-300">Total Reps</span>
                 </div>
                 <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-300" data-testid="stat-total-reps">
@@ -614,7 +614,7 @@ export default function YearInReviewPage() {
               
               <div className="text-center">
                 <div className="flex items-center justify-center gap-2 mb-2">
-                  <Target className="w-5 h-5 text-purple-500" />
+                  <Target className="w-5 h-5 text-primary" />
                   <span className="font-semibold text-slate-700 dark:text-slate-300">Longest Streak</span>
                 </div>
                 <div className="text-2xl font-bold text-emerald-700 dark:text-emerald-300" data-testid="stat-longest-streak">
@@ -632,7 +632,7 @@ export default function YearInReviewPage() {
                 </div>
                 <div className={`text-2xl font-bold ${
                   yearlyStats.weightChange > 0 
-                    ? 'text-blue-600 dark:text-blue-400' 
+                    ? 'text-primary' 
                     : 'text-green-600 dark:text-green-400'
                 }`} data-testid="stat-weight-change">
                   {yearlyStats.weightChange > 0 ? '+' : ''}{yearlyStats.weightChange.toFixed(1)} {unit}
