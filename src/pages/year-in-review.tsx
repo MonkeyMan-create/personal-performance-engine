@@ -336,15 +336,15 @@ export default function YearInReviewPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[var(--color-background)] flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center space-y-4">
           <div className="relative">
-            <div className="w-16 h-16 bg-gradient-to-br from-[var(--color-success)]/80 to-[var(--color-success)] rounded-2xl flex items-center justify-center shadow-2xl ring-4 ring-[var(--color-success)]/30 mx-auto">
-              <Trophy className="w-8 h-8 text-[var(--color-success-text)] animate-pulse" />
+            <div className="w-16 h-16 bg-success rounded-2xl flex items-center justify-center shadow-2xl ring-4 ring-success/30 mx-auto">
+              <Trophy className="w-8 h-8 text-white animate-pulse" />
             </div>
-            <div className="absolute inset-0 w-16 h-16 bg-gradient-to-br from-[var(--color-success)]/80 to-[var(--color-success)] rounded-2xl blur-xl opacity-30 animate-pulse mx-auto"></div>
+            <div className="absolute inset-0 w-16 h-16 bg-success rounded-2xl blur-xl opacity-30 animate-pulse mx-auto"></div>
           </div>
-          <p className="text-[var(--color-text-secondary)] font-medium">Calculating your year...</p>
+          <p className="text-secondary font-medium">Calculating your year...</p>
         </div>
       </div>
     )
@@ -352,30 +352,30 @@ export default function YearInReviewPage() {
 
   if (!yearlyStats) {
     return (
-      <div className="min-h-screen bg-[var(--color-background)]">
+      <div className="min-h-screen bg-background">
         <div className="container mx-auto p-4 space-y-6 pb-24">
           <div className="flex items-center gap-4 pt-4">
             <Link href="/profile">
-              <Button variant="outline" size="sm" data-testid="button-back" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">
+              <Button variant="outline" size="sm" data-testid="button-back" className="text-secondary hover:text-primary">
                 <ChevronLeft className="w-4 h-4 mr-2" />
                 Back
               </Button>
             </Link>
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-[var(--color-success)]/20 to-[var(--color-success)]/10 rounded-xl border border-[var(--color-success)]/20">
-                <Trophy className="w-6 h-6 text-[var(--color-success)]" />
+              <div className="p-3 icon-badge-success rounded-xl border border-success/20">
+                <Trophy className="w-6 h-6 text-success" />
               </div>
-              <h1 className="text-2xl font-bold text-[var(--color-text-primary)]">Year in Review {currentYear}</h1>
+              <h1 className="text-2xl font-bold text-primary">Year in Review {currentYear}</h1>
             </div>
           </div>
           
-          <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+          <Card className="card-base border-primary backdrop-blur-xl shadow-2xl">
             <CardContent className="p-8 text-center">
-              <div className="p-4 bg-gradient-to-br from-[var(--color-success)]/20 to-[var(--color-success)]/10 rounded-xl border border-[var(--color-success)]/20 w-fit mx-auto mb-4">
-                <Trophy className="w-16 h-16 text-[var(--color-success)]" />
+              <div className="p-4 icon-badge-success rounded-xl border border-success/20 w-fit mx-auto mb-4">
+                <Trophy className="w-16 h-16 text-success" />
               </div>
-              <h3 className="text-xl font-semibold text-[var(--color-text-primary)] mb-2">No Data Available</h3>
-              <p className="text-[var(--color-text-secondary)]">
+              <h3 className="text-xl font-semibold text-primary mb-2">No Data Available</h3>
+              <p className="text-secondary">
                 Start tracking your workouts, meals, and progress to see your year in review!
               </p>
             </CardContent>
@@ -386,25 +386,25 @@ export default function YearInReviewPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--color-background)]">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         {/* Header */}
         <div className="flex items-center gap-4 pt-4">
           <Link href="/profile">
-            <Button variant="outline" size="sm" data-testid="button-back" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]">
+            <Button variant="outline" size="sm" data-testid="button-back" className="text-secondary hover:text-primary">
               <ChevronLeft className="w-4 h-4 mr-2" />
               Back
             </Button>
           </Link>
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-3 bg-gradient-to-br from-[var(--color-success)]/20 to-[var(--color-success)]/10 rounded-xl border border-[var(--color-success)]/20">
-                <Trophy className="w-6 h-6 text-[var(--color-success)]" />
+              <div className="p-3 icon-badge-success rounded-xl border border-success/20">
+                <Trophy className="w-6 h-6 text-success" />
               </div>
-              <h1 className="text-2xl font-bold text-[var(--color-text-primary)]">Year in Review {currentYear}</h1>
+              <h1 className="text-2xl font-bold text-primary">Year in Review {currentYear}</h1>
             </div>
             {isGuestMode && (
-              <span className="text-xs bg-[var(--color-warning)]/20 text-[var(--color-warning)] px-2 py-1 rounded mt-1 inline-block border border-[var(--color-warning)]/30">
+              <span className="text-xs bg-warning/20 text-warning px-2 py-1 rounded mt-1 inline-block border border-warning/30">
                 Guest Mode - Local Data
               </span>
             )}
@@ -412,50 +412,50 @@ export default function YearInReviewPage() {
         </div>
 
         {/* Hero Stats */}
-        <Card className="bg-gradient-to-br from-[var(--color-success)]/15 to-[var(--color-success)]/5 border-[var(--color-success)]/30 backdrop-blur-xl shadow-2xl">
+        <Card className="card-success border-success/30 backdrop-blur-xl shadow-2xl">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold text-[var(--color-text-primary)] flex items-center justify-center gap-3">
-              <div className="p-2 bg-gradient-to-br from-[var(--color-success)]/20 to-[var(--color-success)]/10 rounded-xl border border-[var(--color-success)]/20">
-                <Trophy className="w-8 h-8 text-[var(--color-success)]" />
+            <CardTitle className="text-3xl font-bold text-primary flex items-center justify-center gap-3">
+              <div className="p-2 icon-badge-success rounded-xl border border-success/20">
+                <Trophy className="w-8 h-8 text-success" />
               </div>
               Your Fitness Journey
             </CardTitle>
-            <CardDescription className="text-lg text-[var(--color-text-secondary)]">
+            <CardDescription className="text-lg text-secondary">
               An incredible year of growth and dedication
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center p-4">
-                <div className="text-3xl font-bold text-[var(--color-activity)]" data-testid="stat-total-workouts">{yearlyStats.totalWorkouts}</div>
-                <div className="text-sm font-medium text-[var(--color-text-secondary)]">Workouts</div>
+                <div className="text-3xl font-bold text-activity" data-testid="stat-total-workouts">{yearlyStats.totalWorkouts}</div>
+                <div className="text-sm font-medium text-secondary">Workouts</div>
               </div>
               <div className="text-center p-4">
-                <div className="text-3xl font-bold text-[var(--color-activity)]" data-testid="stat-total-sets">{yearlyStats.totalSets}</div>
-                <div className="text-sm font-medium text-[var(--color-text-secondary)]">Total Sets</div>
+                <div className="text-3xl font-bold text-activity" data-testid="stat-total-sets">{yearlyStats.totalSets}</div>
+                <div className="text-sm font-medium text-secondary">Total Sets</div>
               </div>
               <div className="text-center p-4">
-                <div className="text-3xl font-bold text-[var(--color-nutrition)]" data-testid="stat-total-meals">{yearlyStats.totalMeals}</div>
-                <div className="text-sm font-medium text-[var(--color-text-secondary)]">Meals Logged</div>
+                <div className="text-3xl font-bold text-nutrition" data-testid="stat-total-meals">{yearlyStats.totalMeals}</div>
+                <div className="text-sm font-medium text-secondary">Meals Logged</div>
               </div>
               <div className="text-center p-4">
-                <div className="text-3xl font-bold text-[var(--color-wellness)]" data-testid="stat-active-days">{yearlyStats.activeDays}</div>
-                <div className="text-sm font-medium text-[var(--color-text-secondary)]">Active Days</div>
+                <div className="text-3xl font-bold text-wellness" data-testid="stat-active-days">{yearlyStats.activeDays}</div>
+                <div className="text-sm font-medium text-secondary">Active Days</div>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {/* Achievements */}
-        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="card-base border-primary backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-[var(--color-success)]/20 to-[var(--color-success)]/10 rounded-xl border border-[var(--color-success)]/20">
-                <Award className="w-6 h-6 text-[var(--color-success)]" />
+              <div className="p-3 icon-badge-success rounded-xl border border-success/20">
+                <Award className="w-6 h-6 text-success" />
               </div>
               <div>
-                <CardTitle className="text-xl text-[var(--color-text-primary)]">Achievements Unlocked</CardTitle>
-                <CardDescription className="text-[var(--color-text-secondary)]">
+                <CardTitle className="text-xl text-primary">Achievements Unlocked</CardTitle>
+                <CardDescription className="text-secondary">
                   Milestones you've reached this year
                 </CardDescription>
               </div>
@@ -470,42 +470,42 @@ export default function YearInReviewPage() {
                     key={achievement.id}
                     className={`p-4 rounded-lg border-2 transition-all ${
                       achievement.earned 
-                        ? 'bg-gradient-to-br from-[var(--color-success)]/15 to-[var(--color-success)]/5 border-[var(--color-success)]/30' 
-                        : 'bg-gradient-to-br from-[var(--color-surface)]/60 to-[var(--color-surface)]/40 border-[var(--color-border)]'
+                        ? 'card-success border-success/30' 
+                        : 'card-muted border-primary'
                     }`}
                     data-testid={`achievement-${achievement.id}`}
                   >
                     <div className="flex items-center gap-3">
                       <div className={`p-2 rounded-full ${
                         achievement.earned 
-                          ? 'bg-[var(--color-success)] text-[var(--color-success-text)]' 
-                          : 'bg-[var(--color-surface)] text-[var(--color-text-secondary)]'
+                          ? 'bg-success text-white' 
+                          : 'bg-surface text-secondary'
                       }`}>
                         <IconComponent className="w-5 h-5" />
                       </div>
                       <div className="flex-1">
                         <h4 className={`font-semibold ${
                           achievement.earned 
-                            ? 'text-[var(--color-success)]' 
-                            : 'text-[var(--color-text-primary)]'
+                            ? 'text-success' 
+                            : 'text-primary'
                         }`}>
                           {achievement.title}
                         </h4>
                         <p className={`text-sm ${
                           achievement.earned 
-                            ? 'text-[var(--color-success)]' 
-                            : 'text-[var(--color-text-secondary)]'
+                            ? 'text-success' 
+                            : 'text-secondary'
                         }`}>
                           {achievement.description}
                         </p>
                         {achievement.value !== undefined && (
-                          <p className="text-xs font-medium text-[var(--color-text-secondary)] mt-1">
+                          <p className="text-xs font-medium text-secondary mt-1">
                             Progress: {achievement.value}
                           </p>
                         )}
                       </div>
                       {achievement.earned && (
-                        <Badge className="bg-[var(--color-success)] text-[var(--color-success-text)]">
+                        <Badge className="bg-success text-white">
                           Earned
                         </Badge>
                       )}
@@ -518,15 +518,15 @@ export default function YearInReviewPage() {
         </Card>
 
         {/* Monthly Workout Activity */}
-        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="card-base border-primary backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-[var(--color-activity)]/20 to-[var(--color-activity)]/10 rounded-xl border border-[var(--color-activity)]/20">
-                <Calendar className="w-6 h-6 text-[var(--color-activity)]" />
+              <div className="p-3 icon-badge-activity rounded-xl border border-activity/20">
+                <Calendar className="w-6 h-6 text-activity" />
               </div>
               <div>
-                <CardTitle className="text-xl text-[var(--color-text-primary)]">Monthly Activity</CardTitle>
-                <CardDescription className="text-[var(--color-text-secondary)]">
+                <CardTitle className="text-xl text-primary">Monthly Activity</CardTitle>
+                <CardDescription className="text-secondary">
                   Your workout consistency throughout the year
                 </CardDescription>
               </div>
@@ -576,15 +576,15 @@ export default function YearInReviewPage() {
 
         {/* Favorite Exercises */}
         {yearlyStats.favoriteExercises.length > 0 && (
-          <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+          <Card className="card-base border-primary backdrop-blur-xl shadow-2xl">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-gradient-to-br from-[var(--color-activity)]/20 to-[var(--color-activity)]/10 rounded-xl border border-[var(--color-activity)]/20">
-                  <Dumbbell className="w-6 h-6 text-[var(--color-activity)]" />
+                <div className="p-3 icon-badge-activity rounded-xl border border-activity/20">
+                  <Dumbbell className="w-6 h-6 text-activity" />
                 </div>
                 <div>
-                  <CardTitle className="text-xl text-[var(--color-text-primary)]">Favorite Exercises</CardTitle>
-                  <CardDescription className="text-[var(--color-text-secondary)]">
+                  <CardTitle className="text-xl text-primary">Favorite Exercises</CardTitle>
+                  <CardDescription className="text-secondary">
                     The exercises you performed most often
                   </CardDescription>
                 </div>
@@ -593,12 +593,12 @@ export default function YearInReviewPage() {
             <CardContent>
               <div className="space-y-3" data-testid="favorite-exercises">
                 {yearlyStats.favoriteExercises.map((exercise, index) => (
-                  <div key={exercise.name} className="flex items-center justify-between p-3 bg-gradient-to-br from-[var(--color-surface)]/60 to-[var(--color-surface)]/40 rounded-lg border border-[var(--color-border)]">
+                  <div key={exercise.name} className="flex items-center justify-between p-3 card-muted rounded-lg border border-primary">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-[var(--color-activity)] text-[var(--color-activity-text)] rounded-full flex items-center justify-center font-bold">
+                      <div className="w-8 h-8 bg-activity text-white rounded-full flex items-center justify-center font-bold">
                         {index + 1}
                       </div>
-                      <span className="font-medium text-[var(--color-text-primary)]">{exercise.name}</span>
+                      <span className="font-medium text-primary">{exercise.name}</span>
                     </div>
                     <Badge variant="secondary" data-testid={`exercise-count-${index}`}>
                       {exercise.count} sets
@@ -612,15 +612,15 @@ export default function YearInReviewPage() {
 
         {/* Strongest Lifts */}
         {yearlyStats.strongestLifts.length > 0 && (
-          <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+          <Card className="card-base border-primary backdrop-blur-xl shadow-2xl">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <div className="p-3 bg-gradient-to-br from-[var(--color-success)]/20 to-[var(--color-success)]/10 rounded-xl border border-[var(--color-success)]/20">
-                  <Medal className="w-6 h-6 text-[var(--color-success)]" />
+                <div className="p-3 icon-badge-success rounded-xl border border-success/20">
+                  <Medal className="w-6 h-6 text-success" />
                 </div>
                 <div>
-                  <CardTitle className="text-xl text-[var(--color-text-primary)]">Personal Records</CardTitle>
-                  <CardDescription className="text-[var(--color-text-secondary)]">
+                  <CardTitle className="text-xl text-primary">Personal Records</CardTitle>
+                  <CardDescription className="text-secondary">
                     Your strongest lifts this year
                   </CardDescription>
                 </div>

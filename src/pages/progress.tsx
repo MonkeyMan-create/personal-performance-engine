@@ -487,7 +487,7 @@ export default function ProgressPage() {
                           title: 'First Step',
                           description: 'Complete your first workout',
                           icon: Dumbbell,
-                          color: 'from-[var(--color-activity)] to-[var(--color-activity)]/80',
+                          color: 'from-activity to-activity/80',
                           earned: workoutStats.totalWorkouts >= 1,
                           target: 1,
                           current: workoutStats.totalWorkouts
@@ -497,7 +497,7 @@ export default function ProgressPage() {
                           title: 'Week Warrior',
                           description: 'Maintain a 7-day streak',
                           icon: Calendar,
-                          color: 'from-[var(--color-success)] to-[var(--color-success)]/80',
+                          color: 'from-success to-success/80',
                           earned: workoutStats.currentStreak >= 7,
                           target: 7,
                           current: workoutStats.currentStreak
@@ -507,7 +507,7 @@ export default function ProgressPage() {
                           title: 'Dirty Dozen',
                           description: 'Complete 12 workouts',
                           icon: Target,
-                          color: 'from-[var(--color-action)] to-[var(--color-action)]/80',
+                          color: 'from-action to-action/80',
                           earned: workoutStats.totalWorkouts >= 12,
                           target: 12,
                           current: workoutStats.totalWorkouts
@@ -517,7 +517,7 @@ export default function ProgressPage() {
                           title: 'Meal Master',
                           description: 'Log 25 meals',
                           icon: Apple,
-                          color: 'from-[var(--color-nutrition)] to-[var(--color-nutrition)]/80',
+                          color: 'from-nutrition to-nutrition/80',
                           earned: nutritionStats.totalMealsLogged >= 25,
                           target: 25,
                           current: nutritionStats.totalMealsLogged
@@ -527,7 +527,7 @@ export default function ProgressPage() {
                           title: 'Consistency King',
                           description: 'Achieve a 14-day streak',
                           icon: Crown,
-                          color: 'from-[var(--color-activity)] to-[var(--color-activity)]/80',
+                          color: 'from-activity to-activity/80',
                           earned: workoutStats.currentStreak >= 14,
                           target: 14,
                           current: workoutStats.currentStreak
@@ -537,7 +537,7 @@ export default function ProgressPage() {
                           title: 'Half Century',
                           description: 'Complete 50 workouts',
                           icon: Medal,
-                          color: 'from-[var(--color-warning)] to-[var(--color-warning)]/80',
+                          color: 'from-warning to-warning/80',
                           earned: workoutStats.totalWorkouts >= 50,
                           target: 50,
                           current: workoutStats.totalWorkouts
@@ -547,7 +547,7 @@ export default function ProgressPage() {
                           title: 'Nutrition Ninja',
                           description: 'Log 100 meals',
                           icon: Zap,
-                          color: 'from-[var(--color-nutrition)] to-[var(--color-nutrition)]/80',
+                          color: 'from-nutrition to-nutrition/80',
                           earned: nutritionStats.totalMealsLogged >= 100,
                           target: 100,
                           current: nutritionStats.totalMealsLogged
@@ -557,7 +557,7 @@ export default function ProgressPage() {
                           title: 'Century Club',
                           description: 'Complete 100 workouts',
                           icon: BadgeCheck,
-                          color: 'from-[var(--color-activity)] to-[var(--color-activity)]/80',
+                          color: 'from-activity to-activity/80',
                           earned: workoutStats.totalWorkouts >= 100,
                           target: 100,
                           current: workoutStats.totalWorkouts
@@ -567,7 +567,7 @@ export default function ProgressPage() {
                           title: 'Dedication Legend',
                           description: 'Maintain a 30-day streak',
                           icon: Star,
-                          color: 'from-[var(--color-activity)] to-[var(--color-activity)]/80',
+                          color: 'from-activity to-activity/80',
                           earned: workoutStats.currentStreak >= 30,
                           target: 30,
                           current: workoutStats.currentStreak
@@ -577,7 +577,7 @@ export default function ProgressPage() {
                           title: 'Ultimate Warrior',
                           description: 'Complete 500 workouts',
                           icon: Shield,
-                          color: 'from-[var(--color-wellness)] to-[var(--color-wellness)]/80',
+                          color: 'from-wellness to-wellness/80',
                           earned: workoutStats.totalWorkouts >= 500,
                           target: 500,
                           current: workoutStats.totalWorkouts
@@ -649,7 +649,7 @@ export default function ProgressPage() {
                             <div className="space-y-1">
                               <h4 
                                 data-testid={`text-badge-title-${achievement.id}`}
-                                className={`text-xs font-semibold ${achievement.earned ? 'text-[var(--color-text-primary)]' : 'text-slate-500 dark:text-slate-400'}`}
+                                className={`text-xs font-semibold ${achievement.earned ? 'text-primary' : 'text-slate-500 dark:text-slate-400'}`}
                               >
                                 {achievement.title}
                               </h4>
@@ -670,12 +670,12 @@ export default function ProgressPage() {
                   <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <Award className="w-5 h-5 text-[var(--color-primary)]" />
-                        <span className="font-medium text-[var(--color-text-primary)]">Achievement Progress</span>
+                        <Award className="w-5 h-5 text-primary" />
+                        <span className="font-medium text-primary">Achievement Progress</span>
                       </div>
                       <div 
                         data-testid="text-achievement-summary"
-                        className="text-sm text-[var(--color-text-secondary)]"
+                        className="text-sm text-secondary"
                       >
                         {(() => {
                           const totalAchievements = 10
@@ -704,17 +704,17 @@ export default function ProgressPage() {
             {/* Daily Calories Chart */}
             <Card 
               data-testid="card-daily-calories"
-              className="border border-[var(--color-border)] backdrop-blur-xl shadow-lg bg-gradient-to-br from-[var(--color-nutrition)]/30 to-[var(--color-nutrition)]/40"
+              className="card-nutrition backdrop-blur-xl shadow-lg"
               style={{
                 boxShadow: `0 10px 15px -3px rgba(var(--color-nutrition-rgb), 0.2), 0 4px 6px -2px rgba(var(--color-nutrition-rgb), 0.05)`
               }}
             >
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Flame className="w-6 h-6 text-[var(--color-primary)]" />
-                  <CardTitle className="text-xl text-[var(--color-text-primary)]">Daily Calories (Last 7 Days)</CardTitle>
+                  <Flame className="w-6 h-6 text-primary" />
+                  <CardTitle className="text-xl text-primary">Daily Calories (Last 7 Days)</CardTitle>
                 </div>
-                <CardDescription className="text-[var(--color-text-secondary)]">
+                <CardDescription className="text-secondary">
                   Your daily calorie intake {isGuestMode && '(from your logged meals)'}
                 </CardDescription>
               </CardHeader>
@@ -762,7 +762,7 @@ export default function ProgressPage() {
                     )}
                   </div>
                 ) : (
-                  <p className="text-[var(--color-text-secondary)] text-center py-8">
+                  <p className="text-secondary text-center py-8">
                     No meals logged yet. Start tracking your nutrition to see daily calorie trends!
                   </p>
                 )}
@@ -772,14 +772,14 @@ export default function ProgressPage() {
             {/* Workout Consistency Section */}
             <Card 
               data-testid="card-workout-details"
-              className="bg-[var(--color-surface)]/90 border border-[var(--color-border)] backdrop-blur-xl"
+              className="card-base backdrop-blur-xl"
             >
               <CardHeader>
                 <div className="flex items-center gap-2">
-                  <Target className="w-6 h-6 text-[var(--color-primary)]" />
-                  <CardTitle className="text-xl text-[var(--color-text-primary)]">Workout Details</CardTitle>
+                  <Target className="w-6 h-6 text-primary" />
+                  <CardTitle className="text-xl text-primary">Workout Details</CardTitle>
                 </div>
-                <CardDescription className="text-[var(--color-text-secondary)]">
+                <CardDescription className="text-secondary">
                   Your workout performance and consistency metrics
                 </CardDescription>
               </CardHeader>
@@ -789,8 +789,8 @@ export default function ProgressPage() {
                     data-testid="card-workouts-this-month"
                     className="text-center p-4 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 rounded-lg backdrop-blur-sm"
                   >
-                    <div data-testid="text-workouts-this-month" className="text-2xl font-bold text-[var(--color-primary)]">{workoutStats.workoutsThisMonth}</div>
-                    <div className="text-sm text-[var(--color-primary)]/80">Workouts This Month</div>
+                    <div data-testid="text-workouts-this-month" className="text-2xl font-bold text-primary">{workoutStats.workoutsThisMonth}</div>
+                    <div className="text-sm text-primary/80">Workouts This Month</div>
                   </div>
                   <div 
                     data-testid="card-total-sets"
@@ -806,20 +806,20 @@ export default function ProgressPage() {
                     data-testid="card-average-rir"
                     className="text-center p-4 bg-primary/10 dark:bg-primary/20 border border-primary/20 dark:border-primary/30 rounded-lg backdrop-blur-sm"
                   >
-                    <div data-testid="text-average-rir" className="text-2xl font-bold text-[var(--color-primary)]">{workoutStats.averageRIR}</div>
-                    <div className="text-sm text-[var(--color-primary)]/80">Average RIR (Reps in Reserve)</div>
+                    <div data-testid="text-average-rir" className="text-2xl font-bold text-primary">{workoutStats.averageRIR}</div>
+                    <div className="text-sm text-primary/80">Average RIR (Reps in Reserve)</div>
                   </div>
                 )}
 
                 {workoutStats.totalWorkouts > 0 ? (
-                  <p className="text-sm text-[var(--color-text-secondary)]">
+                  <p className="text-sm text-secondary">
                     {workoutStats.currentStreak > 0 
                       ? `Great consistency! You're on a ${workoutStats.currentStreak}-day streak. Keep up the momentum!`
                       : "Keep building your consistency! Try to workout regularly to build a streak."
                     }
                   </p>
                 ) : (
-                  <p className="text-sm text-[var(--color-text-secondary)]">
+                  <p className="text-sm text-secondary">
                     Start logging workouts to see your consistency metrics and progress over time.
                   </p>
                 )}

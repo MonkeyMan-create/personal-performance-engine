@@ -145,36 +145,36 @@ export default function HealthConnectionsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--color-background)] p-4">
+    <div className="page-container">
       <div className="max-w-4xl mx-auto space-y-6">
         
         {/* Header */}
         <div className="text-center space-y-4">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-2xl border border-[var(--color-wellness)]/20">
-              <Heart className="w-8 h-8 text-[var(--color-wellness)]" />
+          <div className="flex-center gap-3 mb-4">
+            <div className="icon-badge icon-badge-lg icon-badge-wellness">
+              <Heart className="w-8 h-8 text-wellness" />
             </div>
-            <h1 className="text-3xl font-bold text-[var(--color-text-primary)]">
+            <h1 className="text-3xl font-bold text-primary">
               Connect Your Health Data
             </h1>
           </div>
-          <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
+          <p className="text-lg text-secondary max-w-2xl mx-auto">
             Sync your health data from your mobile devices to get personalized insights and track your wellness journey.
           </p>
         </div>
 
         {/* Technical Notice */}
-        <Card className="bg-gradient-to-br from-[var(--color-warning)]/15 to-[var(--color-warning)]/5 border-[var(--color-warning)]/30 backdrop-blur-xl">
+        <Card className="card-warning">
           <CardContent className="p-4">
-            <div className="flex items-start gap-3">
-              <div className="p-2 bg-gradient-to-br from-[var(--color-warning)]/20 to-[var(--color-warning)]/10 rounded-lg border border-[var(--color-warning)]/20">
-                <AlertTriangle className="w-5 h-5 text-[var(--color-warning)]" />
+            <div className="flex-start gap-3">
+              <div className="icon-badge icon-badge-warning">
+                <AlertTriangle className="w-5 h-5 text-warning" />
               </div>
               <div>
-                <h3 className="font-semibold text-[var(--color-warning)] mb-1">
+                <h3 className="font-semibold text-warning mb-1">
                   Mobile Integration Required
                 </h3>
-                <p className="text-sm text-[var(--color-warning)]">
+                <p className="text-sm text-warning">
                   Health platform integrations require native mobile apps. This demo simulates the connection flow. 
                   In production, this would require React Native implementation or third-party health data aggregators.
                 </p>
@@ -193,16 +193,16 @@ export default function HealthConnectionsPage() {
             return (
               <Card 
                 key={platform.id}
-                className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300"
+                className="card-glass hover:shadow-3xl transition-all duration-300"
               >
                 <CardHeader>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)]/15 to-[var(--color-wellness)]/5 rounded-xl border border-[var(--color-wellness)]/20">
-                        <IconComponent className="w-6 h-6 text-[var(--color-wellness)]" />
+                    <div className="flex-start gap-3">
+                      <div className="icon-badge icon-badge-wellness">
+                        <IconComponent className="w-6 h-6 text-wellness" />
                       </div>
                       <div>
-                        <CardTitle className="text-lg text-[var(--color-text-primary)]">
+                        <CardTitle className="text-lg text-primary">
                           {platform.name}
                         </CardTitle>
                         <div className="flex items-center gap-2 mt-1">
@@ -213,12 +213,12 @@ export default function HealthConnectionsPage() {
                             {platform.platform === 'android' ? 'Android' : 'iOS'}
                           </Badge>
                           {platform.connected ? (
-                            <Badge variant="secondary" className="text-xs bg-[var(--color-success)]/20 text-[var(--color-success)]">
+                            <Badge variant="secondary" className="text-xs bg-success/20 text-success">
                               <CheckCircle className="w-3 h-3 mr-1" />
                               Connected
                             </Badge>
                           ) : !platform.available ? (
-                            <Badge variant="outline" className="text-xs text-[var(--color-text-secondary)]">
+                            <Badge variant="outline" className="text-xs text-secondary">
                               Not Available
                             </Badge>
                           ) : permissionStatus?.denied ? (
@@ -231,7 +231,7 @@ export default function HealthConnectionsPage() {
                       </div>
                     </div>
                   </div>
-                  <CardDescription className="text-[var(--color-text-secondary)]">
+                  <CardDescription className="text-secondary">
                     {platform.description}
                   </CardDescription>
                 </CardHeader>
@@ -239,7 +239,7 @@ export default function HealthConnectionsPage() {
                 <CardContent className="space-y-4">
                   {/* Permissions */}
                   <div>
-                    <h4 className="text-sm font-medium text-[var(--color-text-primary)] mb-2">
+                    <h4 className="text-sm font-medium text-primary mb-2">
                       Requested Permissions:
                     </h4>
                     <div className="flex flex-wrap gap-2">
@@ -248,10 +248,10 @@ export default function HealthConnectionsPage() {
                         return (
                           <div 
                             key={permission}
-                            className="flex items-center gap-1 px-2 py-1 bg-[var(--color-surface)]/60 rounded-md text-xs"
+                            className="flex-start gap-1 px-2 py-1 bg-surface rounded-md text-xs"
                           >
                             <PermissionIcon className="w-3 h-3" />
-                            <span className="text-[var(--color-text-secondary)]">{permission}</span>
+                            <span className="text-secondary">{permission}</span>
                           </div>
                         )
                       })}
@@ -262,14 +262,14 @@ export default function HealthConnectionsPage() {
                   <div className="pt-2">
                     {platform.connected ? (
                       <div className="space-y-3">
-                        <div className="flex items-center gap-2 text-sm text-[var(--color-success)]">
+                        <div className="flex-start gap-2 text-sm text-success">
                           <CheckCircle className="w-4 h-4" />
                           Successfully connected and syncing health data
                         </div>
                         <Button
                           variant="outline"
                           onClick={() => disconnectPlatform(platform)}
-                          className="w-full bg-gradient-to-r from-[var(--color-error)]/10 to-[var(--color-error)]/5 border-[var(--color-error)]/50 text-[var(--color-error)] hover:from-[var(--color-error)]/20 hover:to-[var(--color-error)]/10 hover:border-[var(--color-error)] transition-all duration-300"
+                          className="w-full bg-error/10 border-error text-error hover:bg-error/20 transition-all duration-300"
                           data-testid={`button-disconnect-${platform.id}`}
                         >
                           Disconnect
@@ -280,12 +280,12 @@ export default function HealthConnectionsPage() {
                         <Button
                           onClick={() => requestPermissions(platform)}
                           disabled={!platform.available || isLoading}
-                          className="w-full bg-gradient-to-r from-[var(--color-wellness)] to-[var(--color-wellness)]/90 hover:from-[var(--color-wellness)]/90 hover:to-[var(--color-wellness)]/80 text-[var(--color-wellness-text)] shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
+                          className="w-full bg-wellness text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
                           data-testid={`button-connect-${platform.id}`}
                         >
                           {isLoading ? (
                             <div className="flex items-center gap-2">
-                              <div className="w-4 h-4 border-2 border-[var(--color-action-text)] border-t-transparent rounded-full animate-spin" />
+                              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                               Requesting Permission...
                             </div>
                           ) : !platform.available ? (
@@ -305,7 +305,7 @@ export default function HealthConnectionsPage() {
                             }}
                             variant="outline"
                             size="sm"
-                            className="w-full text-xs bg-gradient-to-r from-[var(--color-warning)]/10 to-[var(--color-warning)]/5 border-[var(--color-warning)]/50 text-[var(--color-warning)] hover:from-[var(--color-warning)]/20 hover:to-[var(--color-warning)]/10 hover:border-[var(--color-warning)] transition-all duration-300"
+                            className="w-full text-xs bg-warning/10 border-warning text-warning hover:bg-warning/20 transition-all duration-300"
                             data-testid={`button-retry-${platform.id}`}
                           >
                             Try Again
@@ -315,7 +315,7 @@ export default function HealthConnectionsPage() {
                     )}
                     
                     {permissionStatus?.denied && (
-                      <p className="text-xs text-[var(--color-text-secondary)] mt-2 text-center">
+                      <p className="text-xs text-secondary mt-2 text-center">
                         Permission was denied. You can try again or check your device settings.
                       </p>
                     )}
@@ -327,52 +327,52 @@ export default function HealthConnectionsPage() {
         </div>
 
         {/* Data Usage Info */}
-        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="card-glass">
           <CardHeader>
-            <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-xl border border-[var(--color-wellness)]/20">
-                <Heart className="w-6 h-6 text-[var(--color-wellness)]" />
+            <div className="flex-start gap-3">
+              <div className="icon-badge icon-badge-wellness">
+                <Heart className="w-6 h-6 text-wellness" />
               </div>
               <div>
-                <CardTitle className="text-[var(--color-text-primary)]">How We Use Your Health Data</CardTitle>
+                <CardTitle className="text-primary">How We Use Your Health Data</CardTitle>
               </div>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid gap-4 md:grid-cols-3">
               <div className="text-center space-y-2">
-                <div className="w-12 h-12 bg-gradient-to-br from-[var(--color-activity)]/20 to-[var(--color-activity)]/10 rounded-lg mx-auto flex items-center justify-center border border-[var(--color-activity)]/20">
-                  <Activity className="w-6 h-6 text-[var(--color-activity)]" />
+                <div className="icon-badge icon-badge-activity w-12 h-12 rounded-lg mx-auto">
+                  <Activity className="w-6 h-6 text-activity" />
                 </div>
-                <h3 className="font-medium text-[var(--color-text-primary)]">Personalized Insights</h3>
-                <p className="text-sm text-[var(--color-text-secondary)]">
+                <h3 className="font-medium text-primary">Personalized Insights</h3>
+                <p className="text-sm text-secondary">
                   Generate customized workout and nutrition recommendations based on your health metrics
                 </p>
               </div>
               
               <div className="text-center space-y-2">
-                <div className="w-12 h-12 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-lg mx-auto flex items-center justify-center border border-[var(--color-wellness)]/20">
-                  <Heart className="w-6 h-6 text-[var(--color-wellness)]" />
+                <div className="icon-badge icon-badge-wellness w-12 h-12 rounded-lg mx-auto">
+                  <Heart className="w-6 h-6 text-wellness" />
                 </div>
-                <h3 className="font-medium text-[var(--color-text-primary)]">Health Monitoring</h3>
-                <p className="text-sm text-[var(--color-text-secondary)]">
+                <h3 className="font-medium text-primary">Health Monitoring</h3>
+                <p className="text-sm text-secondary">
                   Track trends in your heart rate, sleep quality, and activity levels over time
                 </p>
               </div>
               
               <div className="text-center space-y-2">
-                <div className="w-12 h-12 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-lg mx-auto flex items-center justify-center border border-[var(--color-wellness)]/20">
-                  <Moon className="w-6 h-6 text-[var(--color-wellness)]" />
+                <div className="icon-badge icon-badge-wellness w-12 h-12 rounded-lg mx-auto">
+                  <Moon className="w-6 h-6 text-wellness" />
                 </div>
-                <h3 className="font-medium text-[var(--color-text-primary)]">Recovery Optimization</h3>
-                <p className="text-sm text-[var(--color-text-secondary)]">
+                <h3 className="font-medium text-primary">Recovery Optimization</h3>
+                <p className="text-sm text-secondary">
                   Use sleep and recovery data to optimize your training schedule and rest periods
                 </p>
               </div>
             </div>
             
-            <div className="pt-4 border-t border-[var(--color-border)]">
-              <p className="text-sm text-[var(--color-text-secondary)] text-center">
+            <div className="pt-4 border-t border-primary">
+              <p className="text-sm text-secondary text-center">
                 <strong>Privacy First:</strong> Your health data is encrypted and stored securely. We never share your personal health information with third parties.
               </p>
             </div>

@@ -129,12 +129,12 @@ export default function DataExportPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--color-background)]">
+    <div className="min-h-screen bg-background">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         {/* Header */}
         <div className="flex items-center gap-4 pt-8">
           <Link href="/profile">
-            <Button variant="ghost" size="sm" className="text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)]" data-testid="button-back">
+            <Button variant="ghost" size="sm" className="text-secondary hover:text-primary" data-testid="button-back">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Settings
             </Button>
@@ -143,26 +143,26 @@ export default function DataExportPage() {
 
         <div className="text-center">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-2xl border border-[var(--color-action)]/20">
-              <Download className="w-8 h-8 text-[var(--color-action)]" />
+            <div className="p-3 icon-badge-action rounded-2xl">
+              <Download className="w-8 h-8 text-action" />
             </div>
-            <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Export Your Data</h1>
+            <h1 className="text-3xl font-bold text-primary" data-testid="page-title">Export Your Data</h1>
           </div>
-          <p className="text-[var(--color-text-secondary)] mt-2">Download your fitness data in standard formats</p>
+          <p className="text-secondary mt-2">Download your fitness data in standard formats</p>
         </div>
 
         {/* Important Notice */}
-        <Card className="bg-gradient-to-br from-[var(--color-warning)]/15 to-[var(--color-warning)]/5 border-[var(--color-warning)]/30 backdrop-blur-xl">
+        <Card className="card-warning backdrop-blur-xl">
           <CardContent className="p-4">
             <div className="flex items-start gap-3">
-              <div className="p-2 bg-gradient-to-br from-[var(--color-warning)]/20 to-[var(--color-warning)]/10 rounded-lg border border-[var(--color-warning)]/20">
-                <AlertTriangle className="w-5 h-5 text-[var(--color-warning)]" />
+              <div className="p-2 icon-badge-warning rounded-lg border border-warning/20">
+                <AlertTriangle className="w-5 h-5 text-warning" />
               </div>
               <div>
-                <h3 className="font-semibold text-[var(--color-warning)] mb-1">
+                <h3 className="font-semibold text-warning mb-1">
                   Data Portability Rights
                 </h3>
-                <p className="text-sm text-[var(--color-warning)]">
+                <p className="text-sm text-warning">
                   You have the right to export your personal data in a structured, machine-readable format. 
                   {isGuestMode && ' Guest mode data is stored locally on your device only.'}
                 </p>
@@ -181,24 +181,24 @@ export default function DataExportPage() {
             return (
               <Card 
                 key={option.id}
-                className={`bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300 ${
-                  isSelected ? 'ring-2 ring-[var(--color-action)]/50 border-[var(--color-action)]/50 bg-gradient-to-br from-[var(--color-action)]/5 to-[var(--color-action)]/2' : ''
+                className={`card-base backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300 ${
+                  isSelected ? 'ring-2 ring-action/50 border-action/50 card-action-light' : ''
                 }`}
               >
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/15 to-[var(--color-action)]/5 rounded-xl border border-[var(--color-action)]/20">
-                        <IconComponent className="w-6 h-6 text-[var(--color-action)]" />
+                      <div className="p-3 icon-badge-action rounded-xl border border-action/20">
+                        <IconComponent className="w-6 h-6 text-action" />
                       </div>
                       <div className="flex-1">
-                        <CardTitle className="text-lg text-[var(--color-text-primary)] flex items-center gap-2">
+                        <CardTitle className="text-lg text-primary flex items-center gap-2">
                           {option.name}
-                          <span className="text-xs bg-[var(--color-surface)] text-[var(--color-text-secondary)] px-2 py-1 rounded">
+                          <span className="text-xs bg-surface text-secondary px-2 py-1 rounded">
                             {option.format}
                           </span>
                         </CardTitle>
-                        <CardDescription className="text-[var(--color-text-secondary)] mt-1">
+                        <CardDescription className="text-secondary mt-1">
                           {option.description}
                         </CardDescription>
                       </div>
@@ -209,12 +209,12 @@ export default function DataExportPage() {
                         onClick={() => toggleSelection(option.id)}
                         className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all ${
                           isSelected 
-                            ? 'bg-[var(--color-action)] border-[var(--color-action)]' 
-                            : 'border-[var(--color-border)] hover:border-[var(--color-text-secondary)]'
+                            ? 'bg-action border-action' 
+                            : 'border-primary hover:border-secondary'
                         }`}
                         data-testid={`checkbox-${option.id}`}
                       >
-                        {isSelected && <CheckCircle className="w-4 h-4 text-[var(--color-action-text)]" />}
+                        {isSelected && <CheckCircle className="w-4 h-4 text-white" />}
                       </button>
                     </div>
                   </div>
@@ -223,11 +223,11 @@ export default function DataExportPage() {
                 <CardContent className="space-y-4">
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <h4 className="text-sm font-medium text-[var(--color-text-secondary)] mb-2">Includes:</h4>
+                      <h4 className="text-sm font-medium text-secondary mb-2">Includes:</h4>
                       <ul className="space-y-1">
                         {option.dataTypes.map((dataType, index) => (
-                          <li key={index} className="text-sm text-[var(--color-text-secondary)] flex items-center gap-2">
-                            <div className="w-1.5 h-1.5 bg-[var(--color-action)] rounded-full"></div>
+                          <li key={index} className="text-sm text-secondary flex items-center gap-2">
+                            <div className="w-1.5 h-1.5 bg-action rounded-full"></div>
                             {dataType}
                           </li>
                         ))}
@@ -236,12 +236,12 @@ export default function DataExportPage() {
                     
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-[var(--color-text-secondary)]">Format:</span>
-                        <span className="text-[var(--color-text-secondary)]">{option.format}</span>
+                        <span className="text-secondary">Format:</span>
+                        <span className="text-secondary">{option.format}</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-[var(--color-text-secondary)]">Est. Size:</span>
-                        <span className="text-[var(--color-text-secondary)]">{option.estimated_size}</span>
+                        <span className="text-secondary">Est. Size:</span>
+                        <span className="text-secondary">{option.estimated_size}</span>
                       </div>
                     </div>
                   </div>
@@ -249,12 +249,12 @@ export default function DataExportPage() {
                   <Button
                     onClick={() => handleExportData(option.id)}
                     disabled={isCurrentlyExporting || isExporting === 'bulk'}
-                    className="w-full bg-gradient-to-r from-[var(--color-action)]/10 to-[var(--color-action)]/5 hover:from-[var(--color-action)]/20 hover:to-[var(--color-action)]/10 text-[var(--color-action)] border border-[var(--color-action)]/50 hover:border-[var(--color-action)] transition-all duration-300"
+                    className="w-full button-outline-action transition-all duration-300"
                     data-testid={`button-export-${option.id}`}
                   >
                     {isCurrentlyExporting ? (
                       <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 border-2 border-[var(--color-text-primary)] border-t-transparent rounded-full animate-spin" />
+                        <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
                         Exporting...
                       </div>
                     ) : (
@@ -271,15 +271,15 @@ export default function DataExportPage() {
         </div>
 
         {/* Bulk Export */}
-        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="card-base backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-xl border border-[var(--color-action)]/20">
-                <Database className="w-6 h-6 text-[var(--color-action)]" />
+              <div className="p-3 icon-badge-action rounded-xl border border-action/20">
+                <Database className="w-6 h-6 text-action" />
               </div>
               <div>
-                <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold">Bulk Export</CardTitle>
-                <CardDescription className="text-[var(--color-text-secondary)]">
+                <CardTitle className="text-primary text-xl font-bold">Bulk Export</CardTitle>
+                <CardDescription className="text-secondary">
                   Export multiple data types in a single download
                 </CardDescription>
               </div>
@@ -292,7 +292,7 @@ export default function DataExportPage() {
                 return (
                   <span 
                     key={optionId}
-                    className="px-3 py-1 bg-[var(--color-action)]/20 text-[var(--color-action)] rounded-full text-sm border border-[var(--color-action)]/30"
+                    className="px-3 py-1 bg-action/20 text-action rounded-full text-sm border border-action/30"
                   >
                     {option?.name}
                   </span>
@@ -303,12 +303,12 @@ export default function DataExportPage() {
             <Button
               onClick={handleBulkExport}
               disabled={selectedOptions.length === 0 || isExporting !== null}
-              className="w-full bg-gradient-to-r from-[var(--color-action)] to-[var(--color-action)]/90 hover:from-[var(--color-action)]/90 hover:to-[var(--color-action)]/80 text-[var(--color-action-text)] font-bold h-12 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              className="w-full button-action font-bold h-12 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               data-testid="button-bulk-export"
             >
               {isExporting === 'bulk' ? (
                 <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 border-2 border-[var(--color-action-text)] border-t-transparent rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                   Preparing Export...
                 </div>
               ) : (
@@ -319,51 +319,51 @@ export default function DataExportPage() {
               )}
             </Button>
             
-            <p className="text-xs text-[var(--color-text-secondary)] text-center">
+            <p className="text-xs text-secondary text-center">
               Bulk exports are packaged as ZIP files containing all selected data types
             </p>
           </CardContent>
         </Card>
 
         {/* Data Rights & Information */}
-        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="card-base backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-br from-[var(--color-success)]/20 to-[var(--color-success)]/10 rounded-xl border border-[var(--color-success)]/20">
-                <Shield className="w-6 h-6 text-[var(--color-success)]" />
+              <div className="p-3 icon-badge-success rounded-xl border border-success/20">
+                <Shield className="w-6 h-6 text-success" />
               </div>
               <div>
-                <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold">Your Data Rights</CardTitle>
+                <CardTitle className="text-primary text-xl font-bold">Your Data Rights</CardTitle>
               </div>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-3">
-                <h3 className="font-semibold text-[var(--color-text-primary)]">What You Can Export:</h3>
-                <ul className="space-y-2 text-sm text-[var(--color-text-secondary)]">
+                <h3 className="font-semibold text-primary">What You Can Export:</h3>
+                <ul className="space-y-2 text-sm text-secondary">
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-[var(--color-success)]" />
+                    <CheckCircle className="w-4 h-4 text-success" />
                     All personal fitness data
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-[var(--color-success)]" />
+                    <CheckCircle className="w-4 h-4 text-success" />
                     Account information & preferences
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-[var(--color-success)]" />
+                    <CheckCircle className="w-4 h-4 text-success" />
                     Custom workouts & templates
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-[var(--color-success)]" />
+                    <CheckCircle className="w-4 h-4 text-success" />
                     Progress photos & measurements
                   </li>
                 </ul>
               </div>
               
               <div className="space-y-3">
-                <h3 className="font-semibold text-[var(--color-text-primary)]">Export Formats:</h3>
-                <ul className="space-y-2 text-sm text-[var(--color-text-secondary)]">
+                <h3 className="font-semibold text-primary">Export Formats:</h3>
+                <ul className="space-y-2 text-sm text-secondary">
                   <li><strong>JSON:</strong> Machine-readable, import to other apps</li>
                   <li><strong>CSV:</strong> Spreadsheet-compatible format</li>
                   <li><strong>Images:</strong> Original quality progress photos</li>
@@ -372,8 +372,8 @@ export default function DataExportPage() {
               </div>
             </div>
             
-            <div className="p-4 bg-[var(--color-surface)]/60 rounded-lg border border-[var(--color-border)]">
-              <p className="text-sm text-[var(--color-text-secondary)]">
+            <div className="p-4 bg-surface/60 rounded-lg border border-primary">
+              <p className="text-sm text-secondary">
                 <strong>Privacy Notice:</strong> Exported data contains your personal information. 
                 Keep downloads secure and only share with trusted applications or services.
               </p>

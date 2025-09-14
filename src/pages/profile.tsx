@@ -128,23 +128,17 @@ export default function SettingsPage() {
     semanticColor?: 'action' | 'wellness' | 'success' | 'warning' | 'activity'
   }) => (
     <div 
-      className="flex items-center justify-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl backdrop-blur-sm"
-      style={{
-        background: `linear-gradient(to bottom right, rgba(var(--color-${semanticColor}-rgb), 0.6), rgba(var(--color-${semanticColor}-rgb), 0.7))`,
-        borderColor: `rgba(var(--color-${semanticColor}-rgb), 0.5)`,
-        borderWidth: '1px',
-        boxShadow: `0 10px 15px -3px rgba(var(--color-${semanticColor}-rgb), 0.2), 0 4px 6px -2px rgba(var(--color-${semanticColor}-rgb), 0.05)`
-      }}
+      className={`flex-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl card-${semanticColor}`}
       onClick={showToggle ? undefined : action}
       data-testid={testId}
     >
       <div className="flex items-center gap-4">
-        <div className="p-3 bg-white/20 rounded-xl shadow-lg backdrop-blur-sm">
-          <Icon className="w-5 h-5" style={{ color: 'white' }} />
+        <div className="icon-badge bg-white rounded-xl">
+          <Icon className="w-5 h-5 text-white" />
         </div>
         <div>
-          <p className="font-bold text-lg" style={{ color: 'white' }}>{title}</p>
-          {subtitle && <p className="mt-1 font-medium" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>{subtitle}</p>}
+          <p className="font-bold text-lg text-white">{title}</p>
+          {subtitle && <p className="mt-1 font-medium text-white">{subtitle}</p>}
         </div>
       </div>
       
@@ -163,12 +157,12 @@ export default function SettingsPage() {
             className="inline-block h-6 w-6 transform rounded-full shadow-lg transition-transform duration-300"
             style={{
               transform: toggleState ? 'translateX(1.75rem)' : 'translateX(0.25rem)',
-              backgroundColor: toggleState ? `var(--color-${semanticColor})` : 'white'
+              backgroundColor: toggleState ? 'currentColor' : 'white'
             }}
           />
         </button>
       ) : showChevron ? (
-        <div className="p-2 bg-white/20 rounded-lg shadow-lg backdrop-blur-sm">
+        <div className="icon-badge icon-badge-sm bg-white rounded-lg">
           <ChevronRight className="w-5 h-5 text-white" />
         </div>
       ) : null}
@@ -296,7 +290,7 @@ export default function SettingsPage() {
             {/* Language Dropdown */}
             <div className="relative">
               <div 
-                className="flex items-center justify-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl bg-gradient-to-br from-[var(--color-warning)]/60 to-[var(--color-warning)]/70 border border-[var(--color-warning)]/50 backdrop-blur-sm shadow-[var(--color-warning)]/20 hover:from-[var(--color-warning)]/70 hover:to-[var(--color-warning)]/80"
+                className="flex-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl card-warning"
                 onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
                 data-testid="settings-language"
               >
@@ -315,19 +309,19 @@ export default function SettingsPage() {
               </div>
               
               {showLanguageDropdown && (
-                <div className="absolute top-full left-3 right-3 z-50 mt-2 bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border border-[var(--color-action)]/30 rounded-xl shadow-2xl overflow-hidden backdrop-blur-xl">
+                <div className="absolute top-full left-3 right-3 z-50 mt-2 card-glass rounded-xl shadow-2xl overflow-hidden">
                   {SUPPORTED_LANGUAGES.map((lang) => (
                     <button
                       key={lang.code}
                       onClick={() => handleLanguageSelect(lang.code)}
-                      className={`w-full text-left px-5 py-4 hover:bg-[var(--color-action)]/10 transition-all duration-200 flex items-center gap-4 border-b border-[var(--color-action)]/10 last:border-b-0 ${
-                        language === lang.code ? 'bg-[var(--color-action)]/10 text-[var(--color-action)]' : 'text-[var(--color-text-primary)]'
+                      className={`w-full text-left px-5 py-4 hover:bg-action/10 transition-all duration-200 flex-start gap-4 border-b border-primary last:border-b-0 ${
+                        language === lang.code ? 'bg-action/10 text-action' : 'text-primary'
                       }`}
                       data-testid={`language-option-${lang.code}`}
                     >
                       <span className="text-xl">{lang.flag}</span>
                       <span className="font-bold text-lg">{lang.name}</span>
-                      {language === lang.code && <span className="ml-auto text-[var(--color-action)] font-bold text-xl">✓</span>}
+                      {language === lang.code && <span className="ml-auto text-action font-bold text-xl">✓</span>}
                     </button>
                   ))}
                 </div>
@@ -337,7 +331,7 @@ export default function SettingsPage() {
             {/* Country Dropdown */}
             <div className="relative">
               <div 
-                className="flex items-center justify-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl bg-gradient-to-br from-[var(--color-wellness)]/60 to-[var(--color-wellness)]/70 border border-[var(--color-wellness)]/50 backdrop-blur-sm shadow-[var(--color-wellness)]/20 hover:from-[var(--color-wellness)]/70 hover:to-[var(--color-wellness)]/80"
+                className="flex-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl card-wellness"
                 onClick={() => setShowCountryDropdown(!showCountryDropdown)}
                 data-testid="settings-country"
               >
@@ -356,19 +350,19 @@ export default function SettingsPage() {
               </div>
               
               {showCountryDropdown && (
-                <div className="absolute top-full left-3 right-3 z-50 mt-2 bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border border-[var(--color-wellness)]/30 rounded-xl shadow-2xl overflow-hidden backdrop-blur-xl max-h-64 overflow-y-auto">
+                <div className="absolute top-full left-3 right-3 z-50 mt-2 card-glass rounded-xl shadow-2xl overflow-hidden max-h-64 overflow-y-auto">
                   {SUPPORTED_COUNTRIES.map((country_) => (
                     <button
                       key={country_.code}
                       onClick={() => handleCountrySelect(country_.code)}
-                      className={`w-full text-left px-5 py-4 hover:bg-[var(--color-wellness)]/10 transition-all duration-200 flex items-center gap-4 border-b border-[var(--color-wellness)]/10 last:border-b-0 ${
-                        country === country_.code ? 'bg-[var(--color-wellness)]/10 text-[var(--color-wellness)]' : 'text-[var(--color-text-primary)]'
+                      className={`w-full text-left px-5 py-4 hover:bg-wellness/10 transition-all duration-200 flex-start gap-4 border-b border-primary last:border-b-0 ${
+                        country === country_.code ? 'bg-wellness/10 text-wellness' : 'text-primary'
                       }`}
                       data-testid={`country-option-${country_.code}`}
                     >
                       <span className="text-xl">{country_.flag}</span>
                       <span className="font-bold text-lg">{country_.name}</span>
-                      {country === country_.code && <span className="ml-auto text-[var(--color-wellness)] font-bold text-xl">✓</span>}
+                      {country === country_.code && <span className="ml-auto text-wellness font-bold text-xl">✓</span>}
                     </button>
                   ))}
                 </div>
@@ -393,55 +387,55 @@ export default function SettingsPage() {
           <CardContent className="p-2 space-y-2">
             <Link href="/year-in-review">
               <div 
-                className="flex items-center justify-between p-5 hover:bg-[var(--color-wellness)]/10 transition-all duration-200 cursor-pointer rounded-xl mx-3 hover:shadow-lg border border-transparent hover:border-[var(--color-wellness)]/20"
+                className="flex items-center justify-between p-5 action-item card-wellness interactive-base"
                 data-testid="link-year-in-review"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-gradient-to-br from-[var(--color-success)]/20 to-[var(--color-success)]/10 rounded-xl shadow-md">
-                    <Trophy className="w-5 h-5 text-[var(--color-success)]" />
+                  <div className="p-3 icon-badge-success rounded-xl shadow-md">
+                    <Trophy className="w-5 h-5 text-success" />
                   </div>
                   <div>
-                    <p className="font-bold text-[var(--color-text-primary)] text-lg">Year in Review</p>
-                    <p className="text-[var(--color-text-secondary)] mt-1 font-medium">See your fitness journey and achievements</p>
+                    <p className="font-bold text-primary text-lg">Year in Review</p>
+                    <p className="text-secondary mt-1 font-medium">See your fitness journey and achievements</p>
                   </div>
                 </div>
-                <div className="p-2 bg-[var(--color-success)]/20 rounded-lg">
-                  <ChevronRight className="w-5 h-5 text-[var(--color-success)]" />
+                <div className="p-2 bg-success/20 rounded-lg">
+                  <ChevronRight className="w-5 h-5 text-success" />
                 </div>
               </div>
             </Link>
             <Link href="/health-connections">
               <div 
-                className="flex items-center justify-between p-5 hover:bg-[var(--color-wellness)]/10 transition-all duration-200 cursor-pointer rounded-xl mx-3 hover:shadow-lg border border-transparent hover:border-[var(--color-wellness)]/20"
+                className="flex items-center justify-between p-5 action-item card-wellness interactive-base"
                 data-testid="link-health-connections"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-xl shadow-md">
-                    <Smartphone className="w-5 h-5 text-[var(--color-wellness)]" />
+                  <div className="p-3 icon-badge-wellness rounded-xl shadow-md">
+                    <Smartphone className="w-5 h-5 text-wellness" />
                   </div>
                   <div>
-                    <p className="font-bold text-[var(--color-text-primary)] text-lg">Health Data Connections</p>
-                    <p className="text-[var(--color-text-secondary)] mt-1 font-medium">Connect Google Health & Apple HealthKit</p>
+                    <p className="font-bold text-primary text-lg">Health Data Connections</p>
+                    <p className="text-secondary mt-1 font-medium">Connect Google Health & Apple HealthKit</p>
                   </div>
                 </div>
-                <div className="p-2 bg-[var(--color-wellness)]/20 rounded-lg">
-                  <ChevronRight className="w-5 h-5 text-[var(--color-wellness)]" />
+                <div className="p-2 bg-wellness/20 rounded-lg">
+                  <ChevronRight className="w-5 h-5 text-wellness" />
                 </div>
               </div>
             </Link>
             <Link href="/data-export">
-              <div className="flex items-center justify-between p-5 hover:bg-[var(--color-wellness)]/10 transition-all duration-200 cursor-pointer rounded-xl mx-3 hover:shadow-lg border border-transparent hover:border-[var(--color-wellness)]/20" data-testid="settings-export-data">
+              <div className="flex items-center justify-between p-5 action-item card-wellness interactive-base" data-testid="settings-export-data">
                 <div className="flex items-center gap-4">
-                  <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-xl shadow-md">
-                    <Download className="w-5 h-5 text-[var(--color-wellness)]" />
+                  <div className="p-3 icon-badge-wellness rounded-xl shadow-md">
+                    <Download className="w-5 h-5 text-wellness" />
                   </div>
                   <div>
-                    <p className="font-bold text-[var(--color-text-primary)] text-lg">Export Data</p>
-                    <p className="text-[var(--color-text-secondary)] mt-1 font-medium">Download your fitness and nutrition data</p>
+                    <p className="font-bold text-primary text-lg">Export Data</p>
+                    <p className="text-secondary mt-1 font-medium">Download your fitness and nutrition data</p>
                   </div>
                 </div>
-                <div className="p-2 bg-[var(--color-wellness)]/20 rounded-lg">
-                  <ChevronRight className="w-5 h-5 text-[var(--color-wellness)]" />
+                <div className="p-2 bg-wellness/20 rounded-lg">
+                  <ChevronRight className="w-5 h-5 text-wellness" />
                 </div>
               </div>
             </Link>
@@ -449,30 +443,30 @@ export default function SettingsPage() {
               <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-delete-account">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <Trash2 className="w-5 h-5 text-[var(--color-warning)]" />
+                    <Trash2 className="w-5 h-5 text-warning" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Delete Account</p>
                     <p className="text-sm text-muted-foreground mt-0.5">Permanently remove your account and all data</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
+                <ChevronRight className="w-5 h-5 text-action" />
               </div>
             </Link>
           </CardContent>
         </Card>
 
         {/* Support Section */}
-        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
-          <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-nutrition)]/5 via-transparent to-[var(--color-nutrition)]/5 pointer-events-none"></div>
-          <CardHeader className="pb-6 bg-gradient-to-r from-[var(--color-nutrition)]/10 to-[var(--color-nutrition)]/5 relative">
-            <CardTitle className="text-[var(--color-text-primary)] text-2xl font-bold flex items-center gap-3">
-              <div className="p-2 bg-[var(--color-nutrition)] rounded-xl shadow-lg">
+        <Card className="card-glass relative">
+          <div className="absolute inset-0 bg-nutrition/5 pointer-events-none"></div>
+          <CardHeader className="pb-6 bg-nutrition/10 relative">
+            <CardTitle className="text-primary text-2xl font-bold flex-start gap-3">
+              <div className="icon-badge bg-nutrition rounded-xl shadow-lg">
                 <HelpCircle className="w-6 h-6 text-white" />
               </div>
               Support & Help
             </CardTitle>
-            <CardDescription className="text-[var(--color-text-secondary)] text-lg">
+            <CardDescription className="text-secondary text-lg">
               Get help and learn more about the app
             </CardDescription>
           </CardHeader>
@@ -484,63 +478,63 @@ export default function SettingsPage() {
               >
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <Info className="w-5 h-5 text-[var(--color-action)]" />
+                    <Info className="w-5 h-5 text-action" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Our Mission & Model</p>
                     <p className="text-sm text-muted-foreground mt-0.5">Learn about our commitment to free fitness tools</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
+                <ChevronRight className="w-5 h-5 text-action" />
               </div>
             </Link>
             <Link href="/help-center">
               <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-help-center">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <HelpCircle className="w-5 h-5 text-[var(--color-action)]" />
+                    <HelpCircle className="w-5 h-5 text-action" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Help Center</p>
                     <p className="text-sm text-muted-foreground mt-0.5">Find answers to common questions</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
+                <ChevronRight className="w-5 h-5 text-action" />
               </div>
             </Link>
             <Link href="/contact-support">
               <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-contact-support">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <MessageCircle className="w-5 h-5 text-[var(--color-action)]" />
+                    <MessageCircle className="w-5 h-5 text-action" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Contact Support</p>
                     <p className="text-sm text-muted-foreground mt-0.5">Get in touch with our support team</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
+                <ChevronRight className="w-5 h-5 text-action" />
               </div>
             </Link>
             <Link href="/privacy-terms">
               <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-legal">
                 <div className="flex items-center gap-4">
                   <div className="p-2 bg-muted/30 rounded-xl">
-                    <FileText className="w-5 h-5 text-[var(--color-action)]" />
+                    <FileText className="w-5 h-5 text-action" />
                   </div>
                   <div>
                     <p className="font-semibold text-foreground">Privacy & Terms</p>
                     <p className="text-sm text-muted-foreground mt-0.5">View our privacy policy and terms of service</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-[var(--color-action)]" />
+                <ChevronRight className="w-5 h-5 text-action" />
               </div>
             </Link>
           </CardContent>
         </Card>
 
         {/* Sign Out Section */}
-        <Card className="bg-card/60 border border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="card-glass">
           <CardContent className="p-6">
             <div className="text-center mb-4">
               <p className="text-muted-foreground text-sm">Ready to take a break?</p>
@@ -548,13 +542,13 @@ export default function SettingsPage() {
             <Button 
               variant="destructive" 
               onClick={logout}
-              className="w-full flex items-center justify-center gap-3 h-14 bg-gradient-to-r from-[var(--color-error)] to-[var(--color-error)] hover:from-[var(--color-error)]/90 hover:to-[var(--color-error)]/90 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-[var(--color-error)]/25 hover:shadow-[var(--color-error)]/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full flex-center gap-3 h-14 bg-error text-white font-bold text-lg rounded-2xl shadow-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               data-testid="button-sign-out"
             >
               <LogOut className="w-6 h-6" />
               Sign Out
             </Button>
-            <p className="text-xs text-[var(--color-text-secondary)] text-center mt-3">
+            <p className="text-xs text-secondary text-center mt-3">
               {isGuestMode ? 'End guest session' : 'You can always sign back in'}
             </p>
           </CardContent>
