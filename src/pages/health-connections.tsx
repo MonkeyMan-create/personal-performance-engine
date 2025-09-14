@@ -150,19 +150,26 @@ export default function HealthConnectionsPage() {
         
         {/* Header */}
         <div className="text-center space-y-4">
-          <h1 className="text-3xl font-bold text-[var(--color-text-primary)]">
-            Connect Your Health Data
-          </h1>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-2xl border border-[var(--color-wellness)]/20">
+              <Heart className="w-8 h-8 text-[var(--color-wellness)]" />
+            </div>
+            <h1 className="text-3xl font-bold text-[var(--color-text-primary)]">
+              Connect Your Health Data
+            </h1>
+          </div>
           <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
             Sync your health data from your mobile devices to get personalized insights and track your wellness journey.
           </p>
         </div>
 
         {/* Technical Notice */}
-        <Card className="bg-[var(--color-warning)]/20 border-[var(--color-warning)]/50">
+        <Card className="bg-gradient-to-br from-[var(--color-warning)]/15 to-[var(--color-warning)]/5 border-[var(--color-warning)]/30 backdrop-blur-xl">
           <CardContent className="p-4">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="w-5 h-5 text-[var(--color-warning)] mt-0.5 flex-shrink-0" />
+              <div className="p-2 bg-gradient-to-br from-[var(--color-warning)]/20 to-[var(--color-warning)]/10 rounded-lg border border-[var(--color-warning)]/20">
+                <AlertTriangle className="w-5 h-5 text-[var(--color-warning)]" />
+              </div>
               <div>
                 <h3 className="font-semibold text-[var(--color-warning)] mb-1">
                   Mobile Integration Required
@@ -186,13 +193,13 @@ export default function HealthConnectionsPage() {
             return (
               <Card 
                 key={platform.id}
-                className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl"
+                className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300"
               >
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="p-2 bg-[var(--color-surface)]/80 rounded-lg">
-                        <IconComponent className="w-6 h-6 text-[var(--color-text-secondary)]" />
+                      <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)]/15 to-[var(--color-wellness)]/5 rounded-xl border border-[var(--color-wellness)]/20">
+                        <IconComponent className="w-6 h-6 text-[var(--color-wellness)]" />
                       </div>
                       <div>
                         <CardTitle className="text-lg text-[var(--color-text-primary)]">
@@ -262,7 +269,7 @@ export default function HealthConnectionsPage() {
                         <Button
                           variant="outline"
                           onClick={() => disconnectPlatform(platform)}
-                          className="w-full border-[var(--color-error)]/50 text-[var(--color-error)] hover:bg-[var(--color-error)]/10"
+                          className="w-full bg-gradient-to-r from-[var(--color-error)]/10 to-[var(--color-error)]/5 border-[var(--color-error)]/50 text-[var(--color-error)] hover:from-[var(--color-error)]/20 hover:to-[var(--color-error)]/10 hover:border-[var(--color-error)] transition-all duration-300"
                           data-testid={`button-disconnect-${platform.id}`}
                         >
                           Disconnect
@@ -273,7 +280,7 @@ export default function HealthConnectionsPage() {
                         <Button
                           onClick={() => requestPermissions(platform)}
                           disabled={!platform.available || isLoading}
-                          className="w-full bg-[var(--color-action)] hover:bg-[var(--color-action-hover)] text-[var(--color-action-text)] border-2 border-[var(--color-action)]/50 hover:border-[var(--color-action)] disabled:opacity-50"
+                          className="w-full bg-gradient-to-r from-[var(--color-wellness)] to-[var(--color-wellness)]/90 hover:from-[var(--color-wellness)]/90 hover:to-[var(--color-wellness)]/80 text-[var(--color-wellness-text)] shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
                           data-testid={`button-connect-${platform.id}`}
                         >
                           {isLoading ? (
@@ -298,7 +305,7 @@ export default function HealthConnectionsPage() {
                             }}
                             variant="outline"
                             size="sm"
-                            className="w-full text-xs border-[var(--color-warning)]/50 text-[var(--color-warning)] hover:bg-[var(--color-warning)]/10"
+                            className="w-full text-xs bg-gradient-to-r from-[var(--color-warning)]/10 to-[var(--color-warning)]/5 border-[var(--color-warning)]/50 text-[var(--color-warning)] hover:from-[var(--color-warning)]/20 hover:to-[var(--color-warning)]/10 hover:border-[var(--color-warning)] transition-all duration-300"
                             data-testid={`button-retry-${platform.id}`}
                           >
                             Try Again
@@ -320,17 +327,22 @@ export default function HealthConnectionsPage() {
         </div>
 
         {/* Data Usage Info */}
-        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-[var(--color-text-primary)]">
-              How We Use Your Health Data
-            </CardTitle>
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-xl border border-[var(--color-wellness)]/20">
+                <Heart className="w-6 h-6 text-[var(--color-wellness)]" />
+              </div>
+              <div>
+                <CardTitle className="text-[var(--color-text-primary)]">How We Use Your Health Data</CardTitle>
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid gap-4 md:grid-cols-3">
               <div className="text-center space-y-2">
-                <div className="w-12 h-12 bg-[var(--color-action)]/10 rounded-lg mx-auto flex items-center justify-center">
-                  <Activity className="w-6 h-6 text-[var(--color-action)]" />
+                <div className="w-12 h-12 bg-gradient-to-br from-[var(--color-activity)]/20 to-[var(--color-activity)]/10 rounded-lg mx-auto flex items-center justify-center border border-[var(--color-activity)]/20">
+                  <Activity className="w-6 h-6 text-[var(--color-activity)]" />
                 </div>
                 <h3 className="font-medium text-[var(--color-text-primary)]">Personalized Insights</h3>
                 <p className="text-sm text-[var(--color-text-secondary)]">
@@ -339,8 +351,8 @@ export default function HealthConnectionsPage() {
               </div>
               
               <div className="text-center space-y-2">
-                <div className="w-12 h-12 bg-[var(--color-success)]/20 rounded-lg mx-auto flex items-center justify-center">
-                  <Heart className="w-6 h-6 text-[var(--color-success)]" />
+                <div className="w-12 h-12 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-lg mx-auto flex items-center justify-center border border-[var(--color-wellness)]/20">
+                  <Heart className="w-6 h-6 text-[var(--color-wellness)]" />
                 </div>
                 <h3 className="font-medium text-[var(--color-text-primary)]">Health Monitoring</h3>
                 <p className="text-sm text-[var(--color-text-secondary)]">
@@ -349,8 +361,8 @@ export default function HealthConnectionsPage() {
               </div>
               
               <div className="text-center space-y-2">
-                <div className="w-12 h-12 bg-[var(--color-action)]/10 rounded-lg mx-auto flex items-center justify-center">
-                  <Moon className="w-6 h-6 text-[var(--color-action)]" />
+                <div className="w-12 h-12 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-lg mx-auto flex items-center justify-center border border-[var(--color-wellness)]/20">
+                  <Moon className="w-6 h-6 text-[var(--color-wellness)]" />
                 </div>
                 <h3 className="font-medium text-[var(--color-text-primary)]">Recovery Optimization</h3>
                 <p className="text-sm text-[var(--color-text-secondary)]">

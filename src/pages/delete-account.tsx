@@ -76,15 +76,22 @@ export default function DeleteAccountPage() {
         </div>
 
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Delete Account</h1>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="p-3 bg-gradient-to-br from-[var(--color-error)]/20 to-[var(--color-error)]/10 rounded-2xl border border-[var(--color-error)]/20">
+              <Trash2 className="w-8 h-8 text-[var(--color-error)]" />
+            </div>
+            <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Delete Account</h1>
+          </div>
           <p className="text-[var(--color-text-secondary)] mt-2">Permanently remove your account and all associated data</p>
         </div>
 
         {/* Critical Warning */}
-        <Card className="bg-[var(--color-error)]/10 border-[var(--color-error)]/30">
+        <Card className="bg-gradient-to-br from-[var(--color-error)]/15 to-[var(--color-error)]/5 border-[var(--color-error)]/30 backdrop-blur-xl">
           <CardContent className="p-6">
             <div className="flex items-start gap-4">
-              <AlertTriangle className="w-8 h-8 text-[var(--color-error)] mt-1 flex-shrink-0" />
+              <div className="p-2 bg-gradient-to-br from-[var(--color-error)]/20 to-[var(--color-error)]/10 rounded-lg border border-[var(--color-error)]/20">
+                <AlertTriangle className="w-8 h-8 text-[var(--color-error)]" />
+              </div>
               <div>
                 <h3 className="font-bold text-[var(--color-error)] text-xl mb-3">
                   ⚠️ PERMANENT ACTION WARNING
@@ -120,15 +127,19 @@ export default function DeleteAccountPage() {
         </Card>
 
         {/* Export Data First */}
-        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold flex items-center gap-2">
-              <Download className="w-6 h-6 text-[var(--color-action)]" />
-              Export Your Data First
-            </CardTitle>
-            <CardDescription className="text-[var(--color-text-secondary)]">
-              We strongly recommend downloading your data before deletion
-            </CardDescription>
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-xl border border-[var(--color-action)]/20">
+                <Download className="w-6 h-6 text-[var(--color-action)]" />
+              </div>
+              <div>
+                <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold">Export Your Data First</CardTitle>
+                <CardDescription className="text-[var(--color-text-secondary)]">
+                  We strongly recommend downloading your data before deletion
+                </CardDescription>
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="p-4 bg-[var(--color-action)]/10 rounded-lg border border-[var(--color-action)]/30">
@@ -141,7 +152,7 @@ export default function DeleteAccountPage() {
             <Link href="/data-export">
               <Button 
                 variant="outline" 
-                className="w-full h-12 border-[var(--color-action)]/50 text-[var(--color-action)] hover:bg-[var(--color-action)]/10"
+                className="w-full h-12 bg-gradient-to-r from-[var(--color-action)]/10 to-[var(--color-action)]/5 border-[var(--color-action)]/50 text-[var(--color-action)] hover:from-[var(--color-action)]/20 hover:to-[var(--color-action)]/10 hover:border-[var(--color-action)] transition-all duration-300"
                 data-testid="button-export-data"
               >
                 <Download className="w-4 h-4 mr-2" />
@@ -152,15 +163,19 @@ export default function DeleteAccountPage() {
         </Card>
 
         {/* Account Information */}
-        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold flex items-center gap-2">
-              <Shield className="w-6 h-6 text-[var(--color-action)]" />
-              Account Information
-            </CardTitle>
-            <CardDescription className="text-[var(--color-text-secondary)]">
-              Review the account that will be deleted
-            </CardDescription>
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-xl border border-[var(--color-wellness)]/20">
+                <Shield className="w-6 h-6 text-[var(--color-wellness)]" />
+              </div>
+              <div>
+                <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold">Account Information</CardTitle>
+                <CardDescription className="text-[var(--color-text-secondary)]">
+                  Review the account that will be deleted
+                </CardDescription>
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
@@ -212,15 +227,19 @@ export default function DeleteAccountPage() {
         </Card>
 
         {/* Deletion Process */}
-        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold flex items-center gap-2">
-              <Trash2 className="w-6 h-6 text-[var(--color-error)]" />
-              Deletion Process
-            </CardTitle>
-            <CardDescription className="text-[var(--color-text-secondary)]">
-              Complete all steps to proceed with account deletion
-            </CardDescription>
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-gradient-to-br from-[var(--color-error)]/20 to-[var(--color-error)]/10 rounded-xl border border-[var(--color-error)]/20">
+                <Trash2 className="w-6 h-6 text-[var(--color-error)]" />
+              </div>
+              <div>
+                <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold">Deletion Process</CardTitle>
+                <CardDescription className="text-[var(--color-text-secondary)]">
+                  Complete all steps to proceed with account deletion
+                </CardDescription>
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Step 1: Understand Consequences */}
@@ -272,7 +291,7 @@ export default function DeleteAccountPage() {
               <Button
                 onClick={handleDeleteAccount}
                 disabled={!isConfirmationValid || !hasConfirmedWarnings || isDeleting}
-                className="w-full bg-[var(--color-error)] hover:bg-[var(--color-error)]/80 text-[var(--color-error-text)] font-bold h-14 rounded-xl shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-gradient-to-r from-[var(--color-error)] to-[var(--color-error)]/90 hover:from-[var(--color-error)]/90 hover:to-[var(--color-error)]/80 text-[var(--color-error-text)] font-bold h-14 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 data-testid="button-delete-account"
               >
                 {isDeleting ? (
@@ -296,14 +315,19 @@ export default function DeleteAccountPage() {
         </Card>
 
         {/* Alternative Options */}
-        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold">
-              Consider These Alternatives
-            </CardTitle>
-            <CardDescription className="text-[var(--color-text-secondary)]">
-              Before deleting, you might want to try these options instead
-            </CardDescription>
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-xl border border-[var(--color-wellness)]/20">
+                <CheckCircle className="w-6 h-6 text-[var(--color-wellness)]" />
+              </div>
+              <div>
+                <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold">Consider These Alternatives</CardTitle>
+                <CardDescription className="text-[var(--color-text-secondary)]">
+                  Before deleting, you might want to try these options instead
+                </CardDescription>
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">

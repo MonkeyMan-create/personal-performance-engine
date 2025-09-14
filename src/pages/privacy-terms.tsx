@@ -392,7 +392,12 @@ export default function PrivacyTermsPage() {
           </Link>
         </div>
 
-        <div className="text-center">
+        <div className="text-center space-y-4">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="p-4 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-2xl border border-[var(--color-action)]/20">
+              <Shield className="w-8 h-8 text-[var(--color-action)]" />
+            </div>
+          </div>
           <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Privacy & Terms</h1>
           <p className="text-[var(--color-text-secondary)] mt-2">Your privacy rights and our terms of service</p>
         </div>

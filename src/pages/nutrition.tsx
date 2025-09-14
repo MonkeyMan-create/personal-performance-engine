@@ -26,7 +26,8 @@ import {
   AlertCircle,
   Droplets,
   Target,
-  ImageIcon
+  ImageIcon,
+  Flame
 } from 'lucide-react'
 import { saveMealLocally, getMealsByDateLocally, GuestMeal } from '../utils/guestStorage'
 import { toast } from '../hooks/use-toast'
@@ -484,118 +485,151 @@ export default function NutritionPage() {
       <div className="container mx-auto p-4 space-y-6 pb-24">
         
         {/* Daily Summary Section */}
-        <div className="pt-8 space-y-6">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold text-[var(--color-text-primary)]">Nutrition</h1>
-            <p className="text-lg font-bold text-[var(--color-primary)] mt-2" data-testid="calories-remaining">
-              {caloriesRemaining > 0 ? caloriesRemaining : 0} cal remaining
-            </p>
-            <p className="text-sm text-[var(--color-text-secondary)]">
-              {todayMeals.length} meals logged today
-            </p>
+        <div className="pt-6 space-y-6">
+          <div className="text-center space-y-4">
+            <div className="flex items-center justify-center gap-4">
+              <div className="p-3 bg-gradient-to-br from-[var(--color-nutrition)] to-[var(--color-nutrition)]/80 rounded-2xl shadow-lg">
+                <ChefHat className="w-8 h-8 text-white" />
+              </div>
+              <div>
+                <h1 className="text-4xl font-bold text-[var(--color-text-primary)]">Nutrition</h1>
+                <p className="text-[var(--color-text-secondary)] text-lg">Track your daily nutrition goals</p>
+              </div>
+            </div>
+            <div className="bg-gradient-to-r from-[var(--color-nutrition)]/15 via-[var(--color-nutrition)]/10 to-[var(--color-nutrition)]/15 rounded-2xl p-4 border border-[var(--color-nutrition)]/20">
+              <p className="text-2xl font-bold text-[var(--color-nutrition)] flex items-center justify-center gap-2" data-testid="calories-remaining">
+                <Target className="w-6 h-6" />
+                {caloriesRemaining > 0 ? caloriesRemaining : 0} cal remaining
+              </p>
+              <p className="text-[var(--color-text-secondary)] mt-1 flex items-center justify-center gap-1">
+                <Utensils className="w-4 h-4" />
+                {todayMeals.length} meals logged today
+              </p>
+            </div>
           </div>
           
           {/* Daily Metrics Card */}
-          <Card className="bg-white/80 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl shadow-xl">
-            <CardContent className="p-6">
-              <div className="space-y-6">
+          <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-nutrition)]/5 via-transparent to-[var(--color-nutrition)]/5 pointer-events-none"></div>
+            <CardContent className="p-7 relative">
+              <div className="space-y-8">
                 
                 {/* Calories Metric */}
-                <div className="space-y-3" data-testid="metric-calories">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">Calories</h3>
-                    <span className="text-lg font-bold text-[var(--color-primary)]">
+                <div className="bg-gradient-to-r from-[var(--color-nutrition)]/10 to-[var(--color-nutrition)]/5 rounded-xl p-5 border border-[var(--color-nutrition)]/20" data-testid="metric-calories">
+                  <div className="flex justify-between items-center mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-[var(--color-nutrition)] rounded-lg">
+                        <Flame className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold text-[var(--color-text-primary)]">Calories</h3>
+                    </div>
+                    <span className="text-xl font-bold text-[var(--color-nutrition)]">
                       {todayStats.calories.toLocaleString()} / {nutritionGoals.calories.toLocaleString()} cal
                     </span>
                   </div>
-                  <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 shadow-inner">
+                  <div className="w-full bg-[var(--color-surface)] rounded-full h-4 shadow-inner border border-[var(--color-border)]">
                     <div 
-                      className="bg-gradient-to-r from-primary to-primary/90 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                      className="bg-gradient-to-r from-[var(--color-nutrition)] to-[var(--color-nutrition)]/90 h-4 rounded-full transition-all duration-1000 ease-out shadow-lg"
                       style={{ width: `${Math.min(100, caloriesProgress)}%` }}
                       data-testid="progress-bar-calories"
                     />
                   </div>
-                  <div className="flex justify-between text-sm text-[var(--color-text-secondary)]">
+                  <div className="flex justify-between text-sm text-[var(--color-text-secondary)] mt-2">
                     <span>0 cal</span>
-                    <span>{Math.round(caloriesProgress)}% of goal</span>
+                    <span className="font-medium">{Math.round(caloriesProgress)}% of goal</span>
                     <span>{nutritionGoals.calories.toLocaleString()} cal</span>
                   </div>
                 </div>
 
                 {/* Protein Metric */}
-                <div className="space-y-3" data-testid="metric-protein">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">Protein</h3>
-                    <span className="text-lg font-bold text-[var(--color-primary)]">
+                <div className="bg-gradient-to-r from-[var(--color-protein)]/10 to-[var(--color-protein)]/5 rounded-xl p-5 border border-[var(--color-protein)]/20" data-testid="metric-protein">
+                  <div className="flex justify-between items-center mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-[var(--color-protein)] rounded-lg">
+                        <Target className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold text-[var(--color-text-primary)]">Protein</h3>
+                    </div>
+                    <span className="text-xl font-bold text-[var(--color-protein)]">
                       {Math.round(todayStats.protein)}g / {nutritionGoals.protein}g
                     </span>
                   </div>
-                  <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 shadow-inner">
+                  <div className="w-full bg-[var(--color-surface)] rounded-full h-4 shadow-inner border border-[var(--color-border)]">
                     <div 
-                      className="bg-gradient-to-r from-primary/80 to-primary h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                      className="bg-gradient-to-r from-[var(--color-protein)] to-[var(--color-protein)]/90 h-4 rounded-full transition-all duration-1000 ease-out shadow-lg"
                       style={{ width: `${Math.min(100, proteinProgress)}%` }}
                       data-testid="progress-bar-protein"
                     />
                   </div>
-                  <div className="flex justify-between text-sm text-[var(--color-text-secondary)]">
+                  <div className="flex justify-between text-sm text-[var(--color-text-secondary)] mt-2">
                     <span>0g</span>
-                    <span>{Math.round(proteinProgress)}% of goal</span>
+                    <span className="font-medium">{Math.round(proteinProgress)}% of goal</span>
                     <span>{nutritionGoals.protein}g</span>
                   </div>
                 </div>
 
                 {/* Fat Metric */}
-                <div className="space-y-3" data-testid="metric-fat">
-                  <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">Fat</h3>
-                    <span className="text-lg font-bold text-yellow-600 dark:text-yellow-400">
+                <div className="bg-gradient-to-r from-[var(--color-fat)]/10 to-[var(--color-fat)]/5 rounded-xl p-5 border border-[var(--color-fat)]/20" data-testid="metric-fat">
+                  <div className="flex justify-between items-center mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-[var(--color-fat)] rounded-lg">
+                        <Droplets className="w-5 h-5 text-white" />
+                      </div>
+                      <h3 className="text-xl font-bold text-[var(--color-text-primary)]">Fat</h3>
+                    </div>
+                    <span className="text-xl font-bold text-[var(--color-fat)]">
                       {Math.round(todayStats.fat)}g / {nutritionGoals.fat}g
                     </span>
                   </div>
-                  <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 shadow-inner">
+                  <div className="w-full bg-[var(--color-surface)] rounded-full h-4 shadow-inner border border-[var(--color-border)]">
                     <div 
-                      className="bg-gradient-to-r from-yellow-500 to-yellow-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                      className="bg-gradient-to-r from-[var(--color-fat)] to-[var(--color-fat)]/90 h-4 rounded-full transition-all duration-1000 ease-out shadow-lg"
                       style={{ width: `${Math.min(100, fatProgress)}%` }}
                       data-testid="progress-bar-fat"
                     />
                   </div>
-                  <div className="flex justify-between text-sm text-[var(--color-text-secondary)]">
+                  <div className="flex justify-between text-sm text-[var(--color-text-secondary)] mt-2">
                     <span>0g</span>
-                    <span>{Math.round(fatProgress)}% of goal</span>
+                    <span className="font-medium">{Math.round(fatProgress)}% of goal</span>
                     <span>{nutritionGoals.fat}g</span>
                   </div>
                 </div>
 
-                <div className="border-t border-slate-200 dark:border-slate-600 pt-4">
+                <div className="border-t-2 border-[var(--color-action)]/20 pt-6">
                   {/* Hydration Metric */}
-                  <div className="space-y-3" data-testid="metric-hydration">
-                    <div className="flex justify-between items-center">
-                      <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">Hydration</h3>
+                  <div className="bg-gradient-to-r from-[var(--color-action)]/10 to-[var(--color-action)]/5 rounded-xl p-5 border border-[var(--color-action)]/20" data-testid="metric-hydration">
+                    <div className="flex justify-between items-center mb-4">
                       <div className="flex items-center gap-3">
-                        <span className="text-lg font-bold text-[var(--color-primary)]">
+                        <div className="p-2 bg-[var(--color-action)] rounded-lg">
+                          <Droplets className="w-5 h-5 text-white" />
+                        </div>
+                        <h3 className="text-xl font-bold text-[var(--color-text-primary)]">Hydration</h3>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="text-xl font-bold text-[var(--color-action)]">
                           {waterGlasses} / 8 glasses
                         </span>
                         <Button
                           onClick={addWaterGlass}
                           size="sm"
-                          className="h-8 px-3 bg-[var(--color-primary)] hover:bg-[var(--color-primary)]/90 text-white text-xs font-medium rounded-full shadow-lg transition-all duration-200 hover:scale-105"
+                          className="h-10 px-4 bg-[var(--color-action)] hover:bg-[var(--color-action-hover)] text-white font-bold rounded-xl shadow-lg transition-all duration-200 hover:scale-105"
                           data-testid="button-add-water-inline"
                         >
-                          <Droplets className="w-3 h-3 mr-1" />
+                          <Droplets className="w-4 h-4 mr-2" />
                           Add Glass
                         </Button>
                       </div>
                     </div>
-                    <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 shadow-inner">
+                    <div className="w-full bg-[var(--color-surface)] rounded-full h-4 shadow-inner border border-[var(--color-border)]">
                       <div 
-                        className="bg-gradient-to-r from-primary to-primary/90 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                        className="bg-gradient-to-r from-[var(--color-action)] to-[var(--color-action)]/90 h-4 rounded-full transition-all duration-1000 ease-out shadow-lg"
                         style={{ width: `${Math.min(100, hydrationProgress)}%` }}
                         data-testid="progress-bar-hydration"
                       />
                     </div>
-                    <div className="flex justify-between text-sm text-[var(--color-text-secondary)]">
+                    <div className="flex justify-between text-sm text-[var(--color-text-secondary)] mt-2">
                       <span>0 glasses</span>
-                      <span>{Math.round(hydrationProgress)}% of goal</span>
+                      <span className="font-medium">{Math.round(hydrationProgress)}% of goal</span>
                       <span>8 glasses</span>
                     </div>
                   </div>
@@ -607,107 +641,123 @@ export default function NutritionPage() {
         </div>
 
         {/* Meal Type Selector */}
-        <div className="flex gap-2 overflow-x-auto pb-2">
-          {(['breakfast', 'lunch', 'dinner', 'snack'] as const).map((type) => (
-            <Button
-              key={type}
-              variant={mealType === type ? 'default' : 'outline'}
-              size="sm"
-              onClick={() => setMealType(type)}
-              className={mealType === type 
-                ? 'bg-[var(--color-primary)] hover:bg-[var(--color-primary)]/90 text-white' 
-                : 'border-slate-300 dark:border-slate-600'}
-              data-testid={`button-meal-type-${type}`}
-            >
-              {type.charAt(0).toUpperCase() + type.slice(1)}
-            </Button>
-          ))}
+        <div className="grid grid-cols-4 gap-3">
+          {(['breakfast', 'lunch', 'dinner', 'snack'] as const).map((type) => {
+            const isActive = mealType === type
+            const icons = {
+              breakfast: '🌅',
+              lunch: '☀️', 
+              dinner: '🌙',
+              snack: '🍎'
+            }
+            return (
+              <Button
+                key={type}
+                variant={isActive ? 'default' : 'outline'}
+                size="lg"
+                onClick={() => setMealType(type)}
+                className={isActive 
+                  ? 'h-16 bg-gradient-to-br from-[var(--color-nutrition)] to-[var(--color-nutrition)]/90 hover:from-[var(--color-nutrition-hover)] hover:to-[var(--color-nutrition-hover)]/90 text-white shadow-lg font-bold flex flex-col gap-1' 
+                  : 'h-16 border-2 border-[var(--color-nutrition)]/30 text-[var(--color-nutrition)] hover:bg-[var(--color-nutrition)]/10 font-medium flex flex-col gap-1 transition-all duration-200'}
+                data-testid={`button-meal-type-${type}`}
+              >
+                <span className="text-lg">{icons[type]}</span>
+                <span className="text-sm">{type.charAt(0).toUpperCase() + type.slice(1)}</span>
+              </Button>
+            )
+          })}
         </div>
 
         {/* Quick Log Section */}
-        <Card className="bg-white/80 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl shadow-xl">
-          <CardContent className="p-6">
-            <div className="text-center mb-6">
-              <h2 className="text-2xl font-bold text-[var(--color-text-primary)] mb-2">
-                Quick Log
-              </h2>
-              <p className="text-[var(--color-text-secondary)]">
-                Add food to your {mealType} log
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-nutrition)]/5 via-transparent to-[var(--color-nutrition)]/5 pointer-events-none"></div>
+          <CardContent className="p-7 relative">
+            <div className="text-center mb-8">
+              <div className="flex items-center justify-center gap-3 mb-3">
+                <div className="p-3 bg-gradient-to-br from-[var(--color-nutrition)] to-[var(--color-nutrition)]/80 rounded-xl shadow-lg">
+                  <Utensils className="w-6 h-6 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold text-[var(--color-text-primary)]">
+                  Quick Log
+                </h2>
+              </div>
+              <p className="text-[var(--color-text-secondary)] text-lg">
+                Add food to your <span className="text-[var(--color-nutrition)] font-semibold">{mealType}</span> log
               </p>
             </div>
             
             {/* Primary Search Button */}
             <Button
               onClick={() => setShowSearch(true)}
-              className="w-full h-16 mb-4 bg-gradient-to-r from-[var(--color-nutrition)] to-[var(--color-nutrition)] hover:from-[var(--color-nutrition)]/90 hover:to-[var(--color-nutrition)]/80 text-white text-xl font-bold rounded-2xl shadow-2xl shadow-[var(--color-nutrition)]/25 hover:shadow-[var(--color-nutrition)]/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full h-18 mb-6 bg-gradient-to-r from-[var(--color-nutrition)] to-[var(--color-nutrition)]/90 hover:from-[var(--color-nutrition-hover)] hover:to-[var(--color-nutrition-hover)]/90 text-white text-2xl font-bold rounded-2xl shadow-2xl shadow-[var(--color-nutrition)]/30 hover:shadow-[var(--color-nutrition)]/50 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] py-5"
               data-testid="button-search-food-primary"
             >
-              <Search className="w-6 h-6 mr-3" />
-              Search Food
+              <Search className="w-7 h-7 mr-4" />
+              Search Food Database
             </Button>
             
             {/* Secondary Action Buttons */}
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-4">
               <Button
                 variant="outline"
                 onClick={openCameraScanner}
-                className="h-12 bg-white/50 dark:bg-slate-800/50 border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10 hover:border-primary/50 dark:hover:border-primary/60 transition-colors"
+                className="h-16 bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-2 border-[var(--color-nutrition)]/30 hover:bg-[var(--color-nutrition)]/10 hover:border-[var(--color-nutrition)]/50 transition-all duration-200 flex flex-col gap-1 shadow-md hover:shadow-lg"
                 data-testid="button-barcode-scan-secondary"
               >
-                <Barcode className="w-5 h-5 mr-2 text-[var(--color-primary)] dark:text-[var(--color-primary)]" />
-                <span className="text-[var(--color-text-primary)]">Scan Barcode</span>
+                <Barcode className="w-6 h-6 text-[var(--color-nutrition)]" />
+                <span className="text-[var(--color-text-primary)] font-medium text-sm">Scan Barcode</span>
               </Button>
               
               <Button
                 variant="outline"
                 onClick={openPhotoCapture}
-                className="h-12 bg-white/50 dark:bg-slate-800/50 border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10 hover:border-primary/50 dark:hover:border-primary/60 transition-colors"
+                className="h-16 bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-2 border-[var(--color-nutrition)]/30 hover:bg-[var(--color-nutrition)]/10 hover:border-[var(--color-nutrition)]/50 transition-all duration-200 flex flex-col gap-1 shadow-md hover:shadow-lg"
                 data-testid="button-photo-logging-secondary"
               >
-                <ImageIcon className="w-5 h-5 mr-2 text-[var(--color-primary)] dark:text-[var(--color-primary)]" />
-                <span className="text-[var(--color-text-primary)]">Photo Log</span>
+                <ImageIcon className="w-6 h-6 text-[var(--color-nutrition)]" />
+                <span className="text-[var(--color-text-primary)] font-medium text-sm">Photo Log</span>
               </Button>
               
               <Button
                 variant="outline"
                 onClick={() => setShowCustomSection(!showCustomSection)}
-                className="h-12 bg-white/50 dark:bg-slate-800/50 border-[var(--color-primary)]/30 hover:bg-[var(--color-primary)]/10 hover:border-primary/50 dark:hover:border-primary/60 transition-colors"
+                className="h-16 bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-2 border-[var(--color-nutrition)]/30 hover:bg-[var(--color-nutrition)]/10 hover:border-[var(--color-nutrition)]/50 transition-all duration-200 flex flex-col gap-1 shadow-md hover:shadow-lg"
                 data-testid="button-custom-food-secondary"
               >
-                <Plus className="w-5 h-5 mr-2 text-[var(--color-primary)] dark:text-[var(--color-primary)]" />
-                <span className="text-[var(--color-text-primary)]">Add Custom</span>
+                <Plus className="w-6 h-6 text-[var(--color-nutrition)]" />
+                <span className="text-[var(--color-text-primary)] font-medium text-sm">Add Custom</span>
               </Button>
             </div>
             
             {/* Search Interface (appears when Search Food is clicked) */}
             {showSearch && (
-              <div className="mt-6 space-y-4">
-                <form onSubmit={handleSearch} className="space-y-4">
+              <div className="mt-8 space-y-6">
+                <form onSubmit={handleSearch} className="space-y-5">
                   <div className="relative">
-                    <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-400" />
+                    <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 w-6 h-6 text-[var(--color-nutrition)]" />
                     <Input
                       type="text"
                       placeholder="Search for any food..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="h-12 pl-12 text-base bg-white dark:bg-slate-700 border-2 border-[var(--color-nutrition)]/30 focus:border-[var(--color-nutrition)] dark:focus:border-[var(--color-nutrition)] rounded-xl"
+                      className="h-16 pl-16 pr-5 text-lg bg-gradient-to-r from-[var(--color-surface)] to-[var(--color-surface)]/95 border-2 border-[var(--color-nutrition)]/30 focus:border-[var(--color-nutrition)] dark:focus:border-[var(--color-nutrition)] rounded-2xl shadow-lg transition-all duration-200 focus:shadow-xl"
                       data-testid="input-food-search"
                     />
                   </div>
                   <Button 
                     type="submit" 
                     disabled={isSearching || !searchQuery.trim()}
-                    className="w-full h-10 bg-[var(--color-primary)] hover:bg-[var(--color-primary)]/90 text-white font-medium rounded-xl"
+                    className="w-full h-14 bg-gradient-to-r from-[var(--color-nutrition)] to-[var(--color-nutrition)]/90 hover:from-[var(--color-nutrition-hover)] hover:to-[var(--color-nutrition-hover)]/90 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
                     data-testid="button-search-food"
                   >
                     {isSearching ? (
                       <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                        <Loader2 className="w-5 h-5 mr-3 animate-spin" />
                         Searching...
                       </>
                     ) : (
                       <>
-                        <Search className="w-4 h-4 mr-2" />
+                        <Search className="w-5 h-5 mr-3" />
                         Search Foods
                       </>
                     )}
@@ -715,17 +765,17 @@ export default function NutritionPage() {
                 </form>
                 
                 {/* Open Food Facts Attribution */}
-                <div className="pt-3 border-t border-slate-200 dark:border-slate-600">
-                  <p className="text-xs text-slate-500 dark:text-slate-400 text-center flex items-center justify-center gap-1">
+                <div className="pt-4 border-t-2 border-[var(--color-nutrition)]/20">
+                  <p className="text-sm text-[var(--color-text-secondary)] text-center flex items-center justify-center gap-2">
                     Powered by 
                     <a 
                       href="https://openfoodfacts.org" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-[var(--color-primary)] hover:text-[var(--color-primary)]/80 dark:text-[var(--color-primary)] font-medium inline-flex items-center gap-1"
+                      className="text-[var(--color-nutrition)] hover:text-[var(--color-nutrition-hover)] font-bold inline-flex items-center gap-1 transition-colors"
                     >
                       Open Food Facts
-                      <ExternalLink className="w-3 h-3" />
+                      <ExternalLink className="w-4 h-4" />
                     </a>
                   </p>
                 </div>
@@ -738,31 +788,33 @@ export default function NutritionPage() {
 
           {/* Search Results */}
           {isSearching && searchQuery.trim() && (
-            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <Loader2 className="w-5 h-5 animate-spin" />
+            <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-[var(--color-nutrition)]/30 shadow-2xl backdrop-blur-xl">
+              <CardHeader className="bg-gradient-to-r from-[var(--color-nutrition)]/10 to-[var(--color-nutrition)]/5">
+                <CardTitle className="text-xl flex items-center gap-3 text-[var(--color-text-primary)]">
+                  <div className="p-2 bg-[var(--color-nutrition)] rounded-lg">
+                    <Loader2 className="w-5 h-5 animate-spin text-white" />
+                  </div>
                   Searching Foods...
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3" data-testid="search-loading">
+              <CardContent className="space-y-4 p-6" data-testid="search-loading">
                 {/* Loading Skeletons */}
                 {[1, 2, 3].map((index) => (
                   <div
                     key={index}
-                    className="p-4 bg-slate-50/50 dark:bg-slate-700/30 rounded-xl border border-slate-200/50 dark:border-slate-600/50 animate-pulse"
+                    className="p-5 bg-gradient-to-r from-[var(--color-nutrition)]/5 to-[var(--color-nutrition)]/10 rounded-xl border border-[var(--color-nutrition)]/20 animate-pulse"
                   >
                     <div className="flex items-start justify-between">
-                      <div className="flex-1 space-y-2">
-                        <div className="h-5 bg-slate-200 dark:bg-slate-600 rounded w-3/4"></div>
-                        <div className="h-4 bg-slate-200 dark:bg-slate-600 rounded w-1/2"></div>
+                      <div className="flex-1 space-y-3">
+                        <div className="h-6 bg-[var(--color-nutrition)]/20 rounded-lg w-3/4"></div>
+                        <div className="h-4 bg-[var(--color-nutrition)]/15 rounded-lg w-1/2"></div>
                         <div className="flex gap-4">
-                          <div className="h-4 bg-slate-200 dark:bg-slate-600 rounded w-16"></div>
-                          <div className="h-4 bg-slate-200 dark:bg-slate-600 rounded w-12"></div>
-                          <div className="h-4 bg-slate-200 dark:bg-slate-600 rounded w-12"></div>
+                          <div className="h-4 bg-[var(--color-nutrition)]/15 rounded-lg w-16"></div>
+                          <div className="h-4 bg-[var(--color-nutrition)]/15 rounded-lg w-12"></div>
+                          <div className="h-4 bg-[var(--color-nutrition)]/15 rounded-lg w-12"></div>
                         </div>
                       </div>
-                      <div className="h-5 w-5 bg-slate-200 dark:bg-slate-600 rounded"></div>
+                      <div className="h-6 w-6 bg-[var(--color-nutrition)]/20 rounded-lg"></div>
                     </div>
                   </div>
                 ))}
@@ -771,40 +823,44 @@ export default function NutritionPage() {
           )}
           
           {searchResults.length > 0 && !isSearching && (
-            <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <Search className="w-5 h-5" />
+            <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-[var(--color-nutrition)]/30 shadow-2xl backdrop-blur-xl">
+              <CardHeader className="bg-gradient-to-r from-[var(--color-nutrition)]/10 to-[var(--color-nutrition)]/5">
+                <CardTitle className="text-xl flex items-center gap-3 text-[var(--color-text-primary)]">
+                  <div className="p-2 bg-[var(--color-nutrition)] rounded-lg">
+                    <Search className="w-5 h-5 text-white" />
+                  </div>
                   Search Results ({searchResults.length})
                 </CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3 max-h-96 overflow-y-auto">
+              <CardContent className="space-y-4 max-h-96 overflow-y-auto p-6">
                 {searchResults.map((food) => (
                   <div
                     key={food.id}
-                    className="p-4 bg-slate-50/50 dark:bg-slate-700/30 rounded-xl hover:bg-slate-100/50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer border border-slate-200/50 dark:border-slate-600/50"
+                    className="p-5 bg-gradient-to-r from-[var(--color-nutrition)]/5 to-[var(--color-nutrition)]/10 rounded-xl hover:from-[var(--color-nutrition)]/10 hover:to-[var(--color-nutrition)]/15 transition-all duration-200 cursor-pointer border border-[var(--color-nutrition)]/20 hover:border-[var(--color-nutrition)]/30 hover:shadow-lg"
                     onClick={() => setSelectedFood(food)}
                     data-testid={`search-result-${food.id}`}
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <h4 className="font-medium text-[var(--color-text-primary)] text-base">
+                        <h4 className="font-bold text-[var(--color-text-primary)] text-lg mb-1">
                           {food.name}
                         </h4>
                         {food.brand && (
-                          <p className="text-sm text-[var(--color-text-secondary)] mt-1">{food.brand}</p>
+                          <p className="text-sm text-[var(--color-text-secondary)] mb-3 font-medium">{food.brand}</p>
                         )}
-                        <div className="flex items-center gap-4 mt-2 text-sm text-[var(--color-text-secondary)]">
-                          <span className="font-medium text-[var(--color-primary)] dark:text-[var(--color-primary)]">{food.calories} cal</span>
-                          {food.protein && <span>P: {food.protein}g</span>}
-                          {food.carbs && <span>C: {food.carbs}g</span>}
-                          {food.fat && <span>F: {food.fat}g</span>}
+                        <div className="flex items-center gap-4 mb-2">
+                          <span className="bg-[var(--color-nutrition)] text-white px-3 py-1 rounded-full text-sm font-bold">{food.calories} cal</span>
+                          {food.protein && <span className="bg-[var(--color-protein)] text-white px-2 py-1 rounded-full text-xs font-medium">P: {food.protein}g</span>}
+                          {food.carbs && <span className="bg-[var(--color-carbs)] text-white px-2 py-1 rounded-full text-xs font-medium">C: {food.carbs}g</span>}
+                          {food.fat && <span className="bg-[var(--color-fat)] text-white px-2 py-1 rounded-full text-xs font-medium">F: {food.fat}g</span>}
                         </div>
-                        <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                        <p className="text-xs text-[var(--color-text-secondary)] font-medium">
                           per {food.serving || '100g'}
                         </p>
                       </div>
-                      <ChevronRight className="w-5 h-5 text-slate-400 mt-1" />
+                      <div className="p-2 bg-[var(--color-nutrition)]/20 rounded-lg">
+                        <ChevronRight className="w-5 h-5 text-[var(--color-nutrition)]" />
+                      </div>
                     </div>
                   </div>
                 ))}

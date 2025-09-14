@@ -142,15 +142,22 @@ export default function DataExportPage() {
         </div>
 
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Export Your Data</h1>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-2xl border border-[var(--color-action)]/20">
+              <Download className="w-8 h-8 text-[var(--color-action)]" />
+            </div>
+            <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Export Your Data</h1>
+          </div>
           <p className="text-[var(--color-text-secondary)] mt-2">Download your fitness data in standard formats</p>
         </div>
 
         {/* Important Notice */}
-        <Card className="bg-[var(--color-warning)]/10 border-[var(--color-warning)]/30">
+        <Card className="bg-gradient-to-br from-[var(--color-warning)]/15 to-[var(--color-warning)]/5 border-[var(--color-warning)]/30 backdrop-blur-xl">
           <CardContent className="p-4">
             <div className="flex items-start gap-3">
-              <AlertTriangle className="w-5 h-5 text-[var(--color-warning)] mt-0.5 flex-shrink-0" />
+              <div className="p-2 bg-gradient-to-br from-[var(--color-warning)]/20 to-[var(--color-warning)]/10 rounded-lg border border-[var(--color-warning)]/20">
+                <AlertTriangle className="w-5 h-5 text-[var(--color-warning)]" />
+              </div>
               <div>
                 <h3 className="font-semibold text-[var(--color-warning)] mb-1">
                   Data Portability Rights
@@ -174,15 +181,15 @@ export default function DataExportPage() {
             return (
               <Card 
                 key={option.id}
-                className={`bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl transition-all duration-200 ${
-                  isSelected ? 'ring-2 ring-[var(--color-action)]/50 border-[var(--color-action)]/50' : ''
+                className={`bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300 ${
+                  isSelected ? 'ring-2 ring-[var(--color-action)]/50 border-[var(--color-action)]/50 bg-gradient-to-br from-[var(--color-action)]/5 to-[var(--color-action)]/2' : ''
                 }`}
               >
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="p-3 bg-[var(--color-surface)]/80 rounded-xl">
-                        <IconComponent className="w-6 h-6 text-[var(--color-text-secondary)]" />
+                      <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/15 to-[var(--color-action)]/5 rounded-xl border border-[var(--color-action)]/20">
+                        <IconComponent className="w-6 h-6 text-[var(--color-action)]" />
                       </div>
                       <div className="flex-1">
                         <CardTitle className="text-lg text-[var(--color-text-primary)] flex items-center gap-2">
@@ -242,7 +249,7 @@ export default function DataExportPage() {
                   <Button
                     onClick={() => handleExportData(option.id)}
                     disabled={isCurrentlyExporting || isExporting === 'bulk'}
-                    className="w-full bg-[var(--color-surface)] hover:bg-[var(--color-surface)]/80 text-[var(--color-text-primary)] border border-[var(--color-action)]/50 hover:border-[var(--color-action)]"
+                    className="w-full bg-gradient-to-r from-[var(--color-action)]/10 to-[var(--color-action)]/5 hover:from-[var(--color-action)]/20 hover:to-[var(--color-action)]/10 text-[var(--color-action)] border border-[var(--color-action)]/50 hover:border-[var(--color-action)] transition-all duration-300"
                     data-testid={`button-export-${option.id}`}
                   >
                     {isCurrentlyExporting ? (
@@ -264,15 +271,19 @@ export default function DataExportPage() {
         </div>
 
         {/* Bulk Export */}
-        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold flex items-center gap-2">
-              <Database className="w-6 h-6 text-[var(--color-action)]" />
-              Bulk Export
-            </CardTitle>
-            <CardDescription className="text-[var(--color-text-secondary)]">
-              Export multiple data types in a single download
-            </CardDescription>
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-xl border border-[var(--color-action)]/20">
+                <Database className="w-6 h-6 text-[var(--color-action)]" />
+              </div>
+              <div>
+                <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold">Bulk Export</CardTitle>
+                <CardDescription className="text-[var(--color-text-secondary)]">
+                  Export multiple data types in a single download
+                </CardDescription>
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="flex flex-wrap gap-2 mb-4">
@@ -292,7 +303,7 @@ export default function DataExportPage() {
             <Button
               onClick={handleBulkExport}
               disabled={selectedOptions.length === 0 || isExporting !== null}
-              className="w-full bg-[var(--color-action)] hover:bg-[var(--color-action-hover)] text-[var(--color-action-text)] font-bold h-12 rounded-xl shadow-xl"
+              className="w-full bg-gradient-to-r from-[var(--color-action)] to-[var(--color-action)]/90 hover:from-[var(--color-action)]/90 hover:to-[var(--color-action)]/80 text-[var(--color-action-text)] font-bold h-12 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               data-testid="button-bulk-export"
             >
               {isExporting === 'bulk' ? (
@@ -315,12 +326,16 @@ export default function DataExportPage() {
         </Card>
 
         {/* Data Rights & Information */}
-        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold flex items-center gap-2">
-              <Shield className="w-6 h-6 text-[var(--color-success)]" />
-              Your Data Rights
-            </CardTitle>
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-gradient-to-br from-[var(--color-success)]/20 to-[var(--color-success)]/10 rounded-xl border border-[var(--color-success)]/20">
+                <Shield className="w-6 h-6 text-[var(--color-success)]" />
+              </div>
+              <div>
+                <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold">Your Data Rights</CardTitle>
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid md:grid-cols-2 gap-6">

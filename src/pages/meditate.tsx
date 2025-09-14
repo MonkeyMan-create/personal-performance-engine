@@ -286,57 +286,70 @@ export default function MeditatePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
-      <div className="container mx-auto p-4 space-y-6 pb-24">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-indigo-50 dark:from-slate-900 dark:via-purple-900/30 dark:to-indigo-900/30">
+      <div className="container mx-auto p-4 space-y-8 pb-24">
         
         {/* Header */}
-        <div className="flex items-center justify-between pt-8">
-          <Link href="/">
-            <Button variant="ghost" size="sm" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-700" data-testid="button-back">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Home
-            </Button>
-          </Link>
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-white" data-testid="text-page-title">Meditation</h1>
-            <p className="text-slate-600 dark:text-slate-300" data-testid="text-page-subtitle">Find your inner peace</p>
+        <div className="pt-6 text-center space-y-4">
+          <div className="flex items-center justify-center gap-4">
+            <div className="p-3 bg-gradient-to-br from-[var(--color-wellness)] to-[var(--color-wellness)]/80 rounded-2xl shadow-lg">
+              <Brain className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold text-[var(--color-text-primary)]" data-testid="text-page-title">Meditation</h1>
+              <p className="text-[var(--color-text-secondary)] text-lg" data-testid="text-page-subtitle">Find your inner peace</p>
+            </div>
           </div>
-          <div className="w-20"></div> {/* Spacer for centering */}
+          <div className="bg-gradient-to-r from-[var(--color-wellness)]/15 via-[var(--color-wellness)]/10 to-[var(--color-wellness)]/15 rounded-2xl p-4 border border-[var(--color-wellness)]/20">
+            <p className="text-[var(--color-text-secondary)] text-lg flex items-center justify-center gap-2">
+              <Heart className="w-5 h-5 text-[var(--color-wellness)]" />
+              Cultivate mindfulness and reduce stress
+            </p>
+          </div>
         </div>
 
         {!isSessionActive ? (
           <>
             {/* Session Type Selection */}
-            <Card className="bg-white/80 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-              <CardHeader>
-                <CardTitle className="text-slate-900 dark:text-white flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-primary" />
+            <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-wellness)]/5 via-transparent to-[var(--color-wellness)]/5 pointer-events-none"></div>
+              <CardHeader className="bg-gradient-to-r from-[var(--color-wellness)]/10 to-[var(--color-wellness)]/5 relative">
+                <CardTitle className="text-[var(--color-text-primary)] text-2xl font-bold flex items-center gap-3">
+                  <div className="p-2 bg-[var(--color-wellness)] rounded-xl shadow-lg">
+                    <Heart className="w-6 h-6 text-white" />
+                  </div>
                   Choose Your Practice
                 </CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-300">
+                <CardDescription className="text-[var(--color-text-secondary)] text-lg">
                   Select the type of mindfulness practice you'd like to do
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <CardContent className="p-8 relative">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {sessionTypes.map((type) => {
                     const IconComponent = type.icon
+                    const isActive = sessionType === type.type
                     return (
                       <button
                         key={type.type}
                         onClick={() => setSessionType(type.type)}
-                        className={`p-4 rounded-xl border-2 transition-all duration-200 ${
-                          sessionType === type.type
-                            ? 'border-primary bg-primary/10 shadow-lg'
-                            : 'border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/30 hover:bg-slate-100 dark:hover:bg-slate-700/50'
+                        className={`p-6 rounded-2xl border-2 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
+                          isActive
+                            ? 'border-[var(--color-wellness)] bg-gradient-to-br from-[var(--color-wellness)]/15 to-[var(--color-wellness)]/10 shadow-xl shadow-[var(--color-wellness)]/20'
+                            : 'border-[var(--color-wellness)]/30 bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/90 hover:border-[var(--color-wellness)]/50 hover:shadow-lg'
                         }`}
                         data-testid={`button-session-${type.type}`}
                       >
-                        <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${type.color} flex items-center justify-center mb-3 mx-auto`}>
-                          <IconComponent className="w-6 h-6 text-white" />
+                        <div className={`w-16 h-16 rounded-full bg-gradient-to-br from-[var(--color-wellness)] to-[var(--color-wellness)]/80 flex items-center justify-center mb-4 mx-auto shadow-lg ${isActive ? 'scale-110' : ''} transition-transform duration-300`}>
+                          <IconComponent className="w-8 h-8 text-white" />
                         </div>
-                        <h3 className="text-slate-900 dark:text-white font-semibold">{type.title}</h3>
-                        <p className="text-slate-600 dark:text-slate-300 text-sm mt-1">{type.description}</p>
+                        <h3 className="text-[var(--color-text-primary)] font-bold text-xl mb-2">{type.title}</h3>
+                        <p className="text-[var(--color-text-secondary)] font-medium">{type.description}</p>
+                        {isActive && (
+                          <div className="mt-3 flex items-center justify-center">
+                            <div className="w-2 h-2 bg-[var(--color-wellness)] rounded-full animate-pulse"></div>
+                          </div>
+                        )}
                       </button>
                     )
                   })}
@@ -345,35 +358,46 @@ export default function MeditatePage() {
             </Card>
 
             {/* Duration Selection */}
-            <Card className="bg-white/80 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-              <CardHeader>
-                <CardTitle className="text-slate-900 dark:text-white flex items-center gap-2">
-                  <Timer className="w-5 h-5 text-primary" />
+            <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-wellness)]/5 via-transparent to-[var(--color-wellness)]/5 pointer-events-none"></div>
+              <CardHeader className="bg-gradient-to-r from-[var(--color-wellness)]/10 to-[var(--color-wellness)]/5 relative">
+                <CardTitle className="text-[var(--color-text-primary)] text-2xl font-bold flex items-center gap-3">
+                  <div className="p-2 bg-[var(--color-wellness)] rounded-xl shadow-lg">
+                    <Timer className="w-6 h-6 text-white" />
+                  </div>
                   Session Duration
                 </CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-300">
+                <CardDescription className="text-[var(--color-text-secondary)] text-lg">
                   How long would you like to practice?
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                  {durationOptions.map((duration) => (
-                    <button
-                      key={duration.value}
-                      onClick={() => setSelectedDuration(duration.value)}
-                      className={`p-4 rounded-xl border-2 transition-all duration-200 ${
-                        selectedDuration === duration.value
-                          ? 'border-primary bg-primary/10 shadow-lg'
-                          : 'border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/30 hover:bg-slate-100 dark:hover:bg-slate-700/50'
-                      }`}
-                      data-testid={`button-duration-${duration.value}`}
-                    >
-                      <div className="text-center">
-                        <p className="text-slate-900 dark:text-white font-semibold text-lg">{duration.label}</p>
-                        <p className="text-slate-600 dark:text-slate-300 text-xs">{duration.subtitle}</p>
-                      </div>
-                    </button>
-                  ))}
+              <CardContent className="p-8 relative">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {durationOptions.map((duration) => {
+                    const isActive = selectedDuration === duration.value
+                    return (
+                      <button
+                        key={duration.value}
+                        onClick={() => setSelectedDuration(duration.value)}
+                        className={`p-5 rounded-xl border-2 transition-all duration-300 hover:scale-[1.05] active:scale-[0.95] ${
+                          isActive
+                            ? 'border-[var(--color-wellness)] bg-gradient-to-br from-[var(--color-wellness)]/15 to-[var(--color-wellness)]/10 shadow-lg shadow-[var(--color-wellness)]/20'
+                            : 'border-[var(--color-wellness)]/30 bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/90 hover:border-[var(--color-wellness)]/50 hover:shadow-md'
+                        }`}
+                        data-testid={`button-duration-${duration.value}`}
+                      >
+                        <div className="text-center">
+                          <p className={`font-bold text-2xl mb-1 ${isActive ? 'text-[var(--color-wellness)]' : 'text-[var(--color-text-primary)]'}`}>{duration.label}</p>
+                          <p className="text-[var(--color-text-secondary)] text-sm font-medium">{duration.subtitle}</p>
+                          {isActive && (
+                            <div className="mt-2 flex items-center justify-center">
+                              <div className="w-2 h-2 bg-[var(--color-wellness)] rounded-full animate-pulse"></div>
+                            </div>
+                          )}
+                        </div>
+                      </button>
+                    )
+                  })}
                 </div>
               </CardContent>
             </Card>
@@ -383,53 +407,65 @@ export default function MeditatePage() {
               <Button
                 onClick={sessionType === 'breathing' ? startBreathingExercise : startMeditationTimer}
                 size="lg"
-                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white px-8 py-6 text-lg font-semibold shadow-lg shadow-primary/25"
+                className="bg-gradient-to-r from-[var(--color-wellness)] to-[var(--color-wellness)]/90 hover:from-[var(--color-wellness-hover)] hover:to-[var(--color-wellness-hover)]/90 text-white px-12 py-6 text-2xl font-bold shadow-2xl shadow-[var(--color-wellness)]/30 hover:shadow-[var(--color-wellness)]/50 transition-all duration-300 hover:scale-[1.05] active:scale-[0.95] rounded-2xl"
                 data-testid="button-start-session"
               >
-                <Play className="w-6 h-6 mr-3" />
+                <Play className="w-8 h-8 mr-4" />
                 Start {selectedDuration} Min {sessionType === 'breathing' ? 'Breathing' : 'Meditation'}
               </Button>
+              <p className="text-[var(--color-text-secondary)] mt-4 text-lg font-medium">
+                Take a moment to find a comfortable position
+              </p>
             </div>
           </>
         ) : (
           /* Active Session Interface */
           <div className="space-y-8">
             {/* Session Progress */}
-            <Card className="bg-white/80 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
-              <CardContent className="p-8">
-                <div className="text-center space-y-6">
+            <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-[var(--color-wellness)]/30 shadow-2xl backdrop-blur-xl overflow-hidden relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-wellness)]/10 via-[var(--color-wellness)]/5 to-[var(--color-wellness)]/10 pointer-events-none"></div>
+              <CardContent className="p-10 relative">
+                <div className="text-center space-y-8">
                   {/* Timer Display */}
-                  <div>
-                    <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-2" data-testid="text-time-remaining">
-                      {formatTime(breathingState.timeRemaining)}
-                    </h2>
-                    <p className="text-slate-600 dark:text-slate-300">
-                      {sessionType === 'breathing' ? 'Breathing Exercise' : 'Meditation'} - {selectedDuration} minutes
-                    </p>
+                  <div className="space-y-4">
+                    <div className="bg-gradient-to-br from-[var(--color-wellness)]/15 to-[var(--color-wellness)]/10 rounded-3xl p-6 border border-[var(--color-wellness)]/20">
+                      <h2 className="text-6xl font-bold text-[var(--color-wellness)] mb-3" data-testid="text-time-remaining">
+                        {formatTime(breathingState.timeRemaining)}
+                      </h2>
+                      <p className="text-[var(--color-text-secondary)] text-xl font-medium">
+                        {sessionType === 'breathing' ? 'Breathing Exercise' : 'Meditation'} - {selectedDuration} minutes
+                      </p>
+                    </div>
                   </div>
 
                   {/* Breathing Guide (only for breathing sessions) */}
                   {sessionType === 'breathing' && (
-                    <div className="space-y-6">
+                    <div className="space-y-8">
                       {/* Breathing Circle */}
                       <div className="flex justify-center">
-                        <div 
-                          className={`w-32 h-32 rounded-full bg-gradient-to-r from-primary/80 to-primary shadow-lg shadow-primary/30 transition-transform duration-4000 ease-in-out ${
-                            breathingState.isActive && !isPaused ? getBreathingScale() : 'scale-100'
-                          }`}
-                          style={{
-                            transitionDuration: `${BREATHING_TIMING[breathingState.phase]}s`
-                          }}
-                          data-testid="breathing-circle"
-                        />
+                        <div className="relative">
+                          <div 
+                            className={`w-40 h-40 rounded-full bg-gradient-to-br from-[var(--color-wellness)] to-[var(--color-wellness)]/80 shadow-2xl shadow-[var(--color-wellness)]/40 transition-transform duration-4000 ease-in-out ${
+                              breathingState.isActive && !isPaused ? getBreathingScale() : 'scale-100'
+                            }`}
+                            style={{
+                              transitionDuration: `${BREATHING_TIMING[breathingState.phase]}s`
+                            }}
+                            data-testid="breathing-circle"
+                          />
+                          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent pointer-events-none"></div>
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            <Wind className="w-8 h-8 text-white" />
+                          </div>
+                        </div>
                       </div>
 
                       {/* Breathing Instruction */}
-                      <div>
-                        <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-2" data-testid="text-breathing-instruction">
+                      <div className="bg-gradient-to-br from-[var(--color-wellness)]/10 to-[var(--color-wellness)]/5 rounded-2xl p-6 border border-[var(--color-wellness)]/20">
+                        <h3 className="text-3xl font-bold text-[var(--color-wellness)] mb-3" data-testid="text-breathing-instruction">
                           {getBreathingInstruction()}
                         </h3>
-                        <p className="text-primary" data-testid="text-cycle-count">
+                        <p className="text-[var(--color-text-secondary)] text-lg font-medium" data-testid="text-cycle-count">
                           Cycle {breathingState.currentCycle + 1}
                         </p>
                       </div>
@@ -438,15 +474,21 @@ export default function MeditatePage() {
 
                   {/* Meditation Visual (for meditation sessions) */}
                   {sessionType === 'meditation' && (
-                    <div className="space-y-6">
+                    <div className="space-y-8">
                       <div className="flex justify-center">
-                        <div className="w-32 h-32 rounded-full bg-gradient-to-r from-secondary/80 to-secondary shadow-lg shadow-secondary/30 animate-pulse" />
+                        <div className="relative">
+                          <div className="w-40 h-40 rounded-full bg-gradient-to-br from-[var(--color-wellness)] to-[var(--color-wellness)]/80 shadow-2xl shadow-[var(--color-wellness)]/40 animate-pulse" />
+                          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent pointer-events-none"></div>
+                          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            <Brain className="w-8 h-8 text-white" />
+                          </div>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-2">
+                      <div className="bg-gradient-to-br from-[var(--color-wellness)]/10 to-[var(--color-wellness)]/5 rounded-2xl p-6 border border-[var(--color-wellness)]/20">
+                        <h3 className="text-3xl font-bold text-[var(--color-wellness)] mb-3">
                           Meditation in Progress
                         </h3>
-                        <p className="text-slate-600 dark:text-slate-300">
+                        <p className="text-[var(--color-text-secondary)] text-lg font-medium">
                           Focus on your breath and let thoughts pass by
                         </p>
                       </div>
@@ -454,16 +496,16 @@ export default function MeditatePage() {
                   )}
 
                   {/* Session Controls */}
-                  <div className="flex justify-center gap-4">
+                  <div className="flex justify-center gap-6">
                     {!isPaused ? (
                       <Button
                         onClick={pauseSession}
                         variant="outline"
                         size="lg"
-                        className="border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-700/50 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700"
+                        className="border-2 border-[var(--color-wellness)]/40 bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/90 text-[var(--color-wellness)] hover:bg-[var(--color-wellness)]/10 hover:border-[var(--color-wellness)]/60 px-8 py-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
                         data-testid="button-pause"
                       >
-                        <Pause className="w-5 h-5 mr-2" />
+                        <Pause className="w-6 h-6 mr-3" />
                         Pause
                       </Button>
                     ) : (
@@ -471,10 +513,10 @@ export default function MeditatePage() {
                         onClick={resumeSession}
                         variant="outline"
                         size="lg"
-                        className="border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-700/50 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700"
+                        className="border-2 border-[var(--color-wellness)]/40 bg-gradient-to-br from-[var(--color-wellness)]/10 to-[var(--color-wellness)]/5 text-[var(--color-wellness)] hover:bg-[var(--color-wellness)]/15 hover:border-[var(--color-wellness)]/60 px-8 py-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
                         data-testid="button-resume"
                       >
-                        <Play className="w-5 h-5 mr-2" />
+                        <Play className="w-6 h-6 mr-3" />
                         Resume
                       </Button>
                     )}
@@ -483,10 +525,10 @@ export default function MeditatePage() {
                       onClick={stopSession}
                       variant="outline"
                       size="lg"
-                      className="border-red-300/50 bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 hover:bg-red-200 dark:hover:bg-red-900/30"
+                      className="border-2 border-red-400/50 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-900/30 text-red-600 dark:text-red-400 hover:bg-red-200 dark:hover:bg-red-900/40 px-8 py-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200"
                       data-testid="button-stop"
                     >
-                      <Square className="w-5 h-5 mr-2" />
+                      <Square className="w-6 h-6 mr-3" />
                       Stop
                     </Button>
                   </div>
@@ -498,36 +540,42 @@ export default function MeditatePage() {
 
         {/* Recent Sessions */}
         {completedSessions.length > 0 && (
-          <Card className="bg-white/10 backdrop-blur-sm border-white/20">
-            <CardHeader>
-              <CardTitle className="text-slate-900 dark:text-white flex items-center gap-2">
-                <Star className="w-5 h-5 text-primary" />
+          <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/95 border-[var(--color-border)] shadow-2xl backdrop-blur-xl overflow-hidden relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-wellness)]/5 via-transparent to-[var(--color-wellness)]/5 pointer-events-none"></div>
+            <CardHeader className="bg-gradient-to-r from-[var(--color-wellness)]/10 to-[var(--color-wellness)]/5 relative">
+              <CardTitle className="text-[var(--color-text-primary)] text-2xl font-bold flex items-center gap-3">
+                <div className="p-2 bg-[var(--color-wellness)] rounded-xl shadow-lg">
+                  <Star className="w-6 h-6 text-white" />
+                </div>
                 Recent Sessions
               </CardTitle>
-              <CardDescription className="text-primary">
+              <CardDescription className="text-[var(--color-wellness)] text-lg font-medium">
                 Your mindfulness journey
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
+            <CardContent className="p-8 relative">
+              <div className="space-y-4">
                 {completedSessions.slice(0, 5).map((session, index) => (
                   <div 
                     key={index}
-                    className="flex items-center justify-between p-3 bg-slate-100 dark:bg-slate-700/30 rounded-lg"
+                    className="flex items-center justify-between p-5 bg-gradient-to-r from-[var(--color-wellness)]/5 to-[var(--color-wellness)]/10 rounded-xl border border-[var(--color-wellness)]/20 hover:shadow-lg transition-all duration-200"
                     data-testid={`session-${index}`}
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary/80 to-primary flex items-center justify-center">
-                        <CheckCircle className="w-5 h-5 text-white" />
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--color-wellness)] to-[var(--color-wellness)]/80 flex items-center justify-center shadow-lg">
+                        <CheckCircle className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <p className="text-slate-900 dark:text-white font-medium">
+                        <p className="text-[var(--color-text-primary)] font-bold text-lg">
                           {session.duration} min {session.type === 'breathing' ? 'Breathing' : 'Meditation'}
                         </p>
-                        <p className="text-slate-600 dark:text-slate-300 text-sm">
+                        <p className="text-[var(--color-text-secondary)] font-medium">
                           {session.completedAt.toLocaleDateString()} at {session.completedAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                         </p>
                       </div>
+                    </div>
+                    <div className="text-[var(--color-wellness)] font-bold text-xl">
+                      ✓
                     </div>
                   </div>
                 ))}

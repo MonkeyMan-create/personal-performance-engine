@@ -68,15 +68,20 @@ export default function ContactSupportPage() {
         </div>
 
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Contact Support</h1>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-2xl border border-[var(--color-action)]/20">
+              <HelpCircle className="w-8 h-8 text-[var(--color-action)]" />
+            </div>
+            <h1 className="text-3xl font-bold text-[var(--color-text-primary)]" data-testid="page-title">Contact Support</h1>
+          </div>
           <p className="text-[var(--color-text-secondary)] mt-2">Get help with your account, technical issues, or general questions</p>
         </div>
 
         {/* Contact Options */}
         <div className="grid md:grid-cols-3 gap-6">
-          <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+          <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300">
             <CardContent className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 bg-[var(--color-action)]/10 rounded-xl mx-auto flex items-center justify-center">
+              <div className="w-16 h-16 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-xl mx-auto flex items-center justify-center border border-[var(--color-action)]/20">
                 <MessageCircle className="w-8 h-8 text-[var(--color-action)]" />
               </div>
               <div>
@@ -88,7 +93,7 @@ export default function ContactSupportPage() {
               </div>
               <Button 
                 variant="outline" 
-                className="w-full border-[var(--color-action)]/50 text-[var(--color-action)] hover:bg-[var(--color-action)]/10"
+                className="w-full bg-gradient-to-r from-[var(--color-action)]/10 to-[var(--color-action)]/5 border-[var(--color-action)]/50 text-[var(--color-action)] hover:bg-gradient-to-r hover:from-[var(--color-action)]/20 hover:to-[var(--color-action)]/10 hover:border-[var(--color-action)] transition-all duration-300"
                 disabled
                 data-testid="button-live-chat"
               >
@@ -97,10 +102,10 @@ export default function ContactSupportPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+          <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300">
             <CardContent className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 bg-[var(--color-action)]/20 rounded-xl mx-auto flex items-center justify-center">
-                <Mail className="w-8 h-8 text-[var(--color-action)]" />
+              <div className="w-16 h-16 bg-gradient-to-br from-[var(--color-activity)]/20 to-[var(--color-activity)]/10 rounded-xl mx-auto flex items-center justify-center border border-[var(--color-activity)]/20">
+                <Mail className="w-8 h-8 text-[var(--color-activity)]" />
               </div>
               <div>
                 <h3 className="font-bold text-[var(--color-text-primary)] text-lg">Email Support</h3>
@@ -111,7 +116,7 @@ export default function ContactSupportPage() {
               </div>
               <Button 
                 variant="outline" 
-                className="w-full border-[var(--color-action)]/50 text-[var(--color-action)] hover:bg-[var(--color-action)]/10"
+                className="w-full bg-gradient-to-r from-[var(--color-activity)]/10 to-[var(--color-activity)]/5 border-[var(--color-activity)]/50 text-[var(--color-activity)] hover:bg-gradient-to-r hover:from-[var(--color-activity)]/20 hover:to-[var(--color-activity)]/10 hover:border-[var(--color-activity)] transition-all duration-300"
                 data-testid="button-email-support"
               >
                 Use Form Below
@@ -119,10 +124,10 @@ export default function ContactSupportPage() {
             </CardContent>
           </Card>
 
-          <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+          <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300">
             <CardContent className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 bg-[var(--color-action)]/10 rounded-xl mx-auto flex items-center justify-center">
-                <HelpCircle className="w-8 h-8 text-[var(--color-action)]" />
+              <div className="w-16 h-16 bg-gradient-to-br from-[var(--color-wellness)]/20 to-[var(--color-wellness)]/10 rounded-xl mx-auto flex items-center justify-center border border-[var(--color-wellness)]/20">
+                <HelpCircle className="w-8 h-8 text-[var(--color-wellness)]" />
               </div>
               <div>
                 <h3 className="font-bold text-[var(--color-text-primary)] text-lg">Help Center</h3>
@@ -134,7 +139,7 @@ export default function ContactSupportPage() {
               <Link href="/help-center">
                 <Button 
                   variant="outline" 
-                  className="w-full border-[var(--color-action)]/50 text-[var(--color-action)] hover:bg-[var(--color-action)]/10"
+                  className="w-full bg-gradient-to-r from-[var(--color-wellness)]/10 to-[var(--color-wellness)]/5 border-[var(--color-wellness)]/50 text-[var(--color-wellness)] hover:bg-gradient-to-r hover:from-[var(--color-wellness)]/20 hover:to-[var(--color-wellness)]/10 hover:border-[var(--color-wellness)] transition-all duration-300"
                   data-testid="button-help-center"
                 >
                   Visit Help Center
@@ -145,15 +150,19 @@ export default function ContactSupportPage() {
         </div>
 
         {/* Contact Form */}
-        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
-            <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold flex items-center gap-2">
-              <Send className="w-6 h-6 text-[var(--color-action)]" />
-              Send Support Message
-            </CardTitle>
-            <CardDescription className="text-[var(--color-text-secondary)]">
-              Fill out the form below and we'll get back to you as soon as possible
-            </CardDescription>
+            <div className="flex items-center gap-3">
+              <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-xl border border-[var(--color-action)]/20">
+                <Send className="w-6 h-6 text-[var(--color-action)]" />
+              </div>
+              <div>
+                <CardTitle className="text-[var(--color-text-primary)] text-xl font-bold">Send Support Message</CardTitle>
+                <CardDescription className="text-[var(--color-text-secondary)]">
+                  Fill out the form below and we'll get back to you as soon as possible
+                </CardDescription>
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid md:grid-cols-2 gap-4">
@@ -193,7 +202,7 @@ export default function ContactSupportPage() {
                 value={formData.subject}
                 onChange={(e) => handleInputChange('subject', e.target.value)}
                 placeholder="Brief description of your issue"
-                className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400"
+                className="bg-[var(--color-surface)] border-[var(--color-border)] text-[var(--color-text-primary)] placeholder:text-[var(--color-text-secondary)]"
                 data-testid="input-subject"
               />
             </div>
@@ -216,7 +225,7 @@ export default function ContactSupportPage() {
               <Button 
                 onClick={handleSubmitForm}
                 disabled={isSubmitting}
-                className="flex-1 bg-[var(--color-action)] hover:bg-[var(--color-action-hover)] text-[var(--color-action-text)] font-bold h-12 rounded-xl shadow-xl"
+                className="flex-1 bg-gradient-to-r from-[var(--color-action)] to-[var(--color-action)]/90 text-[var(--color-action-text)] hover:from-[var(--color-action)]/90 hover:to-[var(--color-action)]/80 font-bold h-12 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 data-testid="button-submit-support"
               >
                 {isSubmitting ? (
@@ -240,7 +249,7 @@ export default function ContactSupportPage() {
         </Card>
 
         {/* Response Time Info */}
-        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardContent className="p-6">
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div className="space-y-2">

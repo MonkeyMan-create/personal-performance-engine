@@ -10,17 +10,22 @@ export default function MissionModelPage() {
       <div className="container mx-auto p-4 space-y-8 pb-24">
         {/* Header */}
         <div className="text-center pt-6 space-y-4">
-          <h1 className="text-3xl font-bold text-[var(--color-text-primary)]">Our Mission & Model</h1>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-2xl border border-[var(--color-action)]/20">
+              <Heart className="w-8 h-8 text-[var(--color-action)]" />
+            </div>
+            <h1 className="text-3xl font-bold text-[var(--color-text-primary)]">Our Mission & Model</h1>
+          </div>
           <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
             Transparent, user-first fitness tracking. No hidden costs, no data sales, no compromises on your privacy.
           </p>
         </div>
 
         {/* Section 1: Our Promise - Free Features */}
-        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-[var(--color-success)]/20 rounded-lg">
+              <div className="p-3 bg-gradient-to-br from-[var(--color-success)]/20 to-[var(--color-success)]/10 rounded-xl border border-[var(--color-success)]/20">
                 <Shield className="w-6 h-6 text-[var(--color-success)]" />
               </div>
               <div>
@@ -98,10 +103,10 @@ export default function MissionModelPage() {
         </Card>
 
         {/* Section 2: Support the Mission */}
-        <Card className="bg-[var(--color-surface)] border-[var(--color-border)] backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-[var(--color-warning)]/20 rounded-lg">
+              <div className="p-3 bg-gradient-to-br from-[var(--color-warning)]/20 to-[var(--color-warning)]/10 rounded-xl border border-[var(--color-warning)]/20">
                 <Heart className="w-6 h-6 text-[var(--color-warning)]" />
               </div>
               <div>
@@ -158,7 +163,7 @@ export default function MissionModelPage() {
                 <div className="text-center">
                   <Button 
                     variant="outline" 
-                    className="border-[var(--color-warning)]/50 text-[var(--color-warning)] hover:bg-[var(--color-warning)]/10"
+                    className="bg-gradient-to-r from-[var(--color-warning)]/10 to-[var(--color-warning)]/5 border-[var(--color-warning)]/50 text-[var(--color-warning)] hover:from-[var(--color-warning)]/20 hover:to-[var(--color-warning)]/10 hover:border-[var(--color-warning)] transition-all duration-300"
                     disabled
                   >
                     <Heart className="w-4 h-4 mr-2" />
@@ -171,17 +176,17 @@ export default function MissionModelPage() {
         </Card>
 
         {/* Section 3: PPE Premium Future */}
-        <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
+        <Card className="bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface)]/80 border-[var(--color-border)] backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg">
-                <Zap className="w-6 h-6 text-primary" />
+              <div className="p-3 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-xl border border-[var(--color-action)]/20">
+                <Zap className="w-6 h-6 text-[var(--color-action)]" />
               </div>
               <div>
-                <CardTitle className="text-slate-900 dark:text-white text-xl">
+                <CardTitle className="text-[var(--color-text-primary)] text-xl">
                   Unlock Your Potential: PPE Premium (Future)
                 </CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-300">
+                <CardDescription className="text-[var(--color-text-secondary)]">
                   Advanced AI features - deferred until the app is financially sustainable
                 </CardDescription>
               </div>
@@ -189,12 +194,12 @@ export default function MissionModelPage() {
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Important Notice */}
-            <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border border-yellow-200 dark:border-yellow-800">
+            <div className="p-4 bg-gradient-to-br from-[var(--color-warning)]/15 to-[var(--color-warning)]/5 rounded-lg border border-[var(--color-warning)]/30">
               <div className="flex items-center gap-2 mb-2">
-                <Clock className="w-5 h-5 text-yellow-600 dark:text-yellow-400" />
-                <p className="font-medium text-yellow-800 dark:text-yellow-200">Development Status</p>
+                <Clock className="w-5 h-5 text-[var(--color-warning)]" />
+                <p className="font-medium text-[var(--color-warning)]">Development Status</p>
               </div>
-              <p className="text-yellow-700 dark:text-yellow-300 text-sm">
+              <p className="text-[var(--color-warning)] text-sm">
                 These premium features are <strong>currently deferred</strong> while we focus on building a strong user base 
                 with our free core features. Premium development will begin once the platform is financially sustainable.
               </p>
@@ -202,20 +207,20 @@ export default function MissionModelPage() {
 
             {/* Premium Features Comparison Table */}
             <div className="space-y-4">
-              <h3 className="font-semibold text-slate-900 dark:text-white text-center mb-6">
+              <h3 className="font-semibold text-[var(--color-text-primary)] text-center mb-6">
                 Premium Features: Cost Transparency & Benefits
               </h3>
               
               <div className="space-y-4">
                 {/* AI Coach Feature */}
-                <div className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden">
-                  <div className="bg-slate-50 dark:bg-slate-800 p-4 border-b border-slate-200 dark:border-slate-700">
+                <div className="border border-[var(--color-border)] rounded-lg overflow-hidden bg-gradient-to-br from-[var(--color-surface)]/60 to-[var(--color-surface)]/40">
+                  <div className="bg-gradient-to-br from-[var(--color-surface)]/80 to-[var(--color-surface)]/60 p-4 border-b border-[var(--color-border)]">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <Brain className="w-6 h-6 text-primary" />
-                        <h4 className="font-semibold text-slate-900 dark:text-white">AI Personal Coach</h4>
+                        <Brain className="w-6 h-6 text-[var(--color-action)]" />
+                        <h4 className="font-semibold text-[var(--color-text-primary)]">AI Personal Coach</h4>
                       </div>
-                      <Badge variant="outline" className="border-primary/30 text-primary">
+                      <Badge variant="outline" className="border-[var(--color-action)]/30 text-[var(--color-action)]">
                         ~$5-8/month
                       </Badge>
                     </div>
@@ -333,33 +338,33 @@ export default function MissionModelPage() {
             </div>
 
             {/* Pricing Philosophy */}
-            <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
-              <h4 className="font-semibold text-slate-900 dark:text-white mb-3 text-center">Our Pricing Philosophy</h4>
+            <div className="p-4 bg-gradient-to-br from-[var(--color-surface)]/80 to-[var(--color-surface)]/60 rounded-lg border border-[var(--color-border)]">
+              <h4 className="font-semibold text-[var(--color-text-primary)] mb-3 text-center">Our Pricing Philosophy</h4>
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div className="space-y-2">
-                  <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center mx-auto">
-                    <Shield className="w-6 h-6 text-primary" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-lg flex items-center justify-center mx-auto border border-[var(--color-action)]/20">
+                    <Shield className="w-6 h-6 text-[var(--color-action)]" />
                   </div>
-                  <h5 className="font-medium text-slate-900 dark:text-white">Transparent Costs</h5>
-                  <p className="text-sm text-slate-600 dark:text-slate-300">
+                  <h5 className="font-medium text-[var(--color-text-primary)]">Transparent Costs</h5>
+                  <p className="text-sm text-[var(--color-text-secondary)]">
                     Every premium feature shows exactly why it costs money
                   </p>
                 </div>
                 <div className="space-y-2">
-                  <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mx-auto">
-                    <TrendingUp className="w-6 h-6 text-green-600 dark:text-green-400" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-[var(--color-success)]/20 to-[var(--color-success)]/10 rounded-lg flex items-center justify-center mx-auto border border-[var(--color-success)]/20">
+                    <TrendingUp className="w-6 h-6 text-[var(--color-success)]" />
                   </div>
-                  <h5 className="font-medium text-slate-900 dark:text-white">Real Value</h5>
-                  <p className="text-sm text-slate-600 dark:text-slate-300">
+                  <h5 className="font-medium text-[var(--color-text-primary)]">Real Value</h5>
+                  <p className="text-sm text-[var(--color-text-secondary)]">
                     Premium features provide tangible benefits worth the cost
                   </p>
                 </div>
                 <div className="space-y-2">
-                  <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center mx-auto">
-                    <Heart className="w-6 h-6 text-primary" />
+                  <div className="w-12 h-12 bg-gradient-to-br from-[var(--color-action)]/20 to-[var(--color-action)]/10 rounded-lg flex items-center justify-center mx-auto border border-[var(--color-action)]/20">
+                    <Heart className="w-6 h-6 text-[var(--color-action)]" />
                   </div>
-                  <h5 className="font-medium text-slate-900 dark:text-white">User-First</h5>
-                  <p className="text-sm text-slate-600 dark:text-slate-300">
+                  <h5 className="font-medium text-[var(--color-text-primary)]">User-First</h5>
+                  <p className="text-sm text-[var(--color-text-secondary)]">
                     Free core features ensure everyone can benefit
                   </p>
                 </div>
@@ -369,18 +374,18 @@ export default function MissionModelPage() {
         </Card>
 
         {/* Call to Action */}
-        <Card className="bg-gradient-to-r from-primary/10 to-primary/20 dark:from-primary/20 dark:to-primary/30 border-primary/20 dark:border-primary/30">
+        <Card className="bg-gradient-to-r from-[var(--color-action)]/15 to-[var(--color-action)]/5 border-[var(--color-action)]/30 shadow-2xl">
           <CardContent className="p-6 text-center space-y-4">
-            <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
+            <h3 className="text-xl font-semibold text-[var(--color-text-primary)]">
               Start Your Fitness Journey Today
             </h3>
-            <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            <p className="text-[var(--color-text-secondary)] max-w-2xl mx-auto">
               Get started with our powerful, free tools. Track workouts, monitor nutrition, and see your progress — 
               no registration required with Guest Mode.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button 
-                className="bg-slate-700 dark:bg-slate-600 hover:bg-slate-600 dark:hover:bg-slate-500 text-white border-2 border-primary/50 hover:border-primary hover:ring-4 hover:ring-primary/20"
+                className="bg-gradient-to-r from-[var(--color-action)] to-[var(--color-action)]/90 hover:from-[var(--color-action)]/90 hover:to-[var(--color-action)]/80 text-[var(--color-action-text)] shadow-lg hover:shadow-xl transition-all duration-300"
                 onClick={() => window.location.href = '/workouts'}
               >
                 <Zap className="w-4 h-4 mr-2" />
@@ -388,7 +393,7 @@ export default function MissionModelPage() {
               </Button>
               <Button 
                 variant="outline"
-                className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700"
+                className="bg-gradient-to-r from-[var(--color-surface)]/50 to-[var(--color-surface)]/30 border-[var(--color-border)] text-[var(--color-text-secondary)] hover:from-[var(--color-surface)]/70 hover:to-[var(--color-surface)]/50 hover:text-[var(--color-text-primary)] transition-all duration-300"
                 onClick={() => window.location.href = '/nutrition'}
               >
                 Track Your Nutrition
