@@ -128,17 +128,23 @@ export default function SettingsPage() {
     semanticColor?: 'action' | 'wellness' | 'success' | 'warning' | 'activity'
   }) => (
     <div 
-      className={`flex items-center justify-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl bg-gradient-to-br from-[var(--color-${semanticColor})]/60 to-[var(--color-${semanticColor})]/70 border border-[var(--color-${semanticColor})]/50 backdrop-blur-sm shadow-[var(--color-${semanticColor})]/20 hover:from-[var(--color-${semanticColor})]/70 hover:to-[var(--color-${semanticColor})]/80`}
+      className="flex items-center justify-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl backdrop-blur-sm"
+      style={{
+        background: `linear-gradient(to bottom right, rgba(var(--color-${semanticColor}-rgb), 0.6), rgba(var(--color-${semanticColor}-rgb), 0.7))`,
+        borderColor: `rgba(var(--color-${semanticColor}-rgb), 0.5)`,
+        borderWidth: '1px',
+        boxShadow: `0 10px 15px -3px rgba(var(--color-${semanticColor}-rgb), 0.2), 0 4px 6px -2px rgba(var(--color-${semanticColor}-rgb), 0.05)`
+      }}
       onClick={showToggle ? undefined : action}
       data-testid={testId}
     >
       <div className="flex items-center gap-4">
         <div className="p-3 bg-white/20 rounded-xl shadow-lg backdrop-blur-sm">
-          <Icon className="w-5 h-5 text-white" />
+          <Icon className="w-5 h-5" style={{ color: 'white' }} />
         </div>
         <div>
-          <p className="font-bold text-white text-lg">{title}</p>
-          {subtitle && <p className="text-white/90 mt-1 font-medium">{subtitle}</p>}
+          <p className="font-bold text-lg" style={{ color: 'white' }}>{title}</p>
+          {subtitle && <p className="mt-1 font-medium" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>{subtitle}</p>}
         </div>
       </div>
       
@@ -154,9 +160,11 @@ export default function SettingsPage() {
           data-testid={`${testId}-toggle`}
         >
           <span
-            className={`inline-block h-6 w-6 transform rounded-full shadow-lg transition-transform duration-300 ${
-              toggleState ? `translate-x-7 bg-[var(--color-${semanticColor})]` : 'translate-x-1 bg-white'
-            }`}
+            className="inline-block h-6 w-6 transform rounded-full shadow-lg transition-transform duration-300"
+            style={{
+              transform: toggleState ? 'translateX(1.75rem)' : 'translateX(0.25rem)',
+              backgroundColor: toggleState ? `var(--color-${semanticColor})` : 'white'
+            }}
           />
         </button>
       ) : showChevron ? (
