@@ -287,7 +287,7 @@ export default function HomePage() {
         <div className="space-y-4">
           <Link href="/workouts">
             <Card 
-              className="bg-gradient-to-r from-[var(--color-action)] to-[var(--color-action)] border-0 shadow-2xl shadow-[var(--color-action)]/25 hover:shadow-[var(--color-action)]/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="bg-gradient-to-r from-[var(--color-activity)] to-[var(--color-activity)] border-0 shadow-2xl shadow-[var(--color-activity)]/25 hover:shadow-[var(--color-activity)]/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               data-testid="card-log-workout"
             >
               <CardContent className="p-6">
