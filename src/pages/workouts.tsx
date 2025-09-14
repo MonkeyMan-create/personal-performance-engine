@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import AuthPrompt from '../components/AuthPrompt'
-import LazyExerciseSelector from '../components/LazyExerciseSelector'
+import ExerciseSearch from '../components/ExerciseSearch'
 import LazyActiveSetView from '../components/LazyActiveSetView'
 import LazyWorkoutTemplateSelector from '../components/LazyWorkoutTemplateSelector'
-import { convertTemplateToWorkoutForm } from '../utils/workoutTemplates'
+import { convertTemplateToWorkoutForm, WORKOUT_TEMPLATES, getTemplateById } from '../utils/workoutTemplates'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
@@ -53,75 +53,22 @@ export default function WorkoutsPage() {
   const [workoutDuration, setWorkoutDuration] = useState('')
   const [workoutNotes, setWorkoutNotes] = useState('')
 
-  // Workout templates data
-  const workoutTemplates = [
-    {
-      id: 'upper-body-strength',
-      title: 'Upper Body Strength',
-      description: 'Build upper body muscle and strength',
-      duration: 45,
-      exercises: 6,
-      difficulty: 'Intermediate',
-      type: 'Strength Training',
-      icon: Dumbbell,
-      color: 'from-yellow-500 to-orange-500'
-    },
-    {
-      id: 'lower-body-power',
-      title: 'Lower Body Power',
-      description: 'Explosive leg and glute training',
-      duration: 50,
-      exercises: 7,
-      difficulty: 'Advanced',
-      type: 'Power Training',
-      icon: Target,
-      color: 'from-red-500 to-red-600'
-    },
-    {
-      id: 'hiit-cardio',
-      title: 'HIIT Cardio',
-      description: 'High-intensity interval training',
-      duration: 25,
-      exercises: 8,
-      difficulty: 'Intermediate',
-      type: 'Cardio',
-      icon: Flame,
-      color: 'from-orange-500 to-yellow-500'
-    },
-    {
-      id: 'full-body-circuit',
-      title: 'Full Body Circuit',
-      description: 'Complete body conditioning workout',
-      duration: 40,
-      exercises: 8,
-      difficulty: 'Beginner',
-      type: 'Circuit Training',
-      icon: Activity,
-      color: 'from-green-500 to-emerald-500'
-    },
-    {
-      id: 'core-abs',
-      title: 'Core & Abs',
-      description: 'Targeted core strengthening',
-      duration: 20,
-      exercises: 5,
-      difficulty: 'Beginner',
-      type: 'Core Training',
-      icon: Target,
-      color: 'from-green-500 to-emerald-500'
-    },
-    {
-      id: 'yoga-flow',
-      title: 'Yoga Flow',
-      description: 'Flexibility and mindfulness',
-      duration: 35,
-      exercises: 4,
-      difficulty: 'Beginner',
-      type: 'Flexibility',
-      icon: Heart,
-      color: 'from-green-500 to-emerald-500'
-    }
-  ]
+  // Workout templates data - display summaries mapped from actual templates
+  const workoutTemplates = WORKOUT_TEMPLATES.map(template => ({
+    id: template.id,
+    title: template.name,
+    description: template.description,
+    duration: parseInt(template.duration),
+    exercises: template.exercises.length,
+    difficulty: template.difficulty.charAt(0).toUpperCase() + template.difficulty.slice(1),
+    type: template.category.charAt(0).toUpperCase() + template.category.slice(1),
+    icon: template.category === 'strength' ? Dumbbell : 
+          template.category === 'cardio' ? Heart : 
+          template.category === 'hybrid' ? Activity : Target,
+    color: template.difficulty === 'beginner' ? 'from-green-500 to-emerald-500' :
+           template.difficulty === 'intermediate' ? 'from-orange-500 to-yellow-500' :
+           'from-red-500 to-red-600'
+  }))
 
   // Recommended workout (featured)
   const recommendedWorkout = workoutTemplates[0]
@@ -258,7 +205,14 @@ export default function WorkoutsPage() {
   }
 
   const handleSelectTemplateFromCard = (template: any) => {
-    const templateForm = convertTemplateToWorkoutForm(template)
+    // Get the actual template from the templates database using the ID
+    const actualTemplate = getTemplateById(template.id)
+    if (!actualTemplate) {
+      console.error('Template not found:', template.id)
+      return
+    }
+    
+    const templateForm = convertTemplateToWorkoutForm(actualTemplate)
     handleTemplateSelection(templateForm)
   }
 
@@ -397,8 +351,9 @@ export default function WorkoutsPage() {
               </Card>
             )}
 
-            {/* Exercise selector overlay */}
-            <LazyExerciseSelector
+            {/* Exercise search overlay */}
+            <ExerciseSearch
+              isOpen={true}
               onSelectExercise={handleSelectExercise}
               onClose={() => setViewMode('overview')}
             />

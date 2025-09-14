@@ -384,16 +384,38 @@ export function getTemplatesByCategory(category: 'strength' | 'cardio' | 'hybrid
 
 // Convert template to workout form format
 export function convertTemplateToWorkoutForm(template: WorkoutTemplate) {
+  // Defensive programming: ensure template has valid structure
+  if (!template) {
+    throw new Error('Template is required')
+  }
+  
+  if (!template.exercises || !Array.isArray(template.exercises)) {
+    console.error('Invalid template structure - exercises must be an array:', template)
+    throw new Error('Template must have valid exercises array')
+  }
+  
   return {
-    exercises: template.exercises.map(exercise => ({
-      name: exercise.name,
-      sets: exercise.sets.map(set => ({
-        weight: set.weight || '',
-        reps: set.reps,
-        rir: set.rir
-      }))
-    })),
-    duration: template.duration,
+    exercises: template.exercises.map(exercise => {
+      if (!exercise || !exercise.name) {
+        console.warn('Invalid exercise in template:', exercise)
+        return { name: 'Unknown Exercise', sets: [] }
+      }
+      
+      if (!exercise.sets || !Array.isArray(exercise.sets)) {
+        console.warn('Invalid sets for exercise:', exercise.name)
+        return { name: exercise.name, sets: [] }
+      }
+      
+      return {
+        name: exercise.name,
+        sets: exercise.sets.map(set => ({
+          weight: set.weight || '',
+          reps: set.reps || '8-12',
+          rir: set.rir || '2'
+        }))
+      }
+    }),
+    duration: template.duration || '30',
     notes: template.notes || ''
   }
 }

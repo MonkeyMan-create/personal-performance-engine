@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
-import { ArrowLeft, Check, Play, Pause, SkipForward } from 'lucide-react'
+import { Badge } from '../components/ui/badge'
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/dialog'
+import { ArrowLeft, Check, Play, Pause, SkipForward, Info, Target, Dumbbell } from 'lucide-react'
 import { getSmartDefaults, getCurrentWorkoutSession, addSetToCurrentSession } from '../utils/guestStorage'
+import { getExerciseById } from '../data/exerciseDatabase'
 import { useMeasurement } from '../contexts/MeasurementContext'
 import { useToast } from '../hooks/use-toast'
 
@@ -19,6 +22,11 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
   const currentExercise = session?.exercises.find(ex => ex.name === exerciseName)
   const currentSetNumber = (currentExercise?.sets.length || 0) + 1
 
+  // Exercise database lookup
+  const exerciseData = getExerciseById(exerciseName.toLowerCase().replace(/\s+/g, '-')) ||
+                       // Fallback: search by name if ID lookup fails
+                       null
+
   // Measurement context for unit conversion
   const { unit, convertWeight, formatWeight } = useMeasurement()
   const { toast } = useToast()
@@ -31,6 +39,9 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
   const [reps, setReps] = useState(smartDefaults.reps)
   const [rir, setRir] = useState(smartDefaults.rir)
   const [isLoading, setIsLoading] = useState(false)
+
+  // Exercise info modal state
+  const [showExerciseInfo, setShowExerciseInfo] = useState(false)
 
   // Rest timer state
   const [isResting, setIsResting] = useState(false)
@@ -172,9 +183,39 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
       <div className="flex-1 flex items-center justify-center p-4">
         <Card className="w-full max-w-md bg-white/90 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl shadow-2xl">
           <CardHeader className="text-center pb-6">
-            <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-              {exerciseName}
-            </CardTitle>
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <CardTitle className="text-2xl font-bold text-slate-900 dark:text-white">
+                {exerciseName}
+              </CardTitle>
+              {exerciseData && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowExerciseInfo(true)}
+                  className="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                  data-testid="button-exercise-info"
+                >
+                  <Info className="w-4 h-4" />
+                </Button>
+              )}
+            </div>
+            
+            {/* Exercise Details */}
+            {exerciseData && (
+              <div className="flex flex-wrap justify-center gap-2 mb-3">
+                {exerciseData.muscle_groups.slice(0, 3).map(mg => (
+                  <Badge key={mg} variant="secondary" className="text-xs capitalize">
+                    <Target className="w-3 h-3 mr-1" />
+                    {mg}
+                  </Badge>
+                ))}
+                <Badge variant="outline" className="text-xs capitalize">
+                  <Dumbbell className="w-3 h-3 mr-1" />
+                  {exerciseData.equipment.join(', ')}
+                </Badge>
+              </div>
+            )}
+            
             <p className="text-lg text-slate-600 dark:text-slate-300 font-medium">
               Set {currentSetNumber}
             </p>
@@ -328,6 +369,81 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
           </CardContent>
         </Card>
       </div>
+
+      {/* Exercise Information Modal */}
+      {showExerciseInfo && exerciseData && (
+        <Dialog open={showExerciseInfo} onOpenChange={setShowExerciseInfo}>
+          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <Target className="w-5 h-5" />
+                {exerciseData.name}
+                <Badge className={
+                  exerciseData.difficulty === 'beginner' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300' :
+                  exerciseData.difficulty === 'intermediate' ? 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300' :
+                  'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300'
+                }>
+                  {exerciseData.difficulty}
+                </Badge>
+              </DialogTitle>
+            </DialogHeader>
+            
+            <div className="space-y-4">
+              {/* Muscle Groups and Equipment */}
+              <div>
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Target Muscles</h3>
+                <div className="flex flex-wrap gap-2">
+                  {exerciseData.muscle_groups.map(mg => (
+                    <Badge key={mg} variant="secondary" className="capitalize">
+                      {mg}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+              
+              <div>
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Equipment</h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400 capitalize">
+                  {exerciseData.equipment.join(', ')}
+                </p>
+              </div>
+
+              {/* Instructions */}
+              <div>
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Instructions</h3>
+                <ol className="list-decimal list-inside space-y-1 text-sm text-slate-700 dark:text-slate-300">
+                  {exerciseData.instructions.map((instruction, index) => (
+                    <li key={index}>{instruction}</li>
+                  ))}
+                </ol>
+              </div>
+
+              {/* Tips */}
+              {exerciseData.tips && exerciseData.tips.length > 0 && (
+                <div>
+                  <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Tips & Safety</h3>
+                  <ul className="list-disc list-inside space-y-1 text-sm text-slate-700 dark:text-slate-300">
+                    {exerciseData.tips.map((tip, index) => (
+                      <li key={index}>{tip}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Close Button */}
+              <div className="flex justify-end pt-4">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowExerciseInfo(false)}
+                  data-testid="button-close-exercise-info"
+                >
+                  Close
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
     </div>
   )
 }
