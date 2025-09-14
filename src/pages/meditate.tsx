@@ -257,14 +257,14 @@ export default function MeditatePage() {
       title: 'Guided Breathing',
       description: 'Follow the breathing guide',
       icon: Wind,
-      color: 'from-blue-500 to-cyan-500'
+      color: 'from-primary/80 to-primary'
     },
     {
       type: 'meditation' as SessionType,
       title: 'Meditation Timer',
       description: 'Open meditation with timer',
       icon: Brain,
-      color: 'from-purple-500 to-indigo-500'
+      color: 'from-secondary/80 to-secondary'
     }
   ]
 
@@ -286,20 +286,20 @@ export default function MeditatePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         
         {/* Header */}
         <div className="flex items-center justify-between pt-8">
           <Link href="/">
-            <Button variant="ghost" size="sm" className="text-white/70 hover:text-white hover:bg-white/10" data-testid="button-back">
+            <Button variant="ghost" size="sm" className="text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-700" data-testid="button-back">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Home
             </Button>
           </Link>
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-white" data-testid="text-page-title">Meditation</h1>
-            <p className="text-indigo-200" data-testid="text-page-subtitle">Find your inner peace</p>
+            <h1 className="text-2xl font-bold text-slate-900 dark:text-white" data-testid="text-page-title">Meditation</h1>
+            <p className="text-slate-600 dark:text-slate-300" data-testid="text-page-subtitle">Find your inner peace</p>
           </div>
           <div className="w-20"></div> {/* Spacer for centering */}
         </div>
@@ -307,13 +307,13 @@ export default function MeditatePage() {
         {!isSessionActive ? (
           <>
             {/* Session Type Selection */}
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+            <Card className="bg-white/80 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
               <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">
-                  <Heart className="w-5 h-5 text-pink-400" />
+                <CardTitle className="text-slate-900 dark:text-white flex items-center gap-2">
+                  <Heart className="w-5 h-5 text-primary" />
                   Choose Your Practice
                 </CardTitle>
-                <CardDescription className="text-indigo-200">
+                <CardDescription className="text-slate-600 dark:text-slate-300">
                   Select the type of mindfulness practice you'd like to do
                 </CardDescription>
               </CardHeader>
@@ -327,16 +327,16 @@ export default function MeditatePage() {
                         onClick={() => setSessionType(type.type)}
                         className={`p-4 rounded-xl border-2 transition-all duration-200 ${
                           sessionType === type.type
-                            ? 'border-white bg-white/20 shadow-lg'
-                            : 'border-white/30 bg-white/5 hover:bg-white/10'
+                            ? 'border-primary bg-primary/10 shadow-lg'
+                            : 'border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/30 hover:bg-slate-100 dark:hover:bg-slate-700/50'
                         }`}
                         data-testid={`button-session-${type.type}`}
                       >
                         <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${type.color} flex items-center justify-center mb-3 mx-auto`}>
                           <IconComponent className="w-6 h-6 text-white" />
                         </div>
-                        <h3 className="text-white font-semibold">{type.title}</h3>
-                        <p className="text-indigo-200 text-sm mt-1">{type.description}</p>
+                        <h3 className="text-slate-900 dark:text-white font-semibold">{type.title}</h3>
+                        <p className="text-slate-600 dark:text-slate-300 text-sm mt-1">{type.description}</p>
                       </button>
                     )
                   })}
@@ -345,13 +345,13 @@ export default function MeditatePage() {
             </Card>
 
             {/* Duration Selection */}
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+            <Card className="bg-white/80 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
               <CardHeader>
-                <CardTitle className="text-white flex items-center gap-2">
-                  <Timer className="w-5 h-5 text-green-400" />
+                <CardTitle className="text-slate-900 dark:text-white flex items-center gap-2">
+                  <Timer className="w-5 h-5 text-primary" />
                   Session Duration
                 </CardTitle>
-                <CardDescription className="text-indigo-200">
+                <CardDescription className="text-slate-600 dark:text-slate-300">
                   How long would you like to practice?
                 </CardDescription>
               </CardHeader>
@@ -363,14 +363,14 @@ export default function MeditatePage() {
                       onClick={() => setSelectedDuration(duration.value)}
                       className={`p-4 rounded-xl border-2 transition-all duration-200 ${
                         selectedDuration === duration.value
-                          ? 'border-white bg-white/20 shadow-lg'
-                          : 'border-white/30 bg-white/5 hover:bg-white/10'
+                          ? 'border-primary bg-primary/10 shadow-lg'
+                          : 'border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/30 hover:bg-slate-100 dark:hover:bg-slate-700/50'
                       }`}
                       data-testid={`button-duration-${duration.value}`}
                     >
                       <div className="text-center">
-                        <p className="text-white font-semibold text-lg">{duration.label}</p>
-                        <p className="text-indigo-200 text-xs">{duration.subtitle}</p>
+                        <p className="text-slate-900 dark:text-white font-semibold text-lg">{duration.label}</p>
+                        <p className="text-slate-600 dark:text-slate-300 text-xs">{duration.subtitle}</p>
                       </div>
                     </button>
                   ))}
@@ -383,7 +383,7 @@ export default function MeditatePage() {
               <Button
                 onClick={sessionType === 'breathing' ? startBreathingExercise : startMeditationTimer}
                 size="lg"
-                className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-8 py-6 text-lg font-semibold shadow-lg shadow-green-500/25"
+                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white px-8 py-6 text-lg font-semibold shadow-lg shadow-primary/25"
                 data-testid="button-start-session"
               >
                 <Play className="w-6 h-6 mr-3" />
@@ -395,15 +395,15 @@ export default function MeditatePage() {
           /* Active Session Interface */
           <div className="space-y-8">
             {/* Session Progress */}
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+            <Card className="bg-white/80 dark:bg-slate-800/90 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
               <CardContent className="p-8">
                 <div className="text-center space-y-6">
                   {/* Timer Display */}
                   <div>
-                    <h2 className="text-4xl font-bold text-white mb-2" data-testid="text-time-remaining">
+                    <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-2" data-testid="text-time-remaining">
                       {formatTime(breathingState.timeRemaining)}
                     </h2>
-                    <p className="text-indigo-200">
+                    <p className="text-slate-600 dark:text-slate-300">
                       {sessionType === 'breathing' ? 'Breathing Exercise' : 'Meditation'} - {selectedDuration} minutes
                     </p>
                   </div>
@@ -414,7 +414,7 @@ export default function MeditatePage() {
                       {/* Breathing Circle */}
                       <div className="flex justify-center">
                         <div 
-                          className={`w-32 h-32 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 shadow-lg shadow-blue-500/30 transition-transform duration-4000 ease-in-out ${
+                          className={`w-32 h-32 rounded-full bg-gradient-to-r from-primary/80 to-primary shadow-lg shadow-primary/30 transition-transform duration-4000 ease-in-out ${
                             breathingState.isActive && !isPaused ? getBreathingScale() : 'scale-100'
                           }`}
                           style={{
@@ -426,7 +426,7 @@ export default function MeditatePage() {
 
                       {/* Breathing Instruction */}
                       <div>
-                        <h3 className="text-2xl font-semibold text-white mb-2" data-testid="text-breathing-instruction">
+                        <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-2" data-testid="text-breathing-instruction">
                           {getBreathingInstruction()}
                         </h3>
                         <p className="text-indigo-200" data-testid="text-cycle-count">
@@ -440,13 +440,13 @@ export default function MeditatePage() {
                   {sessionType === 'meditation' && (
                     <div className="space-y-6">
                       <div className="flex justify-center">
-                        <div className="w-32 h-32 rounded-full bg-gradient-to-r from-purple-400 to-indigo-400 shadow-lg shadow-purple-500/30 animate-pulse" />
+                        <div className="w-32 h-32 rounded-full bg-gradient-to-r from-secondary/80 to-secondary shadow-lg shadow-secondary/30 animate-pulse" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-semibold text-white mb-2">
+                        <h3 className="text-2xl font-semibold text-slate-900 dark:text-white mb-2">
                           Meditation in Progress
                         </h3>
-                        <p className="text-indigo-200">
+                        <p className="text-slate-600 dark:text-slate-300">
                           Focus on your breath and let thoughts pass by
                         </p>
                       </div>
@@ -460,7 +460,7 @@ export default function MeditatePage() {
                         onClick={pauseSession}
                         variant="outline"
                         size="lg"
-                        className="border-white/30 bg-white/10 text-white hover:bg-white/20"
+                        className="border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-700/50 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700"
                         data-testid="button-pause"
                       >
                         <Pause className="w-5 h-5 mr-2" />
@@ -471,7 +471,7 @@ export default function MeditatePage() {
                         onClick={resumeSession}
                         variant="outline"
                         size="lg"
-                        className="border-white/30 bg-white/10 text-white hover:bg-white/20"
+                        className="border-slate-300 dark:border-slate-600 bg-slate-100 dark:bg-slate-700/50 text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700"
                         data-testid="button-resume"
                       >
                         <Play className="w-5 h-5 mr-2" />
@@ -483,7 +483,7 @@ export default function MeditatePage() {
                       onClick={stopSession}
                       variant="outline"
                       size="lg"
-                      className="border-red-300/50 bg-red-500/20 text-red-100 hover:bg-red-500/30"
+                      className="border-red-300/50 bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 hover:bg-red-200 dark:hover:bg-red-900/30"
                       data-testid="button-stop"
                     >
                       <Square className="w-5 h-5 mr-2" />
@@ -500,8 +500,8 @@ export default function MeditatePage() {
         {completedSessions.length > 0 && (
           <Card className="bg-white/10 backdrop-blur-sm border-white/20">
             <CardHeader>
-              <CardTitle className="text-white flex items-center gap-2">
-                <Star className="w-5 h-5 text-yellow-400" />
+              <CardTitle className="text-slate-900 dark:text-white flex items-center gap-2">
+                <Star className="w-5 h-5 text-primary" />
                 Recent Sessions
               </CardTitle>
               <CardDescription className="text-indigo-200">
@@ -513,18 +513,18 @@ export default function MeditatePage() {
                 {completedSessions.slice(0, 5).map((session, index) => (
                   <div 
                     key={index}
-                    className="flex items-center justify-between p-3 bg-white/5 rounded-lg"
+                    className="flex items-center justify-between p-3 bg-slate-100 dark:bg-slate-700/30 rounded-lg"
                     data-testid={`session-${index}`}
                   >
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-400 to-emerald-400 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-primary/80 to-primary flex items-center justify-center">
                         <CheckCircle className="w-5 h-5 text-white" />
                       </div>
                       <div>
-                        <p className="text-white font-medium">
+                        <p className="text-slate-900 dark:text-white font-medium">
                           {session.duration} min {session.type === 'breathing' ? 'Breathing' : 'Meditation'}
                         </p>
-                        <p className="text-indigo-200 text-sm">
+                        <p className="text-slate-600 dark:text-slate-300 text-sm">
                           {session.completedAt.toLocaleDateString()} at {session.completedAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                         </p>
                       </div>

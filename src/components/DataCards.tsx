@@ -69,8 +69,8 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
         <CardContent className="p-6">
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-orange-600/20 rounded-xl">
-                <Flame className="w-6 h-6 text-orange-400" />
+              <div className="p-3 bg-primary/20 rounded-xl">
+                <Flame className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1">
                 <h3 className="text-white font-semibold text-lg">Calories Burnt</h3>
@@ -79,14 +79,14 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
                 </p>
               </div>
               <div className="text-right">
-                <span className="text-2xl font-bold text-orange-400" data-testid="calories-percentage">
+                <span className="text-2xl font-bold text-primary" data-testid="calories-percentage">
                   {Math.round(caloriesProgress)}%
                 </span>
               </div>
             </div>
             <div className="w-full bg-slate-700 rounded-full h-3">
               <div 
-                className="bg-gradient-to-r from-orange-500 to-red-500 h-3 rounded-full transition-all duration-1000"
+                className="bg-gradient-to-r from-primary to-primary/80 h-3 rounded-full transition-all duration-1000"
                 style={{ width: `${Math.min(100, caloriesProgress)}%` }}
                 data-testid="calories-progress-bar"
               />
@@ -100,8 +100,8 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
         <CardContent className="p-6">
           <div className="space-y-3">
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-blue-600/20 rounded-xl">
-                <Moon className="w-6 h-6 text-blue-400" />
+              <div className="p-3 bg-primary/20 rounded-xl">
+                <Moon className="w-6 h-6 text-primary" />
               </div>
               <div className="flex-1">
                 <h3 className="text-white font-semibold text-lg">Sleep Hours</h3>
@@ -110,14 +110,14 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
                 </p>
               </div>
               <div className="text-right">
-                <span className="text-2xl font-bold text-blue-400" data-testid="sleep-percentage">
+                <span className="text-2xl font-bold text-primary" data-testid="sleep-percentage">
                   {Math.round(sleepProgress)}%
                 </span>
               </div>
             </div>
             <div className="w-full bg-slate-700 rounded-full h-3">
               <div 
-                className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-1000"
+                className="bg-gradient-to-r from-primary to-primary/80 h-3 rounded-full transition-all duration-1000"
                 style={{ width: `${Math.min(100, sleepProgress)}%` }}
                 data-testid="sleep-progress-bar"
               />

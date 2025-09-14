@@ -475,7 +475,7 @@ export default function YearInReviewPage() {
         <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-xl text-slate-900 dark:text-white flex items-center gap-2">
-              <Calendar className="w-6 h-6 text-blue-500" />
+              <Calendar className="w-6 h-6 text-primary" />
               Monthly Activity
             </CardTitle>
             <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -516,7 +516,7 @@ export default function YearInReviewPage() {
           <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
             <CardHeader>
               <CardTitle className="text-xl text-slate-900 dark:text-white flex items-center gap-2">
-                <Dumbbell className="w-6 h-6 text-purple-500" />
+                <Dumbbell className="w-6 h-6 text-primary" />
                 Favorite Exercises
               </CardTitle>
               <CardDescription className="text-slate-600 dark:text-slate-300">
@@ -528,7 +528,7 @@ export default function YearInReviewPage() {
                 {yearlyStats.favoriteExercises.map((exercise, index) => (
                   <div key={exercise.name} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-700/30 rounded-lg">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center font-bold">
+                      <div className="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center font-bold">
                         {index + 1}
                       </div>
                       <span className="font-medium text-slate-900 dark:text-white">{exercise.name}</span>
@@ -548,7 +548,7 @@ export default function YearInReviewPage() {
           <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
             <CardHeader>
               <CardTitle className="text-xl text-slate-900 dark:text-white flex items-center gap-2">
-                <Medal className="w-6 h-6 text-orange-500" />
+                <Medal className="w-6 h-6 text-primary" />
                 Personal Records
               </CardTitle>
               <CardDescription className="text-slate-600 dark:text-slate-300">

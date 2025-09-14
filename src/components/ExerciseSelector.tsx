@@ -79,14 +79,14 @@ export default function ExerciseSelector({ onSelectExercise, onClose }: Exercise
             <Button
               onClick={() => setShowAddNew(true)}
               variant="outline"
-              className="w-full justify-start border-dashed border-2 border-cyan-400/50 text-cyan-600 hover:bg-cyan-50 dark:text-cyan-400 dark:hover:bg-cyan-900/20"
+              className="w-full justify-start border-dashed border-2 border-primary/50 text-primary hover:bg-primary/10 dark:text-primary dark:hover:bg-primary/20"
               data-testid="button-show-add-exercise"
             >
               <Plus className="w-4 h-4 mr-2" />
               Add New Exercise
             </Button>
           ) : (
-            <div className="space-y-2 p-3 bg-slate-50 dark:bg-slate-700 rounded-lg border-2 border-cyan-400/50">
+            <div className="space-y-2 p-3 bg-slate-50 dark:bg-slate-700 rounded-lg border-2 border-primary/50">
               <Input
                 placeholder="Enter exercise name (e.g., Bench Press)"
                 value={newExerciseName}
@@ -99,7 +99,7 @@ export default function ExerciseSelector({ onSelectExercise, onClose }: Exercise
                 <Button
                   onClick={handleAddNewExercise}
                   disabled={!newExerciseName.trim()}
-                  className="flex-1 bg-cyan-600 hover:bg-cyan-700 text-white"
+                  className="flex-1 bg-primary hover:bg-primary/90 text-white"
                   data-testid="button-add-new-exercise"
                 >
                   Add Exercise

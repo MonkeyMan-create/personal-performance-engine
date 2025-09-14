@@ -231,15 +231,15 @@ export default function ProgressPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Card 
                   data-testid="card-total-workouts"
-                  className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/40 dark:to-purple-800/40 border-purple-200 dark:border-purple-700 hover:shadow-lg transition-all duration-200"
+                  className="bg-gradient-to-br from-primary/10 to-primary/20 dark:from-primary/20 dark:to-primary/30 border-primary/30 dark:border-primary/50 hover:shadow-lg transition-all duration-200"
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
-                    <div className="w-12 h-12 mx-auto bg-purple-500 dark:bg-purple-600 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 mx-auto bg-primary dark:bg-primary rounded-full flex items-center justify-center">
                       <Dumbbell className="w-6 h-6 text-white" />
                     </div>
                     <div className="space-y-1">
-                      <div data-testid="text-total-workouts" className="text-3xl font-bold text-purple-700 dark:text-purple-300">{workoutStats.totalWorkouts}</div>
-                      <div className="text-sm font-medium text-purple-600 dark:text-purple-400">Total Workouts</div>
+                      <div data-testid="text-total-workouts" className="text-3xl font-bold text-primary dark:text-primary">{workoutStats.totalWorkouts}</div>
+                      <div className="text-sm font-medium text-primary/80 dark:text-primary/80">Total Workouts</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -261,15 +261,15 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-meals-logged"
-                  className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/40 dark:to-orange-800/40 border-orange-200 dark:border-orange-700 hover:shadow-lg transition-all duration-200"
+                  className="bg-gradient-to-br from-primary/10 to-primary/20 dark:from-primary/20 dark:to-primary/30 border-primary/30 dark:border-primary/50 hover:shadow-lg transition-all duration-200"
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
-                    <div className="w-12 h-12 mx-auto bg-orange-500 dark:bg-orange-600 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 mx-auto bg-primary dark:bg-primary rounded-full flex items-center justify-center">
                       <Apple className="w-6 h-6 text-white" />
                     </div>
                     <div className="space-y-1">
-                      <div data-testid="text-meals-logged" className="text-3xl font-bold text-orange-700 dark:text-orange-300">{nutritionStats.totalMealsLogged}</div>
-                      <div className="text-sm font-medium text-orange-600 dark:text-orange-400">Meals Logged</div>
+                      <div data-testid="text-meals-logged" className="text-3xl font-bold text-primary dark:text-primary">{nutritionStats.totalMealsLogged}</div>
+                      <div className="text-sm font-medium text-primary/80 dark:text-primary/80">Meals Logged</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -342,15 +342,15 @@ export default function ProgressPage() {
                   {/* Motivational Insights */}
                   <div 
                     data-testid="weight-insights"
-                    className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-lg p-4 border border-blue-200 dark:border-blue-700"
+                    className="bg-gradient-to-r from-primary/10 to-primary/20 dark:from-primary/20 dark:to-primary/30 rounded-lg p-4 border border-primary/30 dark:border-primary/50"
                   >
                     <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-blue-500 dark:bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 bg-primary dark:bg-primary rounded-full flex items-center justify-center flex-shrink-0">
                         <TrendingUp className="w-4 h-4 text-white" />
                       </div>
                       <div className="space-y-1">
-                        <h4 className="font-semibold text-blue-700 dark:text-blue-300">Weight Progress Insight</h4>
-                        <p data-testid="text-weight-insight" className="text-sm text-blue-600 dark:text-blue-400">
+                        <h4 className="font-semibold text-primary dark:text-primary">Weight Progress Insight</h4>
+                        <p data-testid="text-weight-insight" className="text-sm text-primary/80 dark:text-primary/80">
                           {(() => {
                             if (weightTrendData.length < 2) {
                               return "Keep logging your weight to see meaningful trends and insights!"
@@ -403,12 +403,12 @@ export default function ProgressPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 rounded-lg p-6 border border-blue-200 dark:border-blue-700 text-center">
-                    <div className="w-12 h-12 mx-auto bg-blue-500 dark:bg-blue-600 rounded-full flex items-center justify-center mb-3">
+                  <div className="bg-gradient-to-r from-primary/10 to-primary/20 dark:from-primary/20 dark:to-primary/30 rounded-lg p-6 border border-primary/30 dark:border-primary/50 text-center">
+                    <div className="w-12 h-12 mx-auto bg-primary dark:bg-primary rounded-full flex items-center justify-center mb-3">
                       <TrendingUp className="w-6 h-6 text-white" />
                     </div>
-                    <h4 className="font-semibold text-blue-700 dark:text-blue-300 mb-2">Ready to Track Your Progress?</h4>
-                    <p className="text-sm text-blue-600 dark:text-blue-400">
+                    <h4 className="font-semibold text-primary dark:text-primary mb-2">Ready to Track Your Progress?</h4>
+                    <p className="text-sm text-primary/80 dark:text-primary/80">
                       Start logging your weight regularly to visualize your fitness journey and get personalized insights!
                     </p>
                   </div>

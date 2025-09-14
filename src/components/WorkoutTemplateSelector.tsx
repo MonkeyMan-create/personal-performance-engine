@@ -62,7 +62,7 @@ export default function WorkoutTemplateSelector({
       <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Zap className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
+            <Zap className="w-6 h-6 text-primary dark:text-primary" />
             Choose Your Workout
           </DialogTitle>
           <DialogDescription className="text-slate-600 dark:text-slate-300">
@@ -100,7 +100,7 @@ export default function WorkoutTemplateSelector({
                     <CardHeader className="pb-3">
                       <div className="flex items-start justify-between">
                         <div className="flex-1">
-                          <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                          <CardTitle className="text-lg font-semibold text-slate-900 dark:text-white flex items-center gap-2 group-hover:text-primary dark:group-hover:text-primary transition-colors">
                             {getCategoryIcon(template.category)}
                             {template.name}
                           </CardTitle>
@@ -108,7 +108,7 @@ export default function WorkoutTemplateSelector({
                             {template.description}
                           </CardDescription>
                         </div>
-                        <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors" />
+                        <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-primary dark:group-hover:text-primary transition-colors" />
                       </div>
                       
                       <div className="flex flex-wrap gap-2 mt-3">

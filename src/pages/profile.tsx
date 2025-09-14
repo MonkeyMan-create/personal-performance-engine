@@ -127,17 +127,17 @@ export default function SettingsPage() {
     testId?: string
   }) => (
     <div 
-      className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+      className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
       onClick={showToggle ? undefined : action}
       data-testid={testId}
     >
       <div className="flex items-center gap-4">
-        <div className="p-2 bg-slate-700/30 rounded-xl">
-          <Icon className="w-5 h-5 text-slate-300" />
+        <div className="p-2 bg-muted/30 rounded-xl">
+          <Icon className="w-5 h-5 text-muted-foreground" />
         </div>
         <div>
-          <p className="font-semibold text-white">{title}</p>
-          {subtitle && <p className="text-sm text-slate-400 mt-0.5">{subtitle}</p>}
+          <p className="font-semibold text-foreground">{title}</p>
+          {subtitle && <p className="text-sm text-muted-foreground mt-0.5">{subtitle}</p>}
         </div>
       </div>
       
@@ -147,8 +147,8 @@ export default function SettingsPage() {
             e.stopPropagation()
             action?.()
           }}
-          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-800 ${
-            toggleState ? 'bg-gradient-to-r from-primary to-primary shadow-lg shadow-primary/25' : 'bg-slate-600'
+          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background ${
+            toggleState ? 'bg-gradient-to-r from-primary to-primary shadow-lg shadow-primary/25' : 'bg-muted'
           }`}
           data-testid={`${testId}-toggle`}
         >
@@ -159,21 +159,21 @@ export default function SettingsPage() {
           />
         </button>
       ) : showChevron ? (
-        <ChevronRight className="w-5 h-5 text-slate-400" />
+        <ChevronRight className="w-5 h-5 text-muted-foreground" />
       ) : null}
     </div>
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-background dark:bg-gradient-to-br dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         <div className="pt-8 text-center">
-          <h1 className="text-3xl font-bold text-white" data-testid="page-title">Settings</h1>
-          <p className="text-slate-300 mt-2">Customize your experience and manage your account</p>
+          <h1 className="text-3xl font-bold text-foreground" data-testid="page-title">Settings</h1>
+          <p className="text-muted-foreground mt-2">Customize your experience and manage your account</p>
         </div>
         
         {/* User Header */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-card/60 border-border backdrop-blur-xl shadow-2xl">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
               {/* User Avatar */}
@@ -186,22 +186,22 @@ export default function SettingsPage() {
                     data-testid="user-avatar-image"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-primary to-primary flex items-center justify-center text-white font-bold text-xl" data-testid="user-avatar-initials">
+                  <div className="w-full h-full bg-gradient-to-br from-primary to-primary flex items-center justify-center text-foreground font-bold text-xl" data-testid="user-avatar-initials">
                     {isGuestMode ? getInitials(profileData.displayName) || 'G' : getInitials(user?.displayName)}
                   </div>
                 )}
               </div>
               <div className="flex-1">
-                <h2 className="font-bold text-2xl text-white" data-testid="user-name">
+                <h2 className="font-bold text-2xl text-foreground" data-testid="user-name">
                   {isGuestMode ? (profileData.displayName || 'Guest User') : user?.displayName}
                 </h2>
-                <p className="text-slate-300 font-medium">
+                <p className="text-muted-foreground font-medium">
                   {isGuestMode ? 'Guest Session' : `Member since ${getMemberSinceDate()}`}
                 </p>
                 {isGuestMode && profileData.email ? (
-                  <p className="text-sm text-slate-400 mt-1" data-testid="user-email">{profileData.email}</p>
+                  <p className="text-sm text-muted-foreground mt-1" data-testid="user-email">{profileData.email}</p>
                 ) : (!isGuestMode && user?.email && (
-                  <p className="text-sm text-slate-400 mt-1" data-testid="user-email">{user.email}</p>
+                  <p className="text-sm text-muted-foreground mt-1" data-testid="user-email">{user.email}</p>
                 ))}
               </div>
             </div>
@@ -209,29 +209,29 @@ export default function SettingsPage() {
         </Card>
 
         {/* Account Settings Section */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-card/60 border-border backdrop-blur-xl shadow-2xl">
           <CardHeader className="pb-4">
-            <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
+            <CardTitle className="text-foreground text-xl font-bold flex items-center gap-2">
               <Settings className="w-6 h-6 text-primary" />
               Account Settings
             </CardTitle>
-            <CardDescription className="text-slate-300">
+            <CardDescription className="text-muted-foreground">
               Manage your profile and app preferences
             </CardDescription>
           </CardHeader>
           <CardContent className="p-2 space-y-2">
             <Link href="/profile-edit">
-              <div className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-profile">
+              <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-profile">
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-slate-700/30 rounded-xl">
-                    <User className="w-5 h-5 text-slate-300" />
+                  <div className="p-2 bg-muted/30 rounded-xl">
+                    <User className="w-5 h-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">My Profile & Account</p>
-                    <p className="text-sm text-slate-400 mt-0.5">View and edit your profile information</p>
+                    <p className="font-semibold text-foreground">My Profile & Account</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">View and edit your profile information</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-slate-400" />
+                <ChevronRight className="w-5 h-5 text-muted-foreground" />
               </div>
             </Link>
             <SettingsItem
@@ -258,12 +258,12 @@ export default function SettingsPage() {
             {/* Color Theme Selector */}
             <div className="p-4 rounded-lg mx-2" data-testid="settings-color-theme">
               <div className="flex items-center gap-4 mb-4">
-                <div className="p-2 bg-slate-700/30 rounded-xl">
-                  <Palette className="w-5 h-5 text-slate-300" />
+                <div className="p-2 bg-muted/30 rounded-xl">
+                  <Palette className="w-5 h-5 text-muted-foreground" />
                 </div>
                 <div>
-                  <p className="font-semibold text-white">App Color Theme</p>
-                  <p className="text-sm text-slate-400 mt-0.5">Choose your preferred accent color</p>
+                  <p className="font-semibold text-foreground">App Color Theme</p>
+                  <p className="text-sm text-muted-foreground mt-0.5">Choose your preferred accent color</p>
                 </div>
               </div>
               <ColorThemeSelector />
@@ -272,30 +272,30 @@ export default function SettingsPage() {
             {/* Language Dropdown */}
             <div className="relative">
               <div 
-                className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
                 onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
                 data-testid="settings-language"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-slate-700/30 rounded-xl">
-                    <Languages className="w-5 h-5 text-slate-300" />
+                  <div className="p-2 bg-muted/30 rounded-xl">
+                    <Languages className="w-5 h-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Language</p>
-                    <p className="text-sm text-slate-400 mt-0.5">{getLanguageDisplay()}</p>
+                    <p className="font-semibold text-foreground">Language</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">{getLanguageDisplay()}</p>
                   </div>
                 </div>
-                <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform duration-200 ${showLanguageDropdown ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-200 ${showLanguageDropdown ? 'rotate-180' : ''}`} />
               </div>
               
               {showLanguageDropdown && (
-                <div className="absolute top-full left-2 right-2 z-50 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-xl overflow-hidden">
+                <div className="absolute top-full left-2 right-2 z-50 mt-1 bg-card border border-border rounded-lg shadow-xl overflow-hidden">
                   {SUPPORTED_LANGUAGES.map((lang) => (
                     <button
                       key={lang.code}
                       onClick={() => handleLanguageSelect(lang.code)}
-                      className={`w-full text-left px-4 py-3 hover:bg-slate-700/50 transition-colors flex items-center gap-3 ${
-                        language === lang.code ? 'bg-slate-700/30 text-primary' : 'text-white'
+                      className={`w-full text-left px-4 py-3 hover:bg-muted/50 transition-colors flex items-center gap-3 ${
+                        language === lang.code ? 'bg-muted/30 text-primary' : 'text-foreground'
                       }`}
                       data-testid={`language-option-${lang.code}`}
                     >
@@ -311,30 +311,30 @@ export default function SettingsPage() {
             {/* Country Dropdown */}
             <div className="relative">
               <div 
-                className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
                 onClick={() => setShowCountryDropdown(!showCountryDropdown)}
                 data-testid="settings-country"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-slate-700/30 rounded-xl">
-                    <Globe className="w-5 h-5 text-slate-300" />
+                  <div className="p-2 bg-muted/30 rounded-xl">
+                    <Globe className="w-5 h-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Country/Region</p>
-                    <p className="text-sm text-slate-400 mt-0.5">{getCountryDisplay()}</p>
+                    <p className="font-semibold text-foreground">Country/Region</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">{getCountryDisplay()}</p>
                   </div>
                 </div>
-                <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform duration-200 ${showCountryDropdown ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform duration-200 ${showCountryDropdown ? 'rotate-180' : ''}`} />
               </div>
               
               {showCountryDropdown && (
-                <div className="absolute top-full left-2 right-2 z-50 mt-1 bg-slate-800 border border-slate-700 rounded-lg shadow-xl overflow-hidden max-h-64 overflow-y-auto">
+                <div className="absolute top-full left-2 right-2 z-50 mt-1 bg-card border border-border rounded-lg shadow-xl overflow-hidden max-h-64 overflow-y-auto">
                   {SUPPORTED_COUNTRIES.map((country_) => (
                     <button
                       key={country_.code}
                       onClick={() => handleCountrySelect(country_.code)}
-                      className={`w-full text-left px-4 py-3 hover:bg-slate-700/50 transition-colors flex items-center gap-3 ${
-                        country === country_.code ? 'bg-slate-700/30 text-primary' : 'text-white'
+                      className={`w-full text-left px-4 py-3 hover:bg-muted/50 transition-colors flex items-center gap-3 ${
+                        country === country_.code ? 'bg-muted/30 text-primary' : 'text-foreground'
                       }`}
                       data-testid={`country-option-${country_.code}`}
                     >
@@ -350,166 +350,166 @@ export default function SettingsPage() {
         </Card>
 
         {/* Data Management Section */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-card/60 border-border backdrop-blur-xl shadow-2xl">
           <CardHeader className="pb-4">
-            <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <Download className="w-6 h-6 text-purple-400" />
+            <CardTitle className="text-foreground text-xl font-bold flex items-center gap-2">
+              <Download className="w-6 h-6 text-primary" />
               Data Management
             </CardTitle>
-            <CardDescription className="text-slate-300">
+            <CardDescription className="text-muted-foreground">
               Manage your health data and account information
             </CardDescription>
           </CardHeader>
           <CardContent className="p-2 space-y-2">
             <Link href="/year-in-review">
               <div 
-                className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
                 data-testid="link-year-in-review"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-slate-700/30 rounded-xl">
-                    <Trophy className="w-5 h-5 text-slate-300" />
+                  <div className="p-2 bg-muted/30 rounded-xl">
+                    <Trophy className="w-5 h-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Year in Review</p>
-                    <p className="text-sm text-slate-400 mt-0.5">See your fitness journey and achievements</p>
+                    <p className="font-semibold text-foreground">Year in Review</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">See your fitness journey and achievements</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-slate-400" />
+                <ChevronRight className="w-5 h-5 text-muted-foreground" />
               </div>
             </Link>
             <Link href="/health-connections">
               <div 
-                className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
                 data-testid="link-health-connections"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-slate-700/30 rounded-xl">
-                    <Smartphone className="w-5 h-5 text-slate-300" />
+                  <div className="p-2 bg-muted/30 rounded-xl">
+                    <Smartphone className="w-5 h-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Health Data Connections</p>
-                    <p className="text-sm text-slate-400 mt-0.5">Connect Google Health & Apple HealthKit</p>
+                    <p className="font-semibold text-foreground">Health Data Connections</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">Connect Google Health & Apple HealthKit</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-slate-400" />
+                <ChevronRight className="w-5 h-5 text-muted-foreground" />
               </div>
             </Link>
             <Link href="/data-export">
-              <div className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-export-data">
+              <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-export-data">
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-slate-700/30 rounded-xl">
-                    <Download className="w-5 h-5 text-slate-300" />
+                  <div className="p-2 bg-muted/30 rounded-xl">
+                    <Download className="w-5 h-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Export Data</p>
-                    <p className="text-sm text-slate-400 mt-0.5">Download your fitness and nutrition data</p>
+                    <p className="font-semibold text-foreground">Export Data</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">Download your fitness and nutrition data</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-slate-400" />
+                <ChevronRight className="w-5 h-5 text-muted-foreground" />
               </div>
             </Link>
             <Link href="/delete-account">
-              <div className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-delete-account">
+              <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-delete-account">
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-slate-700/30 rounded-xl">
-                    <Trash2 className="w-5 h-5 text-slate-300" />
+                  <div className="p-2 bg-muted/30 rounded-xl">
+                    <Trash2 className="w-5 h-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Delete Account</p>
-                    <p className="text-sm text-slate-400 mt-0.5">Permanently remove your account and all data</p>
+                    <p className="font-semibold text-foreground">Delete Account</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">Permanently remove your account and all data</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-slate-400" />
+                <ChevronRight className="w-5 h-5 text-muted-foreground" />
               </div>
             </Link>
           </CardContent>
         </Card>
 
         {/* Support Section */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-card/60 border-border backdrop-blur-xl shadow-2xl">
           <CardHeader className="pb-4">
-            <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <HelpCircle className="w-6 h-6 text-blue-400" />
+            <CardTitle className="text-foreground text-xl font-bold flex items-center gap-2">
+              <HelpCircle className="w-6 h-6 text-primary" />
               Support & Help
             </CardTitle>
-            <CardDescription className="text-slate-300">
+            <CardDescription className="text-muted-foreground">
               Get help and learn more about the app
             </CardDescription>
           </CardHeader>
           <CardContent className="p-2 space-y-2">
             <Link href="/mission">
               <div 
-                className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
+                className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2"
                 data-testid="link-mission-model"
               >
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-slate-700/30 rounded-xl">
-                    <Info className="w-5 h-5 text-slate-300" />
+                  <div className="p-2 bg-muted/30 rounded-xl">
+                    <Info className="w-5 h-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Our Mission & Model</p>
-                    <p className="text-sm text-slate-400 mt-0.5">Learn about our commitment to free fitness tools</p>
+                    <p className="font-semibold text-foreground">Our Mission & Model</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">Learn about our commitment to free fitness tools</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-slate-400" />
+                <ChevronRight className="w-5 h-5 text-muted-foreground" />
               </div>
             </Link>
             <Link href="/help-center">
-              <div className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-help-center">
+              <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-help-center">
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-slate-700/30 rounded-xl">
-                    <HelpCircle className="w-5 h-5 text-slate-300" />
+                  <div className="p-2 bg-muted/30 rounded-xl">
+                    <HelpCircle className="w-5 h-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Help Center</p>
-                    <p className="text-sm text-slate-400 mt-0.5">Find answers to common questions</p>
+                    <p className="font-semibold text-foreground">Help Center</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">Find answers to common questions</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-slate-400" />
+                <ChevronRight className="w-5 h-5 text-muted-foreground" />
               </div>
             </Link>
             <Link href="/contact-support">
-              <div className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-contact-support">
+              <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-contact-support">
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-slate-700/30 rounded-xl">
-                    <MessageCircle className="w-5 h-5 text-slate-300" />
+                  <div className="p-2 bg-muted/30 rounded-xl">
+                    <MessageCircle className="w-5 h-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Contact Support</p>
-                    <p className="text-sm text-slate-400 mt-0.5">Get in touch with our support team</p>
+                    <p className="font-semibold text-foreground">Contact Support</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">Get in touch with our support team</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-slate-400" />
+                <ChevronRight className="w-5 h-5 text-muted-foreground" />
               </div>
             </Link>
             <Link href="/privacy-terms">
-              <div className="flex items-center justify-between p-4 hover:bg-slate-700/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-legal">
+              <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-legal">
                 <div className="flex items-center gap-4">
-                  <div className="p-2 bg-slate-700/30 rounded-xl">
-                    <FileText className="w-5 h-5 text-slate-300" />
+                  <div className="p-2 bg-muted/30 rounded-xl">
+                    <FileText className="w-5 h-5 text-muted-foreground" />
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Privacy & Terms</p>
-                    <p className="text-sm text-slate-400 mt-0.5">View our privacy policy and terms of service</p>
+                    <p className="font-semibold text-foreground">Privacy & Terms</p>
+                    <p className="text-sm text-muted-foreground mt-0.5">View our privacy policy and terms of service</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-slate-400" />
+                <ChevronRight className="w-5 h-5 text-muted-foreground" />
               </div>
             </Link>
           </CardContent>
         </Card>
 
         {/* Sign Out Section */}
-        <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
+        <Card className="bg-card/60 border-border backdrop-blur-xl shadow-2xl">
           <CardContent className="p-6">
             <div className="text-center mb-4">
-              <p className="text-slate-400 text-sm">Ready to take a break?</p>
+              <p className="text-muted-foreground text-sm">Ready to take a break?</p>
             </div>
             <Button 
               variant="destructive" 
               onClick={logout}
-              className="w-full flex items-center justify-center gap-3 h-14 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold text-lg rounded-2xl shadow-2xl shadow-red-600/25 hover:shadow-red-600/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full flex items-center justify-center gap-3 h-14 bg-gradient-to-r from-destructive to-destructive hover:from-destructive/90 hover:to-destructive/90 text-destructive-foreground font-bold text-lg rounded-2xl shadow-2xl shadow-destructive/25 hover:shadow-destructive/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               data-testid="button-sign-out"
             >
               <LogOut className="w-6 h-6" />

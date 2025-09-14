@@ -168,7 +168,7 @@ export default function ExerciseImage({
       {/* Badge for exercise type (optional) */}
       {size === 'full' && !hasError && !isLoading && (
         <div className="absolute top-2 right-2">
-          <div className="bg-cyan-600 text-white px-2 py-1 rounded-md text-xs font-medium shadow-lg">
+          <div className="bg-primary text-white px-2 py-1 rounded-md text-xs font-medium shadow-lg">
             Exercise
           </div>
         </div>

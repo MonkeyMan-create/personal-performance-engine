@@ -209,7 +209,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
               <Button
                 variant="outline"
                 onClick={() => setShowFilters(!showFilters)}
-                className={`${activeFiltersCount > 0 ? 'border-cyan-500 text-cyan-600 dark:text-cyan-400' : ''}`}
+                className={`${activeFiltersCount > 0 ? 'border-primary text-primary dark:text-primary' : ''}`}
                 data-testid="button-toggle-filters"
               >
                 <Filter className="w-4 h-4 mr-2" />
@@ -250,7 +250,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                         onClick={() => toggleMuscleGroup(mg)}
                         className={`capitalize ${
                           selectedMuscleGroups.includes(mg) 
-                            ? 'bg-cyan-600 hover:bg-cyan-700 text-white' 
+                            ? 'bg-primary hover:bg-primary/90 text-white' 
                             : 'text-slate-600 dark:text-slate-300'
                         }`}
                         data-testid={`filter-muscle-${mg}`}
@@ -273,7 +273,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                         onClick={() => toggleEquipment(eq)}
                         className={`capitalize ${
                           selectedEquipment.includes(eq) 
-                            ? 'bg-cyan-600 hover:bg-cyan-700 text-white' 
+                            ? 'bg-primary hover:bg-primary/90 text-white' 
                             : 'text-slate-600 dark:text-slate-300'
                         }`}
                         data-testid={`filter-equipment-${eq}`}
@@ -297,7 +297,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                           onClick={() => toggleDifficulty(diff)}
                           className={`capitalize ${
                             selectedDifficulty.includes(diff) 
-                              ? 'bg-cyan-600 hover:bg-cyan-700 text-white' 
+                              ? 'bg-primary hover:bg-primary/90 text-white' 
                               : 'text-slate-600 dark:text-slate-300'
                           }`}
                           data-testid={`filter-difficulty-${diff}`}
@@ -319,7 +319,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                           onClick={() => toggleCategory(cat)}
                           className={`capitalize ${
                             selectedCategories.includes(cat) 
-                              ? 'bg-cyan-600 hover:bg-cyan-700 text-white' 
+                              ? 'bg-primary hover:bg-primary/90 text-white' 
                               : 'text-slate-600 dark:text-slate-300'
                           }`}
                           data-testid={`filter-category-${cat}`}
@@ -427,7 +427,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                         <div className="flex gap-2">
                           <Button
                             onClick={() => handleExerciseSelect(exercise)}
-                            className="flex-1 bg-cyan-600 hover:bg-cyan-700 text-white"
+                            className="flex-1 bg-primary hover:bg-primary/90 text-white"
                             data-testid={`button-select-exercise-${exercise.id}`}
                           >
                             <CheckCircle className="w-4 h-4 mr-2" />
@@ -484,7 +484,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                   {selectedExercise.video_url && (
                     <div>
                       <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
-                        <PlayCircle className="w-5 h-5 text-cyan-600" />
+                        <PlayCircle className="w-5 h-5 text-primary" />
                         Exercise Demonstration
                       </h3>
                       <VideoPlayer
@@ -500,7 +500,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                   {selectedExercise.image_url && !selectedExercise.video_url && (
                     <div>
                       <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
-                        <ImageIcon className="w-5 h-5 text-cyan-600" />
+                        <ImageIcon className="w-5 h-5 text-primary" />
                         Exercise Reference
                       </h3>
                       <ExerciseHero
@@ -564,7 +564,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                     handleExerciseSelect(selectedExercise)
                     setShowExerciseModal(false)
                   }}
-                  className="flex-1 bg-cyan-600 hover:bg-cyan-700 text-white"
+                  className="flex-1 bg-primary hover:bg-primary/90 text-white"
                   data-testid="button-select-exercise-from-modal"
                 >
                   <CheckCircle className="w-4 h-4 mr-2" />

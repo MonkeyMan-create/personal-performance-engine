@@ -130,13 +130,13 @@ export default function HomePage() {
         {/* Top Section - Greeting & Time */}
         <div className="pt-8 text-center space-y-4">
           <div className="flex items-center justify-center gap-3 mb-2">
-            <GreetingIcon className="w-8 h-8 text-yellow-400" />
+            <GreetingIcon className="w-8 h-8 text-primary" />
             <h1 className="text-3xl font-bold text-foreground" data-testid="greeting-text">
               {greeting.text}
             </h1>
           </div>
           
-          <div className="flex items-center justify-center gap-4 text-slate-300">
+          <div className="flex items-center justify-center gap-4 text-muted-foreground">
             <div className="flex items-center gap-2">
               <Clock className="w-5 h-5" />
               <span className="text-xl font-semibold" data-testid="current-time">{formatTime(currentTime)}</span>
@@ -152,7 +152,7 @@ export default function HomePage() {
         <Card className="bg-card/60 border-border backdrop-blur-xl">
           <CardHeader className="text-center">
             <CardTitle className="text-foreground text-xl">How are you feeling today?</CardTitle>
-            <CardDescription className="text-slate-300">
+            <CardDescription className="text-muted-foreground">
               Tap an emoji to check in with your mood
             </CardDescription>
           </CardHeader>
@@ -200,8 +200,8 @@ export default function HomePage() {
                   <Activity className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm text-slate-300">Steps</p>
-                  <p className="text-lg font-bold text-white" data-testid="steps-count-metric">
+                  <p className="text-sm text-muted-foreground">Steps</p>
+                  <p className="text-lg font-bold text-foreground" data-testid="steps-count-metric">
                     {stepsData.current.toLocaleString()}
                   </p>
                 </div>
@@ -222,8 +222,8 @@ export default function HomePage() {
                   <Flame className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm text-slate-300">Burned</p>
-                  <p className="text-lg font-bold text-white" data-testid="calories-burned-metric">
+                  <p className="text-sm text-muted-foreground">Burned</p>
+                  <p className="text-lg font-bold text-foreground" data-testid="calories-burned-metric">
                     420 cal
                   </p>
                 </div>
@@ -244,8 +244,8 @@ export default function HomePage() {
                   <Moon className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm text-slate-300">Sleep</p>
-                  <p className="text-lg font-bold text-white" data-testid="sleep-hours-metric">
+                  <p className="text-sm text-muted-foreground">Sleep</p>
+                  <p className="text-lg font-bold text-foreground" data-testid="sleep-hours-metric">
                     {sleepData.current}h
                   </p>
                 </div>
@@ -266,8 +266,8 @@ export default function HomePage() {
                   <Target className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm text-slate-300">Water</p>
-                  <p className="text-lg font-bold text-white" data-testid="water-glasses-metric">
+                  <p className="text-sm text-muted-foreground">Water</p>
+                  <p className="text-lg font-bold text-foreground" data-testid="water-glasses-metric">
                     {waterData.current} / {waterData.goal}
                   </p>
                 </div>
@@ -354,11 +354,11 @@ export default function HomePage() {
         {/* Daily Wellness Insights */}
         <Card className="bg-card/60 border-border backdrop-blur-xl">
           <CardHeader>
-            <CardTitle className="text-white flex items-center gap-2">
-              <Lightbulb className="w-5 h-5 text-yellow-400" />
+            <CardTitle className="text-foreground flex items-center gap-2">
+              <Lightbulb className="w-5 h-5 text-primary" />
               Daily Wellness Insights
             </CardTitle>
-            <CardDescription className="text-slate-300">
+            <CardDescription className="text-muted-foreground">
               Personalized tips to help you reach your goals
             </CardDescription>
           </CardHeader>
@@ -369,7 +369,7 @@ export default function HomePage() {
               return (
                 <div 
                   key={insight.id} 
-                  className="p-4 bg-slate-700/30 rounded-lg border border-slate-600/50 hover:bg-slate-700/50 transition-colors"
+                  className="p-4 bg-muted/30 rounded-lg border border-border hover:bg-muted/50 transition-colors"
                   data-testid={`insight-${insight.id}`}
                 >
                   <div className="flex items-start gap-3">
@@ -377,7 +377,7 @@ export default function HomePage() {
                       <IconComponent className={`w-4 h-4 ${colors.text}`} />
                     </div>
                     <div className="flex-1">
-                      <p className="text-white text-sm leading-relaxed">{insight.message}</p>
+                      <p className="text-foreground text-sm leading-relaxed">{insight.message}</p>
                       <button 
                         className={`mt-2 ${colorMap[insight.color].text} text-xs font-medium hover:opacity-80 transition-colors`}
                         data-testid={`insight-action-${insight.id}`}
@@ -395,11 +395,11 @@ export default function HomePage() {
         {/* Nutrition Snapshot */}
         <Card className="bg-card/60 border-border backdrop-blur-xl">
           <CardHeader>
-            <CardTitle className="text-white flex items-center gap-2">
+            <CardTitle className="text-foreground flex items-center gap-2">
               <Apple className="w-5 h-5 text-primary" />
               Nutrition Snapshot
             </CardTitle>
-            <CardDescription className="text-slate-300">
+            <CardDescription className="text-muted-foreground">
               Today's nutritional breakdown
             </CardDescription>
           </CardHeader>
@@ -412,7 +412,7 @@ export default function HomePage() {
                   {nutritionData.protein.current}g / {nutritionData.protein.goal}g
                 </span>
               </div>
-              <div className="w-full bg-slate-700 rounded-full h-2">
+              <div className="w-full bg-muted rounded-full h-2">
                 <div 
                   className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, (nutritionData.protein.current / nutritionData.protein.goal) * 100)}%` }}
@@ -422,14 +422,14 @@ export default function HomePage() {
 
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-white font-medium">Carbs</span>
-                <span className="text-slate-300 text-sm" data-testid="carbs-count">
+                <span className="text-foreground font-medium">Carbs</span>
+                <span className="text-muted-foreground text-sm" data-testid="carbs-count">
                   {nutritionData.carbs.current}g / {nutritionData.carbs.goal}g
                 </span>
               </div>
-              <div className="w-full bg-slate-700 rounded-full h-2">
+              <div className="w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-amber-500 to-yellow-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, (nutritionData.carbs.current / nutritionData.carbs.goal) * 100)}%` }}
                 />
               </div>
@@ -437,34 +437,34 @@ export default function HomePage() {
 
             <div className="space-y-3">
               <div className="flex justify-between items-center">
-                <span className="text-white font-medium">Fat</span>
-                <span className="text-slate-300 text-sm" data-testid="fat-count">
+                <span className="text-foreground font-medium">Fat</span>
+                <span className="text-muted-foreground text-sm" data-testid="fat-count">
                   {nutritionData.fat.current}g / {nutritionData.fat.goal}g
                 </span>
               </div>
-              <div className="w-full bg-slate-700 rounded-full h-2">
+              <div className="w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-yellow-500 to-amber-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, (nutritionData.fat.current / nutritionData.fat.goal) * 100)}%` }}
                 />
               </div>
             </div>
 
             {/* Quick Stats */}
-            <div className="flex justify-between items-center pt-4 border-t border-slate-700">
+            <div className="flex justify-between items-center pt-4 border-t border-border">
               <div className="text-center">
                 <p className="text-2xl font-bold text-primary" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
-                <p className="text-xs text-slate-400">Meals Logged</p>
+                <p className="text-xs text-muted-foreground">Meals Logged</p>
               </div>
               <div className="text-center">
                 <p className="text-2xl font-bold text-primary" data-testid="calories-remaining">
                   {nutritionData.calories.goal - nutritionData.calories.current}
                 </p>
-                <p className="text-xs text-slate-400">Calories Left</p>
+                <p className="text-xs text-muted-foreground">Calories Left</p>
               </div>
               <div className="text-center">
                 <p className="text-2xl font-bold text-primary">73%</p>
-                <p className="text-xs text-slate-400">Daily Goal</p>
+                <p className="text-xs text-muted-foreground">Daily Goal</p>
               </div>
             </div>
           </CardContent>

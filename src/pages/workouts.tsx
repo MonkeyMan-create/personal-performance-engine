@@ -65,9 +65,9 @@ export default function WorkoutsPage() {
     icon: template.category === 'strength' ? Dumbbell : 
           template.category === 'cardio' ? Heart : 
           template.category === 'hybrid' ? Activity : Target,
-    color: template.difficulty === 'beginner' ? 'from-green-500 to-emerald-500' :
-           template.difficulty === 'intermediate' ? 'from-orange-500 to-yellow-500' :
-           'from-red-500 to-red-600'
+    color: template.difficulty === 'beginner' ? 'from-primary to-primary/80' :
+           template.difficulty === 'intermediate' ? 'from-primary to-primary/80' :
+           'from-primary to-primary/80'
   }))
 
   // Recommended workout (featured)
@@ -226,39 +226,13 @@ export default function WorkoutsPage() {
   }
 
   const getDifficultyColors = (difficulty: string) => {
-    switch (difficulty) {
-      case 'Beginner':
-        return {
-          bg: 'bg-green-100 dark:bg-green-900/30',
-          text: 'text-green-700 dark:text-green-300',
-          border: 'border-green-200 dark:border-green-700',
-          iconBg: 'bg-green-500/20',
-          iconColor: 'text-green-600 dark:text-green-400'
-        }
-      case 'Intermediate':
-        return {
-          bg: 'bg-orange-100 dark:bg-orange-900/30',
-          text: 'text-orange-700 dark:text-orange-300',
-          border: 'border-orange-200 dark:border-orange-700',
-          iconBg: 'bg-orange-500/20',
-          iconColor: 'text-orange-600 dark:text-orange-400'
-        }
-      case 'Advanced':
-        return {
-          bg: 'bg-red-100 dark:bg-red-900/30',
-          text: 'text-red-700 dark:text-red-300',
-          border: 'border-red-200 dark:border-red-700',
-          iconBg: 'bg-red-500/20',
-          iconColor: 'text-red-600 dark:text-red-400'
-        }
-      default:
-        return {
-          bg: 'bg-purple-100 dark:bg-purple-900/30',
-          text: 'text-purple-700 dark:text-purple-300',
-          border: 'border-purple-200 dark:border-purple-700',
-          iconBg: 'bg-purple-500/20',
-          iconColor: 'text-purple-600 dark:text-purple-400'
-        }
+    // Use primary theme colors for all difficulty levels to ensure consistency with theme system
+    return {
+      bg: 'bg-primary/10',
+      text: 'text-primary',
+      border: 'border-primary/20',
+      iconBg: 'bg-primary/20',
+      iconColor: 'text-primary'
     }
   }
 
@@ -283,7 +257,7 @@ export default function WorkoutsPage() {
             {/* Header with session info */}
             <div className="flex items-center justify-between pt-4">
               <div>
-                <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Active Workout</h1>
+                <h1 className="text-2xl font-bold text-foreground">Active Workout</h1>
                 {currentSession && (
                   <p className="text-slate-600 dark:text-slate-300 text-sm">
                     Duration: {formatSessionDuration()} • {getSessionSummary()?.totalSets || 0} sets logged
@@ -329,7 +303,7 @@ export default function WorkoutsPage() {
                             {exercise.sets.map((set, setIndex) => (
                               <span 
                                 key={setIndex}
-                                className="text-xs bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded"
+                                className="text-xs bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary px-2 py-1 rounded"
                               >
                                 {set.weight}lbs × {set.reps}
                               </span>
@@ -511,7 +485,7 @@ export default function WorkoutsPage() {
 
                         <div className="space-y-2">
                           {workout.exercises.map((exercise, index) => (
-                            <div key={index} className="border-l-2 border-purple-400 pl-3">
+                            <div key={index} className="border-l-2 border-primary/50 pl-3">
                               <p className="font-medium text-slate-900 dark:text-white">{exercise.name}</p>
                               <div className="flex flex-wrap gap-2 mt-1">
                                 {exercise.sets.map((set, setIndex) => (
@@ -562,7 +536,7 @@ export default function WorkoutsPage() {
 
             {/* Active Session Banner */}
             {currentSession && (
-              <Card className="bg-gradient-to-r from-purple-500/10 to-purple-600/10 border-purple-400/50 dark:border-purple-600/50">
+              <Card className="bg-gradient-to-r from-primary/10 to-primary/15 border-primary/50 dark:border-primary/50">
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
                     <div>
@@ -573,7 +547,7 @@ export default function WorkoutsPage() {
                     </div>
                     <Button
                       onClick={() => setViewMode('exercise-selection')}
-                      className="bg-purple-600 hover:bg-purple-700 text-white"
+                      className="bg-primary hover:bg-primary/90 text-white"
                       data-testid="button-continue-workout"
                     >
                       Continue
@@ -597,7 +571,7 @@ export default function WorkoutsPage() {
                 <Button
                   onClick={handleStartWorkout}
                   variant="outline"
-                  className="flex-1 h-12 border-purple-400/50 text-purple-600 hover:bg-purple-50 dark:text-purple-400 dark:hover:bg-purple-900/20 dark:border-purple-600"
+                  className="flex-1 h-12 border-primary/50 text-primary hover:bg-primary/10 dark:text-primary dark:hover:bg-primary/20 dark:border-primary/50"
                   data-testid="button-create-custom"
                 >
                   <Plus className="w-5 h-5 mr-2" />
@@ -651,7 +625,7 @@ export default function WorkoutsPage() {
                   <Button
                     onClick={handleStartWorkout}
                     size="lg"
-                    className="bg-white text-purple-600 hover:bg-white/90 font-semibold px-8"
+                    className="bg-white text-primary hover:bg-white/90 font-semibold px-8"
                     data-testid="button-start-session"
                   >
                     Start Session
@@ -676,7 +650,7 @@ export default function WorkoutsPage() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300"
+                  className="text-primary dark:text-primary hover:text-primary/80 dark:hover:text-primary/80"
                   onClick={() => setShowTemplateSelector(true)}
                   data-testid="button-view-all-templates"
                 >
@@ -733,13 +707,13 @@ export default function WorkoutsPage() {
               <div className="grid grid-cols-2 gap-4">
                 <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50">
                   <CardContent className="p-4 text-center">
-                    <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">{workouts.length}</p>
+                    <p className="text-2xl font-bold text-primary dark:text-primary">{workouts.length}</p>
                     <p className="text-sm text-slate-600 dark:text-slate-300">Total Workouts</p>
                   </CardContent>
                 </Card>
                 <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50">
                   <CardContent className="p-4 text-center">
-                    <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                    <p className="text-2xl font-bold text-primary dark:text-primary">
                       {workouts.reduce((total, workout) => 
                         total + workout.exercises.reduce((sets, ex) => sets + ex.sets.length, 0), 0
                       )}
