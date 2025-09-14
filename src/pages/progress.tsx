@@ -231,15 +231,15 @@ export default function ProgressPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Card 
                   data-testid="card-total-workouts"
-                  className="bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/20 border-[var(--color-primary)]/30 hover:shadow-lg transition-all duration-200"
+                  className="bg-gradient-to-br from-[var(--color-activity)]/10 to-[var(--color-activity)]/20 border-[var(--color-activity)]/30 hover:shadow-lg transition-all duration-200"
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
-                    <div className="w-12 h-12 mx-auto bg-[var(--color-primary)] rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 mx-auto bg-[var(--color-activity)] rounded-full flex items-center justify-center">
                       <Dumbbell className="w-6 h-6 text-white" />
                     </div>
                     <div className="space-y-1">
-                      <div data-testid="text-total-workouts" className="text-3xl font-bold text-[var(--color-primary)] dark:text-[var(--color-primary)]">{workoutStats.totalWorkouts}</div>
-                      <div className="text-sm font-medium text-[var(--color-primary)]/80 dark:text-[var(--color-primary)]/80">Total Workouts</div>
+                      <div data-testid="text-total-workouts" className="text-3xl font-bold text-[var(--color-activity)] dark:text-[var(--color-activity)]">{workoutStats.totalWorkouts}</div>
+                      <div className="text-sm font-medium text-[var(--color-activity)]/80 dark:text-[var(--color-activity)]/80">Total Workouts</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -261,15 +261,15 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-meals-logged"
-                  className="bg-gradient-to-br from-[var(--color-primary)]/10 to-[var(--color-primary)]/20 border-[var(--color-primary)]/30 hover:shadow-lg transition-all duration-200"
+                  className="bg-gradient-to-br from-[var(--color-nutrition)]/10 to-[var(--color-nutrition)]/20 border-[var(--color-nutrition)]/30 hover:shadow-lg transition-all duration-200"
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
-                    <div className="w-12 h-12 mx-auto bg-[var(--color-primary)] rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 mx-auto bg-[var(--color-nutrition)] rounded-full flex items-center justify-center">
                       <Apple className="w-6 h-6 text-white" />
                     </div>
                     <div className="space-y-1">
-                      <div data-testid="text-meals-logged" className="text-3xl font-bold text-[var(--color-primary)] dark:text-[var(--color-primary)]">{nutritionStats.totalMealsLogged}</div>
-                      <div className="text-sm font-medium text-[var(--color-primary)]/80 dark:text-[var(--color-primary)]/80">Meals Logged</div>
+                      <div data-testid="text-meals-logged" className="text-3xl font-bold text-[var(--color-nutrition)] dark:text-[var(--color-nutrition)]">{nutritionStats.totalMealsLogged}</div>
+                      <div className="text-sm font-medium text-[var(--color-nutrition)]/80 dark:text-[var(--color-nutrition)]/80">Meals Logged</div>
                     </div>
                   </CardContent>
                 </Card>
