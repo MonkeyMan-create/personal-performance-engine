@@ -142,7 +142,7 @@ export default function WorkoutTemplateSelector({
                             {template.targetMuscles.slice(0, 3).map((muscle, index) => (
                               <span 
                                 key={index}
-                                className="text-xs bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 px-2 py-1 rounded"
+                                className="text-xs bg-primary/10 dark:bg-primary/20 text-primary px-2 py-1 rounded"
                               >
                                 {muscle}
                               </span>
@@ -166,7 +166,7 @@ export default function WorkoutTemplateSelector({
 
                         {/* Action Button */}
                         <Button 
-                          className="w-full mt-3 bg-slate-700 dark:bg-slate-600 hover:bg-slate-600 dark:hover:bg-slate-500 text-white border-2 border-cyan-400/50 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20"
+                          className="w-full mt-3 bg-slate-700 dark:bg-slate-600 hover:bg-slate-600 dark:hover:bg-slate-500 text-white border-2 border-primary/50 hover:border-primary hover:ring-4 hover:ring-primary/20"
                           onClick={(e) => {
                             e.stopPropagation()
                             handleSelectTemplate(template)
@@ -197,14 +197,14 @@ export default function WorkoutTemplateSelector({
           </Tabs>
 
           {/* Tips */}
-          <div className="bg-cyan-50 dark:bg-cyan-900/20 rounded-lg p-4 border border-cyan-200 dark:border-cyan-800">
+          <div className="bg-primary/10 dark:bg-primary/20 rounded-lg p-4 border border-primary/20 dark:border-primary/30">
             <div className="flex items-start gap-3">
-              <div className="p-1 bg-cyan-100 dark:bg-cyan-900/30 rounded-lg flex-shrink-0">
-                <Zap className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+              <div className="p-1 bg-primary/20 dark:bg-primary/30 rounded-lg flex-shrink-0">
+                <Zap className="w-4 h-4 text-primary" />
               </div>
               <div>
-                <h4 className="font-medium text-cyan-900 dark:text-cyan-100 mb-1">Pro Tips</h4>
-                <ul className="text-sm text-cyan-800 dark:text-cyan-200 space-y-1">
+                <h4 className="font-medium text-primary mb-1">Pro Tips</h4>
+                <ul className="text-sm text-primary/80 space-y-1">
                   <li>• Templates provide suggested weights and reps - adjust based on your fitness level</li>
                   <li>• RIR (Reps in Reserve) helps you train with proper intensity</li>
                   <li>• You can modify any template after selection to match your needs</li>

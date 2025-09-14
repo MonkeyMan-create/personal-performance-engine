@@ -588,7 +588,7 @@ export default function WorkoutsPage() {
               <div className="flex gap-3">
                 <Button
                   onClick={() => setShowTemplateSelector(true)}
-                  className="flex-1 h-12 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white shadow-lg hover:shadow-xl hover:shadow-teal-500/25"
+                  className="flex-1 h-12 bg-gradient-to-r from-primary to-primary hover:from-primary/90 hover:to-primary/80 text-white shadow-lg hover:shadow-xl hover:shadow-primary/25"
                   data-testid="button-find-workout"
                 >
                   <Search className="w-5 h-5 mr-2" />
@@ -607,13 +607,13 @@ export default function WorkoutsPage() {
             </div>
 
             {/* Your Next Workout - Most Prominent Element */}
-            <Card className="bg-gradient-to-r from-teal-500 to-teal-600 border-0 shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300">
+            <Card className="bg-gradient-to-r from-primary to-primary border-0 shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-300">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between text-white mb-4">
                   <div>
-                    <p className="text-sm font-medium text-teal-100 mb-1">YOUR NEXT WORKOUT</p>
+                    <p className="text-sm font-medium text-primary-foreground/80 mb-1">YOUR NEXT WORKOUT</p>
                     <h2 className="text-2xl font-bold mb-2">{recommendedWorkout.title}</h2>
-                    <p className="text-teal-100 mb-3">{recommendedWorkout.description}</p>
+                    <p className="text-primary-foreground/80 mb-3">{recommendedWorkout.description}</p>
                   </div>
                   <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
                     <recommendedWorkout.icon className="w-8 h-8" />
@@ -623,15 +623,15 @@ export default function WorkoutsPage() {
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="bg-white/10 rounded-lg p-3 backdrop-blur-sm">
                     <div className="flex items-center gap-2 mb-1">
-                      <Clock className="w-4 h-4 text-teal-100" />
-                      <span className="text-sm text-teal-100">Duration</span>
+                      <Clock className="w-4 h-4 text-primary-foreground/80" />
+                      <span className="text-sm text-primary-foreground/80">Duration</span>
                     </div>
                     <p className="text-lg font-semibold">{recommendedWorkout.duration} min</p>
                   </div>
                   <div className="bg-white/10 rounded-lg p-3 backdrop-blur-sm">
                     <div className="flex items-center gap-2 mb-1">
-                      <Target className="w-4 h-4 text-teal-100" />
-                      <span className="text-sm text-teal-100">Exercises</span>
+                      <Target className="w-4 h-4 text-primary-foreground/80" />
+                      <span className="text-sm text-primary-foreground/80">Exercises</span>
                     </div>
                     <p className="text-lg font-semibold">{recommendedWorkout.exercises} exercises</p>
                   </div>
@@ -640,11 +640,11 @@ export default function WorkoutsPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex gap-4">
                     <div>
-                      <p className="text-xs text-teal-100">Difficulty</p>
+                      <p className="text-xs text-primary-foreground/80">Difficulty</p>
                       <p className="text-sm font-medium">{recommendedWorkout.difficulty}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-teal-100">Type</p>
+                      <p className="text-xs text-primary-foreground/80">Type</p>
                       <p className="text-sm font-medium">{recommendedWorkout.type}</p>
                     </div>
                   </div>

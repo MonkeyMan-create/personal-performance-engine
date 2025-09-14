@@ -203,7 +203,7 @@ export default function ProfileEditPage() {
         <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <User className="w-6 h-6 text-teal-400" />
+              <User className="w-6 h-6 text-primary" />
               Profile Photo
             </CardTitle>
             <CardDescription className="text-slate-300">
@@ -212,7 +212,7 @@ export default function ProfileEditPage() {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="flex flex-col items-center space-y-4">
-              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-teal-400/30 shadow-xl relative" data-testid="current-avatar">
+              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-primary/30 shadow-xl relative" data-testid="current-avatar">
                 {getCurrentProfilePicture() ? (
                   <img 
                     src={getCurrentProfilePicture()!} 
@@ -220,7 +220,7 @@ export default function ProfileEditPage() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-white font-bold text-3xl">
+                  <div className="w-full h-full bg-gradient-to-br from-primary to-primary flex items-center justify-center text-white font-bold text-3xl">
                     {isGuestMode ? 'G' : (profileData.displayName?.[0] || user?.displayName?.[0] || 'U')}
                   </div>
                 )}
@@ -247,7 +247,7 @@ export default function ProfileEditPage() {
                 <Button 
                   variant="outline" 
                   onClick={() => fileInputRef.current?.click()}
-                  className="border-teal-400/50 text-teal-400 hover:bg-teal-400/10"
+                  className="border-primary/50 text-primary hover:bg-primary/10"
                   data-testid="button-upload-photo"
                 >
                   <Camera className="w-4 h-4 mr-2" />
@@ -275,7 +275,7 @@ export default function ProfileEditPage() {
         <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <Mail className="w-6 h-6 text-purple-400" />
+              <Mail className="w-6 h-6 text-primary" />
               Personal Information
             </CardTitle>
             <CardDescription className="text-slate-300">
@@ -376,7 +376,7 @@ export default function ProfileEditPage() {
               
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">
-                  <Flame className="w-4 h-4 text-orange-400" />
+                  <Flame className="w-4 h-4 text-primary" />
                   Daily Calorie Goal
                 </label>
                 <Input
@@ -392,7 +392,7 @@ export default function ProfileEditPage() {
               
               <div>
                 <label className="block text-sm font-medium text-slate-300 mb-2 flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-blue-400" />
+                  <Activity className="w-4 h-4 text-primary" />
                   Weekly Workout Goal
                 </label>
                 <Input
@@ -496,7 +496,7 @@ export default function ProfileEditPage() {
               <Button 
                 onClick={handleSaveProfile}
                 disabled={isLoading}
-                className="flex-1 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-bold h-12 rounded-xl shadow-xl shadow-teal-500/25"
+                className="flex-1 bg-gradient-to-r from-primary to-primary hover:from-primary/90 hover:to-primary/80 text-white font-bold h-12 rounded-xl shadow-xl shadow-primary/25"
                 data-testid="button-save-profile"
               >
                 {isLoading ? (

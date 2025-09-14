@@ -43,7 +43,7 @@ const PageLoadingFallback = () => (
   <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
     <div className="text-center space-y-4">
       <div className="relative">
-        <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-2xl shadow-cyan-500/30 mx-auto">
+        <div className="w-16 h-16 bg-gradient-to-br from-primary/80 to-primary rounded-2xl flex items-center justify-center shadow-2xl ring-4 ring-primary/30 mx-auto">
           <svg 
             className="w-8 h-8 text-white animate-pulse" 
             viewBox="0 0 24 24" 
@@ -54,7 +54,7 @@ const PageLoadingFallback = () => (
             <path d="M22 12h-4l-3 9L9 3l-3 9H2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
-        <div className="absolute inset-0 w-16 h-16 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-2xl blur-xl opacity-30 animate-pulse mx-auto"></div>
+        <div className="absolute inset-0 w-16 h-16 bg-gradient-to-br from-primary/80 to-primary rounded-2xl blur-xl opacity-30 animate-pulse mx-auto"></div>
       </div>
       <p className="text-slate-600 dark:text-slate-300 font-medium">Loading...</p>
     </div>

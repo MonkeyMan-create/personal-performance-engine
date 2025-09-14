@@ -17,22 +17,22 @@ const TemplateLoadingFallback = () => (
     <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-white/95 dark:bg-slate-800/95 backdrop-blur-xl">
       <DialogHeader>
         <DialogTitle className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <Zap className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
+          <Zap className="w-6 h-6 text-primary" />
           Loading Workout Templates...
         </DialogTitle>
       </DialogHeader>
 
       <div className="py-12 text-center space-y-6">
         <div className="relative">
-          <div className="w-20 h-20 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-3xl flex items-center justify-center shadow-2xl shadow-cyan-500/30 mx-auto">
+          <div className="w-20 h-20 bg-gradient-to-br from-primary/80 to-primary rounded-3xl flex items-center justify-center ring-4 ring-primary/30 mx-auto">
             <Zap className="w-10 h-10 text-white" />
           </div>
-          <div className="absolute inset-0 w-20 h-20 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-3xl blur-xl opacity-30 animate-pulse mx-auto"></div>
+          <div className="absolute inset-0 w-20 h-20 bg-gradient-to-br from-primary/80 to-primary rounded-3xl blur-xl opacity-30 animate-pulse mx-auto"></div>
         </div>
         
         <div className="space-y-2">
           <div className="flex items-center justify-center gap-2">
-            <Loader2 className="w-6 h-6 animate-spin text-cyan-600" />
+            <Loader2 className="w-6 h-6 animate-spin text-primary" />
             <span className="text-lg font-medium text-slate-600 dark:text-slate-300">
               Loading workout templates...
             </span>

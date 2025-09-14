@@ -88,6 +88,83 @@
     --accent-teal: 173 80% 40%;
     --brand-primary: 180 98% 31%;
   }
+
+  /* Color Theme: Teal (Default) */
+  .color-teal {
+    --primary: 180 98% 31%;
+    --ring: 180 98% 31%;
+    --chart-1: 180 98% 31%;
+    --accent-cyan: 180 100% 50%;
+    --accent-teal: 173 80% 40%;
+    --brand-primary: 180 98% 31%;
+  }
+
+  /* Color Theme: Blue */
+  .color-blue {
+    --primary: 217 91% 60%;
+    --ring: 217 91% 60%;
+    --chart-1: 217 91% 60%;
+    --accent-cyan: 217 91% 60%;
+    --accent-teal: 220 85% 55%;
+    --brand-primary: 217 91% 60%;
+  }
+
+  /* Color Theme: Orange */
+  .color-orange {
+    --primary: 24 95% 53%;
+    --ring: 24 95% 53%;
+    --chart-1: 24 95% 53%;
+    --accent-cyan: 24 95% 53%;
+    --accent-teal: 27 96% 61%;
+    --brand-primary: 24 95% 53%;
+  }
+
+  /* Color Theme: Purple */
+  .color-purple {
+    --primary: 262 83% 58%;
+    --ring: 262 83% 58%;
+    --chart-1: 262 83% 58%;
+    --accent-cyan: 262 83% 58%;
+    --accent-teal: 267 84% 64%;
+    --brand-primary: 262 83% 58%;
+  }
+
+  /* Adjust for dark mode with color themes */
+  .dark.color-teal {
+    --primary: 180 98% 31%;
+    --ring: 180 98% 31%;
+    --chart-1: 180 98% 31%;
+    --accent-cyan: 180 100% 50%;
+    --accent-teal: 173 80% 40%;
+    --brand-primary: 180 98% 31%;
+  }
+
+  .dark.color-blue {
+    --primary: 217 91% 60%;
+    --ring: 217 91% 60%;
+    --chart-1: 217 91% 60%;
+    --accent-cyan: 217 91% 60%;
+    --accent-teal: 220 85% 55%;
+    --brand-primary: 217 91% 60%;
+  }
+
+  .dark.color-orange {
+    --primary: 24 95% 53%;
+    --ring: 24 95% 53%;
+    --chart-1: 24 95% 53%;
+    --accent-cyan: 24 95% 53%;
+    --accent-teal: 27 96% 61%;
+    --brand-primary: 24 95% 53%;
+  }
+
+  .dark.color-purple {
+    --primary: 262 83% 58%;
+    --ring: 262 83% 58%;
+    --chart-1: 262 83% 58%;
+    --accent-cyan: 262 83% 58%;
+    --accent-teal: 267 84% 64%;
+    --brand-primary: 262 83% 58%;
+  }
 }
 
 @layer base {

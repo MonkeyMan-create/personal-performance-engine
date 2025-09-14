@@ -273,7 +273,7 @@ export default function HealthConnectionsPage() {
                         <Button
                           onClick={() => requestPermissions(platform)}
                           disabled={!platform.available || isLoading}
-                          className="w-full bg-slate-700 dark:bg-slate-600 hover:bg-slate-600 dark:hover:bg-slate-500 text-white border-2 border-cyan-400/50 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20 disabled:opacity-50"
+                          className="w-full bg-slate-700 dark:bg-slate-600 hover:bg-slate-600 dark:hover:bg-slate-500 text-white border-2 border-primary/50 hover:border-primary hover:ring-4 hover:ring-primary/20 disabled:opacity-50"
                           data-testid={`button-connect-${platform.id}`}
                         >
                           {isLoading ? (
@@ -329,8 +329,8 @@ export default function HealthConnectionsPage() {
           <CardContent className="space-y-4">
             <div className="grid gap-4 md:grid-cols-3">
               <div className="text-center space-y-2">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg mx-auto flex items-center justify-center">
-                  <Activity className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg mx-auto flex items-center justify-center">
+                  <Activity className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="font-medium text-slate-900 dark:text-white">Personalized Insights</h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300">
@@ -349,8 +349,8 @@ export default function HealthConnectionsPage() {
               </div>
               
               <div className="text-center space-y-2">
-                <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg mx-auto flex items-center justify-center">
-                  <Moon className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg mx-auto flex items-center justify-center">
+                  <Moon className="w-6 h-6 text-primary" />
                 </div>
                 <h3 className="font-medium text-slate-900 dark:text-white">Recovery Optimization</h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300">

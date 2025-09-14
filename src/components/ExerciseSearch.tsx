@@ -19,7 +19,9 @@ import {
   CheckCircle,
   Star,
   Clock,
-  TrendingUp
+  TrendingUp,
+  PlayCircle,
+  Image as ImageIcon
 } from 'lucide-react'
 import { 
   searchExercises, 
@@ -29,6 +31,8 @@ import {
   Exercise 
 } from '../data/exerciseDatabase'
 import { getExerciseHistory } from '../utils/guestStorage'
+import { ExerciseThumbnail, ExerciseHero } from './ExerciseImage'
+import { VideoThumbnail, VideoPlayer } from './ExerciseVideo'
 
 interface ExerciseSearchProps {
   onSelectExercise: (exerciseName: string) => void
@@ -343,13 +347,40 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                       className="hover:shadow-lg transition-shadow cursor-pointer border-slate-200 dark:border-slate-600"
                     >
                       <CardContent className="p-4">
-                        <div className="flex items-start justify-between mb-3">
-                          <div className="flex-1">
-                            <h3 className="font-semibold text-slate-900 dark:text-white mb-1">
-                              {exercise.name}
-                            </h3>
+                        <div className="flex gap-3 mb-3">
+                          {/* Exercise Thumbnail */}
+                          <div className="flex-shrink-0">
+                            {exercise.video_url ? (
+                              <VideoThumbnail
+                                src={exercise.video_url}
+                                poster={exercise.image_url}
+                                exerciseName={exercise.name}
+                                onVideoClick={() => handleShowDetails(exercise)}
+                                className="border-2 border-slate-200 dark:border-slate-600"
+                              />
+                            ) : (
+                              <ExerciseThumbnail
+                                src={exercise.image_url}
+                                alt={`${exercise.name} demonstration`}
+                                exerciseName={exercise.name}
+                                onImageClick={() => handleShowDetails(exercise)}
+                                className="border-2 border-slate-200 dark:border-slate-600"
+                              />
+                            )}
+                          </div>
+                          
+                          {/* Exercise Info */}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-start justify-between mb-2">
+                              <h3 className="font-semibold text-slate-900 dark:text-white mb-1 truncate">
+                                {exercise.name}
+                              </h3>
+                              <Badge className={`text-xs ${getDifficultyColor(exercise.difficulty)}`}>
+                                {exercise.difficulty}
+                              </Badge>
+                            </div>
                             <div className="flex flex-wrap gap-1 mb-2">
-                              {exercise.muscle_groups.slice(0, 3).map(mg => (
+                              {exercise.muscle_groups.slice(0, 2).map(mg => (
                                 <Badge 
                                   key={mg} 
                                   variant="secondary" 
@@ -358,16 +389,13 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                                   {mg}
                                 </Badge>
                               ))}
-                              {exercise.muscle_groups.length > 3 && (
+                              {exercise.muscle_groups.length > 2 && (
                                 <Badge variant="secondary" className="text-xs">
-                                  +{exercise.muscle_groups.length - 3}
+                                  +{exercise.muscle_groups.length - 2}
                                 </Badge>
                               )}
                             </div>
                           </div>
-                          <Badge className={getDifficultyColor(exercise.difficulty)}>
-                            {exercise.difficulty}
-                          </Badge>
                         </div>
 
                         <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-400 mb-3">
@@ -449,26 +477,70 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
               </DialogTitle>
             </DialogHeader>
             
-            <div className="space-y-4">
-              {/* Muscle Groups and Equipment */}
-              <div className="flex flex-wrap gap-2">
-                {selectedExercise.muscle_groups.map(mg => (
-                  <Badge key={mg} variant="secondary" className="capitalize">
-                    {mg}
-                  </Badge>
-                ))}
-              </div>
+            <div className="space-y-6">
+              {/* Exercise Visual Content */}
+              {(selectedExercise.image_url || selectedExercise.video_url) && (
+                <div className="space-y-4">
+                  {selectedExercise.video_url && (
+                    <div>
+                      <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                        <PlayCircle className="w-5 h-5 text-cyan-600" />
+                        Exercise Demonstration
+                      </h3>
+                      <VideoPlayer
+                        src={selectedExercise.video_url}
+                        poster={selectedExercise.image_url}
+                        exerciseName={selectedExercise.name}
+                        controls
+                        className="rounded-lg overflow-hidden"
+                      />
+                    </div>
+                  )}
+                  
+                  {selectedExercise.image_url && !selectedExercise.video_url && (
+                    <div>
+                      <h3 className="font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                        <ImageIcon className="w-5 h-5 text-cyan-600" />
+                        Exercise Reference
+                      </h3>
+                      <ExerciseHero
+                        src={selectedExercise.image_url}
+                        alt={`${selectedExercise.name} demonstration`}
+                        exerciseName={selectedExercise.name}
+                        className="rounded-lg overflow-hidden"
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
               
-              <div className="text-sm text-slate-600 dark:text-slate-400">
-                <strong>Equipment:</strong> {selectedExercise.equipment.join(', ')}
+              {/* Muscle Groups and Equipment */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <h4 className="font-medium text-slate-900 dark:text-white mb-2">Target Muscles</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedExercise.muscle_groups.map(mg => (
+                      <Badge key={mg} variant="secondary" className="capitalize">
+                        {mg}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="font-medium text-slate-900 dark:text-white mb-2">Equipment Needed</h4>
+                  <div className="text-sm text-slate-600 dark:text-slate-400">
+                    {selectedExercise.equipment.join(', ')}
+                  </div>
+                </div>
               </div>
 
               {/* Instructions */}
               <div>
-                <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Instructions</h3>
-                <ol className="list-decimal list-inside space-y-1 text-sm text-slate-700 dark:text-slate-300">
+                <h3 className="font-semibold text-slate-900 dark:text-white mb-3">Step-by-Step Instructions</h3>
+                <ol className="list-decimal list-inside space-y-2 text-sm text-slate-700 dark:text-slate-300">
                   {selectedExercise.instructions.map((instruction, index) => (
-                    <li key={index}>{instruction}</li>
+                    <li key={index} className="leading-relaxed">{instruction}</li>
                   ))}
                 </ol>
               </div>
@@ -476,10 +548,10 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
               {/* Tips */}
               {selectedExercise.tips && selectedExercise.tips.length > 0 && (
                 <div>
-                  <h3 className="font-semibold text-slate-900 dark:text-white mb-2">Tips & Safety</h3>
-                  <ul className="list-disc list-inside space-y-1 text-sm text-slate-700 dark:text-slate-300">
+                  <h3 className="font-semibold text-slate-900 dark:text-white mb-3">Tips & Safety</h3>
+                  <ul className="list-disc list-inside space-y-2 text-sm text-slate-700 dark:text-slate-300">
                     {selectedExercise.tips.map((tip, index) => (
-                      <li key={index}>{tip}</li>
+                      <li key={index} className="leading-relaxed">{tip}</li>
                     ))}
                   </ul>
                 </div>

@@ -24,19 +24,19 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
         {/* Branded Logo */}
         <div className="flex justify-center mb-8">
           <div className="relative">
-            <div className="w-20 h-20 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-2xl shadow-cyan-500/30">
+            <div className="w-20 h-20 bg-gradient-to-br from-primary/80 to-primary rounded-2xl flex items-center justify-center ring-4 ring-primary/30">
               {/* Stylized heartbeat/pulse logo */}
               <HeartbeatIcon className="w-10 h-10 text-white" />
             </div>
             {/* Glowing effect */}
-            <div className="absolute inset-0 w-20 h-20 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-2xl blur-xl opacity-30 animate-pulse"></div>
+            <div className="absolute inset-0 w-20 h-20 bg-gradient-to-br from-primary/80 to-primary rounded-2xl blur-xl opacity-30 animate-pulse"></div>
           </div>
         </div>
 
         {/* Main Content Card */}
         <Card className="bg-card/80 border-border shadow-2xl backdrop-blur-xl">
           <CardHeader className="text-center space-y-4 pb-4">
-            <CardTitle className="text-3xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 to-teal-400 bg-clip-text text-transparent">
+            <CardTitle className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary/80 to-primary bg-clip-text text-transparent">
               Personal Performance Engine
             </CardTitle>
             <CardDescription className="text-muted-foreground text-base max-w-sm mx-auto leading-relaxed">
@@ -58,7 +58,7 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
               {/* Google Sign In Button */}
               <Button 
                 onClick={signInWithGoogle} 
-                className="w-full h-12 text-base font-semibold bg-slate-700 hover:bg-slate-600 text-white border-2 border-cyan-400/50 hover:border-cyan-400 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-xl hover:shadow-cyan-400/20" 
+                className="w-full h-12 text-base font-semibold bg-slate-700 hover:bg-slate-600 text-white border-2 border-primary/50 hover:border-primary transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:ring-4 hover:ring-primary/20" 
                 size="lg"
                 data-testid="button-google-signin"
               >

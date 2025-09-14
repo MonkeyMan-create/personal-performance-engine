@@ -32,6 +32,8 @@ export const exerciseDatabase: Exercise[] = [
     ],
     category: "strength",
     movement_pattern: "push",
+    image_url: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=600&fit=crop&crop=center",
+    video_url: "https://player.vimeo.com/video/sample-bench-press",
     tips: [
       "Keep your shoulder blades retracted throughout the movement",
       "Don't bounce the bar off your chest",
@@ -54,6 +56,8 @@ export const exerciseDatabase: Exercise[] = [
     ],
     category: "strength",
     movement_pattern: "push",
+    image_url: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=800&h=600&fit=crop&crop=center",
+    video_url: "https://player.vimeo.com/video/sample-pushups",
     tips: [
       "Keep your core engaged throughout",
       "Don't let your hips sag or pike up",
@@ -144,6 +148,8 @@ export const exerciseDatabase: Exercise[] = [
     ],
     category: "strength",
     movement_pattern: "pull",
+    image_url: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=600&fit=crop&crop=center",
+    video_url: "https://player.vimeo.com/video/sample-pullups",
     tips: [
       "Don't use momentum or kipping",
       "Focus on pulling with your back muscles",

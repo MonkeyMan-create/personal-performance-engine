@@ -5,11 +5,12 @@ import { useTheme } from '../components/theme-provider'
 import { useMeasurement } from '../contexts/MeasurementContext'
 import { Button } from '../components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
-import { User, Moon, Sun, LogOut, ChevronRight, Settings, Download, Trash2, HelpCircle, MessageCircle, FileText, Scale, Smartphone, Info, Globe, Languages, ChevronDown } from 'lucide-react'
+import { User, Moon, Sun, LogOut, ChevronRight, Settings, Download, Trash2, HelpCircle, MessageCircle, FileText, Scale, Smartphone, Info, Globe, Languages, ChevronDown, Palette } from 'lucide-react'
 import { Link } from 'wouter'
 import { useLocalization, SUPPORTED_LANGUAGES, SUPPORTED_COUNTRIES } from '../contexts/LocalizationContext'
 import { getProfileDataLocally, ProfileData } from '../utils/guestStorage'
 import { useToast } from '../hooks/use-toast'
+import ColorThemeSelector from '../components/ColorThemeSelector'
 
 export default function SettingsPage() {
   const { user, logout, isGuestMode } = useAuth()
@@ -146,8 +147,8 @@ export default function SettingsPage() {
             e.stopPropagation()
             action?.()
           }}
-          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-slate-800 ${
-            toggleState ? 'bg-gradient-to-r from-teal-500 to-teal-600 shadow-lg shadow-teal-500/25' : 'bg-slate-600'
+          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-slate-800 ${
+            toggleState ? 'bg-gradient-to-r from-primary to-primary shadow-lg shadow-primary/25' : 'bg-slate-600'
           }`}
           data-testid={`${testId}-toggle`}
         >
@@ -176,7 +177,7 @@ export default function SettingsPage() {
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
               {/* User Avatar */}
-              <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-teal-400/30 shadow-xl" data-testid="user-avatar">
+              <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-primary/30 shadow-xl" data-testid="user-avatar">
                 {(isGuestMode && profileData.profilePicture) || (!isGuestMode && user?.photoURL) ? (
                   <img 
                     src={isGuestMode ? profileData.profilePicture! : user!.photoURL!} 
@@ -185,7 +186,7 @@ export default function SettingsPage() {
                     data-testid="user-avatar-image"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center text-white font-bold text-xl" data-testid="user-avatar-initials">
+                  <div className="w-full h-full bg-gradient-to-br from-primary to-primary flex items-center justify-center text-white font-bold text-xl" data-testid="user-avatar-initials">
                     {isGuestMode ? getInitials(profileData.displayName) || 'G' : getInitials(user?.displayName)}
                   </div>
                 )}
@@ -211,7 +212,7 @@ export default function SettingsPage() {
         <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
           <CardHeader className="pb-4">
             <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <Settings className="w-6 h-6 text-teal-400" />
+              <Settings className="w-6 h-6 text-primary" />
               Account Settings
             </CardTitle>
             <CardDescription className="text-slate-300">
@@ -254,6 +255,20 @@ export default function SettingsPage() {
               testId="settings-measurement-units"
             />
             
+            {/* Color Theme Selector */}
+            <div className="p-4 rounded-lg mx-2" data-testid="settings-color-theme">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="p-2 bg-slate-700/30 rounded-xl">
+                  <Palette className="w-5 h-5 text-slate-300" />
+                </div>
+                <div>
+                  <p className="font-semibold text-white">App Color Theme</p>
+                  <p className="text-sm text-slate-400 mt-0.5">Choose your preferred accent color</p>
+                </div>
+              </div>
+              <ColorThemeSelector />
+            </div>
+            
             {/* Language Dropdown */}
             <div className="relative">
               <div 
@@ -280,13 +295,13 @@ export default function SettingsPage() {
                       key={lang.code}
                       onClick={() => handleLanguageSelect(lang.code)}
                       className={`w-full text-left px-4 py-3 hover:bg-slate-700/50 transition-colors flex items-center gap-3 ${
-                        language === lang.code ? 'bg-slate-700/30 text-teal-300' : 'text-white'
+                        language === lang.code ? 'bg-slate-700/30 text-primary' : 'text-white'
                       }`}
                       data-testid={`language-option-${lang.code}`}
                     >
                       <span className="text-lg">{lang.flag}</span>
                       <span className="font-medium">{lang.name}</span>
-                      {language === lang.code && <span className="ml-auto text-teal-400">✓</span>}
+                      {language === lang.code && <span className="ml-auto text-primary">✓</span>}
                     </button>
                   ))}
                 </div>
@@ -319,13 +334,13 @@ export default function SettingsPage() {
                       key={country_.code}
                       onClick={() => handleCountrySelect(country_.code)}
                       className={`w-full text-left px-4 py-3 hover:bg-slate-700/50 transition-colors flex items-center gap-3 ${
-                        country === country_.code ? 'bg-slate-700/30 text-teal-300' : 'text-white'
+                        country === country_.code ? 'bg-slate-700/30 text-primary' : 'text-white'
                       }`}
                       data-testid={`country-option-${country_.code}`}
                     >
                       <span className="text-lg">{country_.flag}</span>
                       <span className="font-medium">{country_.name}</span>
-                      {country === country_.code && <span className="ml-auto text-teal-400">✓</span>}
+                      {country === country_.code && <span className="ml-auto text-primary">✓</span>}
                     </button>
                   ))}
                 </div>

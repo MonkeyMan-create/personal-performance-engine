@@ -487,7 +487,7 @@ export default function NutritionPage() {
         <div className="pt-8 space-y-6">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-slate-900 dark:text-white">Nutrition</h1>
-            <p className="text-lg font-bold text-orange-600 dark:text-orange-400 mt-2" data-testid="calories-remaining">
+            <p className="text-lg font-bold text-primary mt-2" data-testid="calories-remaining">
               {caloriesRemaining > 0 ? caloriesRemaining : 0} cal remaining
             </p>
             <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -504,13 +504,13 @@ export default function NutritionPage() {
                 <div className="space-y-3" data-testid="metric-calories">
                   <div className="flex justify-between items-center">
                     <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Calories</h3>
-                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400">
+                    <span className="text-lg font-bold text-primary">
                       {todayStats.calories.toLocaleString()} / {nutritionGoals.calories.toLocaleString()} cal
                     </span>
                   </div>
                   <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 shadow-inner">
                     <div 
-                      className="bg-gradient-to-r from-orange-500 to-orange-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                      className="bg-gradient-to-r from-primary to-primary/90 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
                       style={{ width: `${Math.min(100, caloriesProgress)}%` }}
                       data-testid="progress-bar-calories"
                     />
@@ -526,13 +526,13 @@ export default function NutritionPage() {
                 <div className="space-y-3" data-testid="metric-protein">
                   <div className="flex justify-between items-center">
                     <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Protein</h3>
-                    <span className="text-lg font-bold text-orange-600 dark:text-orange-400">
+                    <span className="text-lg font-bold text-primary">
                       {Math.round(todayStats.protein)}g / {nutritionGoals.protein}g
                     </span>
                   </div>
                   <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 shadow-inner">
                     <div 
-                      className="bg-gradient-to-r from-orange-400 to-orange-500 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                      className="bg-gradient-to-r from-primary/80 to-primary h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
                       style={{ width: `${Math.min(100, proteinProgress)}%` }}
                       data-testid="progress-bar-protein"
                     />
@@ -572,13 +572,13 @@ export default function NutritionPage() {
                     <div className="flex justify-between items-center">
                       <h3 className="text-lg font-semibold text-slate-900 dark:text-white">Hydration</h3>
                       <div className="flex items-center gap-3">
-                        <span className="text-lg font-bold text-blue-600 dark:text-blue-400">
+                        <span className="text-lg font-bold text-primary">
                           {waterGlasses} / 8 glasses
                         </span>
                         <Button
                           onClick={addWaterGlass}
                           size="sm"
-                          className="h-8 px-3 bg-blue-500 hover:bg-blue-600 text-white text-xs font-medium rounded-full shadow-lg transition-all duration-200 hover:scale-105"
+                          className="h-8 px-3 bg-primary hover:bg-primary/90 text-white text-xs font-medium rounded-full shadow-lg transition-all duration-200 hover:scale-105"
                           data-testid="button-add-water-inline"
                         >
                           <Droplets className="w-3 h-3 mr-1" />
@@ -588,7 +588,7 @@ export default function NutritionPage() {
                     </div>
                     <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-3 shadow-inner">
                       <div 
-                        className="bg-gradient-to-r from-blue-500 to-blue-600 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
+                        className="bg-gradient-to-r from-primary to-primary/90 h-3 rounded-full transition-all duration-1000 ease-out shadow-lg"
                         style={{ width: `${Math.min(100, hydrationProgress)}%` }}
                         data-testid="progress-bar-hydration"
                       />
@@ -639,7 +639,7 @@ export default function NutritionPage() {
             {/* Primary Search Button */}
             <Button
               onClick={() => setShowSearch(true)}
-              className="w-full h-16 mb-4 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white text-xl font-bold rounded-2xl shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full h-16 mb-4 bg-gradient-to-r from-primary to-primary hover:from-primary/90 hover:to-primary/80 text-white text-xl font-bold rounded-2xl shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               data-testid="button-search-food-primary"
             >
               <Search className="w-6 h-6 mr-3" />

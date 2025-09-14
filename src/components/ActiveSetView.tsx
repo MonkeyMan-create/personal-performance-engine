@@ -4,11 +4,13 @@ import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
 import { Badge } from '../components/ui/badge'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../components/ui/dialog'
-import { ArrowLeft, Check, Play, Pause, SkipForward, Info, Target, Dumbbell } from 'lucide-react'
+import { ArrowLeft, Check, Play, Pause, SkipForward, Info, Target, Dumbbell, Eye, PlayCircle } from 'lucide-react'
 import { getSmartDefaults, getCurrentWorkoutSession, addSetToCurrentSession } from '../utils/guestStorage'
 import { getExerciseById } from '../data/exerciseDatabase'
 import { useMeasurement } from '../contexts/MeasurementContext'
 import { useToast } from '../hooks/use-toast'
+import { ExercisePreview } from './ExerciseImage'
+import { VideoPreview } from './ExerciseVideo'
 
 interface ActiveSetViewProps {
   exerciseName: string
@@ -200,6 +202,31 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
               )}
             </div>
             
+            {/* Exercise Visual Preview */}
+            {exerciseData && (exerciseData.image_url || exerciseData.video_url) && (
+              <div className="flex justify-center mb-4">
+                {exerciseData.video_url ? (
+                  <VideoPreview
+                    src={exerciseData.video_url}
+                    poster={exerciseData.image_url}
+                    exerciseName={exerciseData.name}
+                    autoPlay
+                    muted
+                    loop
+                    className="border-2 border-slate-200 dark:border-slate-600 shadow-lg"
+                  />
+                ) : (
+                  <ExercisePreview
+                    src={exerciseData.image_url}
+                    alt={`${exerciseData.name} demonstration`}
+                    exerciseName={exerciseData.name}
+                    className="border-2 border-slate-200 dark:border-slate-600 shadow-lg"
+                    onImageClick={() => setShowExerciseInfo(true)}
+                  />
+                )}
+              </div>
+            )}
+            
             {/* Exercise Details */}
             {exerciseData && (
               <div className="flex flex-wrap justify-center gap-2 mb-3">
@@ -213,6 +240,18 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   <Dumbbell className="w-3 h-3 mr-1" />
                   {exerciseData.equipment.join(', ')}
                 </Badge>
+                {(exerciseData.image_url || exerciseData.video_url) && (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowExerciseInfo(true)}
+                    className="text-xs text-primary hover:text-primary/80 px-2 py-1 h-6"
+                    data-testid="button-view-exercise-demo"
+                  >
+                    <Eye className="w-3 h-3 mr-1" />
+                    View Demo
+                  </Button>
+                )}
               </div>
             )}
             
@@ -238,7 +277,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   type="number"
                   value={weight}
                   onChange={(e) => setWeight(e.target.value)}
-                  className="text-center text-xl h-14 text-slate-900 dark:text-white bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                  className="text-center text-xl h-14 text-slate-900 dark:text-white bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="135"
                   min="0"
                   step="0.5"
@@ -256,7 +295,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   type="number"
                   value={reps}
                   onChange={(e) => setReps(e.target.value)}
-                  className="text-center text-xl h-14 text-slate-900 dark:text-white bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                  className="text-center text-xl h-14 text-slate-900 dark:text-white bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="8"
                   min="1"
                   data-testid="input-active-reps"
@@ -272,7 +311,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   type="number"
                   value={rir}
                   onChange={(e) => setRir(e.target.value)}
-                  className="text-center text-xl h-14 text-slate-900 dark:text-white bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500"
+                  className="text-center text-xl h-14 text-slate-900 dark:text-white bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 focus:ring-2 focus:ring-primary focus:border-primary"
                   placeholder="2"
                   min="0"
                   max="10"
@@ -291,7 +330,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
               <Button
                 onClick={handleLogSet}
                 disabled={isLoading || !weight || !reps || !rir || parseFloat(weight) <= 0 || parseInt(reps) <= 0 || parseInt(rir) < 0}
-                className="w-full h-16 text-xl font-bold bg-gradient-to-r from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700 text-white border-0 shadow-lg hover:shadow-xl hover:shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-150"
+                className="w-full h-16 text-xl font-bold bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-white border-0 shadow-lg hover:shadow-xl hover:ring-4 hover:ring-primary/25 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-150"
                 data-testid="button-log-set"
               >
                 {isLoading ? (
@@ -307,7 +346,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
               <div className="space-y-3">
                 {/* Rest Timer Display */}
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-cyan-600 dark:text-cyan-400 mb-2">
+                  <div className="text-3xl font-bold text-primary mb-2">
                     {formatTime(remainingTime)}
                   </div>
                   <p className="text-sm text-slate-600 dark:text-slate-400">
@@ -358,7 +397,7 @@ export default function ActiveSetView({ exerciseName, onFinishExercise, onBackTo
                   {currentExercise.sets.map((set, index) => (
                     <span
                       key={index}
-                      className="text-xs bg-cyan-100 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-200 px-2 py-1 rounded"
+                      className="text-xs bg-primary/10 dark:bg-primary/20 text-primary px-2 py-1 rounded"
                     >
                       {set.weight}lbs × {set.reps}
                     </span>

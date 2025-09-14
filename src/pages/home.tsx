@@ -82,19 +82,19 @@ export default function HomePage() {
     mealsLogged: 2
   }
 
-  // Color mapping for consistent Tailwind classes
+  // Color mapping using consistent primary theming
   const colorMap = {
     purple: {
-      bg: 'bg-purple-600/20',
-      text: 'text-purple-400'
+      bg: 'bg-primary/20',
+      text: 'text-primary'
     },
     emerald: {
-      bg: 'bg-emerald-600/20',
-      text: 'text-emerald-400'
+      bg: 'bg-primary/20',
+      text: 'text-primary'
     },
     blue: {
-      bg: 'bg-blue-600/20',
-      text: 'text-blue-400'
+      bg: 'bg-primary/20',
+      text: 'text-primary'
     }
   }
 
@@ -187,7 +187,7 @@ export default function HomePage() {
             label="Calories"
             unit="cal"
             size="lg"
-            className="drop-shadow-2xl [&>*]:!stroke-orange-500 [&_text]:!fill-orange-500"
+            className="drop-shadow-2xl [&>*]:!stroke-primary [&_text]:!fill-primary"
           />
         </div>
 
@@ -196,8 +196,8 @@ export default function HomePage() {
           <Card className="bg-card/60 border-border backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-purple-600/20 rounded-lg">
-                  <Activity className="w-5 h-5 text-purple-400" />
+                <div className="p-2 bg-primary/20 rounded-lg">
+                  <Activity className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-slate-300">Steps</p>
@@ -208,7 +208,7 @@ export default function HomePage() {
               </div>
               <div className="mt-2 w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-purple-500 to-purple-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, stepsProgress)}%` }}
                 />
               </div>
@@ -218,8 +218,8 @@ export default function HomePage() {
           <Card className="bg-card/60 border-border backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-orange-600/20 rounded-lg">
-                  <Flame className="w-5 h-5 text-orange-400" />
+                <div className="p-2 bg-primary/20 rounded-lg">
+                  <Flame className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-slate-300">Burned</p>
@@ -230,7 +230,7 @@ export default function HomePage() {
               </div>
               <div className="mt-2 w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-orange-500 to-orange-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `70%` }}
                 />
               </div>
@@ -240,8 +240,8 @@ export default function HomePage() {
           <Card className="bg-card/60 border-border backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-600/20 rounded-lg">
-                  <Moon className="w-5 h-5 text-blue-400" />
+                <div className="p-2 bg-primary/20 rounded-lg">
+                  <Moon className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-slate-300">Sleep</p>
@@ -252,7 +252,7 @@ export default function HomePage() {
               </div>
               <div className="mt-2 w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-blue-500 to-blue-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, sleepProgress)}%` }}
                 />
               </div>
@@ -262,8 +262,8 @@ export default function HomePage() {
           <Card className="bg-card/60 border-border backdrop-blur-xl">
             <CardContent className="p-4">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-600/20 rounded-lg">
-                  <Target className="w-5 h-5 text-blue-400" />
+                <div className="p-2 bg-primary/20 rounded-lg">
+                  <Target className="w-5 h-5 text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="text-sm text-slate-300">Water</p>
@@ -274,7 +274,7 @@ export default function HomePage() {
               </div>
               <div className="mt-2 w-full bg-muted rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-blue-500 to-blue-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, waterProgress)}%` }}
                 />
               </div>
@@ -286,7 +286,7 @@ export default function HomePage() {
         <div className="space-y-4">
           <Link href="/workouts">
             <Card 
-              className="bg-gradient-to-r from-teal-500 to-teal-600 border-0 shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="bg-gradient-to-r from-primary to-primary border-0 shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               data-testid="card-log-workout"
             >
               <CardContent className="p-6">
@@ -297,7 +297,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold">Log Workout</h3>
-                      <p className="text-teal-100">Track your training session</p>
+                      <p className="text-primary-foreground/80">Track your training session</p>
                     </div>
                   </div>
                   <Plus className="w-6 h-6" />
@@ -308,7 +308,7 @@ export default function HomePage() {
 
           <Link href="/nutrition">
             <Card 
-              className="bg-gradient-to-r from-teal-500 to-teal-600 border-0 shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="bg-gradient-to-r from-primary to-primary border-0 shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               data-testid="card-log-meal"
             >
               <CardContent className="p-6">
@@ -319,7 +319,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold">Log Meal</h3>
-                      <p className="text-teal-100">Record what you ate</p>
+                      <p className="text-primary-foreground/80">Record what you ate</p>
                     </div>
                   </div>
                   <Plus className="w-6 h-6" />
@@ -330,7 +330,7 @@ export default function HomePage() {
 
           <Link href="/meditate">
             <Card 
-              className="bg-gradient-to-r from-teal-500 to-teal-600 border-0 shadow-2xl shadow-teal-500/25 hover:shadow-teal-500/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="bg-gradient-to-r from-primary to-primary border-0 shadow-2xl shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
               data-testid="card-meditate"
             >
               <CardContent className="p-6">
@@ -341,7 +341,7 @@ export default function HomePage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold">Meditate</h3>
-                      <p className="text-teal-100">Find your inner peace</p>
+                      <p className="text-primary-foreground/80">Find your inner peace</p>
                     </div>
                   </div>
                   <Plus className="w-6 h-6" />
@@ -396,7 +396,7 @@ export default function HomePage() {
         <Card className="bg-card/60 border-border backdrop-blur-xl">
           <CardHeader>
             <CardTitle className="text-white flex items-center gap-2">
-              <Apple className="w-5 h-5 text-orange-400" />
+              <Apple className="w-5 h-5 text-primary" />
               Nutrition Snapshot
             </CardTitle>
             <CardDescription className="text-slate-300">
@@ -414,7 +414,7 @@ export default function HomePage() {
               </div>
               <div className="w-full bg-slate-700 rounded-full h-2">
                 <div 
-                  className="bg-gradient-to-r from-orange-500 to-orange-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${Math.min(100, (nutritionData.protein.current / nutritionData.protein.goal) * 100)}%` }}
                 />
               </div>
@@ -453,17 +453,17 @@ export default function HomePage() {
             {/* Quick Stats */}
             <div className="flex justify-between items-center pt-4 border-t border-slate-700">
               <div className="text-center">
-                <p className="text-2xl font-bold text-orange-400" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
+                <p className="text-2xl font-bold text-primary" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
                 <p className="text-xs text-slate-400">Meals Logged</p>
               </div>
               <div className="text-center">
-                <p className="text-2xl font-bold text-orange-400" data-testid="calories-remaining">
+                <p className="text-2xl font-bold text-primary" data-testid="calories-remaining">
                   {nutritionData.calories.goal - nutritionData.calories.current}
                 </p>
                 <p className="text-xs text-slate-400">Calories Left</p>
               </div>
               <div className="text-center">
-                <p className="text-2xl font-bold text-orange-400">73%</p>
+                <p className="text-2xl font-bold text-primary">73%</p>
                 <p className="text-xs text-slate-400">Daily Goal</p>
               </div>
             </div>

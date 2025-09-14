@@ -76,8 +76,8 @@ export default function ContactSupportPage() {
         <div className="grid md:grid-cols-3 gap-6">
           <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
             <CardContent className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-xl mx-auto flex items-center justify-center">
-                <MessageCircle className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+              <div className="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl mx-auto flex items-center justify-center">
+                <MessageCircle className="w-8 h-8 text-primary" />
               </div>
               <div>
                 <h3 className="font-bold text-white text-lg">Live Chat</h3>
@@ -88,7 +88,7 @@ export default function ContactSupportPage() {
               </div>
               <Button 
                 variant="outline" 
-                className="w-full border-blue-400/50 text-blue-400 hover:bg-blue-400/10"
+                className="w-full border-primary/50 text-primary hover:bg-primary/10"
                 disabled
                 data-testid="button-live-chat"
               >
@@ -121,8 +121,8 @@ export default function ContactSupportPage() {
 
           <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
             <CardContent className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900/30 rounded-xl mx-auto flex items-center justify-center">
-                <HelpCircle className="w-8 h-8 text-purple-600 dark:text-purple-400" />
+              <div className="w-16 h-16 bg-primary/10 dark:bg-primary/20 rounded-xl mx-auto flex items-center justify-center">
+                <HelpCircle className="w-8 h-8 text-primary" />
               </div>
               <div>
                 <h3 className="font-bold text-white text-lg">Help Center</h3>
@@ -134,7 +134,7 @@ export default function ContactSupportPage() {
               <Link href="/help-center">
                 <Button 
                   variant="outline" 
-                  className="w-full border-purple-400/50 text-purple-400 hover:bg-purple-400/10"
+                  className="w-full border-primary/50 text-primary hover:bg-primary/10"
                   data-testid="button-help-center"
                 >
                   Visit Help Center
@@ -148,7 +148,7 @@ export default function ContactSupportPage() {
         <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <CardTitle className="text-white text-xl font-bold flex items-center gap-2">
-              <Send className="w-6 h-6 text-teal-400" />
+              <Send className="w-6 h-6 text-primary" />
               Send Support Message
             </CardTitle>
             <CardDescription className="text-slate-300">
@@ -207,7 +207,7 @@ export default function ContactSupportPage() {
                 onChange={(e) => handleInputChange('message', e.target.value)}
                 placeholder="Please describe your issue or question in detail..."
                 rows={6}
-                className="w-full p-3 bg-slate-700/50 border border-slate-600 rounded-md text-white placeholder:text-slate-400 resize-none focus:outline-none focus:ring-2 focus:ring-teal-400 focus:border-teal-400"
+                className="w-full p-3 bg-slate-700/50 border border-slate-600 rounded-md text-white placeholder:text-slate-400 resize-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                 data-testid="input-message"
               />
             </div>
@@ -216,7 +216,7 @@ export default function ContactSupportPage() {
               <Button 
                 onClick={handleSubmitForm}
                 disabled={isSubmitting}
-                className="flex-1 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-600 hover:to-teal-700 text-white font-bold h-12 rounded-xl shadow-xl shadow-teal-500/25"
+                className="flex-1 bg-gradient-to-r from-primary to-primary hover:from-primary/90 hover:to-primary/80 text-white font-bold h-12 rounded-xl shadow-xl shadow-primary/25"
                 data-testid="button-submit-support"
               >
                 {isSubmitting ? (
@@ -260,7 +260,7 @@ export default function ContactSupportPage() {
               </div>
               
               <div className="space-y-2">
-                <MessageCircle className="w-8 h-8 text-blue-400 mx-auto" />
+                <MessageCircle className="w-8 h-8 text-primary mx-auto" />
                 <h3 className="font-semibold text-white">Follow-up</h3>
                 <p className="text-sm text-slate-300">
                   We'll check in to ensure your issue is fully resolved

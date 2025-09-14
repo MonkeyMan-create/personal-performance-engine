@@ -37,7 +37,7 @@ export default function MissionModelPage() {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <h3 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
+                  <Sparkles className="w-5 h-5 text-primary" />
                   Forever Free Core Features
                 </h3>
                 <div className="space-y-3">
@@ -69,19 +69,19 @@ export default function MissionModelPage() {
               </div>
               <div className="space-y-4">
                 <h3 className="font-semibold text-slate-900 dark:text-white flex items-center gap-2">
-                  <Shield className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  <Shield className="w-5 h-5 text-primary" />
                   Our Commitments
                 </h3>
                 <div className="space-y-3">
-                  <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                    <p className="text-blue-800 dark:text-blue-200 font-medium">✓ 100% Ad-Free</p>
-                    <p className="text-blue-700 dark:text-blue-300 text-sm mt-1">
+                  <div className="p-4 bg-primary/10 dark:bg-primary/20 rounded-lg border border-primary/20 dark:border-primary/30">
+                    <p className="text-primary font-medium">✓ 100% Ad-Free</p>
+                    <p className="text-primary/80 text-sm mt-1">
                       No banner ads, video ads, or sponsored content ever
                     </p>
                   </div>
-                  <div className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
-                    <p className="text-purple-800 dark:text-purple-200 font-medium">✓ Your Data, Your Control</p>
-                    <p className="text-purple-700 dark:text-purple-300 text-sm mt-1">
+                  <div className="p-4 bg-primary/10 dark:bg-primary/20 rounded-lg border border-primary/20 dark:border-primary/30">
+                    <p className="text-primary font-medium">✓ Your Data, Your Control</p>
+                    <p className="text-primary/80 text-sm mt-1">
                       We never sell your data or share it with third parties
                     </p>
                   </div>
@@ -174,8 +174,8 @@ export default function MissionModelPage() {
         <Card className="bg-white/70 dark:bg-slate-800/80 border-slate-200/50 dark:border-slate-700/50 backdrop-blur-xl">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-cyan-100 dark:bg-cyan-900/30 rounded-lg">
-                <Zap className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
+              <div className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg">
+                <Zap className="w-6 h-6 text-primary" />
               </div>
               <div>
                 <CardTitle className="text-slate-900 dark:text-white text-xl">
@@ -212,10 +212,10 @@ export default function MissionModelPage() {
                   <div className="bg-slate-50 dark:bg-slate-800 p-4 border-b border-slate-200 dark:border-slate-700">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <Brain className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                        <Brain className="w-6 h-6 text-primary" />
                         <h4 className="font-semibold text-slate-900 dark:text-white">AI Personal Coach</h4>
                       </div>
-                      <Badge variant="outline" className="border-blue-300 text-blue-700 dark:border-blue-600 dark:text-blue-400">
+                      <Badge variant="outline" className="border-primary/30 text-primary">
                         ~$5-8/month
                       </Badge>
                     </div>
@@ -253,10 +253,10 @@ export default function MissionModelPage() {
                   <div className="bg-slate-50 dark:bg-slate-800 p-4 border-b border-slate-200 dark:border-slate-700">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <TrendingUp className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                        <TrendingUp className="w-6 h-6 text-primary" />
                         <h4 className="font-semibold text-slate-900 dark:text-white">Smart Recovery Score</h4>
                       </div>
-                      <Badge variant="outline" className="border-purple-300 text-purple-700 dark:border-purple-600 dark:text-purple-400">
+                      <Badge variant="outline" className="border-primary/30 text-primary">
                         ~$3-5/month
                       </Badge>
                     </div>
@@ -337,8 +337,8 @@ export default function MissionModelPage() {
               <h4 className="font-semibold text-slate-900 dark:text-white mb-3 text-center">Our Pricing Philosophy</h4>
               <div className="grid md:grid-cols-3 gap-4 text-center">
                 <div className="space-y-2">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mx-auto">
-                    <Shield className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                  <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center mx-auto">
+                    <Shield className="w-6 h-6 text-primary" />
                   </div>
                   <h5 className="font-medium text-slate-900 dark:text-white">Transparent Costs</h5>
                   <p className="text-sm text-slate-600 dark:text-slate-300">
@@ -355,8 +355,8 @@ export default function MissionModelPage() {
                   </p>
                 </div>
                 <div className="space-y-2">
-                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mx-auto">
-                    <Heart className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                  <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center mx-auto">
+                    <Heart className="w-6 h-6 text-primary" />
                   </div>
                   <h5 className="font-medium text-slate-900 dark:text-white">User-First</h5>
                   <p className="text-sm text-slate-600 dark:text-slate-300">
@@ -369,7 +369,7 @@ export default function MissionModelPage() {
         </Card>
 
         {/* Call to Action */}
-        <Card className="bg-gradient-to-r from-cyan-50 to-teal-50 dark:from-cyan-900/20 dark:to-teal-900/20 border-cyan-200 dark:border-cyan-800">
+        <Card className="bg-gradient-to-r from-primary/10 to-primary/20 dark:from-primary/20 dark:to-primary/30 border-primary/20 dark:border-primary/30">
           <CardContent className="p-6 text-center space-y-4">
             <h3 className="text-xl font-semibold text-slate-900 dark:text-white">
               Start Your Fitness Journey Today
@@ -380,7 +380,7 @@ export default function MissionModelPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button 
-                className="bg-slate-700 dark:bg-slate-600 hover:bg-slate-600 dark:hover:bg-slate-500 text-white border-2 border-cyan-400/50 hover:border-cyan-400 hover:shadow-lg hover:shadow-cyan-400/20"
+                className="bg-slate-700 dark:bg-slate-600 hover:bg-slate-600 dark:hover:bg-slate-500 text-white border-2 border-primary/50 hover:border-primary hover:ring-4 hover:ring-primary/20"
                 onClick={() => window.location.href = '/workouts'}
               >
                 <Zap className="w-4 h-4 mr-2" />

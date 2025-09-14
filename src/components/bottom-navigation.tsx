@@ -58,7 +58,7 @@ export default function BottomNavigation() {
                 className={cn(
                   'flex flex-col items-center justify-center p-3 rounded-2xl transition-all duration-300 hover:scale-105 active:scale-95 relative',
                   isActive
-                    ? 'text-cyan-400 bg-gradient-to-br from-cyan-500/20 to-teal-500/20 shadow-lg shadow-cyan-500/25 border border-cyan-500/30'
+                    ? 'text-primary bg-gradient-to-br from-primary/20 to-primary/20 shadow-lg shadow-primary/25 border border-primary/30'
                     : 'text-muted-foreground hover:text-foreground hover:bg-accent/50 hover:shadow-sm'
                 )}
               >
@@ -68,11 +68,11 @@ export default function BottomNavigation() {
                 )} />
                 <span className={cn(
                   'text-xs font-medium tracking-wide transition-all duration-300',
-                  isActive ? 'font-semibold text-cyan-400' : ''
+                  isActive ? 'font-semibold text-primary' : ''
                 )}>{label}</span>
                 {/* Active indicator dot */}
                 {isActive && (
-                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-br from-cyan-400 to-teal-500 rounded-full shadow-sm animate-pulse"></div>
+                  <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-br from-primary to-primary rounded-full shadow-sm animate-pulse"></div>
                 )}
               </div>
             </a>
