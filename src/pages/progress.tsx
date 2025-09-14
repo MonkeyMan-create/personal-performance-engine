@@ -231,60 +231,60 @@ export default function ProgressPage() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Card 
                   data-testid="card-total-workouts"
-                  className="bg-gradient-to-br from-[var(--color-activity)]/10 to-[var(--color-activity)]/20 border-[var(--color-activity)]/30 hover:shadow-lg transition-all duration-200"
+                  className="bg-gradient-to-br from-[var(--color-activity)]/60 to-[var(--color-activity)]/70 border-[var(--color-activity)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-activity)]/20 hover:shadow-xl transition-all duration-200"
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
                     <div className="w-12 h-12 mx-auto bg-[var(--color-activity)] rounded-full flex items-center justify-center">
                       <Dumbbell className="w-6 h-6 text-white" />
                     </div>
                     <div className="space-y-1">
-                      <div data-testid="text-total-workouts" className="text-3xl font-bold text-[var(--color-activity)] dark:text-[var(--color-activity)]">{workoutStats.totalWorkouts}</div>
-                      <div className="text-sm font-medium text-[var(--color-activity)]/80 dark:text-[var(--color-activity)]/80">Total Workouts</div>
+                      <div data-testid="text-total-workouts" className="text-3xl font-bold text-white">{workoutStats.totalWorkouts}</div>
+                      <div className="text-sm font-medium text-white/90">Total Workouts</div>
                     </div>
                   </CardContent>
                 </Card>
 
                 <Card 
                   data-testid="card-day-streak"
-                  className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/40 dark:to-emerald-800/40 border-emerald-200 dark:border-emerald-700 hover:shadow-lg transition-all duration-200"
+                  className="bg-gradient-to-br from-[var(--color-success)]/60 to-[var(--color-success)]/70 border-[var(--color-success)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-success)]/20 hover:shadow-xl transition-all duration-200"
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
-                    <div className="w-12 h-12 mx-auto bg-emerald-500 dark:bg-emerald-600 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 mx-auto bg-white/20 rounded-full flex items-center justify-center">
                       <Calendar className="w-6 h-6 text-white" />
                     </div>
                     <div className="space-y-1">
-                      <div data-testid="text-day-streak" className="text-3xl font-bold text-emerald-700 dark:text-emerald-300">{workoutStats.currentStreak}</div>
-                      <div className="text-sm font-medium text-emerald-600 dark:text-emerald-400">Day Streak</div>
+                      <div data-testid="text-day-streak" className="text-3xl font-bold text-white">{workoutStats.currentStreak}</div>
+                      <div className="text-sm font-medium text-white/90">Day Streak</div>
                     </div>
                   </CardContent>
                 </Card>
 
                 <Card 
                   data-testid="card-meals-logged"
-                  className="bg-gradient-to-br from-[var(--color-nutrition)]/10 to-[var(--color-nutrition)]/20 border-[var(--color-nutrition)]/30 hover:shadow-lg transition-all duration-200"
+                  className="bg-gradient-to-br from-[var(--color-nutrition)]/60 to-[var(--color-nutrition)]/70 border-[var(--color-nutrition)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-nutrition)]/20 hover:shadow-xl transition-all duration-200"
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
                     <div className="w-12 h-12 mx-auto bg-[var(--color-nutrition)] rounded-full flex items-center justify-center">
                       <Apple className="w-6 h-6 text-white" />
                     </div>
                     <div className="space-y-1">
-                      <div data-testid="text-meals-logged" className="text-3xl font-bold text-[var(--color-nutrition)] dark:text-[var(--color-nutrition)]">{nutritionStats.totalMealsLogged}</div>
-                      <div className="text-sm font-medium text-[var(--color-nutrition)]/80 dark:text-[var(--color-nutrition)]/80">Meals Logged</div>
+                      <div data-testid="text-meals-logged" className="text-3xl font-bold text-white">{nutritionStats.totalMealsLogged}</div>
+                      <div className="text-sm font-medium text-white/90">Meals Logged</div>
                     </div>
                   </CardContent>
                 </Card>
 
                 <Card 
                   data-testid="card-avg-calories"
-                  className="bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/40 dark:to-red-800/40 border-red-200 dark:border-red-700 hover:shadow-lg transition-all duration-200"
+                  className="bg-gradient-to-br from-[var(--color-warning)]/60 to-[var(--color-warning)]/70 border-[var(--color-warning)]/50 backdrop-blur-sm shadow-lg shadow-[var(--color-warning)]/20 hover:shadow-xl transition-all duration-200"
                 >
                   <CardContent className="p-6 text-center space-y-3 aspect-square flex flex-col justify-center">
-                    <div className="w-12 h-12 mx-auto bg-red-500 dark:bg-red-600 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 mx-auto bg-white/20 rounded-full flex items-center justify-center">
                       <Flame className="w-6 h-6 text-white" />
                     </div>
                     <div className="space-y-1">
-                      <div data-testid="text-avg-calories" className="text-3xl font-bold text-red-700 dark:text-red-300">{nutritionStats.averageCaloriesPerDay}</div>
-                      <div className="text-sm font-medium text-red-600 dark:text-red-400">Avg Calories/Day</div>
+                      <div data-testid="text-avg-calories" className="text-3xl font-bold text-white">{nutritionStats.averageCaloriesPerDay}</div>
+                      <div className="text-sm font-medium text-white/90">Avg Calories/Day</div>
                     </div>
                   </CardContent>
                 </Card>
