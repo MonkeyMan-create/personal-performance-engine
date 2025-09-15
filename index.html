@@ -84,6 +84,32 @@
     <meta name="theme-color" content="#06b6d4" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
     
+    <!-- Pre-hydration script to prevent theme flash -->
+    <script>
+      (function() {
+        try {
+          const theme = localStorage.getItem('vite-ui-theme') || 
+                        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+          if (theme === 'system') {
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            document.documentElement.classList.add(systemTheme);
+          } else {
+            document.documentElement.classList.add(theme);
+          }
+          // Update theme-color meta tag for better browser integration
+          const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+          if (themeColorMeta && theme === 'dark') {
+            themeColorMeta.setAttribute('content', '#0f172a');
+          } else if (themeColorMeta) {
+            themeColorMeta.setAttribute('content', '#06b6d4');
+          }
+        } catch (e) {
+          // Fallback to dark theme if localStorage access fails
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+    
     <!-- Vite handles resource hints automatically for optimal performance -->
     <script type="module" src="./src/main.tsx"></script>
   </head>
