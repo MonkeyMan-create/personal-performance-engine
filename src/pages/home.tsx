@@ -133,7 +133,7 @@ export default function HomePage() {
         </div>
 
         {/* Mood Check-in */}
-        <Card className="card-glass">
+        <Card className="card-wellness">
           <CardHeader className="text-center">
             <CardTitle className="text-primary text-xl flex-center gap-2">
               <Brain className="w-6 h-6 text-wellness" />
@@ -160,7 +160,7 @@ export default function HomePage() {
                   aria-label={`Select ${mood.label} mood`}
                 >
                   <div className="text-3xl">{mood.emoji}</div>
-                  <div className="text-xs text-secondary mt-1 font-medium">{mood.label}</div>
+                  <div className="text-xs text-white/80 mt-1 font-medium">{mood.label}</div>
                 </button>
               ))}
             </div>
@@ -342,15 +342,15 @@ export default function HomePage() {
         </div>
 
         {/* Daily Wellness Insights */}
-        <Card className="card-glass">
+        <Card className="card-wellness">
           <CardHeader>
-            <CardTitle className="text-primary flex-start gap-2">
-              <div className="icon-badge icon-badge-action">
-                <Lightbulb className="w-5 h-5 text-action" />
+            <CardTitle className="text-white flex-start gap-2">
+              <div className="icon-badge bg-white/20 backdrop-blur-sm">
+                <Lightbulb className="w-5 h-5 text-white" />
               </div>
               Daily Wellness Insights
             </CardTitle>
-            <CardDescription className="text-secondary">
+            <CardDescription className="text-white/80">
               Personalized tips to help you reach your goals
             </CardDescription>
           </CardHeader>
@@ -368,9 +368,9 @@ export default function HomePage() {
                       <IconComponent className="w-4 h-4" />
                     </div>
                     <div className="flex-1">
-                      <p className="text-primary text-sm leading-relaxed">{insight.message}</p>
+                      <p className="text-white text-sm leading-relaxed">{insight.message}</p>
                       <button 
-                        className="mt-2 px-3 py-1 bg-action/10 text-action text-xs font-medium rounded-full hover:bg-action/20 transition-all duration-200 border border-action/20"
+                        className="mt-2 px-3 py-1 bg-white/20 text-white text-xs font-medium rounded-full hover:bg-white/30 transition-all duration-200 border border-white/30"
                         data-testid={`insight-action-${insight.id}`}
                       >
                         {insight.action} →
@@ -384,15 +384,15 @@ export default function HomePage() {
         </Card>
 
         {/* Nutrition Snapshot */}
-        <Card className="card-glass">
+        <Card className="card-nutrition">
           <CardHeader>
-            <CardTitle className="text-primary flex-start gap-2">
-              <div className="icon-badge icon-badge-nutrition">
-                <Apple className="w-5 h-5 text-nutrition" />
+            <CardTitle className="text-white flex-start gap-2">
+              <div className="icon-badge bg-white/20 backdrop-blur-sm">
+                <Apple className="w-5 h-5 text-white" />
               </div>
               Nutrition Snapshot
             </CardTitle>
-            <CardDescription className="text-secondary">
+            <CardDescription className="text-white/80">
               Today's nutritional breakdown
             </CardDescription>
           </CardHeader>
@@ -400,8 +400,8 @@ export default function HomePage() {
             {/* Macros */}
             <div className="space-y-3">
               <div className="flex-between">
-                <span className="font-medium text-primary">Protein</span>
-                <span className="text-secondary text-sm" data-testid="protein-count">
+                <span className="font-medium text-white">Protein</span>
+                <span className="text-white/80 text-sm" data-testid="protein-count">
                   {nutritionData.protein.current}g / {nutritionData.protein.goal}g
                 </span>
               </div>
@@ -415,8 +415,8 @@ export default function HomePage() {
 
             <div className="space-y-3">
               <div className="flex-between">
-                <span className="font-medium text-primary">Carbs</span>
-                <span className="text-secondary text-sm" data-testid="carbs-count">
+                <span className="font-medium text-white">Carbs</span>
+                <span className="text-white/80 text-sm" data-testid="carbs-count">
                   {nutritionData.carbs.current}g / {nutritionData.carbs.goal}g
                 </span>
               </div>
@@ -430,8 +430,8 @@ export default function HomePage() {
 
             <div className="space-y-3">
               <div className="flex-between">
-                <span className="font-medium text-primary">Fat</span>
-                <span className="text-secondary text-sm" data-testid="fat-count">
+                <span className="font-medium text-white">Fat</span>
+                <span className="text-white/80 text-sm" data-testid="fat-count">
                   {nutritionData.fat.current}g / {nutritionData.fat.goal}g
                 </span>
               </div>
@@ -444,20 +444,20 @@ export default function HomePage() {
             </div>
 
             {/* Quick Stats */}
-            <div className="flex-between pt-4 border-t border-nutrition/20">
-              <div className="text-center p-3 bg-nutrition/10 rounded-xl">
-                <p className="text-2xl font-bold text-nutrition" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
-                <p className="text-xs text-secondary font-medium">Meals Logged</p>
+            <div className="flex-between pt-4 border-t border-white/20">
+              <div className="text-center p-3 bg-white/20 rounded-xl backdrop-blur-sm">
+                <p className="text-2xl font-bold text-white" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
+                <p className="text-xs text-white/80 font-medium">Meals Logged</p>
               </div>
-              <div className="text-center p-3 bg-nutrition/10 rounded-xl">
-                <p className="text-2xl font-bold text-nutrition" data-testid="calories-remaining">
+              <div className="text-center p-3 bg-white/20 rounded-xl backdrop-blur-sm">
+                <p className="text-2xl font-bold text-white" data-testid="calories-remaining">
                   {nutritionData.calories.goal - nutritionData.calories.current}
                 </p>
-                <p className="text-xs text-secondary font-medium">Calories Left</p>
+                <p className="text-xs text-white/80 font-medium">Calories Left</p>
               </div>
-              <div className="text-center p-3 bg-nutrition/10 rounded-xl">
-                <p className="text-2xl font-bold text-nutrition">73%</p>
-                <p className="text-xs text-secondary font-medium">Daily Goal</p>
+              <div className="text-center p-3 bg-white/20 rounded-xl backdrop-blur-sm">
+                <p className="text-2xl font-bold text-white">73%</p>
+                <p className="text-xs text-white/80 font-medium">Daily Goal</p>
               </div>
             </div>
           </CardContent>

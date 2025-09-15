@@ -282,7 +282,7 @@ export default function WorkoutsPage() {
 
             {/* Current session summary */}
             {currentSession && currentSession.exercises.length > 0 && (
-              <Card className="card-glass">
+              <Card className="card-activity">
                 <CardHeader>
                   <CardTitle className="text-primary flex-start gap-3">
                     <div className="icon-badge icon-badge-activity">
@@ -346,7 +346,7 @@ export default function WorkoutsPage() {
     case 'finish-workout':
       return (
         <div className="page-container flex-center">
-          <Card className="w-full max-w-lg card-glass">
+          <Card className="w-full max-w-lg card-activity">
             <CardHeader className="text-center pb-6">
               <div className="mx-auto w-20 h-20 card-success rounded-2xl flex-center mb-4 shadow-lg">
                 <Trophy className="w-10 h-10" />
@@ -470,15 +470,15 @@ export default function WorkoutsPage() {
               </Button>
             </div>
 
-            <Card className="card-glass">
+            <Card className="card-activity">
               <CardHeader>
-                <CardTitle className="text-primary flex-start gap-3">
-                  <div className="icon-badge icon-badge-activity">
-                    <Calendar className="w-5 h-5 text-activity" />
+                <CardTitle className="text-white flex-start gap-3">
+                  <div className="icon-badge bg-white/20 backdrop-blur-sm">
+                    <Calendar className="w-5 h-5 text-white" />
                   </div>
                   Recent Workouts
                 </CardTitle>
-                <CardDescription className="text-secondary">
+                <CardDescription className="text-white/80">
                   Your logged workouts and exercise sessions {isGuestMode && '(Guest Mode - stored locally)'}
                 </CardDescription>
               </CardHeader>
@@ -538,7 +538,7 @@ export default function WorkoutsPage() {
                                     key={setIndex}
                                     className="text-xs bg-activity/10 text-activity px-2 py-1 rounded font-medium"
                                   >
-                                    {formatWeight(parseFloat(set.weight) || 0)} × {set.reps} (RIR {set.rir})
+                                    {formatWeight(set.weight || 0)} × {set.reps} (RIR {set.rir})
                                   </span>
                                 ))}
                               </div>
@@ -598,15 +598,15 @@ export default function WorkoutsPage() {
             )}
 
             {/* Quick Start Section */}
-            <Card className="card-glass">
+            <Card className="card-activity">
               <CardHeader>
-                <CardTitle className="text-primary flex-start gap-3">
-                  <div className="icon-badge icon-badge-action">
-                    <Zap className="w-5 h-5 text-action" />
+                <CardTitle className="text-white flex-start gap-3">
+                  <div className="icon-badge bg-white/20 backdrop-blur-sm">
+                    <Zap className="w-5 h-5 text-white" />
                   </div>
                   Quick Start
                 </CardTitle>
-                <CardDescription className="text-secondary">
+                <CardDescription className="text-white/80">
                   Begin your workout session or browse templates
                 </CardDescription>
               </CardHeader>
@@ -650,15 +650,15 @@ export default function WorkoutsPage() {
 
             {/* Featured Template */}
             {recommendedWorkout && (
-              <Card className="card-glass">
+              <Card className="card-activity">
                 <CardHeader>
-                  <CardTitle className="text-primary flex-start gap-3">
-                    <div className="icon-badge icon-badge-warning">
-                      <Trophy className="w-5 h-5 text-warning" />
+                  <CardTitle className="text-white flex-start gap-3">
+                    <div className="icon-badge bg-white/20 backdrop-blur-sm">
+                      <Trophy className="w-5 h-5 text-white" />
                     </div>
                     Featured Workout
                   </CardTitle>
-                  <CardDescription className="text-secondary">
+                  <CardDescription className="text-white/80">
                     Recommended for today's training session
                   </CardDescription>
                 </CardHeader>
@@ -673,8 +673,8 @@ export default function WorkoutsPage() {
                         <recommendedWorkout.icon className="w-6 h-6 text-activity" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-bold text-primary mb-1">{recommendedWorkout.title}</h3>
-                        <p className="text-secondary text-sm mb-3">{recommendedWorkout.description}</p>
+                        <h3 className="font-bold text-white mb-1">{recommendedWorkout.title}</h3>
+                        <p className="text-white/80 text-sm mb-3">{recommendedWorkout.description}</p>
                         <div className="flex gap-2 flex-wrap">
                           <span className="badge-base badge-secondary">{recommendedWorkout.duration} min</span>
                           <span className="badge-base badge-secondary">{recommendedWorkout.exercises} exercises</span>
@@ -690,15 +690,15 @@ export default function WorkoutsPage() {
 
             {/* Recent Workouts Preview */}
             {workouts.length > 0 && (
-              <Card className="card-glass">
+              <Card className="card-activity">
                 <CardHeader>
-                  <CardTitle className="text-primary flex-start gap-3">
-                    <div className="icon-badge icon-badge-activity">
-                      <Clock className="w-5 h-5 text-activity" />
+                  <CardTitle className="text-white flex-start gap-3">
+                    <div className="icon-badge bg-white/20 backdrop-blur-sm">
+                      <Clock className="w-5 h-5 text-white" />
                     </div>
                     Recent Activity
                   </CardTitle>
-                  <CardDescription className="text-secondary">
+                  <CardDescription className="text-white/80">
                     Your latest workout sessions
                   </CardDescription>
                 </CardHeader>

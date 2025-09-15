@@ -172,28 +172,30 @@ export default function SettingsPage() {
   return (
     <div className="page-container">
       <div className="section-container space-y-8">
-        <div className="page-header space-y-4">
-          <div className="flex-center gap-4">
-            <div className="icon-badge icon-badge-action icon-badge-lg">
-              <Settings className="w-8 h-8 text-white" />
+        <div className="page-header space-y-6">
+          <div className="flex-center gap-6">
+            <div className="icon-badge icon-badge-action icon-badge-2xl shadow-2xl">
+              <Settings className="w-10 h-10 text-white" />
             </div>
-            <div>
-              <h1 className="page-title" data-testid="page-title">Settings</h1>
-              <p className="text-secondary text-lg">Customize your experience</p>
+            <div className="text-center space-y-2">
+              <h1 className="page-title text-4xl" data-testid="page-title">Settings & Profile</h1>
+              <p className="text-secondary text-xl font-medium">Customize your fitness experience</p>
             </div>
           </div>
-          <div className="action-item text-center">
-            <p className="text-secondary text-lg">Manage your profile and app preferences</p>
+          <div className="card-insight text-center">
+            <p className="text-secondary text-lg leading-relaxed max-w-2xl mx-auto">
+              Manage your profile, customize app preferences, and control your fitness data
+            </p>
           </div>
         </div>
         
         {/* User Header */}
-        <Card className="card-glass">
-          <CardContent className="card-content p-8">
-            <div className="flex-start gap-6">
+        <Card className="card-action border-action/30 shadow-2xl">
+          <CardContent className="card-content p-10">
+            <div className="flex-start gap-8">
               {/* User Avatar */}
               <div className="relative">
-                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-action shadow-2xl" data-testid="user-avatar">
+                <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-white/30 shadow-2xl backdrop-blur-sm" data-testid="user-avatar">
                   {(isGuestMode && profileData.profilePicture) || (!isGuestMode && user?.photoURL) ? (
                     <img 
                       src={isGuestMode ? profileData.profilePicture! : user!.photoURL!} 
@@ -207,22 +209,22 @@ export default function SettingsPage() {
                     </div>
                   )}
                 </div>
-                <div className="absolute -bottom-1 -right-1 icon-badge bg-action rounded-full flex-center">
-                  <User className="w-4 h-4 text-white" />
+                <div className="absolute -bottom-2 -right-2 icon-badge icon-badge-lg bg-white/20 backdrop-blur-sm rounded-full flex-center shadow-xl">
+                  <User className="w-5 h-5 text-white" />
                 </div>
               </div>
               <div className="flex-1">
-                <h2 className="font-bold text-3xl text-primary mb-2" data-testid="user-name">
+                <h2 className="font-black text-4xl text-white mb-3 drop-shadow-lg" data-testid="user-name">
                   {isGuestMode ? (profileData.displayName || 'Guest User') : user?.displayName}
                 </h2>
-                <p className="text-secondary font-medium text-lg flex-start gap-2">
-                  <span className="w-2 h-2 bg-action rounded-full"></span>
+                <p className="text-white/90 font-bold text-xl flex-start gap-3 mb-2">
+                  <span className="w-3 h-3 bg-white rounded-full shadow-lg"></span>
                   {isGuestMode ? 'Guest Session' : `Member since ${getMemberSinceDate()}`}
                 </p>
                 {isGuestMode && profileData.email ? (
-                  <p className="text-secondary mt-2 font-medium" data-testid="user-email">{profileData.email}</p>
+                  <p className="text-white/80 mt-3 font-medium text-lg" data-testid="user-email">{profileData.email}</p>
                 ) : (!isGuestMode && user?.email && (
-                  <p className="text-secondary mt-2 font-medium" data-testid="user-email">{user.email}</p>
+                  <p className="text-white/80 mt-3 font-medium text-lg" data-testid="user-email">{user.email}</p>
                 ))}
               </div>
             </div>
@@ -230,17 +232,21 @@ export default function SettingsPage() {
         </Card>
 
         {/* Account Settings Section */}
-        <Card className="card-glass">
-          <CardHeader className="card-header">
-            <CardTitle className="card-title text-primary text-2xl font-bold flex-start gap-3">
-              <div className="icon-badge icon-badge-action">
-                <Settings className="w-6 h-6 text-white" />
+        <Card className="card-wellness border-wellness/30 shadow-2xl">
+          <CardHeader className="card-header bg-gradient-to-r from-wellness/20 to-action/10 rounded-t-xl">
+            <div className="flex-start gap-4">
+              <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-2xl shadow-xl">
+                <Settings className="w-8 h-8 text-white" />
               </div>
-              Account Settings
-            </CardTitle>
-            <CardDescription className="card-description text-secondary text-lg">
-              Manage your profile and app preferences
-            </CardDescription>
+              <div className="space-y-2">
+                <CardTitle className="card-title text-white text-3xl font-black drop-shadow-lg">
+                  Account Settings
+                </CardTitle>
+                <CardDescription className="card-description text-white/90 text-lg font-medium">
+                  Manage your profile and app preferences
+                </CardDescription>
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="p-2 space-y-2">
             <Link href="/profile-edit">
@@ -372,70 +378,74 @@ export default function SettingsPage() {
         </Card>
 
         {/* Data Management Section */}
-        <Card className="card-glass">
-          <CardHeader className="card-header">
-            <CardTitle className="card-title text-primary text-2xl font-bold flex-start gap-3">
-              <div className="icon-badge icon-badge-wellness">
-                <Download className="w-6 h-6 text-white" />
+        <Card className="card-activity border-activity/30 shadow-2xl">
+          <CardHeader className="card-header bg-gradient-to-r from-activity/20 to-nutrition/10 rounded-t-xl">
+            <div className="flex-start gap-4">
+              <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-2xl shadow-xl">
+                <Download className="w-8 h-8 text-white" />
               </div>
-              Data Management
-            </CardTitle>
-            <CardDescription className="card-description text-secondary text-lg">
-              Manage your health data and account information
-            </CardDescription>
+              <div className="space-y-2">
+                <CardTitle className="card-title text-white text-3xl font-black drop-shadow-lg">
+                  Data Management
+                </CardTitle>
+                <CardDescription className="card-description text-white/90 text-lg font-medium">
+                  Manage your health data and account information
+                </CardDescription>
+              </div>
+            </div>
           </CardHeader>
           <CardContent className="p-2 space-y-2">
             <Link href="/year-in-review">
               <div 
-                className="flex items-center justify-between p-5 action-item card-wellness interactive-base"
+                className="action-item card-success border-2 border-white/20 interactive-enhanced shadow-xl"
                 data-testid="link-year-in-review"
               >
-                <div className="flex items-center gap-4">
-                  <div className="p-3 icon-badge-success rounded-xl shadow-md">
-                    <Trophy className="w-5 h-5 text-success" />
+                <div className="flex-start gap-5">
+                  <div className="icon-badge icon-badge-xl bg-white/25 backdrop-blur-sm rounded-2xl shadow-xl">
+                    <Trophy className="w-8 h-8 text-white" />
                   </div>
-                  <div>
-                    <p className="font-bold text-primary text-lg">Year in Review</p>
-                    <p className="text-secondary mt-1 font-medium">See your fitness journey and achievements</p>
+                  <div className="space-y-1">
+                    <p className="font-black text-white text-xl drop-shadow-lg">Year in Review</p>
+                    <p className="text-white/90 font-medium text-base leading-relaxed">See your fitness journey and achievements</p>
                   </div>
                 </div>
-                <div className="p-2 bg-success/20 rounded-lg">
-                  <ChevronRight className="w-5 h-5 text-success" />
+                <div className="icon-badge bg-white/25 backdrop-blur-sm rounded-xl shadow-lg">
+                  <ChevronRight className="w-6 h-6 text-white" />
                 </div>
               </div>
             </Link>
             <Link href="/health-connections">
               <div 
-                className="flex items-center justify-between p-5 action-item card-wellness interactive-base"
+                className="action-item card-wellness border-2 border-white/20 interactive-enhanced shadow-xl"
                 data-testid="link-health-connections"
               >
-                <div className="flex items-center gap-4">
-                  <div className="p-3 icon-badge-wellness rounded-xl shadow-md">
-                    <Smartphone className="w-5 h-5 text-wellness" />
+                <div className="flex-start gap-5">
+                  <div className="icon-badge icon-badge-xl bg-white/25 backdrop-blur-sm rounded-2xl shadow-xl">
+                    <Smartphone className="w-8 h-8 text-white" />
                   </div>
-                  <div>
-                    <p className="font-bold text-primary text-lg">Health Data Connections</p>
-                    <p className="text-secondary mt-1 font-medium">Connect Google Health & Apple HealthKit</p>
+                  <div className="space-y-1">
+                    <p className="font-black text-white text-xl drop-shadow-lg">Health Data Connections</p>
+                    <p className="text-white/90 font-medium text-base leading-relaxed">Connect Google Health & Apple HealthKit</p>
                   </div>
                 </div>
-                <div className="p-2 bg-wellness/20 rounded-lg">
-                  <ChevronRight className="w-5 h-5 text-wellness" />
+                <div className="icon-badge bg-white/25 backdrop-blur-sm rounded-xl shadow-lg">
+                  <ChevronRight className="w-6 h-6 text-white" />
                 </div>
               </div>
             </Link>
             <Link href="/data-export">
-              <div className="flex items-center justify-between p-5 action-item card-wellness interactive-base" data-testid="settings-export-data">
-                <div className="flex items-center gap-4">
-                  <div className="p-3 icon-badge-wellness rounded-xl shadow-md">
-                    <Download className="w-5 h-5 text-wellness" />
+              <div className="action-item card-action border-2 border-white/20 interactive-enhanced shadow-xl" data-testid="settings-export-data">
+                <div className="flex-start gap-5">
+                  <div className="icon-badge icon-badge-xl bg-white/25 backdrop-blur-sm rounded-2xl shadow-xl">
+                    <Download className="w-8 h-8 text-white" />
                   </div>
-                  <div>
-                    <p className="font-bold text-primary text-lg">Export Data</p>
-                    <p className="text-secondary mt-1 font-medium">Download your fitness and nutrition data</p>
+                  <div className="space-y-1">
+                    <p className="font-black text-white text-xl drop-shadow-lg">Export Data</p>
+                    <p className="text-white/90 font-medium text-base leading-relaxed">Download your fitness and nutrition data</p>
                   </div>
                 </div>
-                <div className="p-2 bg-wellness/20 rounded-lg">
-                  <ChevronRight className="w-5 h-5 text-wellness" />
+                <div className="icon-badge bg-white/25 backdrop-blur-sm rounded-xl shadow-lg">
+                  <ChevronRight className="w-6 h-6 text-white" />
                 </div>
               </div>
             </Link>
@@ -503,54 +513,59 @@ export default function SettingsPage() {
               </div>
             </Link>
             <Link href="/contact-support">
-              <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-contact-support">
-                <div className="flex items-center gap-4">
-                  <div className="p-2 bg-muted/30 rounded-xl">
-                    <MessageCircle className="w-5 h-5 text-action" />
+              <div className="action-item card-wellness border-2 border-white/20 interactive-enhanced shadow-xl" data-testid="settings-contact-support">
+                <div className="flex-start gap-5">
+                  <div className="icon-badge icon-badge-xl bg-white/25 backdrop-blur-sm rounded-2xl shadow-xl">
+                    <MessageCircle className="w-8 h-8 text-white" />
                   </div>
-                  <div>
-                    <p className="font-semibold text-foreground">Contact Support</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">Get in touch with our support team</p>
+                  <div className="space-y-1">
+                    <p className="font-black text-white text-xl drop-shadow-lg">Contact Support</p>
+                    <p className="text-white/90 font-medium text-base leading-relaxed">Get in touch with our support team</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-action" />
+                <div className="icon-badge bg-white/25 backdrop-blur-sm rounded-xl shadow-lg">
+                  <ChevronRight className="w-6 h-6 text-white" />
+                </div>
               </div>
             </Link>
             <Link href="/privacy-terms">
-              <div className="flex items-center justify-between p-4 hover:bg-muted/30 transition-all duration-200 cursor-pointer rounded-lg mx-2" data-testid="settings-legal">
-                <div className="flex items-center gap-4">
-                  <div className="p-2 bg-muted/30 rounded-xl">
-                    <FileText className="w-5 h-5 text-action" />
+              <div className="action-item card-action border-2 border-white/20 interactive-enhanced shadow-xl" data-testid="settings-legal">
+                <div className="flex-start gap-5">
+                  <div className="icon-badge icon-badge-xl bg-white/25 backdrop-blur-sm rounded-2xl shadow-xl">
+                    <FileText className="w-8 h-8 text-white" />
                   </div>
-                  <div>
-                    <p className="font-semibold text-foreground">Privacy & Terms</p>
-                    <p className="text-sm text-muted-foreground mt-0.5">View our privacy policy and terms of service</p>
+                  <div className="space-y-1">
+                    <p className="font-black text-white text-xl drop-shadow-lg">Privacy & Terms</p>
+                    <p className="text-white/90 font-medium text-base leading-relaxed">View our privacy policy and terms of service</p>
                   </div>
                 </div>
-                <ChevronRight className="w-5 h-5 text-action" />
+                <div className="icon-badge bg-white/25 backdrop-blur-sm rounded-xl shadow-lg">
+                  <ChevronRight className="w-6 h-6 text-white" />
+                </div>
               </div>
             </Link>
           </CardContent>
         </Card>
 
         {/* Sign Out Section */}
-        <Card className="card-glass">
-          <CardContent className="p-6">
-            <div className="text-center mb-4">
-              <p className="text-muted-foreground text-sm">Ready to take a break?</p>
+        <Card className="card-error border-error/30 shadow-2xl">
+          <CardContent className="card-content p-8">
+            <div className="text-center mb-6">
+              <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-2xl shadow-xl mx-auto mb-4">
+                <LogOut className="w-8 h-8 text-white" />
+              </div>
+              <p className="text-white/90 text-lg font-medium mb-2">Ready to take a break?</p>
+              <p className="text-white/80 text-base">{isGuestMode ? 'End your guest session' : 'You can always sign back in anytime'}</p>
             </div>
             <Button 
               variant="destructive" 
               onClick={logout}
-              className="w-full flex-center gap-3 h-14 bg-error text-white font-bold text-lg rounded-2xl shadow-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full flex-center gap-4 h-16 bg-white/20 backdrop-blur-sm text-white font-black text-xl rounded-2xl shadow-2xl transition-all duration-300 hover:scale-[1.02] hover:bg-white/30 active:scale-[0.98] border-2 border-white/30"
               data-testid="button-sign-out"
             >
-              <LogOut className="w-6 h-6" />
-              Sign Out
+              <LogOut className="w-7 h-7" />
+              {isGuestMode ? 'End Session' : 'Sign Out'}
             </Button>
-            <p className="text-xs text-secondary text-center mt-3">
-              {isGuestMode ? 'End guest session' : 'You can always sign back in'}
-            </p>
           </CardContent>
         </Card>
       </div>

@@ -253,65 +253,73 @@ export default function ProgressPage() {
         ) : (
           <>
             {/* My Highlights Section */}
-            <div className="space-y-3">
-              <h2 className="text-xl font-semibold text-primary">My Highlights</h2>
-              <div className="grid-4 grid-md-4 gap-4">
+            <div className="space-y-4">
+              <div className="section-header">
+                <h2 className="text-2xl font-bold text-primary flex-start gap-3">
+                  <div className="icon-badge icon-badge-action">
+                    <Trophy className="w-6 h-6 text-white" />
+                  </div>
+                  My Highlights
+                </h2>
+                <p className="text-secondary text-lg">Key metrics from your fitness journey</p>
+              </div>
+              <div className="grid-4 grid-md-4 gap-6">
                 <Card 
                   data-testid="card-total-workouts"
-                  className="card-activity interactive-base"
+                  className="card-activity interactive-enhanced"
                 >
-                  <CardContent className="card-content text-center space-y-3 aspect-square flex-col-center">
-                    <div className="icon-badge icon-badge-lg bg-activity rounded-full flex-center">
-                      <Dumbbell className="w-6 h-6 text-white" />
+                  <CardContent className="card-content text-center space-y-4 aspect-square flex-col-center p-6">
+                    <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-full flex-center shadow-xl">
+                      <Dumbbell className="w-8 h-8 text-white" />
                     </div>
-                    <div className="space-y-1">
-                      <div data-testid="text-total-workouts" className="text-3xl font-bold text-white">{workoutStats.totalWorkouts}</div>
-                      <div className="text-sm font-medium text-white">Total Workouts</div>
+                    <div className="space-y-2">
+                      <div data-testid="text-total-workouts" className="text-4xl font-black text-white drop-shadow-lg">{workoutStats.totalWorkouts}</div>
+                      <div className="text-sm font-bold text-white/90 uppercase tracking-wider">Total Workouts</div>
                     </div>
                   </CardContent>
                 </Card>
 
                 <Card 
                   data-testid="card-day-streak"
-                  className="card-success interactive-base"
+                  className="card-success interactive-enhanced"
                 >
-                  <CardContent className="card-content text-center space-y-3 aspect-square flex-col-center">
-                    <div className="icon-badge icon-badge-lg bg-success rounded-full flex-center">
-                      <Calendar className="w-6 h-6 text-white" />
+                  <CardContent className="card-content text-center space-y-4 aspect-square flex-col-center p-6">
+                    <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-full flex-center shadow-xl">
+                      <Calendar className="w-8 h-8 text-white" />
                     </div>
-                    <div className="space-y-1">
-                      <div data-testid="text-day-streak" className="text-3xl font-bold text-white">{workoutStats.currentStreak}</div>
-                      <div className="text-sm font-medium text-white">Day Streak</div>
+                    <div className="space-y-2">
+                      <div data-testid="text-day-streak" className="text-4xl font-black text-white drop-shadow-lg">{workoutStats.currentStreak}</div>
+                      <div className="text-sm font-bold text-white/90 uppercase tracking-wider">Day Streak</div>
                     </div>
                   </CardContent>
                 </Card>
 
                 <Card 
                   data-testid="card-meals-logged"
-                  className="card-nutrition interactive-base"
+                  className="card-nutrition interactive-enhanced"
                 >
-                  <CardContent className="card-content text-center space-y-3 aspect-square flex-col-center">
-                    <div className="icon-badge icon-badge-lg bg-nutrition rounded-full flex-center">
-                      <Apple className="w-6 h-6 text-white" />
+                  <CardContent className="card-content text-center space-y-4 aspect-square flex-col-center p-6">
+                    <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-full flex-center shadow-xl">
+                      <Apple className="w-8 h-8 text-white" />
                     </div>
-                    <div className="space-y-1">
-                      <div data-testid="text-meals-logged" className="text-3xl font-bold text-white">{nutritionStats.totalMealsLogged}</div>
-                      <div className="text-sm font-medium text-white">Meals Logged</div>
+                    <div className="space-y-2">
+                      <div data-testid="text-meals-logged" className="text-4xl font-black text-white drop-shadow-lg">{nutritionStats.totalMealsLogged}</div>
+                      <div className="text-sm font-bold text-white/90 uppercase tracking-wider">Meals Logged</div>
                     </div>
                   </CardContent>
                 </Card>
 
                 <Card 
                   data-testid="card-avg-calories"
-                  className="card-warning interactive-base"
+                  className="card-warning interactive-enhanced"
                 >
-                  <CardContent className="card-content text-center space-y-3 aspect-square flex-col-center">
-                    <div className="icon-badge icon-badge-lg bg-warning rounded-full flex-center">
-                      <Flame className="w-6 h-6 text-white" />
+                  <CardContent className="card-content text-center space-y-4 aspect-square flex-col-center p-6">
+                    <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-full flex-center shadow-xl">
+                      <Flame className="w-8 h-8 text-white" />
                     </div>
-                    <div className="space-y-1">
-                      <div data-testid="text-avg-calories" className="text-3xl font-bold text-white">{nutritionStats.averageCaloriesPerDay}</div>
-                      <div className="text-sm font-medium text-white">Avg Calories/Day</div>
+                    <div className="space-y-2">
+                      <div data-testid="text-avg-calories" className="text-4xl font-black text-white drop-shadow-lg">{nutritionStats.averageCaloriesPerDay}</div>
+                      <div className="text-sm font-bold text-white/90 uppercase tracking-wider">Avg Calories/Day</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -322,15 +330,17 @@ export default function ProgressPage() {
             {weightTrendData.length > 0 ? (
               <Card 
                 data-testid="card-weight-trend"
-                className="card-glass"
+                className="card-glass border-action/20 shadow-2xl"
               >
-                <CardHeader className="card-header">
-                  <div className="flex-start gap-2">
-                    <TrendingUp className="w-6 h-6 text-activity" />
-                    <CardTitle className="card-title text-primary">Weight Trend</CardTitle>
+                <CardHeader className="card-header bg-gradient-to-r from-action/10 to-activity/5 rounded-t-xl">
+                  <div className="flex-start gap-3">
+                    <div className="icon-badge icon-badge-action">
+                      <TrendingUp className="w-6 h-6 text-white" />
+                    </div>
+                    <CardTitle className="card-title text-primary text-2xl font-bold">Weight Trend Analysis</CardTitle>
                   </div>
-                  <CardDescription className="card-description text-secondary">
-                    Track your weight changes over time {isGuestMode && '(from your local progress entries)'}
+                  <CardDescription className="card-description text-secondary text-lg">
+                    Visualize your weight changes over time {isGuestMode && '(from your local progress entries)'}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="card-content space-y-6">
@@ -382,15 +392,15 @@ export default function ProgressPage() {
                   {/* Motivational Insights */}
                   <div 
                     data-testid="weight-insights"
-                    className="action-item"
+                    className="card-insight"
                   >
-                    <div className="flex-start gap-3">
-                      <div className="icon-badge bg-action rounded-full flex-center">
-                        <TrendingUp className="w-4 h-4 text-white" />
+                    <div className="flex-start gap-4">
+                      <div className="icon-badge icon-badge-lg bg-action rounded-xl shadow-lg">
+                        <TrendingUp className="w-5 h-5 text-white" />
                       </div>
-                      <div className="space-y-1">
-                        <h4 className="font-semibold text-action">Weight Progress Insight</h4>
-                        <p data-testid="text-weight-insight" className="text-sm text-action">
+                      <div className="space-y-2">
+                        <h4 className="font-bold text-xl text-primary">Weight Progress Insight</h4>
+                        <p data-testid="text-weight-insight" className="text-base text-secondary leading-relaxed">
                           {(() => {
                             if (weightTrendData.length < 2) {
                               return "Keep logging your weight to see meaningful trends and insights!"
@@ -431,24 +441,26 @@ export default function ProgressPage() {
             ) : (
               <Card 
                 data-testid="card-weight-trend-empty"
-                className="card-glass"
+                className="card-wellness border-wellness/20 shadow-xl"
               >
-                <CardHeader className="card-header">
-                  <div className="flex-start gap-2">
-                    <TrendingUp className="w-6 h-6 text-activity" />
-                    <CardTitle className="card-title text-primary">Weight Trend</CardTitle>
+                <CardHeader className="card-header bg-gradient-to-r from-wellness/10 to-action/5 rounded-t-xl">
+                  <div className="flex-start gap-3">
+                    <div className="icon-badge icon-badge-wellness">
+                      <TrendingUp className="w-6 h-6 text-white" />
+                    </div>
+                    <CardTitle className="card-title text-primary text-2xl font-bold">Weight Trend Analysis</CardTitle>
                   </div>
-                  <CardDescription className="card-description text-secondary">
+                  <CardDescription className="card-description text-secondary text-lg">
                     No weight data available yet. Start logging your weight in the profile section to see trends.
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="card-content">
-                  <div className="action-item text-center">
-                    <div className="icon-badge icon-badge-lg bg-action rounded-full flex-center mx-auto mb-3">
-                      <TrendingUp className="w-6 h-6 text-white" />
+                <CardContent className="card-content p-8">
+                  <div className="action-item text-center space-y-4">
+                    <div className="icon-badge icon-badge-2xl bg-gradient-to-br from-wellness to-action rounded-full flex-center mx-auto shadow-2xl">
+                      <TrendingUp className="w-10 h-10 text-white" />
                     </div>
-                    <h4 className="font-semibold text-action mb-2">Ready to Track Your Progress?</h4>
-                    <p className="text-sm text-action">
+                    <h4 className="font-bold text-2xl text-primary mb-3">Ready to Track Your Progress?</h4>
+                    <p className="text-lg text-secondary leading-relaxed max-w-md mx-auto">
                       Start logging your weight regularly to visualize your fitness journey and get personalized insights!
                     </p>
                   </div>
@@ -457,27 +469,37 @@ export default function ProgressPage() {
             )}
 
             {/* Badges & Achievements Section */}
-            <div className="space-y-3">
-              <h2 className="text-xl font-semibold text-primary">Badges & Achievements</h2>
+            <div className="space-y-4">
+              <div className="section-header">
+                <h2 className="text-2xl font-bold text-primary flex-start gap-3">
+                  <div className="icon-badge icon-badge-success">
+                    <Trophy className="w-6 h-6 text-white" />
+                  </div>
+                  Badges & Achievements
+                </h2>
+                <p className="text-secondary text-lg">Celebrate your fitness milestones and unlock new badges</p>
+              </div>
               <Card 
                 data-testid="card-badges-achievements"
-                className="card-success"
+                className="card-success border-success/30 shadow-2xl"
               >
-                <CardHeader className="card-header">
-                  <div className="flex-start gap-2">
-                    <div className="icon-badge icon-badge-success">
-                      <Trophy className="w-6 h-6 text-success" />
+                <CardHeader className="card-header bg-gradient-to-r from-success/20 to-activity/10 rounded-t-xl">
+                  <div className="flex-start gap-3">
+                    <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-xl shadow-lg">
+                      <Trophy className="w-8 h-8 text-white" />
                     </div>
-                    <CardTitle className="card-title text-white">Your Achievements</CardTitle>
+                    <div className="space-y-1">
+                      <CardTitle className="card-title text-white text-2xl font-bold">Your Achievements</CardTitle>
+                      <CardDescription className="card-description text-white/90 text-lg">
+                        Unlock badges by hitting milestones in your fitness journey!
+                      </CardDescription>
+                    </div>
                   </div>
-                  <CardDescription className="card-description text-white">
-                    Unlock badges by hitting milestones in your fitness journey!
-                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div 
                     data-testid="badges-scroll-container"
-                    className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide"
+                    className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide px-2"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                   >
                     {(() => {
@@ -487,7 +509,7 @@ export default function ProgressPage() {
                           title: 'First Step',
                           description: 'Complete your first workout',
                           icon: Dumbbell,
-                          color: 'from-activity to-activity/80',
+                          cardClass: 'card-activity',
                           earned: workoutStats.totalWorkouts >= 1,
                           target: 1,
                           current: workoutStats.totalWorkouts
@@ -497,7 +519,7 @@ export default function ProgressPage() {
                           title: 'Week Warrior',
                           description: 'Maintain a 7-day streak',
                           icon: Calendar,
-                          color: 'from-success to-success/80',
+                          cardClass: 'card-success',
                           earned: workoutStats.currentStreak >= 7,
                           target: 7,
                           current: workoutStats.currentStreak
@@ -507,7 +529,7 @@ export default function ProgressPage() {
                           title: 'Dirty Dozen',
                           description: 'Complete 12 workouts',
                           icon: Target,
-                          color: 'from-action to-action/80',
+                          cardClass: 'card-action',
                           earned: workoutStats.totalWorkouts >= 12,
                           target: 12,
                           current: workoutStats.totalWorkouts
@@ -517,7 +539,7 @@ export default function ProgressPage() {
                           title: 'Meal Master',
                           description: 'Log 25 meals',
                           icon: Apple,
-                          color: 'from-nutrition to-nutrition/80',
+                          cardClass: 'card-nutrition',
                           earned: nutritionStats.totalMealsLogged >= 25,
                           target: 25,
                           current: nutritionStats.totalMealsLogged
@@ -527,7 +549,7 @@ export default function ProgressPage() {
                           title: 'Consistency King',
                           description: 'Achieve a 14-day streak',
                           icon: Crown,
-                          color: 'from-activity to-activity/80',
+                          cardClass: 'card-warning',
                           earned: workoutStats.currentStreak >= 14,
                           target: 14,
                           current: workoutStats.currentStreak
@@ -537,49 +559,9 @@ export default function ProgressPage() {
                           title: 'Half Century',
                           description: 'Complete 50 workouts',
                           icon: Medal,
-                          color: 'from-warning to-warning/80',
+                          cardClass: 'card-wellness',
                           earned: workoutStats.totalWorkouts >= 50,
                           target: 50,
-                          current: workoutStats.totalWorkouts
-                        },
-                        {
-                          id: 'nutrition-ninja',
-                          title: 'Nutrition Ninja',
-                          description: 'Log 100 meals',
-                          icon: Zap,
-                          color: 'from-nutrition to-nutrition/80',
-                          earned: nutritionStats.totalMealsLogged >= 100,
-                          target: 100,
-                          current: nutritionStats.totalMealsLogged
-                        },
-                        {
-                          id: 'century-club',
-                          title: 'Century Club',
-                          description: 'Complete 100 workouts',
-                          icon: BadgeCheck,
-                          color: 'from-activity to-activity/80',
-                          earned: workoutStats.totalWorkouts >= 100,
-                          target: 100,
-                          current: workoutStats.totalWorkouts
-                        },
-                        {
-                          id: 'dedication-legend',
-                          title: 'Dedication Legend',
-                          description: 'Maintain a 30-day streak',
-                          icon: Star,
-                          color: 'from-activity to-activity/80',
-                          earned: workoutStats.currentStreak >= 30,
-                          target: 30,
-                          current: workoutStats.currentStreak
-                        },
-                        {
-                          id: 'ultimate-warrior',
-                          title: 'Ultimate Warrior',
-                          description: 'Complete 500 workouts',
-                          icon: Shield,
-                          color: 'from-wellness to-wellness/80',
-                          earned: workoutStats.totalWorkouts >= 500,
-                          target: 500,
                           current: workoutStats.totalWorkouts
                         }
                       ]
@@ -592,73 +574,67 @@ export default function ProgressPage() {
                           <div
                             key={achievement.id}
                             data-testid={`badge-${achievement.id}`}
-                            className="flex-shrink-0 w-24 text-center group cursor-pointer"
+                            className={`flex-shrink-0 w-32 ${achievement.cardClass} border-2 border-white/20 shadow-xl transform hover:scale-105 transition-all duration-300 interactive-enhanced group cursor-pointer ${
+                              achievement.earned ? 'ring-4 ring-white/30 shadow-white/20' : 'opacity-85'
+                            }`}
                           >
-                            <div className="relative">
-                              <div 
-                                className={`
-                                  w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-2 transition-all duration-300 
-                                  ${achievement.earned 
-                                    ? `bg-gradient-to-br ${achievement.color} shadow-lg group-hover:shadow-xl group-hover:scale-105` 
-                                    : 'bg-slate-200 dark:bg-slate-700 group-hover:bg-slate-300 dark:group-hover:bg-slate-600'
-                                  }
-                                `}
-                              >
-                                <IconComponent 
-                                  className={`w-7 h-7 ${achievement.earned ? 'text-white' : 'text-slate-400 dark:text-slate-500'}`} 
-                                />
+                            <div className="p-4 text-center space-y-3">
+                              <div className="relative">
+                                <div className={`w-16 h-16 mx-auto rounded-2xl flex-center backdrop-blur-sm shadow-xl transition-all duration-300 group-hover:scale-110 ${
+                                  achievement.earned ? 'bg-white/25' : 'bg-white/15'
+                                }`}>
+                                  <IconComponent className="w-8 h-8 text-white" />
+                                </div>
+                                
+                                {/* Achievement checkmark */}
+                                {achievement.earned && (
+                                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-white rounded-full shadow-lg flex-center">
+                                    <BadgeCheck className="w-4 h-4 text-green-500" />
+                                  </div>
+                                )}
+                                
+                                {/* Progress ring for locked badges */}
+                                {!achievement.earned && achievement.current > 0 && (
+                                  <div className="absolute inset-0 w-16 h-16 mx-auto">
+                                    <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 60 60">
+                                      <circle
+                                        cx="30"
+                                        cy="30"
+                                        r="28"
+                                        stroke="white"
+                                        strokeWidth="2"
+                                        fill="none"
+                                        className="opacity-20"
+                                      />
+                                      <circle
+                                        cx="30"
+                                        cy="30"
+                                        r="28"
+                                        stroke="white"
+                                        strokeWidth="3"
+                                        fill="none"
+                                        strokeDasharray={`${progressPercent * 1.76} 176`}
+                                        className="transition-all duration-700 shadow-lg"
+                                      />
+                                    </svg>
+                                  </div>
+                                )}
                               </div>
                               
-                              {/* Progress ring for locked badges */}
-                              {!achievement.earned && achievement.current > 0 && (
-                                <div className="absolute inset-0 w-16 h-16 mx-auto">
-                                  <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 60 60">
-                                    <circle
-                                      cx="30"
-                                      cy="30"
-                                      r="28"
-                                      stroke="currentColor"
-                                      strokeWidth="2"
-                                      fill="none"
-                                      className="text-slate-200 dark:text-slate-600"
-                                    />
-                                    <circle
-                                      cx="30"
-                                      cy="30"
-                                      r="28"
-                                      stroke="hsl(var(--primary))"
-                                      strokeWidth="2"
-                                      fill="none"
-                                      strokeDasharray={`${progressPercent * 1.76} 176`}
-                                      className="transition-all duration-500"
-                                    />
-                                  </svg>
-                                </div>
-                              )}
-
-                              {/* Achievement notification dot */}
-                              {achievement.earned && (
-                                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white dark:border-slate-800 flex items-center justify-center">
-                                  <svg className="w-2 h-2 text-white" viewBox="0 0 10 10" fill="currentColor">
-                                    <path d="M4 5.5L6.5 3l1 1L4 7.5 1.5 5l1-1L4 5.5z"/>
-                                  </svg>
-                                </div>
-                              )}
-                            </div>
-                            
-                            <div className="space-y-1">
-                              <h4 
-                                data-testid={`text-badge-title-${achievement.id}`}
-                                className={`text-xs font-semibold ${achievement.earned ? 'text-primary' : 'text-slate-500 dark:text-slate-400'}`}
-                              >
-                                {achievement.title}
-                              </h4>
-                              <p 
-                                data-testid={`text-badge-progress-${achievement.id}`}
-                                className="text-xs text-slate-500 dark:text-slate-400"
-                              >
-                                {achievement.earned ? '✓ Earned!' : `${achievement.current}/${achievement.target}`}
-                              </p>
+                              <div className="space-y-1">
+                                <h4 
+                                  data-testid={`text-badge-title-${achievement.id}`}
+                                  className="text-sm font-black text-white drop-shadow-lg"
+                                >
+                                  {achievement.title}
+                                </h4>
+                                <p 
+                                  data-testid={`text-badge-progress-${achievement.id}`}
+                                  className="text-xs text-white/90 font-medium"
+                                >
+                                  {achievement.earned ? '✓ Earned!' : `${achievement.current}/${achievement.target}`}
+                                </p>
+                              </div>
                             </div>
                           </div>
                         )

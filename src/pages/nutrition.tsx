@@ -264,10 +264,11 @@ export default function NutritionPage() {
       const mealData = {
         date: new Date().toISOString().split('T')[0],
         mealType: meal.mealType,
-        food: meal.foodItem,
-        servings: meal.servings,
-        totalCalories: Math.round(meal.foodItem.calories * meal.servings),
-        notes: ''
+        foodItem: meal.foodItem.name,
+        calories: Math.round(meal.foodItem.calories * meal.servings),
+        protein: meal.foodItem.protein ? Math.round((meal.foodItem.protein * meal.servings) * 100) / 100 : undefined,
+        carbs: meal.foodItem.carbs ? Math.round((meal.foodItem.carbs * meal.servings) * 100) / 100 : undefined,
+        fat: meal.foodItem.fat ? Math.round((meal.foodItem.fat * meal.servings) * 100) / 100 : undefined
       }
       
       const mealId = saveMealLocally(mealData)
@@ -369,10 +370,10 @@ export default function NutritionPage() {
 
   const calculateTodayTotals = () => {
     return todayMeals.reduce((totals, meal) => {
-      const calories = meal.totalCalories || 0
-      const protein = (meal.food.protein || 0) * (meal.servings || 1)
-      const carbs = (meal.food.carbs || 0) * (meal.servings || 1)
-      const fat = (meal.food.fat || 0) * (meal.servings || 1)
+      const calories = meal.calories || 0
+      const protein = meal.protein || 0
+      const carbs = meal.carbs || 0
+      const fat = meal.fat || 0
       
       return {
         calories: totals.calories + calories,
@@ -479,15 +480,15 @@ export default function NutritionPage() {
         </Card>
 
         {/* Search Section */}
-        <Card className="card-glass">
+        <Card className="card-nutrition">
           <CardHeader>
-            <CardTitle className="text-primary flex-start gap-3">
-              <div className="icon-badge icon-badge-action">
-                <Search className="w-5 h-5 text-action" />
+            <CardTitle className="text-white flex-start gap-3">
+              <div className="icon-badge bg-white/20 backdrop-blur-sm">
+                <Search className="w-5 h-5 text-white" />
               </div>
               Add Food
             </CardTitle>
-            <CardDescription className="text-secondary">
+            <CardDescription className="text-white/80">
               Search for foods to add to your meal log
             </CardDescription>
           </CardHeader>
@@ -551,7 +552,7 @@ export default function NutritionPage() {
 
             {/* Barcode Section */}
             {showBarcodeSection && (
-              <Card className="card-base">
+              <Card className="card-action">
                 <CardContent className="p-4 space-y-4">
                   <div className="flex-between">
                     <h3 className="font-medium text-primary">Barcode Options</h3>
@@ -594,7 +595,7 @@ export default function NutritionPage() {
 
             {/* Recent Foods Section */}
             {showRecentSection && (
-              <Card className="card-base">
+              <Card className="card-nutrition">
                 <CardContent className="p-4">
                   <div className="flex-between mb-4">
                     <h3 className="font-medium text-primary">Recent Foods</h3>
@@ -643,7 +644,7 @@ export default function NutritionPage() {
 
             {/* Custom Food Section */}
             {showCustomSection && (
-              <Card className="card-base">
+              <Card className="card-nutrition">
                 <CardContent className="p-4 space-y-4">
                   <div className="flex-between">
                     <h3 className="font-medium text-primary">Custom Food</h3>
@@ -748,7 +749,7 @@ export default function NutritionPage() {
 
         {/* Search Results */}
         {isSearching && searchQuery.trim() && (
-          <Card className="card-glass">
+          <Card className="card-nutrition">
             <CardHeader>
               <CardTitle className="text-primary flex-start gap-3">
                 <div className="icon-badge icon-badge-nutrition">
@@ -776,7 +777,7 @@ export default function NutritionPage() {
         )}
         
         {searchResults.length > 0 && !isSearching && (
-          <Card className="card-glass">
+          <Card className="card-nutrition">
             <CardHeader>
               <CardTitle className="text-primary flex-start gap-3">
                 <div className="icon-badge icon-badge-nutrition">
@@ -820,7 +821,7 @@ export default function NutritionPage() {
         )}
         
         {searchResults.length === 0 && !isSearching && searchQuery.trim() && (
-          <Card className="card-base">
+          <Card className="card-nutrition">
             <CardContent className="p-8 text-center" data-testid="search-empty-state">
               <div className="flex-col-center gap-4">
                 <div className="icon-badge icon-badge-warning w-16 h-16">
@@ -839,7 +840,7 @@ export default function NutritionPage() {
 
         {/* Today's Meals */}
         {todayMeals.length > 0 && (
-          <Card className="card-glass">
+          <Card className="card-nutrition">
             <CardHeader>
               <CardTitle className="text-primary flex-start gap-3">
                 <div className="icon-badge icon-badge-success">
@@ -865,14 +866,14 @@ export default function NutritionPage() {
                           <div key={index} className="action-item">
                             <div className="flex-between">
                               <div className="flex-1">
-                                <h5 className="font-medium text-primary">{meal.food.name}</h5>
+                                <h5 className="font-medium text-primary">{meal.foodItem}</h5>
                                 <p className="text-sm text-secondary">
-                                  {meal.servings} serving(s) • {meal.totalCalories} calories
+                                  {meal.calories} calories
                                 </p>
                               </div>
                               <div className="text-right">
                                 <span className="badge-base bg-nutrition text-white">
-                                  {meal.totalCalories} cal
+                                  {meal.calories} cal
                                 </span>
                               </div>
                             </div>
@@ -999,7 +1000,8 @@ export default function NutritionPage() {
         <LazyBarcodeScanner
           isOpen={isCameraModalOpen}
           onClose={() => setIsCameraModalOpen(false)}
-          onBarcodeDetected={handleBarcodeDetected}
+          onBarcodeScanned={handleBarcodeDetected}
+          onManualEntry={() => setIsCameraModalOpen(false)}
         />
       </div>
     </div>
