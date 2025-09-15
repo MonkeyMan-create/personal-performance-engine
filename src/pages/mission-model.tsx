@@ -176,7 +176,7 @@ export default function MissionModelPage() {
         </Card>
 
         {/* Section 3: PPE Premium Future */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-glass backdrop-blur-xl shadow-2xl border-action/30">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-action rounded-xl">
@@ -338,33 +338,33 @@ export default function MissionModelPage() {
             </div>
 
             {/* Pricing Philosophy */}
-            <div className="p-4 card-base rounded-lg">
-              <h4 className="font-semibold text-primary mb-3 text-center">Our Pricing Philosophy</h4>
-              <div className="grid md:grid-cols-3 gap-4 text-center">
-                <div className="space-y-2">
-                  <div className="w-12 h-12 icon-badge-action rounded-lg flex items-center justify-center mx-auto">
-                    <Shield className="w-6 h-6 text-action" />
+            <div className="p-6 card-glass rounded-xl border-action/20">
+              <h4 className="font-semibold text-primary mb-6 text-center text-lg">Our Pricing Philosophy</h4>
+              <div className="grid md:grid-cols-3 gap-6 text-center">
+                <div className="space-y-3">
+                  <div className="w-16 h-16 icon-badge-action rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+                    <Shield className="w-7 h-7 text-action" />
                   </div>
-                  <h5 className="font-medium text-primary">Transparent Costs</h5>
-                  <p className="text-sm text-secondary">
+                  <h5 className="font-semibold text-primary text-lg">Transparent Costs</h5>
+                  <p className="text-sm text-secondary leading-relaxed">
                     Every premium feature shows exactly why it costs money
                   </p>
                 </div>
-                <div className="space-y-2">
-                  <div className="w-12 h-12 icon-badge-success rounded-lg flex items-center justify-center mx-auto">
-                    <TrendingUp className="w-6 h-6 text-success" />
+                <div className="space-y-3">
+                  <div className="w-16 h-16 icon-badge-success rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+                    <TrendingUp className="w-7 h-7 text-success" />
                   </div>
-                  <h5 className="font-medium text-primary">Real Value</h5>
-                  <p className="text-sm text-secondary">
+                  <h5 className="font-semibold text-primary text-lg">Real Value</h5>
+                  <p className="text-sm text-secondary leading-relaxed">
                     Premium features provide tangible benefits worth the cost
                   </p>
                 </div>
-                <div className="space-y-2">
-                  <div className="w-12 h-12 icon-badge-action rounded-lg flex items-center justify-center mx-auto">
-                    <Heart className="w-6 h-6 text-action" />
+                <div className="space-y-3">
+                  <div className="w-16 h-16 icon-badge-action rounded-2xl flex items-center justify-center mx-auto shadow-lg">
+                    <Heart className="w-7 h-7 text-action" />
                   </div>
-                  <h5 className="font-medium text-primary">User-First</h5>
-                  <p className="text-sm text-secondary">
+                  <h5 className="font-semibold text-primary text-lg">User-First</h5>
+                  <p className="text-sm text-secondary leading-relaxed">
                     Free core features ensure everyone can benefit
                   </p>
                 </div>
@@ -374,26 +374,31 @@ export default function MissionModelPage() {
         </Card>
 
         {/* Call to Action */}
-        <Card className="card-accent-action shadow-2xl">
-          <CardContent className="p-6 text-center space-y-4">
-            <h3 className="text-xl font-semibold text-primary">
-              Start Your Fitness Journey Today
-            </h3>
-            <p className="text-secondary max-w-2xl mx-auto">
-              Get started with our powerful, free tools. Track workouts, monitor nutrition, and see your progress — 
-              no registration required with Guest Mode.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <Card className="card-action backdrop-blur-xl shadow-2xl border-action/30">
+          <CardContent className="p-8 text-center space-y-6">
+            <div className="space-y-4">
+              <div className="w-20 h-20 icon-badge-action rounded-3xl flex items-center justify-center mx-auto shadow-xl">
+                <Zap className="w-10 h-10 text-action" />
+              </div>
+              <h3 className="text-2xl font-bold text-white">
+                Start Your Fitness Journey Today
+              </h3>
+              <p className="text-white/90 max-w-2xl mx-auto text-lg leading-relaxed">
+                Get started with our powerful, free tools. Track workouts, monitor nutrition, and see your progress — 
+                no registration required with Guest Mode.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Button 
-                className="button-primary shadow-lg hover:shadow-xl transition-all duration-300"
+                className="button-surface text-action hover:text-action/80 shadow-lg hover:shadow-xl transition-all duration-300"
                 onClick={() => window.location.href = '/workouts'}
               >
-                <Zap className="w-4 h-4 mr-2" />
+                <Zap className="w-5 h-5 mr-2" />
                 Start Logging Workouts
               </Button>
               <Button 
                 variant="outline"
-                className="button-surface text-secondary hover:text-primary transition-all duration-300"
+                className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
                 onClick={() => window.location.href = '/nutrition'}
               >
                 Track Your Nutrition

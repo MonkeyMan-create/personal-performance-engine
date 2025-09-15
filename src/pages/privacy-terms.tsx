@@ -19,8 +19,8 @@ export default function PrivacyTermsPage() {
   const renderPrivacyPolicy = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-primary mb-3">Information We Collect</h3>
-        <div className="space-y-3 text-secondary">
+        <h3 className="text-xl font-bold text-white mb-3">Information We Collect</h3>
+        <div className="space-y-3 text-white/90">
           <p>We collect information you provide directly to us, such as:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Account information (name, email, profile photo)</li>
@@ -32,8 +32,8 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-primary mb-3">How We Use Your Information</h3>
-        <div className="space-y-3 text-secondary">
+        <h3 className="text-xl font-bold text-white mb-3">How We Use Your Information</h3>
+        <div className="space-y-3 text-white/90">
           <p>We use the information we collect to:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Provide, maintain, and improve our fitness tracking service</li>
@@ -45,9 +45,9 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-primary mb-3">Information Sharing</h3>
-        <div className="space-y-3 text-secondary">
-          <p><strong>We do not sell your personal data.</strong> We may share your information only in these limited circumstances:</p>
+        <h3 className="text-xl font-bold text-white mb-3">Information Sharing</h3>
+        <div className="space-y-3 text-white/90">
+          <p><strong className="text-white">We do not sell your personal data.</strong> We may share your information only in these limited circumstances:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>With your explicit consent</li>
             <li>To comply with legal obligations</li>
@@ -58,8 +58,8 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-primary mb-3">Data Retention</h3>
-        <div className="space-y-3 text-secondary">
+        <h3 className="text-xl font-bold text-white mb-3">Data Retention</h3>
+        <div className="space-y-3 text-white/90">
           <p>We retain your personal information only as long as necessary for the purposes outlined in this policy, including:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>As long as your account is active</li>
@@ -75,15 +75,15 @@ export default function PrivacyTermsPage() {
   const renderTermsOfService = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-primary mb-3">Acceptance of Terms</h3>
-        <p className="text-secondary">
+        <h3 className="text-xl font-bold text-white mb-3">Acceptance of Terms</h3>
+        <p className="text-white/90">
           By accessing and using this fitness tracking application, you accept and agree to be bound by the terms and provision of this agreement.
         </p>
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-primary mb-3">Use License</h3>
-        <div className="space-y-3 text-secondary">
+        <h3 className="text-xl font-bold text-white mb-3">Use License</h3>
+        <div className="space-y-3 text-white/90">
           <p>Permission is granted to temporarily use this application for personal, non-commercial transitory viewing only. This includes:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Personal fitness tracking and goal setting</li>
@@ -108,9 +108,9 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-primary mb-3">Health and Fitness Disclaimer</h3>
-        <div className="p-4 bg-warning/10 rounded-lg border border-warning/30">
-          <p className="text-warning text-sm">
+        <h3 className="text-xl font-bold text-white mb-3">Health and Fitness Disclaimer</h3>
+        <div className="p-4 bg-white/10 rounded-lg border border-white/30">
+          <p className="text-white text-sm">
             <strong>Important:</strong> This app is for informational purposes only and should not be considered medical advice. 
             Always consult with healthcare professionals before starting any fitness or nutrition program.
           </p>
@@ -118,8 +118,8 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-primary mb-3">Service Availability</h3>
-        <p className="text-secondary">
+        <h3 className="text-xl font-bold text-white mb-3">Service Availability</h3>
+        <p className="text-white/90">
           We strive to maintain high availability but cannot guarantee uninterrupted service. We reserve the right to modify or discontinue features with reasonable notice.
         </p>
       </div>
@@ -129,11 +129,11 @@ export default function PrivacyTermsPage() {
   const renderDataUsage = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-primary mb-3">Data Collection Principles</h3>
+        <h3 className="text-xl font-bold text-white mb-3">Data Collection Principles</h3>
         <div className="grid md:grid-cols-2 gap-4">
-          <div className="p-4 bg-success/10 rounded-lg border border-success/30">
-            <h4 className="font-semibold text-success mb-2">✓ What We Do</h4>
-            <ul className="text-success text-sm space-y-1">
+          <div className="p-4 bg-white/10 rounded-lg border border-white/30">
+            <h4 className="font-semibold text-white mb-2">✓ What We Do</h4>
+            <ul className="text-white/90 text-sm space-y-1">
               <li>Collect only necessary data</li>
               <li>Use data to improve your experience</li>
               <li>Encrypt sensitive information</li>
@@ -142,9 +142,9 @@ export default function PrivacyTermsPage() {
             </ul>
           </div>
           
-          <div className="p-4 bg-error/10 rounded-lg border border-error/30">
-            <h4 className="font-semibold text-error mb-2">✗ What We Don't Do</h4>
-            <ul className="text-error text-sm space-y-1">
+          <div className="p-4 bg-white/10 rounded-lg border border-white/30">
+            <h4 className="font-semibold text-white mb-2">✗ What We Don't Do</h4>
+            <ul className="text-white/90 text-sm space-y-1">
               <li>Sell your personal data</li>
               <li>Share data without consent</li>
               <li>Track you across other websites</li>
@@ -156,7 +156,7 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-primary mb-3">Data Categories</h3>
+        <h3 className="text-xl font-bold text-white mb-3">Data Categories</h3>
         <div className="space-y-4">
           {[
             { 
@@ -180,12 +180,12 @@ export default function PrivacyTermsPage() {
               retention: '7 days after deletion request'
             }
           ].map((category, index) => (
-            <div key={index} className="p-4 bg-surface/60 rounded-lg border border-primary">
+            <div key={index} className="p-4 bg-white/10 rounded-lg border border-white/30">
               <div className="flex justify-between items-start mb-2">
-                <h4 className="font-semibold text-primary">{category.name}</h4>
-                <span className="text-xs bg-surface text-secondary px-2 py-1 rounded">{category.retention}</span>
+                <h4 className="font-semibold text-white">{category.name}</h4>
+                <span className="text-xs bg-white/20 text-white px-2 py-1 rounded">{category.retention}</span>
               </div>
-              <p className="text-secondary text-sm">{category.description}</p>
+              <p className="text-white/90 text-sm">{category.description}</p>
             </div>
           ))}
         </div>
@@ -405,36 +405,42 @@ export default function PrivacyTermsPage() {
         {/* Quick Actions */}
         <div className="grid md:grid-cols-3 gap-4">
           <Link href="/data-export">
-            <Card className="bg-surface border-primary backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-surface/80 transition-all">
+            <Card className="card-info backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-info/20 transition-all">
               <CardContent className="p-4 text-center space-y-3">
-                <Download className="w-8 h-8 text-action mx-auto" />
+                <div className="w-12 h-12 icon-badge-info rounded-xl flex items-center justify-center mx-auto">
+                  <Download className="w-6 h-6 text-info" />
+                </div>
                 <div>
-                  <h3 className="font-bold text-primary">Export Data</h3>
-                  <p className="text-secondary text-sm">Download your information</p>
+                  <h3 className="font-bold text-white">Export Data</h3>
+                  <p className="text-white/90 text-sm">Download your information</p>
                 </div>
               </CardContent>
             </Card>
           </Link>
 
           <Link href="/contact-support">
-            <Card className="bg-surface border-primary backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-surface/80 transition-all">
+            <Card className="card-success backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-success/20 transition-all">
               <CardContent className="p-4 text-center space-y-3">
-                <Globe className="w-8 h-8 text-action mx-auto" />
+                <div className="w-12 h-12 icon-badge-success rounded-xl flex items-center justify-center mx-auto">
+                  <Globe className="w-6 h-6 text-success" />
+                </div>
                 <div>
-                  <h3 className="font-bold text-primary">Contact Support</h3>
-                  <p className="text-secondary text-sm">Privacy questions</p>
+                  <h3 className="font-bold text-white">Contact Support</h3>
+                  <p className="text-white/90 text-sm">Privacy questions</p>
                 </div>
               </CardContent>
             </Card>
           </Link>
 
           <Link href="/delete-account">
-            <Card className="bg-surface border-primary backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-surface/80 transition-all">
+            <Card className="card-warning backdrop-blur-xl shadow-2xl cursor-pointer hover:bg-warning/20 transition-all">
               <CardContent className="p-4 text-center space-y-3">
-                <UserCheck className="w-8 h-8 text-action mx-auto" />
+                <div className="w-12 h-12 icon-badge-warning rounded-xl flex items-center justify-center mx-auto">
+                  <UserCheck className="w-6 h-6 text-warning" />
+                </div>
                 <div>
-                  <h3 className="font-bold text-primary">Delete Account</h3>
-                  <p className="text-secondary text-sm">Exercise your rights</p>
+                  <h3 className="font-bold text-white">Delete Account</h3>
+                  <p className="text-white/90 text-sm">Exercise your rights</p>
                 </div>
               </CardContent>
             </Card>
@@ -443,9 +449,14 @@ export default function PrivacyTermsPage() {
 
         <div className="grid lg:grid-cols-4 gap-6">
           {/* Navigation Sidebar */}
-          <Card className="lg:col-span-1 bg-surface border-primary backdrop-blur-xl shadow-2xl">
+          <Card className="lg:col-span-1 card-glass backdrop-blur-xl shadow-2xl border-action/20">
             <CardHeader>
-              <CardTitle className="text-primary text-lg font-bold">Sections</CardTitle>
+              <div className="flex items-center gap-3">
+                <div className="p-2 icon-badge-action rounded-lg">
+                  <Shield className="w-5 h-5 text-action" />
+                </div>
+                <CardTitle className="text-primary text-lg font-bold">Sections</CardTitle>
+              </div>
             </CardHeader>
             <CardContent className="space-y-2">
               {sections.map((section) => {
@@ -454,9 +465,9 @@ export default function PrivacyTermsPage() {
                   <button
                     key={section.id}
                     onClick={() => setActiveSection(section.id)}
-                    className={`w-full p-3 rounded-lg text-left transition-all duration-200 flex items-center gap-3 ${
+                    className={`w-full p-3 rounded-xl text-left transition-all duration-200 flex items-center gap-3 ${
                       activeSection === section.id
-                        ? 'bg-action/20 text-action border border-action/30'
+                        ? 'bg-action/20 text-action border border-action/30 shadow-lg'
                         : 'text-secondary hover:bg-surface/80 hover:text-primary'
                     }`}
                     data-testid={`nav-${section.id}`}
@@ -470,21 +481,53 @@ export default function PrivacyTermsPage() {
           </Card>
 
           {/* Content Area */}
-          <Card className="lg:col-span-3 bg-surface border-primary backdrop-blur-xl shadow-2xl">
+          <Card className={`lg:col-span-3 backdrop-blur-xl shadow-2xl ${
+            activeSection === 'privacy' ? 'card-action border-action/30' :
+            activeSection === 'terms' ? 'card-info border-info/30' :
+            activeSection === 'data' ? 'card-wellness border-wellness/30' :
+            activeSection === 'security' ? 'card-success border-success/30' :
+            activeSection === 'rights' ? 'card-activity border-activity/30' :
+            'card-glass border-primary/30'
+          }`}>
             <CardHeader>
-              <CardTitle className="text-primary text-2xl font-bold">
-                {sections.find(s => s.id === activeSection)?.title}
-              </CardTitle>
-              <CardDescription className="text-secondary">
-                {activeSection === 'privacy' && 'How we collect, use, and protect your personal information'}
-                {activeSection === 'terms' && 'Terms and conditions for using our fitness tracking service'}
-                {activeSection === 'data' && 'Detailed breakdown of how we handle your data'}
-                {activeSection === 'security' && 'Security measures protecting your information'}
-                {activeSection === 'rights' && 'Your data protection rights and how to exercise them'}
-                {activeSection === 'contact' && 'How to reach us with privacy questions or concerns'}
-              </CardDescription>
+              <div className="flex items-center gap-3">
+                <div className={`p-3 rounded-xl ${
+                  activeSection === 'privacy' ? 'icon-badge-action' :
+                  activeSection === 'terms' ? 'icon-badge-info' :
+                  activeSection === 'data' ? 'icon-badge-wellness' :
+                  activeSection === 'security' ? 'icon-badge-success' :
+                  activeSection === 'rights' ? 'icon-badge-activity' :
+                  'icon-badge-action'
+                }`}>
+                  {sections.find(s => s.id === activeSection)?.icon && 
+                    React.createElement(sections.find(s => s.id === activeSection)!.icon, {
+                      className: `w-6 h-6 ${
+                        activeSection === 'privacy' ? 'text-action' :
+                        activeSection === 'terms' ? 'text-info' :
+                        activeSection === 'data' ? 'text-wellness' :
+                        activeSection === 'security' ? 'text-success' :
+                        activeSection === 'rights' ? 'text-activity' :
+                        'text-action'
+                      }`
+                    })
+                  }
+                </div>
+                <div>
+                  <CardTitle className="text-white text-2xl font-bold">
+                    {sections.find(s => s.id === activeSection)?.title}
+                  </CardTitle>
+                  <CardDescription className="text-white/90">
+                    {activeSection === 'privacy' && 'How we collect, use, and protect your personal information'}
+                    {activeSection === 'terms' && 'Terms and conditions for using our fitness tracking service'}
+                    {activeSection === 'data' && 'Detailed breakdown of how we handle your data'}
+                    {activeSection === 'security' && 'Security measures protecting your information'}
+                    {activeSection === 'rights' && 'Your data protection rights and how to exercise them'}
+                    {activeSection === 'contact' && 'How to reach us with privacy questions or concerns'}
+                  </CardDescription>
+                </div>
+              </div>
             </CardHeader>
-            <CardContent data-testid={`content-${activeSection}`}>
+            <CardContent data-testid={`content-${activeSection}`} className="text-white/95">
               {renderContent()}
             </CardContent>
           </Card>

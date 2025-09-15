@@ -205,15 +205,15 @@ export default function ProfileEditPage() {
         </div>
 
         {/* Profile Photo Section */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-action backdrop-blur-xl shadow-2xl border-action/30">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-action rounded-xl">
                 <User className="w-6 h-6 text-action" />
               </div>
               <div>
-                <CardTitle className="text-primary text-xl font-bold">Profile Photo</CardTitle>
-                <CardDescription className="text-secondary">
+                <CardTitle className="text-white text-xl font-bold">Profile Photo</CardTitle>
+                <CardDescription className="text-white/90">
                   Upload a profile picture to personalize your account
                 </CardDescription>
               </div>
@@ -281,15 +281,15 @@ export default function ProfileEditPage() {
         </Card>
 
         {/* Personal Information Section */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-activity backdrop-blur-xl shadow-2xl border-activity/30">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-activity rounded-xl">
                 <Mail className="w-6 h-6 text-activity" />
               </div>
               <div>
-                <CardTitle className="text-primary text-xl font-bold">Personal Information</CardTitle>
-                <CardDescription className="text-secondary">
+                <CardTitle className="text-white text-xl font-bold">Personal Information</CardTitle>
+                <CardDescription className="text-white/90">
                   Update your basic profile information
                 </CardDescription>
               </div>
@@ -298,20 +298,20 @@ export default function ProfileEditPage() {
           <CardContent className="space-y-6">
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2">
+                <label className="block text-sm font-medium text-white mb-2">
                   Display Name
                 </label>
                 <Input
                   value={profileData.displayName || ''}
                   onChange={(e) => handleInputChange('displayName', e.target.value)}
                   placeholder="Enter your display name"
-                  className="input-primary"
+                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
                   data-testid="input-display-name"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2">
+                <label className="block text-sm font-medium text-white mb-2">
                   Email Address
                 </label>
                 <Input
@@ -319,20 +319,20 @@ export default function ProfileEditPage() {
                   onChange={(e) => handleInputChange('email', e.target.value)}
                   placeholder="Enter your email address"
                   type="email"
-                  className="input-primary"
+                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
                   data-testid="input-email"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2">
+                <label className="block text-sm font-medium text-white mb-2">
                   Bio (Optional)
                 </label>
                 <Input
                   value={profileData.bio || ''}
                   onChange={(e) => handleInputChange('bio', e.target.value)}
                   placeholder="Tell us a bit about yourself"
-                  className="input-primary"
+                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
                   data-testid="input-bio"
                 />
               </div>
@@ -341,15 +341,15 @@ export default function ProfileEditPage() {
         </Card>
 
         {/* Personal Goals Section */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-wellness backdrop-blur-xl shadow-2xl border-wellness/30">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-wellness rounded-xl">
                 <Target className="w-6 h-6 text-wellness" />
               </div>
               <div>
-                <CardTitle className="text-primary text-xl font-bold">Personal Goals</CardTitle>
-                <CardDescription className="text-secondary">
+                <CardTitle className="text-white text-xl font-bold">Personal Goals</CardTitle>
+                <CardDescription className="text-white/90">
                   Set your fitness targets and track your progress
                 </CardDescription>
               </div>
@@ -358,8 +358,8 @@ export default function ProfileEditPage() {
           <CardContent className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2 flex items-center gap-2">
-                  <Weight className="w-4 h-4 text-wellness" />
+                <label className="block text-sm font-medium text-white mb-2 flex items-center gap-2">
+                  <Weight className="w-4 h-4 text-white" />
                   Current Weight ({measurementUnit.toUpperCase()})
                 </label>
                 <Input
@@ -369,14 +369,14 @@ export default function ProfileEditPage() {
                   type="number"
                   step="0.1"
                   min="0"
-                  className="input-primary"
+                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
                   data-testid="input-current-weight"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2 flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-wellness" />
+                <label className="block text-sm font-medium text-white mb-2 flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4 text-white" />
                   Target Weight ({measurementUnit.toUpperCase()})
                 </label>
                 <Input
@@ -386,14 +386,14 @@ export default function ProfileEditPage() {
                   type="number"
                   step="0.1"
                   min="0"
-                  className="input-primary"
+                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
                   data-testid="input-target-weight"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2 flex items-center gap-2">
-                  <Flame className="w-4 h-4 text-nutrition" />
+                <label className="block text-sm font-medium text-white mb-2 flex items-center gap-2">
+                  <Flame className="w-4 h-4 text-white" />
                   Daily Calorie Goal
                 </label>
                 <Input
@@ -402,14 +402,14 @@ export default function ProfileEditPage() {
                   placeholder="Enter your daily calorie target"
                   type="number"
                   min="0"
-                  className="input-primary"
+                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
                   data-testid="input-daily-calories"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-secondary mb-2 flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-activity" />
+                <label className="block text-sm font-medium text-white mb-2 flex items-center gap-2">
+                  <Activity className="w-4 h-4 text-white" />
                   Weekly Workout Goal
                 </label>
                 <Input
@@ -419,7 +419,7 @@ export default function ProfileEditPage() {
                   type="number"
                   min="0"
                   max="14"
-                  className="input-primary"
+                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
                   data-testid="input-weekly-workouts"
                 />
               </div>
@@ -454,15 +454,15 @@ export default function ProfileEditPage() {
         </Card>
 
         {/* Personal Records Section */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-success backdrop-blur-xl shadow-2xl border-success/30">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-success rounded-xl">
                 <Award className="w-6 h-6 text-success" />
               </div>
               <div>
-                <CardTitle className="text-primary text-xl font-bold">Personal Records</CardTitle>
-                <CardDescription className="text-secondary">
+                <CardTitle className="text-white text-xl font-bold">Personal Records</CardTitle>
+                <CardDescription className="text-white/90">
                   Your best lifts and achievements
                 </CardDescription>
               </div>
@@ -511,23 +511,23 @@ export default function ProfileEditPage() {
         </Card>
 
         {/* Save Section */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
-          <CardContent className="p-6">
+        <Card className="card-action backdrop-blur-xl shadow-2xl border-action/30">
+          <CardContent className="p-8">
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 onClick={handleSaveProfile}
                 disabled={isLoading}
-                className="flex-1 button-primary-action text-white font-bold h-12 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="flex-1 button-surface text-action hover:text-action/80 font-bold h-14 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 data-testid="button-save-profile"
               >
                 {isLoading ? (
                   <div className="flex items-center gap-2">
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <div className="w-5 h-5 border-2 border-action border-t-transparent rounded-full animate-spin" />
                     Saving...
                   </div>
                 ) : (
                   <>
-                    <Save className="w-4 h-4 mr-2" />
+                    <Save className="w-5 h-5 mr-2" />
                     Save Changes
                   </>
                 )}
@@ -536,7 +536,7 @@ export default function ProfileEditPage() {
               <Link href="/profile">
                 <Button 
                   variant="outline" 
-                  className="flex-1 sm:flex-none button-outline-surface text-secondary hover:text-primary transition-all duration-300"
+                  className="flex-1 sm:flex-none border-white/30 text-white hover:bg-white/10 backdrop-blur-sm h-14 rounded-xl transition-all duration-300"
                   data-testid="button-cancel"
                 >
                   Cancel
@@ -544,7 +544,7 @@ export default function ProfileEditPage() {
               </Link>
             </div>
             
-            <p className="text-xs text-secondary text-center mt-4">
+            <p className="text-xs text-white/90 text-center mt-6 bg-white/10 p-3 rounded-lg">
               {isGuestMode ? 'Changes in Guest Mode are saved locally on this device' : 'Changes will be saved to your account'}
             </p>
           </CardContent>
