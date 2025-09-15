@@ -86,7 +86,7 @@ export default function DeleteAccountPage() {
         </div>
 
         {/* Critical Warning */}
-        <Card className="card-accent-error backdrop-blur-xl">
+        <Card className="card-error backdrop-blur-xl">
           <CardContent className="p-6">
             <div className="flex items-start gap-4">
               <div className="p-2 icon-badge-error rounded-lg">
@@ -127,7 +127,7 @@ export default function DeleteAccountPage() {
         </Card>
 
         {/* Export Data First */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-action backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-action rounded-xl">
@@ -163,7 +163,7 @@ export default function DeleteAccountPage() {
         </Card>
 
         {/* Account Information */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-glass backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-wellness rounded-xl">
@@ -227,7 +227,7 @@ export default function DeleteAccountPage() {
         </Card>
 
         {/* Deletion Process */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-error backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-error rounded-xl">
@@ -315,7 +315,7 @@ export default function DeleteAccountPage() {
         </Card>
 
         {/* Alternative Options */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-warning backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-wellness rounded-xl">

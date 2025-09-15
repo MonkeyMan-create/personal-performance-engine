@@ -92,7 +92,7 @@ export default function HelpCenterPage() {
         </div>
 
         {/* Search Bar */}
-        <Card className="card-base shadow-2xl backdrop-blur-xl overflow-hidden relative">
+        <Card className="card-action shadow-2xl backdrop-blur-xl overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-br from-action/5 via-transparent to-action/5 pointer-events-none"></div>
           <CardContent className="p-8 relative">
             <div className="relative">
@@ -112,7 +112,7 @@ export default function HelpCenterPage() {
 
         {/* Quick Actions */}
         <div className="grid md:grid-cols-3 gap-6">
-          <Card className="card-base shadow-2xl backdrop-blur-xl cursor-pointer hover:scale-[1.02] transition-all duration-300 overflow-hidden relative group">
+          <Card className="card-success shadow-2xl backdrop-blur-xl cursor-pointer hover:scale-[1.02] transition-all duration-300 overflow-hidden relative group">
             <div className="absolute inset-0 bg-gradient-to-br from-activity/5 via-transparent to-activity/10 pointer-events-none group-hover:from-activity/10 group-hover:to-activity/15 transition-all duration-300"></div>
             <CardContent className="p-8 text-center space-y-4 relative">
               <div className="w-20 h-20 card-activity rounded-2xl mx-auto flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -128,7 +128,7 @@ export default function HelpCenterPage() {
           </Card>
 
           <Link href="/contact-support">
-            <Card className="card-base shadow-2xl backdrop-blur-xl cursor-pointer hover:scale-[1.02] transition-all duration-300 overflow-hidden relative group">
+            <Card className="card-action shadow-2xl backdrop-blur-xl cursor-pointer hover:scale-[1.02] transition-all duration-300 overflow-hidden relative group">
               <div className="absolute inset-0 bg-gradient-to-br from-action/5 via-transparent to-action/10 pointer-events-none group-hover:from-action/10 group-hover:to-action/15 transition-all duration-300"></div>
               <CardContent className="p-8 text-center space-y-4 relative">
                 <div className="w-20 h-20 bg-gradient-to-br from-action to-action/80 rounded-2xl mx-auto flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -145,7 +145,7 @@ export default function HelpCenterPage() {
           </Link>
 
           <Link href="/mission">
-            <Card className="card-base shadow-2xl backdrop-blur-xl cursor-pointer hover:scale-[1.02] transition-all duration-300 overflow-hidden relative group">
+            <Card className="card-glass shadow-2xl backdrop-blur-xl cursor-pointer hover:scale-[1.02] transition-all duration-300 overflow-hidden relative group">
               <div className="absolute inset-0 bg-gradient-to-br from-wellness/5 via-transparent to-wellness/10 pointer-events-none group-hover:from-wellness/10 group-hover:to-wellness/15 transition-all duration-300"></div>
               <CardContent className="p-8 text-center space-y-4 relative">
                 <div className="w-20 h-20 card-wellness rounded-2xl mx-auto flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
@@ -163,7 +163,7 @@ export default function HelpCenterPage() {
         </div>
 
         {/* Category Filter */}
-        <Card className="card-base shadow-2xl backdrop-blur-xl overflow-hidden relative">
+        <Card className="card-action shadow-2xl backdrop-blur-xl overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-br from-action/5 via-transparent to-action/5 pointer-events-none"></div>
           <CardContent className="p-8 relative">
             <div className="mb-4">
@@ -199,7 +199,7 @@ export default function HelpCenterPage() {
         </Card>
 
         {/* FAQ Section */}
-        <Card className="card-base shadow-2xl backdrop-blur-xl overflow-hidden relative">
+        <Card className="card-glass shadow-2xl backdrop-blur-xl overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-br from-action/5 via-transparent to-action/5 pointer-events-none"></div>
           <CardHeader className="bg-gradient-to-r from-action/10 to-action/5 relative">
             <CardTitle className="text-primary text-2xl font-bold flex items-center gap-3">
@@ -266,7 +266,7 @@ export default function HelpCenterPage() {
         </Card>
 
         {/* Additional Resources */}
-        <Card className="card-base shadow-2xl backdrop-blur-xl overflow-hidden relative">
+        <Card className="card-success shadow-2xl backdrop-blur-xl overflow-hidden relative">
           <div className="absolute inset-0 bg-gradient-to-br from-action/5 via-transparent to-action/5 pointer-events-none"></div>
           <CardHeader className="bg-gradient-to-r from-action/10 to-action/5 relative">
             <CardTitle className="text-primary text-2xl font-bold flex items-center gap-3">

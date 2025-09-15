@@ -447,7 +447,7 @@ export default function YearInReviewPage() {
         </Card>
 
         {/* Achievements */}
-        <Card className="card-base border-primary backdrop-blur-xl shadow-2xl">
+        <Card className="card-activity border-primary backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-success rounded-xl border border-success/20">
@@ -518,7 +518,7 @@ export default function YearInReviewPage() {
         </Card>
 
         {/* Monthly Workout Activity */}
-        <Card className="card-base border-primary backdrop-blur-xl shadow-2xl">
+        <Card className="card-activity border-primary backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-activity rounded-xl border border-activity/20">
@@ -576,7 +576,7 @@ export default function YearInReviewPage() {
 
         {/* Favorite Exercises */}
         {yearlyStats.favoriteExercises.length > 0 && (
-          <Card className="card-base border-primary backdrop-blur-xl shadow-2xl">
+          <Card className="card-activity border-primary backdrop-blur-xl shadow-2xl">
             <CardHeader>
               <div className="flex items-center gap-3">
                 <div className="p-3 icon-badge-activity rounded-xl border border-activity/20">
@@ -612,7 +612,7 @@ export default function YearInReviewPage() {
 
         {/* Strongest Lifts */}
         {yearlyStats.strongestLifts.length > 0 && (
-          <Card className="card-base border-primary backdrop-blur-xl shadow-2xl">
+          <Card className="card-activity border-primary backdrop-blur-xl shadow-2xl">
             <CardHeader>
               <div className="flex items-center gap-3">
                 <div className="p-3 icon-badge-success rounded-xl border border-success/20">

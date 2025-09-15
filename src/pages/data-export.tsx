@@ -181,7 +181,7 @@ export default function DataExportPage() {
             return (
               <Card 
                 key={option.id}
-                className={`card-base backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300 ${
+                className={`card-action backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300 ${
                   isSelected ? 'ring-2 ring-action/50 border-action/50 card-action-light' : ''
                 }`}
               >
@@ -271,7 +271,7 @@ export default function DataExportPage() {
         </div>
 
         {/* Bulk Export */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-action backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-action rounded-xl border border-action/20">
@@ -326,7 +326,7 @@ export default function DataExportPage() {
         </Card>
 
         {/* Data Rights & Information */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-glass backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-success rounded-xl border border-success/20">

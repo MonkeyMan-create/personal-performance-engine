@@ -311,7 +311,7 @@ export default function MeditatePage() {
         {!isSessionActive ? (
           <>
             {/* Session Type Selection */}
-            <Card className="card-base shadow-2xl backdrop-blur-xl overflow-hidden relative">
+            <Card className="card-wellness shadow-2xl backdrop-blur-xl overflow-hidden relative">
               <div className="absolute inset-0 bg-gradient-to-br from-wellness/5 via-transparent to-wellness/5 pointer-events-none"></div>
               <CardHeader className="bg-gradient-to-r from-wellness/10 to-wellness/5 relative">
                 <CardTitle className="text-primary text-2xl font-bold flex items-center gap-3">
@@ -358,7 +358,7 @@ export default function MeditatePage() {
             </Card>
 
             {/* Duration Selection */}
-            <Card className="card-base shadow-2xl backdrop-blur-xl overflow-hidden relative">
+            <Card className="card-wellness shadow-2xl backdrop-blur-xl overflow-hidden relative">
               <div className="absolute inset-0 bg-gradient-to-br from-wellness/5 via-transparent to-wellness/5 pointer-events-none"></div>
               <CardHeader className="bg-gradient-to-r from-wellness/10 to-wellness/5 relative">
                 <CardTitle className="text-primary text-2xl font-bold flex items-center gap-3">
@@ -422,7 +422,7 @@ export default function MeditatePage() {
           /* Active Session Interface */
           <div className="space-y-8">
             {/* Session Progress */}
-            <Card className="card-base border-wellness/30 shadow-2xl backdrop-blur-xl overflow-hidden relative">
+            <Card className="card-wellness border-wellness/30 shadow-2xl backdrop-blur-xl overflow-hidden relative">
               <div className="absolute inset-0 bg-gradient-to-br from-wellness/10 via-wellness/5 to-wellness/10 pointer-events-none"></div>
               <CardContent className="p-10 relative">
                 <div className="text-center space-y-8">
@@ -540,7 +540,7 @@ export default function MeditatePage() {
 
         {/* Recent Sessions */}
         {completedSessions.length > 0 && (
-          <Card className="card-base shadow-2xl backdrop-blur-xl overflow-hidden relative">
+          <Card className="card-success shadow-2xl backdrop-blur-xl overflow-hidden relative">
             <div className="absolute inset-0 bg-gradient-to-br from-wellness/5 via-transparent to-wellness/5 pointer-events-none"></div>
             <CardHeader className="bg-gradient-to-r from-wellness/10 to-wellness/5 relative">
               <CardTitle className="text-primary text-2xl font-bold flex items-center gap-3">

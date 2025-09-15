@@ -79,7 +79,7 @@ export default function ContactSupportPage() {
 
         {/* Contact Options */}
         <div className="grid md:grid-cols-3 gap-6">
-          <Card className="card-base backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300">
+          <Card className="card-action backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300">
             <CardContent className="p-6 text-center space-y-4">
               <div className="w-16 h-16 icon-badge-action rounded-xl mx-auto flex items-center justify-center">
                 <MessageCircle className="w-8 h-8 text-action" />
@@ -104,8 +104,8 @@ export default function ContactSupportPage() {
 
           <Card className="card-base backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300">
             <CardContent className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 icon-badge-activity rounded-xl mx-auto flex items-center justify-center">
-                <Mail className="w-8 h-8 text-activity" />
+              <div className="w-16 h-16 icon-badge-success rounded-xl mx-auto flex items-center justify-center">
+                <Mail className="w-8 h-8 text-success" />
               </div>
               <div>
                 <h3 className="font-bold text-primary text-lg">Email Support</h3>
@@ -116,7 +116,7 @@ export default function ContactSupportPage() {
               </div>
               <Button 
                 variant="outline" 
-                className="w-full button-outline-activity"
+                className="w-full button-outline-success"
                 data-testid="button-email-support"
               >
                 Use Form Below
@@ -124,10 +124,10 @@ export default function ContactSupportPage() {
             </CardContent>
           </Card>
 
-          <Card className="card-base backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300">
+          <Card className="card-glass backdrop-blur-xl shadow-2xl hover:shadow-3xl transition-all duration-300">
             <CardContent className="p-6 text-center space-y-4">
-              <div className="w-16 h-16 icon-badge-wellness rounded-xl mx-auto flex items-center justify-center">
-                <HelpCircle className="w-8 h-8 text-wellness" />
+              <div className="w-16 h-16 icon-badge-info rounded-xl mx-auto flex items-center justify-center">
+                <HelpCircle className="w-8 h-8 text-info" />
               </div>
               <div>
                 <h3 className="font-bold text-primary text-lg">Help Center</h3>
@@ -139,7 +139,7 @@ export default function ContactSupportPage() {
               <Link href="/help-center">
                 <Button 
                   variant="outline" 
-                  className="w-full button-outline-wellness"
+                  className="w-full button-outline-info"
                   data-testid="button-help-center"
                 >
                   Visit Help Center
@@ -150,7 +150,7 @@ export default function ContactSupportPage() {
         </div>
 
         {/* Contact Form */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-glass backdrop-blur-xl shadow-2xl">
           <CardHeader>
             <div className="flex items-center gap-3">
               <div className="p-3 icon-badge-action rounded-xl">
@@ -249,7 +249,7 @@ export default function ContactSupportPage() {
         </Card>
 
         {/* Response Time Info */}
-        <Card className="card-base backdrop-blur-xl shadow-2xl">
+        <Card className="card-success backdrop-blur-xl shadow-2xl">
           <CardContent className="p-6">
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div className="space-y-2">
