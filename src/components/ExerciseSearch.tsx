@@ -189,7 +189,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                 variant="ghost"
                 size="icon"
                 onClick={onClose}
-                className="text-slate-600 dark:text-slate-300"
+                className="text-secondary"
                 data-testid="button-close-exercise-search"
               >
                 <X className="w-4 h-4" />
@@ -198,7 +198,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
             
             {/* Search Bar */}
             <form onSubmit={handleSearch} className="relative">
-              <Search className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+              <Search className="absolute left-3 top-3 h-4 w-4 text-tertiary" />
               <Input
                 placeholder="Search exercises by name, muscle group, or equipment..."
                 value={searchQuery}
@@ -231,7 +231,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                   variant="ghost"
                   size="sm"
                   onClick={clearAllFilters}
-                  className="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+                  className="text-slate-500 hover:text-slate-700 dark:text-tertiary dark:hover:text-slate-200"
                   data-testid="button-clear-filters"
                 >
                   Clear All
@@ -255,7 +255,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                         className={`capitalize ${
                           selectedMuscleGroups.includes(mg) 
                             ? 'bg-primary hover:bg-primary/90 text-white' 
-                            : 'text-slate-600 dark:text-slate-300'
+                            : 'text-secondary'
                         }`}
                         data-testid={`filter-muscle-${mg}`}
                       >
@@ -278,7 +278,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                         className={`capitalize ${
                           selectedEquipment.includes(eq) 
                             ? 'bg-primary hover:bg-primary/90 text-white' 
-                            : 'text-slate-600 dark:text-slate-300'
+                            : 'text-secondary'
                         }`}
                         data-testid={`filter-equipment-${eq}`}
                       >
@@ -302,7 +302,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                           className={`capitalize ${
                             selectedDifficulty.includes(diff) 
                               ? 'bg-primary hover:bg-primary/90 text-white' 
-                              : 'text-slate-600 dark:text-slate-300'
+                              : 'text-secondary'
                           }`}
                           data-testid={`filter-difficulty-${diff}`}
                         >
@@ -324,7 +324,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                           className={`capitalize ${
                             selectedCategories.includes(cat) 
                               ? 'bg-primary hover:bg-primary/90 text-white' 
-                              : 'text-slate-600 dark:text-slate-300'
+                              : 'text-secondary'
                           }`}
                           data-testid={`filter-category-${cat}`}
                         >
@@ -402,7 +402,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                           </div>
                         </div>
 
-                        <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-400 mb-3">
+                        <div className="flex items-center justify-between text-xs text-slate-600 dark:text-tertiary mb-3">
                           <div className="flex items-center gap-3">
                             <span className="flex items-center">
                               {getCategoryIcon(exercise.category)}
@@ -416,7 +416,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
 
                         {/* Exercise History */}
                         {history && (
-                          <div className="flex items-center text-xs text-slate-600 dark:text-slate-400 mb-3 gap-3">
+                          <div className="flex items-center text-xs text-slate-600 dark:text-tertiary mb-3 gap-3">
                             <span className="flex items-center">
                               <TrendingUp className="w-3 h-3 mr-1" />
                               Last: {history.lastWeight}lbs × {history.lastReps}
@@ -440,7 +440,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                           <Button
                             variant="outline"
                             onClick={() => handleShowDetails(exercise)}
-                            className="text-slate-600 dark:text-slate-300"
+                            className="text-secondary"
                             data-testid={`button-view-details-${exercise.id}`}
                           >
                             <Play className="w-4 h-4" />
@@ -452,7 +452,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                 })}
               </div>
             ) : (
-              <div className="text-center py-8 text-slate-500 dark:text-slate-400">
+              <div className="text-center py-8 text-slate-500 dark:text-tertiary">
                 <Search className="w-12 h-12 mx-auto mb-3 opacity-50" />
                 <p className="text-lg font-medium">No exercises found</p>
                 <p className="text-sm mt-1">
@@ -533,7 +533,7 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                 
                 <div>
                   <h4 className="font-medium text-[var(--color-text-primary)] mb-2">Equipment Needed</h4>
-                  <div className="text-sm text-slate-600 dark:text-slate-400">
+                  <div className="text-sm text-slate-600 dark:text-tertiary">
                     {selectedExercise.equipment.join(', ')}
                   </div>
                 </div>

@@ -108,11 +108,11 @@ export default function WorkoutTemplateSelector({
                             {getCategoryIcon(template.category)}
                             {template.name}
                           </CardTitle>
-                          <CardDescription className="text-slate-600 dark:text-slate-300 mt-1">
+                          <CardDescription className="text-secondary mt-1">
                             {template.description}
                           </CardDescription>
                         </div>
-                        <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-primary dark:group-hover:text-primary transition-colors" />
+                        <ChevronRight className="w-5 h-5 text-tertiary group-hover:text-primary dark:group-hover:text-primary transition-colors" />
                       </div>
                       
                       <div className="flex flex-wrap gap-2 mt-3">
@@ -128,7 +128,7 @@ export default function WorkoutTemplateSelector({
                     <CardContent className="pt-0">
                       <div className="space-y-3">
                         {/* Quick Stats */}
-                        <div className="flex items-center gap-4 text-sm text-slate-600 dark:text-slate-400">
+                        <div className="flex items-center gap-4 text-sm text-slate-600 dark:text-tertiary">
                           <div className="flex items-center gap-1">
                             <Clock className="w-4 h-4" />
                             <span>{template.duration} min</span>
@@ -141,7 +141,7 @@ export default function WorkoutTemplateSelector({
 
                         {/* Target Muscles */}
                         <div>
-                          <p className="text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Target Areas:</p>
+                          <p className="text-xs font-medium text-secondary mb-1">Target Areas:</p>
                           <div className="flex flex-wrap gap-1">
                             {template.targetMuscles.slice(0, 3).map((muscle, index) => (
                               <span 
@@ -152,7 +152,7 @@ export default function WorkoutTemplateSelector({
                               </span>
                             ))}
                             {template.targetMuscles.length > 3 && (
-                              <span className="text-xs text-slate-500 dark:text-slate-400">
+                              <span className="text-xs text-slate-500 dark:text-tertiary">
                                 +{template.targetMuscles.length - 3} more
                               </span>
                             )}
@@ -161,8 +161,8 @@ export default function WorkoutTemplateSelector({
 
                         {/* Exercise Preview */}
                         <div>
-                          <p className="text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">Exercises:</p>
-                          <div className="text-xs text-slate-600 dark:text-slate-400">
+                          <p className="text-xs font-medium text-secondary mb-1">Exercises:</p>
+                          <div className="text-xs text-slate-600 dark:text-tertiary">
                             {template.exercises.slice(0, 2).map(exercise => exercise.name).join(', ')}
                             {template.exercises.length > 2 && ` +${template.exercises.length - 2} more`}
                           </div>
@@ -188,11 +188,11 @@ export default function WorkoutTemplateSelector({
 
               {filteredTemplates.length === 0 && (
                 <div className="text-center py-8">
-                  <Users className="w-16 h-16 text-slate-400 mx-auto mb-4" />
+                  <Users className="w-16 h-16 text-tertiary mx-auto mb-4" />
                   <h3 className="text-lg font-medium text-[var(--color-text-primary)] mb-2">
                     No templates found
                   </h3>
-                  <p className="text-slate-600 dark:text-slate-300">
+                  <p className="text-secondary">
                     Try selecting a different difficulty level.
                   </p>
                 </div>

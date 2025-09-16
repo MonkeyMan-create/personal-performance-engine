@@ -16,7 +16,7 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
   return (
     <div className="grid gap-4">
       {/* Steps Card */}
-      <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+      <Card className="bg-surface/60 border-border/50 backdrop-blur-xl">
         <CardContent className="p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -25,7 +25,7 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
               </div>
               <div>
                 <h3 className="text-white font-semibold text-lg">Steps Today</h3>
-                <p className="text-slate-300" data-testid="steps-count">
+                <p className="text-secondary" data-testid="steps-count">
                   {stepsData.current.toLocaleString()} / {stepsData.goal.toLocaleString()}
                 </p>
               </div>
@@ -39,7 +39,7 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
                   stroke="currentColor"
                   strokeWidth="6"
                   fill="none"
-                  className="text-slate-700"
+                  className="text-tertiary"
                 />
                 <circle
                   cx="32"
@@ -65,7 +65,7 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
       </Card>
 
       {/* Calories Card */}
-      <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+      <Card className="bg-surface/60 border-border/50 backdrop-blur-xl">
         <CardContent className="p-6">
           <div className="space-y-3">
             <div className="flex items-center gap-3">
@@ -74,7 +74,7 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
               </div>
               <div className="flex-1">
                 <h3 className="text-white font-semibold text-lg">Calories Burnt</h3>
-                <p className="text-slate-300" data-testid="calories-count">
+                <p className="text-secondary" data-testid="calories-count">
                   {caloriesData.current} / {caloriesData.goal} cal
                 </p>
               </div>
@@ -84,7 +84,7 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
                 </span>
               </div>
             </div>
-            <div className="w-full bg-slate-700 rounded-full h-3">
+            <div className="w-full bg-muted rounded-full h-3">
               <div 
                 className="bg-gradient-to-r from-primary to-primary/80 h-3 rounded-full transition-all duration-1000"
                 style={{ width: `${Math.min(100, caloriesProgress)}%` }}
@@ -96,7 +96,7 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
       </Card>
 
       {/* Sleep Card */}
-      <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-xl">
+      <Card className="bg-surface/60 border-border/50 backdrop-blur-xl">
         <CardContent className="p-6">
           <div className="space-y-3">
             <div className="flex items-center gap-3">
@@ -105,7 +105,7 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
               </div>
               <div className="flex-1">
                 <h3 className="text-white font-semibold text-lg">Sleep Hours</h3>
-                <p className="text-slate-300" data-testid="sleep-count">
+                <p className="text-secondary" data-testid="sleep-count">
                   {sleepData.current} / {sleepData.goal} hours
                 </p>
               </div>
@@ -115,7 +115,7 @@ export default function DataCards({ stepsData, caloriesData, sleepData }: DataCa
                 </span>
               </div>
             </div>
-            <div className="w-full bg-slate-700 rounded-full h-3">
+            <div className="w-full bg-muted rounded-full h-3">
               <div 
                 className="bg-gradient-to-r from-primary to-primary/80 h-3 rounded-full transition-all duration-1000"
                 style={{ width: `${Math.min(100, sleepProgress)}%` }}

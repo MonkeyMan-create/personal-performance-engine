@@ -1476,5 +1476,108 @@
 }
 
 /* ==========================================
+   PERFORMANCE OPTIMIZATION GUARDS
+   ========================================== */
+
+/* Performance optimization for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .card-action,
+  .card-activity, 
+  .card-nutrition,
+  .card-wellness,
+  .card-glass,
+  .card-success,
+  .card-warning,
+  .card-error {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .interactive-base,
+  .nav-item,
+  .action-item {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .nav-indicator {
+    animation: none !important;
+  }
+  
+  /* Disable all transitions and animations for accessibility */
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Performance optimization for reduced transparency preference */
+@media (prefers-reduced-transparency: reduce) {
+  .card-action,
+  .card-activity,
+  .card-nutrition, 
+  .card-wellness,
+  .card-glass,
+  .card-success,
+  .card-warning,
+  .card-error {
+    backdrop-filter: none !important;
+    background: var(--color-surface) !important;
+    border: 1px solid var(--color-border) !important;
+  }
+  
+  /* Remove transparency from icon badges */
+  .icon-badge-action,
+  .icon-badge-activity,
+  .icon-badge-nutrition,
+  .icon-badge-wellness,
+  .icon-badge-success,
+  .icon-badge-warning,
+  .icon-badge-error,
+  .icon-badge-info {
+    background: var(--color-surface-secondary) !important;
+    border: 1px solid var(--color-border) !important;
+  }
+}
+
+/* Low-performance device optimization for reduced blur effects */
+@media (max-resolution: 1dppx) {
+  .card-glass {
+    backdrop-filter: blur(4px) !important; /* Reduce blur intensity for low-end devices */
+  }
+  
+  .card-action,
+  .card-activity,
+  .card-nutrition,
+  .card-wellness,
+  .card-success,
+  .card-warning,
+  .card-error {
+    box-shadow: var(--shadow-sm) !important; /* Reduce shadow complexity */
+  }
+}
+
+/* High contrast mode optimization */
+@media (prefers-contrast: high) {
+  .card-action,
+  .card-activity,
+  .card-nutrition,
+  .card-wellness,
+  .card-glass,
+  .card-success,
+  .card-warning,
+  .card-error {
+    border-width: 2px !important;
+    box-shadow: none !important;
+  }
+  
+  .nav-item-active {
+    border-width: 2px !important;
+    box-shadow: none !important;
+  }
+}
+
+/* ==========================================
    END OF MASTER THEME FILE
    ========================================== */
