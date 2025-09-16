@@ -163,8 +163,7 @@ export default function NutritionPage() {
       })).filter((food: FoodItem) => food.name !== 'Unknown Product')
       
       setSearchResults(foods)
-    } catch (error) {
-      console.error('Search error:', error)
+    } catch {
       toast({
         title: 'Search failed',
         description: 'Unable to search foods. Please try again.',
@@ -193,7 +192,7 @@ export default function NutritionPage() {
       const response = await fetch(apiUrl)
       
       if (!response.ok && countryCode) {
-        console.log('Country-specific search failed, falling back to global...')
+        // Country-specific search failed, falling back to global
         const fallbackResponse = await fetch(
           `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`
         )
@@ -242,8 +241,7 @@ export default function NutritionPage() {
       } else {
         throw new Error('Product not found')
       }
-    } catch (error) {
-      console.error('Barcode scan error:', error)
+    } catch {
       toast({
         title: 'Product not found',
         description: 'This barcode was not found in our database. Try searching manually.',
@@ -294,8 +292,7 @@ export default function NutritionPage() {
       } else {
         throw new Error('Failed to save meal')
       }
-    } catch (error) {
-      console.error('Failed to log meal:', error)
+    } catch {
       toast({
         title: 'Error',
         description: 'Failed to log meal. Please try again.',

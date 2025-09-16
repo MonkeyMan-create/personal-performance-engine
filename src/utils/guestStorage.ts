@@ -58,8 +58,7 @@ function parseStorageData<T>(key: string, defaultValue: T): T {
   try {
     const data = localStorage.getItem(key)
     return data ? JSON.parse(data) : defaultValue
-  } catch (error) {
-    console.warn(`Failed to parse ${key} from localStorage:`, error)
+  } catch {
     return defaultValue
   }
 }
@@ -69,8 +68,7 @@ function saveStorageData<T>(key: string, data: T): boolean {
   try {
     localStorage.setItem(key, JSON.stringify(data))
     return true
-  } catch (error) {
-    console.error(`Failed to save ${key} to localStorage:`, error)
+  } catch {
     return false
   }
 }
@@ -498,8 +496,7 @@ export function clearAllGuestDataLocally(): boolean {
     localStorage.removeItem(GUEST_PROGRESS_KEY)
     localStorage.removeItem(GUEST_PREFERENCES_KEY)
     return true
-  } catch (error) {
-    console.error('Failed to clear guest data:', error)
+  } catch {
     return false
   }
 }

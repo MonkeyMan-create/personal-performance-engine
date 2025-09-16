@@ -43,8 +43,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
     try {
       const { SketchPicker: Picker } = await import('react-color')
       setSketchPicker(() => Picker)
-    } catch (error) {
-      console.error('Failed to load color picker:', error)
+    } catch {
       toast({
         title: 'Loading Error',
         description: 'Failed to load color picker. Please try again.',
@@ -69,8 +68,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
         setColorTheme('default')
         setHasCustomColor(false)
       }
-    } catch (error) {
-      console.warn('Failed to load custom color from localStorage:', error)
+    } catch {
       setSelectedColor('#14B8A6')
       setColorTheme('default')
       setHasCustomColor(false)
@@ -115,8 +113,8 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
     // Save to localStorage
     try {
       localStorage.setItem(CUSTOM_COLOR_STORAGE_KEY, JSON.stringify(colorData))
-    } catch (error) {
-      console.warn('Failed to save custom color to localStorage:', error)
+    } catch {
+      // Silently handle localStorage errors
     }
 
     // Update custom color state
@@ -154,8 +152,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
         title: "Custom Color Reset!",
         description: "Returned to default theme colors successfully.",
       })
-    } catch (error) {
-      console.warn('Failed to reset custom color:', error)
+    } catch {
       toast({
         title: "Reset Failed",
         description: "Could not reset custom color. Please try again.",
@@ -178,8 +175,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
         title: "Custom Color Applied!",
         description: `Your theme is now using ${selectedColor.toUpperCase()} as the primary color.`,
       })
-    } catch (error) {
-      console.error('Failed to apply custom color:', error)
+    } catch {
       toast({
         title: "Error",
         description: "Failed to apply custom color. Please try again.",
@@ -197,7 +193,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
 
   // Update preview colors when selectedColor changes
   useEffect(() => {
-    calculateColorVariations(selectedColor).then(setPreviewColors).catch(console.error)
+    calculateColorVariations(selectedColor).then(setPreviewColors).catch(() => {})
   }, [selectedColor, calculateColorVariations])
 
   return (
@@ -416,7 +412,7 @@ export const initializeCustomColor = async () => {
       root.style.setProperty('--ring', `${primaryHsl.h} ${primaryHsl.s * 100}% ${primaryHsl.l * 100}%`)
       root.style.setProperty('--chart-1', `${primaryHsl.h} ${primaryHsl.s * 100}% ${primaryHsl.l * 100}%`)
     }
-  } catch (error) {
-    console.warn('Failed to initialize custom color:', error)
+  } catch {
+    // Silently handle custom color initialization errors
   }
 }

@@ -83,8 +83,7 @@ Focus on practical, actionable advice for gym performance.`;
     const analysis: WorkoutAnalysis = JSON.parse(result.text || '{}');
     
     return response.status(200).json(analysis);
-  } catch (error) {
-    console.error('Error generating workout analysis:', error);
+  } catch {
     return response.status(500).json({ error: 'Failed to generate workout analysis' });
   }
 }

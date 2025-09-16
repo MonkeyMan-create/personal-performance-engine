@@ -80,8 +80,8 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
         if (!isCancelled) {
           setExerciseDb(module)
         }
-      } catch (error) {
-        console.error('Failed to load exercise database:', error)
+      } catch {
+        // Silently handle database loading errors
       } finally {
         if (!isCancelled) {
           setIsDbLoading(false)

@@ -21,7 +21,7 @@ export default function ActiveSetView({
 
   const handleLogSet = () => {
     // Minimal set logging functionality
-    console.log('Set logged:', { exerciseName, weight, reps, rir })
+    // Set data: { exerciseName, weight, reps, rir }
     // Reset form
     setWeight('')
     setReps('')

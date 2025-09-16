@@ -31,8 +31,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsGuestMode(false)
     try {
       localStorage.removeItem('guestMode')
-    } catch (error) {
-      console.warn('Failed to remove guest mode from localStorage:', error)
+    } catch {
+      // Silently handle localStorage errors
     }
   }, [])
 
@@ -40,8 +40,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsGuestMode(true)
     try {
       localStorage.setItem('guestMode', 'true')
-    } catch (error) {
-      console.warn('Failed to save guest mode to localStorage:', error)
+    } catch {
+      // Silently handle localStorage errors
     }
   }, [])
 
@@ -61,8 +61,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider)
-    } catch (error) {
-      console.error('Error signing in with Google:', error)
+    } catch {
+      // Silently handle authentication errors
     }
   }
 
@@ -71,8 +71,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await signOut(auth)
       // Also exit guest mode when logging out
       exitGuestMode()
-    } catch (error) {
-      console.error('Error signing out:', error)
+    } catch {
+      // Silently handle sign out errors
     }
   }
 

@@ -24,8 +24,8 @@ export function MeasurementProvider({ children }: { children: React.ReactNode })
   useEffect(() => {
     try {
       localStorage.setItem('measurementUnit', unit)
-    } catch (error) {
-      console.warn('Failed to save measurement unit:', error)
+    } catch {
+      // Silently handle localStorage errors
     }
   }, [unit])
 

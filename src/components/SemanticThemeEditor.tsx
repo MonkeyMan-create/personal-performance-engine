@@ -80,8 +80,8 @@ export default function SemanticThemeEditor() {
     try {
       const { SketchPicker: Picker } = await import('react-color')
       setSketchPicker(() => Picker)
-    } catch (error) {
-      console.error('Failed to load color picker:', error)
+    } catch {
+      // Silently handle color picker loading errors
     } finally {
       setIsColorPickerLoading(false)
     }
@@ -105,8 +105,8 @@ export default function SemanticThemeEditor() {
     // Save to localStorage
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(colors))
-    } catch (error) {
-      console.warn('Failed to save semantic colors to localStorage:', error)
+    } catch {
+      // Silently handle localStorage errors
     }
   }
 
@@ -122,8 +122,7 @@ export default function SemanticThemeEditor() {
         // Apply default colors if no saved colors
         applySemanticColors(DEFAULT_THEME)
       }
-    } catch (error) {
-      console.warn('Failed to load semantic colors from localStorage:', error)
+    } catch {
       applySemanticColors(DEFAULT_THEME)
     }
   }, [])

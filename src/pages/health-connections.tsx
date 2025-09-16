@@ -62,8 +62,8 @@ export default function HealthConnectionsPage() {
           ...platform,
           connected: connections[platform.id] || false
         })))
-      } catch (error) {
-        console.error('Failed to load health connections:', error)
+      } catch {
+        // Silently handle localStorage parse errors
       }
     }
   }, [])
@@ -102,8 +102,8 @@ export default function HealthConnectionsPage() {
           [platform.id]: { granted: false, denied: true, requested: true }
         }))
       }
-    } catch (error) {
-      console.error('Permission request failed:', error)
+    } catch {
+      // Silently handle permission request errors
     } finally {
       setIsRequesting(null)
     }

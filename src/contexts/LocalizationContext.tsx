@@ -58,8 +58,8 @@ export function LocalizationProvider({ children }: { children: React.ReactNode }
   useEffect(() => {
     try {
       localStorage.setItem('language', language)
-    } catch (error) {
-      console.warn('Failed to save language:', error)
+    } catch {
+      // Silently handle localStorage errors
     }
   }, [language])
 
@@ -67,8 +67,8 @@ export function LocalizationProvider({ children }: { children: React.ReactNode }
   useEffect(() => {
     try {
       localStorage.setItem('country', country)
-    } catch (error) {
-      console.warn('Failed to save country:', error)
+    } catch {
+      // Silently handle localStorage errors
     }
   }, [country])
 

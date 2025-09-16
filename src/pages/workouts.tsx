@@ -74,8 +74,8 @@ export default function WorkoutsPage() {
     try {
       const module = await import('../utils/workoutTemplates')
       setTemplatesModule(module)
-    } catch (error) {
-      console.error('Failed to load workout templates:', error)
+    } catch {
+      // Silently handle template loading errors
     } finally {
       setIsTemplatesLoading(false)
     }
@@ -124,8 +124,8 @@ export default function WorkoutsPage() {
             loadWorkoutTemplates()
           }
         }
-      } catch (error) {
-        console.error('Failed to load workouts:', error)
+      } catch {
+        // Silently handle workout loading errors
       } finally {
         setIsLoading(false)
       }
@@ -208,8 +208,7 @@ export default function WorkoutsPage() {
       } else {
         throw new Error('Failed to save workout')
       }
-    } catch (error) {
-      console.error('Failed to complete workout:', error)
+    } catch {
       toast({
         title: "Error",
         description: "Failed to save workout. Please try again.",
@@ -242,14 +241,14 @@ export default function WorkoutsPage() {
     }
     
     if (!templatesModule) {
-      console.error('Failed to load workout templates')
+      // Templates failed to load
       return
     }
     
     // Get the actual template from the templates database using the ID
     const actualTemplate = templatesModule.getTemplateById(template.id)
     if (!actualTemplate) {
-      console.error('Template not found:', template.id)
+      // Template not found
       return
     }
     

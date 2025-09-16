@@ -71,8 +71,8 @@ export default function ProgressPage() {
           BarChart: recharts.BarChart,
           Bar: recharts.Bar
         })
-      } catch (error) {
-        console.error('Failed to load chart components:', error)
+      } catch {
+        // Silently handle chart component loading errors
       } finally {
         setChartsLoading(false)
       }
@@ -177,8 +177,8 @@ export default function ProgressPage() {
           setMeals([])
           setProgressData([])
         }
-      } catch (error) {
-        console.error('Failed to load progress data:', error)
+      } catch {
+        // Silently handle progress data loading errors
       } finally {
         setIsLoading(false)
       }

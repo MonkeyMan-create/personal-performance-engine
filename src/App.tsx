@@ -78,8 +78,7 @@ const initializeSemanticColors = async () => {
     } else {
       await applySemanticColors(DEFAULT_SEMANTIC_COLORS)
     }
-  } catch (error) {
-    console.warn('Failed to load semantic colors:', error)
+  } catch {
     await applySemanticColors(DEFAULT_SEMANTIC_COLORS)
   }
 }
@@ -111,7 +110,7 @@ const PageLoadingFallback = () => (
 function App() {
   // Initialize semantic colors on app startup
   useEffect(() => {
-    initializeSemanticColors().catch(console.error)
+    initializeSemanticColors().catch(() => {})
   }, [])
 
   return (

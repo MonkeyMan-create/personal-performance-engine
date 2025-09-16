@@ -391,19 +391,16 @@ export function convertTemplateToWorkoutForm(template: WorkoutTemplate) {
   }
   
   if (!template.exercises || !Array.isArray(template.exercises)) {
-    console.error('Invalid template structure - exercises must be an array:', template)
     throw new Error('Template must have valid exercises array')
   }
   
   return {
     exercises: template.exercises.map(exercise => {
       if (!exercise || !exercise.name) {
-        console.warn('Invalid exercise in template:', exercise)
         return { name: 'Unknown Exercise', sets: [] }
       }
       
       if (!exercise.sets || !Array.isArray(exercise.sets)) {
-        console.warn('Invalid sets for exercise:', exercise.name)
         return { name: exercise.name, sets: [] }
       }
       

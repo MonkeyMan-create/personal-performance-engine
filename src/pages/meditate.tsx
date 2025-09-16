@@ -61,8 +61,8 @@ export default function MeditatePage() {
           completedAt: new Date(s.completedAt)
         }))
         setCompletedSessions(sessions)
-      } catch (error) {
-        console.error('Failed to load meditation sessions:', error)
+      } catch {
+        // Silently handle localStorage parsing errors
       }
     }
   }, [])

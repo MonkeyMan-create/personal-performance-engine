@@ -89,8 +89,8 @@ export default function YearInReviewPage() {
           Bar: recharts.Bar,
           Cell: recharts.Cell
         })
-      } catch (error) {
-        console.error('Failed to load chart components:', error)
+      } catch {
+        // Silently handle chart component loading errors
       } finally {
         setChartsLoading(false)
       }
@@ -314,8 +314,8 @@ export default function YearInReviewPage() {
 
           setAchievements(calculatedAchievements)
         }
-      } catch (error) {
-        console.error('Failed to calculate yearly stats:', error)
+      } catch {
+        // Silently handle yearly stats calculation errors
       } finally {
         setIsLoading(false)
       }

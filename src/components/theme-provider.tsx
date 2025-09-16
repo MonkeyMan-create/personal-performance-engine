@@ -32,9 +32,8 @@ export function ThemeProvider({
       if (storedTheme === 'dark' || storedTheme === 'light' || storedTheme === 'system') {
         return storedTheme
       }
-    } catch (error) {
+    } catch {
       // localStorage not available or other error
-      console.warn('Failed to access localStorage for theme:', error)
     }
     return defaultTheme
   })
@@ -62,8 +61,8 @@ export function ThemeProvider({
     setTheme: (newTheme: Theme) => {
       try {
         localStorage.setItem(storageKey, newTheme)
-      } catch (error) {
-        console.warn('Failed to save theme to localStorage:', error)
+      } catch {
+        // Silently handle localStorage errors
       }
       setTheme(newTheme)
     },
