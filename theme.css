@@ -197,6 +197,76 @@
   --color-shadow-hsl: 0, 0%, 20%; /* HSL for shadow colors */
 
   /* ==========================================
+     V2.0 ENHANCED SHADOWS - Semantic Color Shadows
+     ========================================== */
+  
+  /* Semantic shadows using brand colors */
+  --shadow-action: 0 8px 25px -8px rgba(var(--color-action-rgb), 0.35);
+  --shadow-activity: 0 8px 25px -8px rgba(var(--color-activity-rgb), 0.35);
+  --shadow-nutrition: 0 8px 25px -8px rgba(var(--color-nutrition-rgb), 0.35);
+  --shadow-wellness: 0 8px 25px -8px rgba(var(--color-wellness-rgb), 0.35);
+  
+  /* Card elevation shadows with enhanced depth */
+  --shadow-card-hover: 0 10px 40px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(var(--color-action-rgb), 0.05);
+  --shadow-card-active: 0 5px 20px -5px rgba(0, 0, 0, 0.2);
+  --shadow-card-focus: 0 0 0 3px rgba(var(--color-action-rgb), 0.15);
+  
+  /* Button shadows for depth and interactivity */
+  --shadow-button-primary: 0 4px 14px 0 rgba(var(--color-action-rgb), 0.3);
+  --shadow-button-hover: 0 6px 20px 0 rgba(var(--color-action-rgb), 0.4);
+  --shadow-button-active: 0 2px 8px 0 rgba(var(--color-action-rgb), 0.5);
+  
+  /* Glow effects for premium feel */
+  --glow-action: 0 0 20px rgba(var(--color-action-rgb), 0.4);
+  --glow-activity: 0 0 20px rgba(var(--color-activity-rgb), 0.4);
+  --glow-nutrition: 0 0 20px rgba(var(--color-nutrition-rgb), 0.4);
+  --glow-wellness: 0 0 20px rgba(var(--color-wellness-rgb), 0.4);
+  
+  /* Navigation shadows */
+  --shadow-navigation: 0 -4px 25px 0 rgba(0, 0, 0, 0.1);
+  --shadow-floating-action: 0 8px 32px -8px rgba(0, 0, 0, 0.3);
+
+  /* ==========================================
+     V2.0 GRADIENT SYSTEM - Premium Visual Polish
+     ========================================== */
+  
+  /* Primary Semantic Gradients */
+  --gradient-action: linear-gradient(135deg, var(--color-action) 0%, rgba(var(--color-action-rgb), 0.8) 100%);
+  --gradient-activity: linear-gradient(135deg, var(--color-activity) 0%, rgba(var(--color-activity-rgb), 0.8) 100%);
+  --gradient-nutrition: linear-gradient(135deg, var(--color-nutrition) 0%, rgba(var(--color-nutrition-rgb), 0.8) 100%);
+  --gradient-wellness: linear-gradient(135deg, var(--color-wellness) 0%, rgba(var(--color-wellness-rgb), 0.8) 100%);
+  
+  /* Subtle background gradients for cards */
+  --gradient-card-action: linear-gradient(135deg, rgba(var(--color-action-rgb), 0.05) 0%, rgba(var(--color-action-rgb), 0.01) 100%);
+  --gradient-card-activity: linear-gradient(135deg, rgba(var(--color-activity-rgb), 0.05) 0%, rgba(var(--color-activity-rgb), 0.01) 100%);
+  --gradient-card-nutrition: linear-gradient(135deg, rgba(var(--color-nutrition-rgb), 0.05) 0%, rgba(var(--color-nutrition-rgb), 0.01) 100%);
+  --gradient-card-wellness: linear-gradient(135deg, rgba(var(--color-wellness-rgb), 0.05) 0%, rgba(var(--color-wellness-rgb), 0.01) 100%);
+  
+  /* Surface gradients for depth */
+  --gradient-surface: linear-gradient(135deg, var(--color-surface) 0%, rgba(var(--color-surface-rgb), 0.9) 100%);
+  --gradient-surface-elevated: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(var(--color-surface-rgb), 0.95) 100%);
+  
+  /* Hero/accent gradients */
+  --gradient-hero: linear-gradient(135deg, var(--color-action) 0%, var(--color-activity) 50%, var(--color-wellness) 100%);
+  --gradient-hero-text: linear-gradient(90deg, var(--color-action) 0%, var(--color-activity) 100%);
+
+  /* ==========================================
+     V2.0 ENHANCED BORDERS AND EFFECTS
+     ========================================== */
+  
+  /* Refined border colors with semantic tints */
+  --border-action-light: rgba(var(--color-action-rgb), 0.2);
+  --border-activity-light: rgba(var(--color-activity-rgb), 0.2);
+  --border-nutrition-light: rgba(var(--color-nutrition-rgb), 0.2);
+  --border-wellness-light: rgba(var(--color-wellness-rgb), 0.2);
+  
+  /* Focus rings with semantic colors */
+  --focus-ring-action: 0 0 0 3px rgba(var(--color-action-rgb), 0.15);
+  --focus-ring-activity: 0 0 0 3px rgba(var(--color-activity-rgb), 0.15);
+  --focus-ring-nutrition: 0 0 0 3px rgba(var(--color-nutrition-rgb), 0.15);
+  --focus-ring-wellness: 0 0 0 3px rgba(var(--color-wellness-rgb), 0.15);
+
+  /* ==========================================
      Z-INDEX SYSTEM
      ========================================== */
   
@@ -383,6 +453,64 @@
 .bg-error { background-color: var(--color-error); color: var(--color-error-text); }
 .text-warning { color: var(--color-warning); }
 .bg-warning { background-color: var(--color-warning); color: var(--color-warning-text); }
+
+/* ==========================================
+   V2.0 ENHANCED SEMANTIC CARD CLASSES
+   ========================================== */
+
+/* Enhanced semantic card backgrounds with gradients */
+.card-action {
+  background: var(--gradient-action);
+  border: 1px solid var(--border-action-light);
+  box-shadow: var(--shadow-action);
+  transition: all var(--duration-slow) var(--easing-ease-out);
+}
+
+.card-activity {
+  background: var(--gradient-activity);
+  border: 1px solid var(--border-activity-light);
+  box-shadow: var(--shadow-activity);
+  transition: all var(--duration-slow) var(--easing-ease-out);
+}
+
+.card-nutrition {
+  background: var(--gradient-nutrition);
+  border: 1px solid var(--border-nutrition-light);
+  box-shadow: var(--shadow-nutrition);
+  transition: all var(--duration-slow) var(--easing-ease-out);
+}
+
+.card-wellness {
+  background: var(--gradient-wellness);
+  border: 1px solid var(--border-wellness-light);
+  box-shadow: var(--shadow-wellness);
+  transition: all var(--duration-slow) var(--easing-ease-out);
+}
+
+.card-success {
+  background: linear-gradient(135deg, var(--color-success), rgba(var(--color-success-rgb), 0.8));
+  border: 1px solid rgba(var(--color-success-rgb), 0.2);
+  box-shadow: 0 8px 25px -8px rgba(var(--color-success-rgb), 0.35);
+  transition: all var(--duration-slow) var(--easing-ease-out);
+}
+
+.card-warning {
+  background: linear-gradient(135deg, var(--color-warning), rgba(var(--color-warning-rgb), 0.8));
+  border: 1px solid rgba(var(--color-warning-rgb), 0.2);
+  box-shadow: 0 8px 25px -8px rgba(var(--color-warning-rgb), 0.35);
+  transition: all var(--duration-slow) var(--easing-ease-out);
+}
+
+/* Enhanced hover states for semantic cards */
+.card-action:hover,
+.card-activity:hover,
+.card-nutrition:hover,
+.card-wellness:hover,
+.card-success:hover,
+.card-warning:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+}
 
 /* ==========================================
    COMPONENT FOUNDATION CLASSES

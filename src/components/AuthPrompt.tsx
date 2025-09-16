@@ -93,10 +93,11 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
         {/* Main Content Card */}
         <Card 
           style={{
-            backgroundColor: 'rgba(var(--color-surface-rgb), 0.8)',
-            border: `1px solid var(--color-border)`,
-            boxShadow: 'var(--shadow-2xl)',
-            backdropFilter: 'blur(12px)'
+            background: 'var(--gradient-glass)',
+            border: `1px solid var(--border-glass)`,
+            boxShadow: 'var(--shadow-card-hover)',
+            backdropFilter: 'blur(20px)',
+            transition: 'all var(--duration-slow) var(--easing-ease-out)'
           }}
         >
           <CardHeader 
@@ -190,35 +191,36 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
                   height: 'calc(var(--spacing-12))', // 48px equivalent
                   fontSize: 'var(--font-size-base)',
                   fontWeight: 'var(--font-weight-semibold)',
-                  backgroundColor: 'var(--color-surface-secondary)',
-                  color: 'var(--color-text-primary)',
-                  border: `2px solid rgba(var(--color-action-rgb), 0.5)`,
+                  background: 'var(--gradient-action)',
+                  color: 'var(--color-action-text)',
+                  border: `1px solid var(--border-action-light)`,
                   transition: 'all var(--duration-slow) var(--easing-ease-out)',
                   transform: 'scale(1)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: 'var(--spacing-3)',
-                  borderRadius: 'var(--radius-base)'
+                  borderRadius: 'var(--radius-lg)',
+                  boxShadow: 'var(--shadow-action)'
                 }}
                 data-testid="button-google-signin"
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-interactive-hover)'
+                  e.currentTarget.style.transform = 'scale(1.02) translateY(-1px)'
+                  e.currentTarget.style.boxShadow = 'var(--shadow-button-hover)'
                   e.currentTarget.style.borderColor = 'var(--color-action)'
-                  e.currentTarget.style.transform = 'scale(1.02)'
-                  e.currentTarget.style.boxShadow = `0 0 0 4px rgba(var(--color-action-rgb), 0.2)`
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-surface-secondary)'
-                  e.currentTarget.style.borderColor = 'rgba(var(--color-action-rgb), 0.5)'
-                  e.currentTarget.style.transform = 'scale(1)'
-                  e.currentTarget.style.boxShadow = 'none'
+                  e.currentTarget.style.transform = 'scale(1) translateY(0)'
+                  e.currentTarget.style.boxShadow = 'var(--shadow-action)'
+                  e.currentTarget.style.borderColor = 'var(--border-action-light)'
                 }}
                 onMouseDown={(e) => {
-                  e.currentTarget.style.transform = 'scale(0.98)'
+                  e.currentTarget.style.transform = 'scale(0.98) translateY(0)'
+                  e.currentTarget.style.boxShadow = 'var(--shadow-button-active)'
                 }}
                 onMouseUp={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.02)'
+                  e.currentTarget.style.transform = 'scale(1.02) translateY(-1px)'
+                  e.currentTarget.style.boxShadow = 'var(--shadow-button-hover)'
                 }}
               >
                 <GoogleIcon 
@@ -274,8 +276,8 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
                   height: 'calc(var(--spacing-12))', // 48px equivalent
                   fontSize: 'var(--font-size-base)',
                   fontWeight: 'var(--font-weight-medium)',
-                  backgroundColor: 'transparent',
-                  border: `2px solid var(--color-border-secondary)`,
+                  background: 'transparent',
+                  border: `1px solid var(--color-border-secondary)`,
                   color: 'var(--color-text-secondary)',
                   transition: 'all var(--duration-slow) var(--easing-ease-out)',
                   transform: 'scale(1)',
@@ -283,26 +285,31 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
                   alignItems: 'center',
                   justifyContent: 'center',
                   gap: 'var(--spacing-3)',
-                  borderRadius: 'var(--radius-base)'
+                  borderRadius: 'var(--radius-lg)',
+                  boxShadow: 'var(--shadow-sm)'
                 }}
                 data-testid="button-guest-mode"
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'var(--color-interactive-hover)'
+                  e.currentTarget.style.background = 'var(--color-interactive-hover)'
                   e.currentTarget.style.borderColor = 'var(--color-border)'
                   e.currentTarget.style.color = 'var(--color-text-primary)'
-                  e.currentTarget.style.transform = 'scale(1.02)'
+                  e.currentTarget.style.transform = 'scale(1.02) translateY(-1px)'
+                  e.currentTarget.style.boxShadow = 'var(--shadow-md)'
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent'
+                  e.currentTarget.style.background = 'transparent'
                   e.currentTarget.style.borderColor = 'var(--color-border-secondary)'
                   e.currentTarget.style.color = 'var(--color-text-secondary)'
-                  e.currentTarget.style.transform = 'scale(1)'
+                  e.currentTarget.style.transform = 'scale(1) translateY(0)'
+                  e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
                 }}
                 onMouseDown={(e) => {
-                  e.currentTarget.style.transform = 'scale(0.98)'
+                  e.currentTarget.style.transform = 'scale(0.98) translateY(0)'
+                  e.currentTarget.style.boxShadow = 'var(--shadow-xs)'
                 }}
                 onMouseUp={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.02)'
+                  e.currentTarget.style.transform = 'scale(1.02) translateY(-1px)'
+                  e.currentTarget.style.boxShadow = 'var(--shadow-md)'
                 }}
               >
                 <UserIcon 

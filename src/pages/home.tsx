@@ -111,7 +111,7 @@ export default function HomePage() {
     <div 
       style={{
         minHeight: '100vh',
-        backgroundColor: 'var(--color-background)',
+        background: 'var(--color-background)',
         paddingBottom: 'calc(var(--spacing-20) + var(--spacing-4))', // Account for bottom nav
         color: 'var(--color-text-primary)'
       }}
@@ -354,7 +354,7 @@ export default function HomePage() {
           />
         </div>
 
-        {/* Key Metrics Grid */}
+        {/* Key Metrics Grid - V2.0 Enhanced */}
         <div 
           style={{
             display: 'grid',
@@ -364,91 +364,168 @@ export default function HomePage() {
         >
           <div 
             style={{
-              backgroundColor: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
+              background: 'var(--gradient-card-activity)',
+              border: `1px solid var(--border-activity-light)`,
               borderRadius: 'var(--radius-lg)',
-              padding: 'var(--spacing-4)',
+              padding: 'var(--spacing-5)',
               textAlign: 'center',
-              transition: 'all var(--duration-base) var(--easing-ease-out)',
-              boxShadow: 'var(--shadow-sm)'
+              transition: 'all var(--duration-slow) var(--easing-ease-out)',
+              boxShadow: 'var(--shadow-md)',
+              cursor: 'pointer',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = 'var(--shadow-activity)'
+              e.currentTarget.style.borderColor = 'var(--color-activity)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'var(--shadow-md)'
+              e.currentTarget.style.borderColor = 'var(--border-activity-light)'
             }}
           >
+            {/* Icon badge with enhanced styling */}
             <div 
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: 'var(--spacing-2)',
-                marginBottom: 'var(--spacing-2)',
-                color: 'var(--color-text-secondary)',
-                fontSize: 'var(--font-size-sm)',
-                fontWeight: 'var(--font-weight-medium)'
+                marginBottom: 'var(--spacing-3)',
+                gap: 'var(--spacing-2)'
               }}
             >
-              <Activity 
+              <div 
                 style={{
-                  width: 'var(--icon-size-sm)',
-                  height: 'var(--icon-size-sm)',
-                  color: 'var(--color-activity)'
+                  padding: 'var(--spacing-2)',
+                  borderRadius: 'var(--radius-lg)',
+                  background: 'var(--gradient-card-activity)',
+                  border: `1px solid var(--border-activity-light)`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
-              />
-              Steps
+              >
+                <Activity 
+                  style={{
+                    width: 'var(--icon-size-md)',
+                    height: 'var(--icon-size-md)',
+                    color: 'var(--color-activity)'
+                  }}
+                />
+              </div>
+              <span 
+                style={{
+                  color: 'var(--color-text-secondary)',
+                  fontSize: 'var(--font-size-sm)',
+                  fontWeight: 'var(--font-weight-semibold)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
+                }}
+              >
+                Steps
+              </span>
             </div>
             <div 
               style={{
-                fontSize: 'var(--font-size-2xl)',
+                fontSize: 'var(--font-size-3xl)',
                 fontWeight: 'var(--font-weight-bold)',
-                color: 'var(--color-text-primary)'
+                color: 'var(--color-text-primary)',
+                marginBottom: 'var(--spacing-1)'
               }}
               data-testid="steps-count-metric"
             >
               {stepsData.current.toLocaleString()}
             </div>
+            <div 
+              style={{
+                fontSize: 'var(--font-size-xs)',
+                color: 'var(--color-text-tertiary)',
+                fontWeight: 'var(--font-weight-medium)'
+              }}
+            >
+              of {stepsData.goal.toLocaleString()} goal
+            </div>
           </div>
 
           <div 
             style={{
-              backgroundColor: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
+              background: 'var(--gradient-card-nutrition)',
+              border: `1px solid var(--border-nutrition-light)`,
               borderRadius: 'var(--radius-lg)',
-              padding: 'var(--spacing-4)',
+              padding: 'var(--spacing-5)',
               textAlign: 'center',
-              transition: 'all var(--duration-base) var(--easing-ease-out)',
-              boxShadow: 'var(--shadow-sm)'
+              transition: 'all var(--duration-slow) var(--easing-ease-out)',
+              boxShadow: 'var(--shadow-md)',
+              cursor: 'pointer',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = 'var(--shadow-nutrition)'
+              e.currentTarget.style.borderColor = 'var(--color-nutrition)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'var(--shadow-md)'
+              e.currentTarget.style.borderColor = 'var(--border-nutrition-light)'
             }}
           >
+            {/* Icon badge with enhanced styling */}
             <div 
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: 'var(--spacing-2)',
-                marginBottom: 'var(--spacing-2)',
-                color: 'var(--color-text-secondary)',
-                fontSize: 'var(--font-size-sm)',
-                fontWeight: 'var(--font-weight-medium)'
+                marginBottom: 'var(--spacing-3)',
+                gap: 'var(--spacing-2)'
               }}
             >
-              <Flame 
+              <div 
                 style={{
-                  width: 'var(--icon-size-sm)',
-                  height: 'var(--icon-size-sm)',
-                  color: 'var(--color-error)'
+                  padding: 'var(--spacing-2)',
+                  borderRadius: 'var(--radius-lg)',
+                  background: 'var(--gradient-card-nutrition)',
+                  border: `1px solid var(--border-nutrition-light)`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
-              />
-              Burned
+              >
+                <Flame 
+                  style={{
+                    width: 'var(--icon-size-md)',
+                    height: 'var(--icon-size-md)',
+                    color: 'var(--color-nutrition)'
+                  }}
+                />
+              </div>
+              <span 
+                style={{
+                  color: 'var(--color-text-secondary)',
+                  fontSize: 'var(--font-size-sm)',
+                  fontWeight: 'var(--font-weight-semibold)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
+                }}
+              >
+                Burned
+              </span>
             </div>
             <div 
               style={{
-                fontSize: 'var(--font-size-2xl)',
+                fontSize: 'var(--font-size-3xl)',
                 fontWeight: 'var(--font-weight-bold)',
-                color: 'var(--color-text-primary)'
+                color: 'var(--color-text-primary)',
+                marginBottom: 'var(--spacing-1)'
               }}
               data-testid="calories-burned-metric"
             >
               420<span 
                 style={{
-                  fontSize: 'var(--font-size-sm)',
+                  fontSize: 'var(--font-size-lg)',
                   color: 'var(--color-text-secondary)',
                   marginLeft: 'var(--spacing-1)'
                 }}
@@ -456,51 +533,94 @@ export default function HomePage() {
                 cal
               </span>
             </div>
+            <div 
+              style={{
+                fontSize: 'var(--font-size-xs)',
+                color: 'var(--color-text-tertiary)',
+                fontWeight: 'var(--font-weight-medium)'
+              }}
+            >
+              burned today
+            </div>
           </div>
 
           <div 
             style={{
-              backgroundColor: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
+              background: 'var(--gradient-card-wellness)',
+              border: `1px solid var(--border-wellness-light)`,
               borderRadius: 'var(--radius-lg)',
-              padding: 'var(--spacing-4)',
+              padding: 'var(--spacing-5)',
               textAlign: 'center',
-              transition: 'all var(--duration-base) var(--easing-ease-out)',
-              boxShadow: 'var(--shadow-sm)'
+              transition: 'all var(--duration-slow) var(--easing-ease-out)',
+              boxShadow: 'var(--shadow-md)',
+              cursor: 'pointer',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = 'var(--shadow-wellness)'
+              e.currentTarget.style.borderColor = 'var(--color-wellness)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'var(--shadow-md)'
+              e.currentTarget.style.borderColor = 'var(--border-wellness-light)'
             }}
           >
+            {/* Icon badge with enhanced styling */}
             <div 
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: 'var(--spacing-2)',
-                marginBottom: 'var(--spacing-2)',
-                color: 'var(--color-text-secondary)',
-                fontSize: 'var(--font-size-sm)',
-                fontWeight: 'var(--font-weight-medium)'
+                marginBottom: 'var(--spacing-3)',
+                gap: 'var(--spacing-2)'
               }}
             >
-              <Moon 
+              <div 
                 style={{
-                  width: 'var(--icon-size-sm)',
-                  height: 'var(--icon-size-sm)',
-                  color: 'var(--color-wellness)'
+                  padding: 'var(--spacing-2)',
+                  borderRadius: 'var(--radius-lg)',
+                  background: 'var(--gradient-card-wellness)',
+                  border: `1px solid var(--border-wellness-light)`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
-              />
-              Sleep
+              >
+                <Moon 
+                  style={{
+                    width: 'var(--icon-size-md)',
+                    height: 'var(--icon-size-md)',
+                    color: 'var(--color-wellness)'
+                  }}
+                />
+              </div>
+              <span 
+                style={{
+                  color: 'var(--color-text-secondary)',
+                  fontSize: 'var(--font-size-sm)',
+                  fontWeight: 'var(--font-weight-semibold)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
+                }}
+              >
+                Sleep
+              </span>
             </div>
             <div 
               style={{
-                fontSize: 'var(--font-size-2xl)',
+                fontSize: 'var(--font-size-3xl)',
                 fontWeight: 'var(--font-weight-bold)',
-                color: 'var(--color-text-primary)'
+                color: 'var(--color-text-primary)',
+                marginBottom: 'var(--spacing-1)'
               }}
               data-testid="sleep-hours-metric"
             >
               {sleepData.current}<span 
                 style={{
-                  fontSize: 'var(--font-size-sm)',
+                  fontSize: 'var(--font-size-lg)',
                   color: 'var(--color-text-secondary)',
                   marginLeft: 'var(--spacing-1)'
                 }}
@@ -508,49 +628,109 @@ export default function HomePage() {
                 h
               </span>
             </div>
+            <div 
+              style={{
+                fontSize: 'var(--font-size-xs)',
+                color: 'var(--color-text-tertiary)',
+                fontWeight: 'var(--font-weight-medium)'
+              }}
+            >
+              of {sleepData.goal}h goal
+            </div>
           </div>
 
           <div 
             style={{
-              backgroundColor: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
+              background: 'var(--gradient-card-action)',
+              border: `1px solid var(--border-action-light)`,
               borderRadius: 'var(--radius-lg)',
-              padding: 'var(--spacing-4)',
+              padding: 'var(--spacing-5)',
               textAlign: 'center',
-              transition: 'all var(--duration-base) var(--easing-ease-out)',
-              boxShadow: 'var(--shadow-sm)'
+              transition: 'all var(--duration-slow) var(--easing-ease-out)',
+              boxShadow: 'var(--shadow-md)',
+              cursor: 'pointer',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)'
+              e.currentTarget.style.boxShadow = 'var(--shadow-action)'
+              e.currentTarget.style.borderColor = 'var(--color-action)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)'
+              e.currentTarget.style.boxShadow = 'var(--shadow-md)'
+              e.currentTarget.style.borderColor = 'var(--border-action-light)'
             }}
           >
+            {/* Icon badge with enhanced styling */}
             <div 
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: 'var(--spacing-2)',
-                marginBottom: 'var(--spacing-2)',
-                color: 'var(--color-text-secondary)',
-                fontSize: 'var(--font-size-sm)',
-                fontWeight: 'var(--font-weight-medium)'
+                marginBottom: 'var(--spacing-3)',
+                gap: 'var(--spacing-2)'
               }}
             >
-              <Target 
+              <div 
                 style={{
-                  width: 'var(--icon-size-sm)',
-                  height: 'var(--icon-size-sm)',
-                  color: 'var(--color-info)'
+                  padding: 'var(--spacing-2)',
+                  borderRadius: 'var(--radius-lg)',
+                  background: 'var(--gradient-card-action)',
+                  border: `1px solid var(--border-action-light)`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
                 }}
-              />
-              Water
+              >
+                <Target 
+                  style={{
+                    width: 'var(--icon-size-md)',
+                    height: 'var(--icon-size-md)',
+                    color: 'var(--color-action)'
+                  }}
+                />
+              </div>
+              <span 
+                style={{
+                  color: 'var(--color-text-secondary)',
+                  fontSize: 'var(--font-size-sm)',
+                  fontWeight: 'var(--font-weight-semibold)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.5px'
+                }}
+              >
+                Water
+              </span>
             </div>
             <div 
               style={{
-                fontSize: 'var(--font-size-2xl)',
+                fontSize: 'var(--font-size-3xl)',
                 fontWeight: 'var(--font-weight-bold)',
-                color: 'var(--color-text-primary)'
+                color: 'var(--color-text-primary)',
+                marginBottom: 'var(--spacing-1)'
               }}
               data-testid="water-glasses-metric"
             >
-              {waterData.current} / {waterData.goal}
+              {waterData.current}<span 
+                style={{
+                  fontSize: 'var(--font-size-lg)',
+                  color: 'var(--color-text-secondary)',
+                  marginLeft: 'var(--spacing-1)'
+                }}
+              >
+                / {waterData.goal}
+              </span>
+            </div>
+            <div 
+              style={{
+                fontSize: 'var(--font-size-xs)',
+                color: 'var(--color-text-tertiary)',
+                fontWeight: 'var(--font-weight-medium)'
+              }}
+            >
+              glasses today
             </div>
           </div>
         </div>
@@ -566,25 +746,32 @@ export default function HomePage() {
           <Link href="/workouts">
             <Card 
               style={{
-                background: `linear-gradient(135deg, var(--color-activity), ${getComputedStyle(document.documentElement).getPropertyValue('--color-activity-hover')})`,
+                background: 'var(--gradient-activity)',
                 border: 'none',
                 color: 'var(--color-activity-text)',
                 transition: 'all var(--duration-slow) var(--easing-ease-out)',
                 cursor: 'pointer',
-                transform: 'scale(1)'
+                transform: 'scale(1)',
+                boxShadow: 'var(--shadow-activity)',
+                position: 'relative',
+                overflow: 'hidden'
               }}
               data-testid="card-log-workout"
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)'
+                e.currentTarget.style.transform = 'scale(1.02) translateY(-2px)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-button-hover)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)'
+                e.currentTarget.style.transform = 'scale(1) translateY(0)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-activity)'
               }}
               onMouseDown={(e) => {
-                e.currentTarget.style.transform = 'scale(0.98)'
+                e.currentTarget.style.transform = 'scale(0.98) translateY(0)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-button-active)'
               }}
               onMouseUp={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)'
+                e.currentTarget.style.transform = 'scale(1.02) translateY(-2px)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-button-hover)'
               }}
             >
               <CardContent 
@@ -661,25 +848,32 @@ export default function HomePage() {
           <Link href="/nutrition">
             <Card 
               style={{
-                background: `linear-gradient(135deg, var(--color-nutrition), ${getComputedStyle(document.documentElement).getPropertyValue('--color-nutrition-hover')})`,
+                background: 'var(--gradient-nutrition)',
                 border: 'none',
                 color: 'var(--color-nutrition-text)',
                 transition: 'all var(--duration-slow) var(--easing-ease-out)',
                 cursor: 'pointer',
-                transform: 'scale(1)'
+                transform: 'scale(1)',
+                boxShadow: 'var(--shadow-nutrition)',
+                position: 'relative',
+                overflow: 'hidden'
               }}
               data-testid="card-log-meal"
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)'
+                e.currentTarget.style.transform = 'scale(1.02) translateY(-2px)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-button-hover)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)'
+                e.currentTarget.style.transform = 'scale(1) translateY(0)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-nutrition)'
               }}
               onMouseDown={(e) => {
-                e.currentTarget.style.transform = 'scale(0.98)'
+                e.currentTarget.style.transform = 'scale(0.98) translateY(0)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-button-active)'
               }}
               onMouseUp={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)'
+                e.currentTarget.style.transform = 'scale(1.02) translateY(-2px)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-button-hover)'
               }}
             >
               <CardContent 
@@ -756,25 +950,32 @@ export default function HomePage() {
           <Link href="/meditate">
             <Card 
               style={{
-                background: `linear-gradient(135deg, var(--color-wellness), ${getComputedStyle(document.documentElement).getPropertyValue('--color-wellness-hover')})`,
+                background: 'var(--gradient-wellness)',
                 border: 'none',
                 color: 'var(--color-wellness-text)',
                 transition: 'all var(--duration-slow) var(--easing-ease-out)',
                 cursor: 'pointer',
-                transform: 'scale(1)'
+                transform: 'scale(1)',
+                boxShadow: 'var(--shadow-wellness)',
+                position: 'relative',
+                overflow: 'hidden'
               }}
               data-testid="card-meditate"
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)'
+                e.currentTarget.style.transform = 'scale(1.02) translateY(-2px)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-button-hover)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)'
+                e.currentTarget.style.transform = 'scale(1) translateY(0)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-wellness)'
               }}
               onMouseDown={(e) => {
-                e.currentTarget.style.transform = 'scale(0.98)'
+                e.currentTarget.style.transform = 'scale(0.98) translateY(0)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-button-active)'
               }}
               onMouseUp={(e) => {
-                e.currentTarget.style.transform = 'scale(1.02)'
+                e.currentTarget.style.transform = 'scale(1.02) translateY(-2px)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-button-hover)'
               }}
             >
               <CardContent 

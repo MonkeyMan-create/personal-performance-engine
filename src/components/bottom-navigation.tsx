@@ -3,11 +3,11 @@ import { useLocation } from 'wouter'
 import { Home, Dumbbell, Apple, TrendingUp, User } from 'lucide-react'
 
 const navItems = [
-  { href: '/', icon: Home, label: 'Home', testId: 'nav-home' },
-  { href: '/workouts', icon: Dumbbell, label: 'Workouts', testId: 'nav-workouts' },
-  { href: '/nutrition', icon: Apple, label: 'Nutrition', testId: 'nav-nutrition' },
-  { href: '/progress', icon: TrendingUp, label: 'Progress', testId: 'nav-progress' },
-  { href: '/profile', icon: User, label: 'Profile', testId: 'nav-profile' },
+  { href: '/', icon: Home, label: 'Home', testId: 'nav-home', semanticColor: 'action' },
+  { href: '/workouts', icon: Dumbbell, label: 'Workouts', testId: 'nav-workouts', semanticColor: 'activity' },
+  { href: '/nutrition', icon: Apple, label: 'Nutrition', testId: 'nav-nutrition', semanticColor: 'nutrition' },
+  { href: '/progress', icon: TrendingUp, label: 'Progress', testId: 'nav-progress', semanticColor: 'action' },
+  { href: '/profile', icon: User, label: 'Profile', testId: 'nav-profile', semanticColor: 'wellness' },
 ]
 
 export default function BottomNavigation() {
@@ -48,11 +48,12 @@ export default function BottomNavigation() {
         bottom: 0,
         left: 0,
         right: 0,
-        backgroundColor: 'var(--color-surface)',
-        borderTop: `1px solid var(--color-border)`,
+        background: 'var(--gradient-glass)',
+        borderTop: `1px solid var(--border-glass)`,
         zIndex: 'var(--z-index-fixed)',
-        backdropFilter: 'blur(10px)',
-        boxShadow: 'var(--shadow-lg)'
+        backdropFilter: 'blur(20px)',
+        boxShadow: 'var(--shadow-navigation)',
+        transition: 'all var(--duration-slow) var(--easing-ease-out)'
       }}
       data-testid="nav-bottom"
     >
@@ -66,8 +67,13 @@ export default function BottomNavigation() {
           padding: `var(--spacing-2) var(--spacing-4)`
         }}
       >
-        {navItems.map(({ href, icon: Icon, label, testId }) => {
+        {navItems.map(({ href, icon: Icon, label, testId, semanticColor }) => {
           const isActive = location === href
+          
+          // Get semantic color variables
+          const getSemanticColor = (color: string) => `var(--color-${color})`
+          const getSemanticColorRgb = (color: string) => `var(--color-${color}-rgb)`
+          const getSemanticShadow = (color: string) => `var(--shadow-${color})`
           
           return (
             <a 
@@ -80,27 +86,33 @@ export default function BottomNavigation() {
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: 'var(--spacing-1)',
-                padding: 'var(--spacing-2)',
-                borderRadius: 'var(--radius-lg)',
+                padding: 'var(--spacing-3)',
+                borderRadius: 'var(--radius-xl)',
                 textDecoration: 'none',
                 position: 'relative',
-                transition: 'all var(--duration-base) var(--easing-ease-out)',
-                backgroundColor: isActive ? 'rgba(var(--color-action-rgb), 0.1)' : 'transparent',
-                color: isActive ? 'var(--color-action)' : 'var(--color-text-secondary)',
-                transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
-                cursor: 'pointer'
+                transition: 'all var(--duration-slow) var(--easing-ease-out)',
+                background: isActive ? `rgba(${getSemanticColorRgb(semanticColor)}, 0.15)` : 'transparent',
+                color: isActive ? getSemanticColor(semanticColor) : 'var(--color-text-secondary)',
+                transform: isActive ? 'translateY(-3px) scale(1.05)' : 'translateY(0) scale(1)',
+                cursor: 'pointer',
+                boxShadow: isActive ? getSemanticShadow(semanticColor) : 'none',
+                border: isActive ? `1px solid rgba(${getSemanticColorRgb(semanticColor)}, 0.2)` : '1px solid transparent'
               }}
               data-testid={testId}
               onMouseEnter={(e) => {
                 if (!isActive) {
-                  e.currentTarget.style.backgroundColor = 'var(--color-interactive-hover)'
-                  e.currentTarget.style.color = 'var(--color-text-primary)'
+                  e.currentTarget.style.background = `rgba(${getSemanticColorRgb(semanticColor)}, 0.08)`
+                  e.currentTarget.style.color = getSemanticColor(semanticColor)
+                  e.currentTarget.style.transform = 'translateY(-1px) scale(1.02)'
+                  e.currentTarget.style.borderColor = `rgba(${getSemanticColorRgb(semanticColor)}, 0.1)`
                 }
               }}
               onMouseLeave={(e) => {
                 if (!isActive) {
-                  e.currentTarget.style.backgroundColor = 'transparent'
+                  e.currentTarget.style.background = 'transparent'
                   e.currentTarget.style.color = 'var(--color-text-secondary)'
+                  e.currentTarget.style.transform = 'translateY(0) scale(1)'
+                  e.currentTarget.style.borderColor = 'transparent'
                 }
               }}
             >
@@ -108,22 +120,24 @@ export default function BottomNavigation() {
                 style={{
                   width: 'var(--icon-size-lg)',
                   height: 'var(--icon-size-lg)',
-                  transition: 'all var(--duration-base) var(--easing-ease-out)',
-                  color: isActive ? 'var(--color-action)' : 'inherit'
+                  transition: 'all var(--duration-slow) var(--easing-ease-out)',
+                  color: 'inherit',
+                  filter: isActive ? `drop-shadow(0 2px 4px rgba(${getSemanticColorRgb(semanticColor)}, 0.3))` : 'none'
                 }} 
               />
               <span 
                 style={{
                   fontSize: 'var(--font-size-xs)',
-                  fontWeight: isActive ? 'var(--font-weight-semibold)' : 'var(--font-weight-medium)',
+                  fontWeight: isActive ? 'var(--font-weight-bold)' : 'var(--font-weight-medium)',
                   color: 'inherit',
                   textAlign: 'center',
-                  lineHeight: 'var(--line-height-tight)'
+                  lineHeight: 'var(--line-height-tight)',
+                  transition: 'all var(--duration-slow) var(--easing-ease-out)'
                 }}
               >
                 {label}
               </span>
-              {/* Active indicator dot */}
+              {/* Enhanced active indicator */}
               {isActive && (
                 <div 
                   style={{
@@ -132,8 +146,9 @@ export default function BottomNavigation() {
                     right: 'var(--spacing-2)',
                     width: 'var(--spacing-2)',
                     height: 'var(--spacing-2)',
-                    backgroundColor: 'var(--color-action)',
+                    background: `linear-gradient(135deg, ${getSemanticColor(semanticColor)}, rgba(${getSemanticColorRgb(semanticColor)}, 0.7))`,
                     borderRadius: 'var(--radius-full)',
+                    boxShadow: `0 0 8px rgba(${getSemanticColorRgb(semanticColor)}, 0.5)`,
                     animation: 'pulse 2s infinite'
                   }}
                   data-testid={`${testId}-indicator`}

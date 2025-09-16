@@ -52,8 +52,8 @@ export default function ProgressRing({
   const circumference = 2 * Math.PI * radius
   const strokeDashoffset = circumference - (Math.min(100, progress) / 100) * circumference
 
-  // Resolve color from CSS variable or use theme default
-  let resolvedColor = 'var(--color-action)' // Theme default fallback
+  // Resolve color from CSS variable with enhanced semantic defaults
+  let resolvedColor = 'var(--color-action)' // Enhanced theme default fallback
   if (color) {
     if (color.startsWith('var(')) {
       // Extract CSS variable and get computed value
@@ -64,6 +64,18 @@ export default function ProgressRing({
       }
     } else {
       resolvedColor = color
+    }
+  }
+  
+  // Enhanced semantic color mapping for common fitness metrics
+  if (!color) {
+    const lowerLabel = label.toLowerCase()
+    if (lowerLabel.includes('step') || lowerLabel.includes('workout') || lowerLabel.includes('exercise')) {
+      resolvedColor = getComputedStyle(document.documentElement).getPropertyValue('--color-activity').trim()
+    } else if (lowerLabel.includes('calorie') || lowerLabel.includes('nutrition') || lowerLabel.includes('meal')) {
+      resolvedColor = getComputedStyle(document.documentElement).getPropertyValue('--color-nutrition').trim()
+    } else if (lowerLabel.includes('sleep') || lowerLabel.includes('wellness') || lowerLabel.includes('meditation')) {
+      resolvedColor = getComputedStyle(document.documentElement).getPropertyValue('--color-wellness').trim()
     }
   }
 
