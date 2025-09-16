@@ -183,93 +183,45 @@ export default function HomePage() {
 
         {/* Key Metrics Grid */}
         <div className="grid-2">
-          <Card className="card-activity">
-            <CardContent className="p-4">
-              <div className="flex-center gap-3">
-                <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
-                  <Activity className="w-5 h-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-white/80">Steps</p>
-                  <p className="text-lg font-bold text-white" data-testid="steps-count-metric">
-                    {stepsData.current.toLocaleString()}
-                  </p>
-                </div>
-              </div>
-              <div className="mt-2 w-full bg-white/20 rounded-full h-2">
-                <div 
-                  className="bg-white h-2 rounded-full transition-all duration-1000 shadow-sm"
-                  style={{ width: `${Math.min(100, stepsProgress)}%` }}
-                />
-              </div>
-            </CardContent>
-          </Card>
+          <div className="data-card">
+            <div className="data-card-header">
+              <Activity className="data-card-icon" />
+              Steps
+            </div>
+            <div className="data-card-value" data-testid="steps-count-metric">
+              {stepsData.current.toLocaleString()}
+            </div>
+          </div>
 
-          <Card className="card-error">
-            <CardContent className="p-4">
-              <div className="flex-center gap-3">
-                <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
-                  <Flame className="w-5 h-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-white/80">Burned</p>
-                  <p className="text-lg font-bold text-white" data-testid="calories-burned-metric">
-                    420 cal
-                  </p>
-                </div>
-              </div>
-              <div className="mt-2 w-full bg-white/20 rounded-full h-2">
-                <div 
-                  className="bg-white h-2 rounded-full transition-all duration-1000 shadow-sm"
-                  style={{ width: `70%` }}
-                />
-              </div>
-            </CardContent>
-          </Card>
+          <div className="data-card">
+            <div className="data-card-header">
+              <Flame className="data-card-icon" />
+              Burned
+            </div>
+            <div className="data-card-value" data-testid="calories-burned-metric">
+              420<span className="data-card-unit">cal</span>
+            </div>
+          </div>
 
-          <Card className="card-wellness">
-            <CardContent className="p-4">
-              <div className="flex-center gap-3">
-                <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
-                  <Moon className="w-5 h-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-white/80">Sleep</p>
-                  <p className="text-lg font-bold text-white" data-testid="sleep-hours-metric">
-                    {sleepData.current}h
-                  </p>
-                </div>
-              </div>
-              <div className="mt-2 w-full bg-white/20 rounded-full h-2">
-                <div 
-                  className="bg-white h-2 rounded-full transition-all duration-1000 shadow-sm"
-                  style={{ width: `${Math.min(100, sleepProgress)}%` }}
-                />
-              </div>
-            </CardContent>
-          </Card>
+          <div className="data-card">
+            <div className="data-card-header">
+              <Moon className="data-card-icon" />
+              Sleep
+            </div>
+            <div className="data-card-value" data-testid="sleep-hours-metric">
+              {sleepData.current}<span className="data-card-unit">h</span>
+            </div>
+          </div>
 
-          <Card className="card-action">
-            <CardContent className="p-4">
-              <div className="flex-center gap-3">
-                <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
-                  <Target className="w-5 h-5 text-white" />
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-white/80">Water</p>
-                  <p className="text-lg font-bold text-white" data-testid="water-glasses-metric">
-                    {waterData.current} / {waterData.goal}
-                  </p>
-                </div>
-              </div>
-              <div className="mt-2 w-full bg-white/20 rounded-full h-2">
-                <div 
-                  className="bg-white h-2 rounded-full transition-all duration-1000 shadow-sm"
-                  style={{ width: `${Math.min(100, waterProgress)}%` }}
-                />
-              </div>
-            </CardContent>
-          </Card>
+          <div className="data-card">
+            <div className="data-card-header">
+              <Target className="data-card-icon" />
+              Water
+            </div>
+            <div className="data-card-value" data-testid="water-glasses-metric">
+              {waterData.current} / {waterData.goal}
+            </div>
+          </div>
         </div>
 
         {/* Quick Action Buttons */}

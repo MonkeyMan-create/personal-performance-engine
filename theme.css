@@ -22,6 +22,7 @@
   --color-activity-hover: #DB2777; /* 10% darker */
   --color-activity-text: #FFFFFF; /* White text on activity color */
   --color-activity-rgb: 236, 72, 153; /* RGB channels for rgba() usage */
+  --color-activity-hsl: 330, 81%, 60%; /* HSL channels for hsla() usage */
   
   /* NUTRITION COLOR - Used for calorie tracking, food logging, nutrition features */
   --color-nutrition: #10B981; /* Green - Default */
@@ -175,6 +176,7 @@
   --radius-base: 8px;   /* Base radius */
   --radius-md: 12px;    /* Medium radius */
   --radius-lg: 16px;    /* Large radius */
+  --border-radius-large: var(--radius-lg); /* Alias for compatibility */
   --radius-xl: 20px;    /* Extra large radius */
   --radius-2xl: 24px;   /* 2x large radius */
   --radius-3xl: 32px;   /* 3x large radius */
@@ -192,6 +194,7 @@
   --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   --shadow-2xl: 0 50px 100px -20px rgba(0, 0, 0, 0.25);
   --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+  --color-shadow-hsl: 0, 0%, 20%; /* HSL for shadow colors */
 
   /* ==========================================
      Z-INDEX SYSTEM
@@ -1576,6 +1579,48 @@
     border-width: 2px !important;
     box-shadow: none !important;
   }
+}
+
+/* ==========================================
+   DATA CARD STYLES
+   ========================================== */
+
+.data-card {
+  background: linear-gradient(145deg, hsla(var(--color-activity-hsl), 0.2), hsla(var(--color-activity-hsl), 0.05));
+  border: 1px solid hsla(var(--color-activity-hsl), 0.3);
+  border-radius: var(--border-radius-large);
+  padding: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  box-shadow: 0 4px 12px hsla(var(--color-shadow-hsl), 0.1);
+}
+
+.data-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.data-card-icon {
+  font-size: 1.5rem;
+  color: var(--color-activity);
+}
+
+.data-card-value {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.data-card-unit {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-left: var(--spacing-1);
 }
 
 /* ==========================================
