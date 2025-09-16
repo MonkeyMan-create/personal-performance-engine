@@ -9,6 +9,7 @@ interface ProgressRingProps {
   unit?: string
   size?: 'sm' | 'md' | 'lg'
   className?: string
+  style?: React.CSSProperties
   color?: string // Dynamic color support
 }
 
@@ -20,22 +21,39 @@ export default function ProgressRing({
   unit = '',
   size = 'lg',
   className = '',
+  style,
   color
 }: ProgressRingProps) {
-  // Size configurations
+  // Size configurations using theme variables
   const sizeConfig = {
-    sm: { diameter: 80, strokeWidth: 6, textSize: 'text-sm' },
-    md: { diameter: 120, strokeWidth: 8, textSize: 'text-lg' },
-    lg: { diameter: 160, strokeWidth: 10, textSize: 'text-2xl' }
+    sm: { 
+      diameter: 'calc(var(--spacing-20))', // 80px equivalent
+      strokeWidth: 'calc(var(--spacing-6) * 0.25)', // 6px equivalent
+      fontSize: 'var(--font-size-sm)'
+    },
+    md: { 
+      diameter: 'calc(var(--spacing-30))', // 120px equivalent  
+      strokeWidth: 'calc(var(--spacing-8) * 0.25)', // 8px equivalent
+      fontSize: 'var(--font-size-lg)'
+    },
+    lg: { 
+      diameter: 'calc(var(--spacing-40))', // 160px equivalent
+      strokeWidth: 'calc(var(--spacing-10) * 0.25)', // 10px equivalent  
+      fontSize: 'var(--font-size-2xl)'
+    }
   }
 
   const config = sizeConfig[size]
-  const radius = (config.diameter - config.strokeWidth) / 2
+  
+  // Calculate numeric values for SVG calculations
+  const numericDiameter = size === 'sm' ? 80 : size === 'md' ? 120 : 160
+  const numericStrokeWidth = size === 'sm' ? 6 : size === 'md' ? 8 : 10
+  const radius = (numericDiameter - numericStrokeWidth) / 2
   const circumference = 2 * Math.PI * radius
   const strokeDashoffset = circumference - (Math.min(100, progress) / 100) * circumference
 
-  // Resolve color from CSS variable or use default
-  let resolvedColor = '#6366F1' // Default fallback
+  // Resolve color from CSS variable or use theme default
+  let resolvedColor = 'var(--color-action)' // Theme default fallback
   if (color) {
     if (color.startsWith('var(')) {
       // Extract CSS variable and get computed value
@@ -60,35 +78,43 @@ export default function ProgressRing({
   const gradientId = `progressGradient-${label.toLowerCase().replace(/\s+/g, '-')}`
 
   return (
-    <div className={`relative ${className}`} data-testid={`progress-ring-${label.toLowerCase().replace(' ', '-')}`}>
+    <div 
+      style={{
+        position: 'relative',
+        ...style
+      }}
+      className={className}
+      data-testid={`progress-ring-${label.toLowerCase().replace(' ', '-')}`}
+    >
       <svg 
-        width={config.diameter} 
-        height={config.diameter} 
-        className="transform -rotate-90"
+        width={numericDiameter} 
+        height={numericDiameter} 
+        style={{
+          transform: 'rotate(-90deg)'
+        }}
       >
         {/* Background circle */}
         <circle
-          cx={config.diameter / 2}
-          cy={config.diameter / 2}
+          cx={numericDiameter / 2}
+          cy={numericDiameter / 2}
           r={radius}
-          stroke="currentColor"
-          strokeWidth={config.strokeWidth}
+          stroke="var(--color-border-secondary)"
+          strokeWidth={numericStrokeWidth}
           fill="none"
-          className="text-muted"
         />
         {/* Progress circle with dynamic gradient */}
         <circle
-          cx={config.diameter / 2}
-          cy={config.diameter / 2}
+          cx={numericDiameter / 2}
+          cy={numericDiameter / 2}
           r={radius}
           stroke={`url(#${gradientId})`}
-          strokeWidth={config.strokeWidth}
+          strokeWidth={numericStrokeWidth}
           fill="none"
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
           strokeLinecap="round"
-          className="transition-all duration-1000 ease-out"
           style={{
+            transition: 'all 1s ease-out',
             filter: `drop-shadow(0 0 8px ${tinycolor(resolvedColor).setAlpha(0.4).toString()})`
           }}
         />
@@ -103,14 +129,44 @@ export default function ProgressRing({
       </svg>
       
       {/* Center content */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <div className={`font-bold text-primary ${config.textSize}`} data-testid={`${label.toLowerCase().replace(' ', '-')}-current`}>
+      <div 
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center'
+        }}
+      >
+        <div 
+          style={{
+            fontWeight: 'var(--font-weight-bold)',
+            color: 'var(--color-text-primary)',
+            fontSize: config.fontSize
+          }}
+          data-testid={`${label.toLowerCase().replace(' ', '-')}-current`}
+        >
           {current.toLocaleString()}
         </div>
-        <div className="text-xs text-secondary -mt-1">
+        <div 
+          style={{
+            fontSize: 'var(--font-size-xs)',
+            color: 'var(--color-text-secondary)',
+            marginTop: 'calc(var(--spacing-1) * -1)'
+          }}
+        >
           / {goal.toLocaleString()} {unit}
         </div>
-        <div className="text-xs text-tertiary mt-1 font-medium">
+        <div 
+          style={{
+            fontSize: 'var(--font-size-xs)',
+            color: 'var(--color-text-tertiary)',
+            marginTop: 'var(--spacing-1)',
+            fontWeight: 'var(--font-weight-medium)'
+          }}
+        >
           {label}
         </div>
       </div>

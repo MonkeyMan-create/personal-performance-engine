@@ -108,59 +108,223 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="page-container">
-      <div className="section-container space-y-6">
+    <div 
+      style={{
+        minHeight: '100vh',
+        backgroundColor: 'var(--color-background)',
+        paddingBottom: 'calc(var(--spacing-20) + var(--spacing-4))', // Account for bottom nav
+        color: 'var(--color-text-primary)'
+      }}
+    >
+      <div 
+        style={{
+          maxWidth: '480px',
+          margin: '0 auto',
+          padding: `var(--spacing-6) var(--spacing-4)`,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--spacing-6)'
+        }}
+      >
         
         {/* Top Section - Greeting & Time */}
-        <div className="page-header">
-          <div className="flex-center gap-3 mb-2">
-            <GreetingIcon className="w-8 h-8 text-action" />
-            <h1 className="page-title" data-testid="greeting-text">
+        <div 
+          style={{
+            textAlign: 'center',
+            paddingTop: 'var(--spacing-4)',
+            paddingBottom: 'var(--spacing-6)'
+          }}
+        >
+          <div 
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 'var(--spacing-3)',
+              marginBottom: 'var(--spacing-2)'
+            }}
+          >
+            <GreetingIcon 
+              style={{
+                width: 'var(--icon-size-xl)',
+                height: 'var(--icon-size-xl)',
+                color: 'var(--color-action)'
+              }}
+            />
+            <h1 
+              style={{
+                fontSize: 'var(--font-size-3xl)',
+                fontWeight: 'var(--font-weight-bold)',
+                color: 'var(--color-text-primary)',
+                margin: 0
+              }}
+              data-testid="greeting-text"
+            >
               {greeting.text}
             </h1>
           </div>
           
-          <div className="flex-center gap-4 text-secondary">
-            <div className="flex-center gap-2">
-              <Clock className="w-5 h-5" />
-              <span className="text-xl font-semibold" data-testid="current-time">{formatTime(currentTime)}</span>
+          <div 
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: 'var(--spacing-4)',
+              color: 'var(--color-text-secondary)'
+            }}
+          >
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'var(--spacing-2)'
+              }}
+            >
+              <Clock 
+                style={{
+                  width: 'var(--icon-size-md)',
+                  height: 'var(--icon-size-md)'
+                }}
+              />
+              <span 
+                style={{
+                  fontSize: 'var(--font-size-xl)',
+                  fontWeight: 'var(--font-weight-semibold)'
+                }}
+                data-testid="current-time"
+              >
+                {formatTime(currentTime)}
+              </span>
             </div>
-            <div className="flex-center gap-2">
-              <Calendar className="w-5 h-5" />
-              <span className="text-lg" data-testid="current-date">{formatDate(currentTime)}</span>
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'var(--spacing-2)'
+              }}
+            >
+              <Calendar 
+                style={{
+                  width: 'var(--icon-size-md)',
+                  height: 'var(--icon-size-md)'
+                }}
+              />
+              <span 
+                style={{
+                  fontSize: 'var(--font-size-lg)'
+                }}
+                data-testid="current-date"
+              >
+                {formatDate(currentTime)}
+              </span>
             </div>
           </div>
         </div>
 
         {/* Mood Check-in */}
-        <Card className="card-wellness">
-          <CardHeader className="text-center">
-            <CardTitle className="text-primary text-xl flex-center gap-2">
-              <Brain className="w-6 h-6 text-wellness" />
+        <Card 
+          style={{
+            background: `linear-gradient(135deg, var(--color-wellness), ${getComputedStyle(document.documentElement).getPropertyValue('--color-wellness-hover')})`,
+            border: 'none',
+            color: 'var(--color-wellness-text)'
+          }}
+        >
+          <CardHeader 
+            style={{
+              textAlign: 'center'
+            }}
+          >
+            <CardTitle 
+              style={{
+                color: 'var(--color-wellness-text)',
+                fontSize: 'var(--font-size-xl)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 'var(--spacing-2)'
+              }}
+            >
+              <Brain 
+                style={{
+                  width: 'var(--icon-size-lg)',
+                  height: 'var(--icon-size-lg)',
+                  color: 'var(--color-wellness-text)'
+                }} 
+              />
               How are you feeling today?
             </CardTitle>
-            <CardDescription className="text-secondary">
+            <CardDescription 
+              style={{
+                color: 'rgba(255, 255, 255, 0.8)'
+              }}
+            >
               Tap an emoji to check in with your mood
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="flex-center gap-4">
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 'var(--spacing-4)'
+              }}
+            >
               {moods.map((mood) => (
                 <button
                   key={mood.value}
                   onClick={() => setSelectedMood(mood.value)}
-                  className={`
-                    p-4 rounded-2xl transition-all duration-300 hover:scale-110 active:scale-95
-                    ${selectedMood === mood.value 
-                      ? 'card-wellness' 
-                      : 'card-base hover:bg-surface-secondary'
-                    }
-                  `}
+                  style={{
+                    padding: 'var(--spacing-4)',
+                    borderRadius: 'var(--radius-2xl)',
+                    transition: 'all var(--duration-slow) var(--easing-ease-out)',
+                    transform: 'scale(1)',
+                    background: selectedMood === mood.value 
+                      ? `linear-gradient(135deg, var(--color-wellness), ${getComputedStyle(document.documentElement).getPropertyValue('--color-wellness-hover')})` 
+                      : 'var(--color-surface)',
+                    border: selectedMood === mood.value 
+                      ? 'none' 
+                      : '1px solid var(--color-border)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: 'var(--spacing-1)'
+                  }}
                   data-testid={`mood-${mood.value}`}
                   aria-label={`Select ${mood.label} mood`}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)'
+                  }}
+                  onMouseDown={(e) => {
+                    e.currentTarget.style.transform = 'scale(0.95)'
+                  }}
+                  onMouseUp={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)'
+                  }}
                 >
-                  <div className="text-3xl">{mood.emoji}</div>
-                  <div className="text-xs text-white/80 mt-1 font-medium">{mood.label}</div>
+                  <div 
+                    style={{
+                      fontSize: 'var(--font-size-3xl)'
+                    }}
+                  >
+                    {mood.emoji}
+                  </div>
+                  <div 
+                    style={{
+                      fontSize: 'var(--font-size-xs)',
+                      color: selectedMood === mood.value 
+                        ? 'rgba(255, 255, 255, 0.8)' 
+                        : 'var(--color-text-secondary)',
+                      marginTop: 'var(--spacing-1)',
+                      fontWeight: 'var(--font-weight-medium)'
+                    }}
+                  >
+                    {mood.label}
+                  </div>
                 </button>
               ))}
             </div>
@@ -168,7 +332,14 @@ export default function HomePage() {
         </Card>
 
         {/* Central Progress Ring */}
-        <div className="flex-center py-8">
+        <div 
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: `var(--spacing-8) 0`
+          }}
+        >
           <ProgressRing
             progress={caloriesProgress}
             current={caloriesData.current}
@@ -177,72 +348,311 @@ export default function HomePage() {
             unit="cal"
             size="lg"
             color="var(--color-nutrition)"
-            className="drop-shadow-2xl"
+            style={{
+              filter: 'drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15))'
+            }}
           />
         </div>
 
         {/* Key Metrics Grid */}
-        <div className="grid-2">
-          <div className="data-card">
-            <div className="data-card-header">
-              <Activity className="data-card-icon" />
+        <div 
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: 'var(--spacing-4)'
+          }}
+        >
+          <div 
+            style={{
+              backgroundColor: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-lg)',
+              padding: 'var(--spacing-4)',
+              textAlign: 'center',
+              transition: 'all var(--duration-base) var(--easing-ease-out)',
+              boxShadow: 'var(--shadow-sm)'
+            }}
+          >
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 'var(--spacing-2)',
+                marginBottom: 'var(--spacing-2)',
+                color: 'var(--color-text-secondary)',
+                fontSize: 'var(--font-size-sm)',
+                fontWeight: 'var(--font-weight-medium)'
+              }}
+            >
+              <Activity 
+                style={{
+                  width: 'var(--icon-size-sm)',
+                  height: 'var(--icon-size-sm)',
+                  color: 'var(--color-activity)'
+                }}
+              />
               Steps
             </div>
-            <div className="data-card-value" data-testid="steps-count-metric">
+            <div 
+              style={{
+                fontSize: 'var(--font-size-2xl)',
+                fontWeight: 'var(--font-weight-bold)',
+                color: 'var(--color-text-primary)'
+              }}
+              data-testid="steps-count-metric"
+            >
               {stepsData.current.toLocaleString()}
             </div>
           </div>
 
-          <div className="data-card">
-            <div className="data-card-header">
-              <Flame className="data-card-icon" />
+          <div 
+            style={{
+              backgroundColor: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-lg)',
+              padding: 'var(--spacing-4)',
+              textAlign: 'center',
+              transition: 'all var(--duration-base) var(--easing-ease-out)',
+              boxShadow: 'var(--shadow-sm)'
+            }}
+          >
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 'var(--spacing-2)',
+                marginBottom: 'var(--spacing-2)',
+                color: 'var(--color-text-secondary)',
+                fontSize: 'var(--font-size-sm)',
+                fontWeight: 'var(--font-weight-medium)'
+              }}
+            >
+              <Flame 
+                style={{
+                  width: 'var(--icon-size-sm)',
+                  height: 'var(--icon-size-sm)',
+                  color: 'var(--color-error)'
+                }}
+              />
               Burned
             </div>
-            <div className="data-card-value" data-testid="calories-burned-metric">
-              420<span className="data-card-unit">cal</span>
+            <div 
+              style={{
+                fontSize: 'var(--font-size-2xl)',
+                fontWeight: 'var(--font-weight-bold)',
+                color: 'var(--color-text-primary)'
+              }}
+              data-testid="calories-burned-metric"
+            >
+              420<span 
+                style={{
+                  fontSize: 'var(--font-size-sm)',
+                  color: 'var(--color-text-secondary)',
+                  marginLeft: 'var(--spacing-1)'
+                }}
+              >
+                cal
+              </span>
             </div>
           </div>
 
-          <div className="data-card">
-            <div className="data-card-header">
-              <Moon className="data-card-icon" />
+          <div 
+            style={{
+              backgroundColor: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-lg)',
+              padding: 'var(--spacing-4)',
+              textAlign: 'center',
+              transition: 'all var(--duration-base) var(--easing-ease-out)',
+              boxShadow: 'var(--shadow-sm)'
+            }}
+          >
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 'var(--spacing-2)',
+                marginBottom: 'var(--spacing-2)',
+                color: 'var(--color-text-secondary)',
+                fontSize: 'var(--font-size-sm)',
+                fontWeight: 'var(--font-weight-medium)'
+              }}
+            >
+              <Moon 
+                style={{
+                  width: 'var(--icon-size-sm)',
+                  height: 'var(--icon-size-sm)',
+                  color: 'var(--color-wellness)'
+                }}
+              />
               Sleep
             </div>
-            <div className="data-card-value" data-testid="sleep-hours-metric">
-              {sleepData.current}<span className="data-card-unit">h</span>
+            <div 
+              style={{
+                fontSize: 'var(--font-size-2xl)',
+                fontWeight: 'var(--font-weight-bold)',
+                color: 'var(--color-text-primary)'
+              }}
+              data-testid="sleep-hours-metric"
+            >
+              {sleepData.current}<span 
+                style={{
+                  fontSize: 'var(--font-size-sm)',
+                  color: 'var(--color-text-secondary)',
+                  marginLeft: 'var(--spacing-1)'
+                }}
+              >
+                h
+              </span>
             </div>
           </div>
 
-          <div className="data-card">
-            <div className="data-card-header">
-              <Target className="data-card-icon" />
+          <div 
+            style={{
+              backgroundColor: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-lg)',
+              padding: 'var(--spacing-4)',
+              textAlign: 'center',
+              transition: 'all var(--duration-base) var(--easing-ease-out)',
+              boxShadow: 'var(--shadow-sm)'
+            }}
+          >
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 'var(--spacing-2)',
+                marginBottom: 'var(--spacing-2)',
+                color: 'var(--color-text-secondary)',
+                fontSize: 'var(--font-size-sm)',
+                fontWeight: 'var(--font-weight-medium)'
+              }}
+            >
+              <Target 
+                style={{
+                  width: 'var(--icon-size-sm)',
+                  height: 'var(--icon-size-sm)',
+                  color: 'var(--color-info)'
+                }}
+              />
               Water
             </div>
-            <div className="data-card-value" data-testid="water-glasses-metric">
+            <div 
+              style={{
+                fontSize: 'var(--font-size-2xl)',
+                fontWeight: 'var(--font-weight-bold)',
+                color: 'var(--color-text-primary)'
+              }}
+              data-testid="water-glasses-metric"
+            >
               {waterData.current} / {waterData.goal}
             </div>
           </div>
         </div>
 
         {/* Quick Action Buttons */}
-        <div className="space-y-4">
+        <div 
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'var(--spacing-4)'
+          }}
+        >
           <Link href="/workouts">
             <Card 
-              className="card-activity transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              style={{
+                background: `linear-gradient(135deg, var(--color-activity), ${getComputedStyle(document.documentElement).getPropertyValue('--color-activity-hover')})`,
+                border: 'none',
+                color: 'var(--color-activity-text)',
+                transition: 'all var(--duration-slow) var(--easing-ease-out)',
+                cursor: 'pointer',
+                transform: 'scale(1)'
+              }}
               data-testid="card-log-workout"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.02)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)'
+              }}
+              onMouseDown={(e) => {
+                e.currentTarget.style.transform = 'scale(0.98)'
+              }}
+              onMouseUp={(e) => {
+                e.currentTarget.style.transform = 'scale(1.02)'
+              }}
             >
-              <CardContent className="p-6">
-                <div className="flex-between">
-                  <div className="flex-start gap-4">
-                    <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
-                      <Dumbbell className="w-6 h-6" />
+              <CardContent 
+                style={{
+                  padding: 'var(--spacing-6)'
+                }}
+              >
+                <div 
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                  }}
+                >
+                  <div 
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 'var(--spacing-4)'
+                    }}
+                  >
+                    <div 
+                      style={{
+                        padding: 'var(--spacing-3)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        borderRadius: 'var(--radius-2xl)',
+                        backdropFilter: 'blur(8px)'
+                      }}
+                    >
+                      <Dumbbell 
+                        style={{
+                          width: 'var(--icon-size-lg)',
+                          height: 'var(--icon-size-lg)',
+                          color: 'inherit'
+                        }}
+                      />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">Log Workout</h3>
-                      <p className="opacity-80">Track your training session</p>
+                      <h3 
+                        style={{
+                          fontSize: 'var(--font-size-xl)',
+                          fontWeight: 'var(--font-weight-bold)',
+                          color: 'inherit',
+                          margin: 0,
+                          marginBottom: 'var(--spacing-1)'
+                        }}
+                      >
+                        Log Workout
+                      </h3>
+                      <p 
+                        style={{
+                          opacity: 0.8,
+                          color: 'inherit',
+                          margin: 0,
+                          fontSize: 'var(--font-size-sm)'
+                        }}
+                      >
+                        Track your training session
+                      </p>
                     </div>
                   </div>
-                  <Plus className="w-6 h-6" />
+                  <Plus 
+                    style={{
+                      width: 'var(--icon-size-lg)',
+                      height: 'var(--icon-size-lg)',
+                      color: 'inherit'
+                    }}
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -250,21 +660,94 @@ export default function HomePage() {
 
           <Link href="/nutrition">
             <Card 
-              className="card-nutrition transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              style={{
+                background: `linear-gradient(135deg, var(--color-nutrition), ${getComputedStyle(document.documentElement).getPropertyValue('--color-nutrition-hover')})`,
+                border: 'none',
+                color: 'var(--color-nutrition-text)',
+                transition: 'all var(--duration-slow) var(--easing-ease-out)',
+                cursor: 'pointer',
+                transform: 'scale(1)'
+              }}
               data-testid="card-log-meal"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.02)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)'
+              }}
+              onMouseDown={(e) => {
+                e.currentTarget.style.transform = 'scale(0.98)'
+              }}
+              onMouseUp={(e) => {
+                e.currentTarget.style.transform = 'scale(1.02)'
+              }}
             >
-              <CardContent className="p-6">
-                <div className="flex-between">
-                  <div className="flex-start gap-4">
-                    <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
-                      <Utensils className="w-6 h-6" />
+              <CardContent 
+                style={{
+                  padding: 'var(--spacing-6)'
+                }}
+              >
+                <div 
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                  }}
+                >
+                  <div 
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 'var(--spacing-4)'
+                    }}
+                  >
+                    <div 
+                      style={{
+                        padding: 'var(--spacing-3)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        borderRadius: 'var(--radius-2xl)',
+                        backdropFilter: 'blur(8px)'
+                      }}
+                    >
+                      <Utensils 
+                        style={{
+                          width: 'var(--icon-size-lg)',
+                          height: 'var(--icon-size-lg)',
+                          color: 'inherit'
+                        }}
+                      />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">Log Meal</h3>
-                      <p className="opacity-80">Record what you ate</p>
+                      <h3 
+                        style={{
+                          fontSize: 'var(--font-size-xl)',
+                          fontWeight: 'var(--font-weight-bold)',
+                          color: 'inherit',
+                          margin: 0,
+                          marginBottom: 'var(--spacing-1)'
+                        }}
+                      >
+                        Log Meal
+                      </h3>
+                      <p 
+                        style={{
+                          opacity: 0.8,
+                          color: 'inherit',
+                          margin: 0,
+                          fontSize: 'var(--font-size-sm)'
+                        }}
+                      >
+                        Record what you ate
+                      </p>
                     </div>
                   </div>
-                  <Plus className="w-6 h-6" />
+                  <Plus 
+                    style={{
+                      width: 'var(--icon-size-lg)',
+                      height: 'var(--icon-size-lg)',
+                      color: 'inherit'
+                    }}
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -272,21 +755,94 @@ export default function HomePage() {
 
           <Link href="/meditate">
             <Card 
-              className="card-wellness transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              style={{
+                background: `linear-gradient(135deg, var(--color-wellness), ${getComputedStyle(document.documentElement).getPropertyValue('--color-wellness-hover')})`,
+                border: 'none',
+                color: 'var(--color-wellness-text)',
+                transition: 'all var(--duration-slow) var(--easing-ease-out)',
+                cursor: 'pointer',
+                transform: 'scale(1)'
+              }}
               data-testid="card-meditate"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'scale(1.02)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)'
+              }}
+              onMouseDown={(e) => {
+                e.currentTarget.style.transform = 'scale(0.98)'
+              }}
+              onMouseUp={(e) => {
+                e.currentTarget.style.transform = 'scale(1.02)'
+              }}
             >
-              <CardContent className="p-6">
-                <div className="flex-between">
-                  <div className="flex-start gap-4">
-                    <div className="p-3 bg-white/20 rounded-2xl backdrop-blur-sm">
-                      <Brain className="w-6 h-6" />
+              <CardContent 
+                style={{
+                  padding: 'var(--spacing-6)'
+                }}
+              >
+                <div 
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                  }}
+                >
+                  <div 
+                    style={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 'var(--spacing-4)'
+                    }}
+                  >
+                    <div 
+                      style={{
+                        padding: 'var(--spacing-3)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        borderRadius: 'var(--radius-2xl)',
+                        backdropFilter: 'blur(8px)'
+                      }}
+                    >
+                      <Brain 
+                        style={{
+                          width: 'var(--icon-size-lg)',
+                          height: 'var(--icon-size-lg)',
+                          color: 'inherit'
+                        }}
+                      />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold">Meditate</h3>
-                      <p className="opacity-80">Find your inner peace</p>
+                      <h3 
+                        style={{
+                          fontSize: 'var(--font-size-xl)',
+                          fontWeight: 'var(--font-weight-bold)',
+                          color: 'inherit',
+                          margin: 0,
+                          marginBottom: 'var(--spacing-1)'
+                        }}
+                      >
+                        Meditate
+                      </h3>
+                      <p 
+                        style={{
+                          opacity: 0.8,
+                          color: 'inherit',
+                          margin: 0,
+                          fontSize: 'var(--font-size-sm)'
+                        }}
+                      >
+                        Find your inner peace
+                      </p>
                     </div>
                   </div>
-                  <Plus className="w-6 h-6" />
+                  <Plus 
+                    style={{
+                      width: 'var(--icon-size-lg)',
+                      height: 'var(--icon-size-lg)',
+                      color: 'inherit'
+                    }}
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -294,40 +850,136 @@ export default function HomePage() {
         </div>
 
         {/* Daily Wellness Insights */}
-        <Card className="card-wellness">
+        <Card 
+          style={{
+            background: `linear-gradient(135deg, var(--color-wellness), ${getComputedStyle(document.documentElement).getPropertyValue('--color-wellness-hover')})`,
+            border: 'none',
+            color: 'var(--color-wellness-text)'
+          }}
+        >
           <CardHeader>
-            <CardTitle className="text-white flex-start gap-2">
-              <div className="icon-badge bg-white/20 backdrop-blur-sm">
-                <Lightbulb className="w-5 h-5 text-white" />
+            <CardTitle 
+              style={{
+                color: 'var(--color-wellness-text)',
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: 'var(--spacing-2)'
+              }}
+            >
+              <div 
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 'var(--control-width-icon)',
+                  height: 'var(--control-width-icon)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  borderRadius: 'var(--radius-lg)',
+                  backdropFilter: 'blur(8px)'
+                }}
+              >
+                <Lightbulb 
+                  style={{
+                    width: 'var(--icon-size-md)',
+                    height: 'var(--icon-size-md)',
+                    color: 'var(--color-wellness-text)'
+                  }}
+                />
               </div>
               Daily Wellness Insights
             </CardTitle>
-            <CardDescription className="text-white/80">
+            <CardDescription 
+              style={{
+                color: 'rgba(255, 255, 255, 0.8)'
+              }}
+            >
               Personalized tips to help you reach your goals
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-3">
+          <CardContent 
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--spacing-3)'
+            }}
+          >
             {insights.map((insight) => {
               const IconComponent = insight.icon
               return (
                 <div 
                   key={insight.id} 
-                  className="action-item"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: 'var(--spacing-3)',
+                    padding: 'var(--spacing-3)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    borderRadius: 'var(--radius-lg)',
+                    backdropFilter: 'blur(4px)'
+                  }}
                   data-testid={`insight-${insight.id}`}
                 >
-                  <div className="flex-start gap-3">
-                    <div className={`icon-badge ${insight.badgeClass}`}>
-                      <IconComponent className="w-4 h-4" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-white text-sm leading-relaxed">{insight.message}</p>
-                      <button 
-                        className="mt-2 px-3 py-1 bg-white/20 text-white text-xs font-medium rounded-full hover:bg-white/30 transition-all duration-200 border border-white/30"
-                        data-testid={`insight-action-${insight.id}`}
-                      >
-                        {insight.action} →
-                      </button>
-                    </div>
+                  <div 
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: 'var(--control-width-icon-sm)',
+                      height: 'var(--control-width-icon-sm)',
+                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                      borderRadius: 'var(--radius-full)',
+                      flexShrink: 0
+                    }}
+                  >
+                    <IconComponent 
+                      style={{
+                        width: 'var(--icon-size-sm)',
+                        height: 'var(--icon-size-sm)',
+                        color: 'var(--color-wellness-text)'
+                      }}
+                    />
+                  </div>
+                  <div 
+                    style={{
+                      flex: 1,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: 'var(--spacing-2)'
+                    }}
+                  >
+                    <p 
+                      style={{
+                        color: 'var(--color-wellness-text)',
+                        fontSize: 'var(--font-size-sm)',
+                        lineHeight: 'var(--line-height-relaxed)',
+                        margin: 0
+                      }}
+                    >
+                      {insight.message}
+                    </p>
+                    <button 
+                      style={{
+                        alignSelf: 'flex-start',
+                        padding: `var(--spacing-1) var(--spacing-3)`,
+                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        color: 'var(--color-wellness-text)',
+                        fontSize: 'var(--font-size-xs)',
+                        fontWeight: 'var(--font-weight-medium)',
+                        borderRadius: 'var(--radius-full)',
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                        cursor: 'pointer',
+                        transition: 'all var(--duration-base) var(--easing-ease-out)'
+                      }}
+                      data-testid={`insight-action-${insight.id}`}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'
+                      }}
+                    >
+                      {insight.action} →
+                    </button>
                   </div>
                 </div>
               )
@@ -336,80 +988,324 @@ export default function HomePage() {
         </Card>
 
         {/* Nutrition Snapshot */}
-        <Card className="card-nutrition">
+        <Card 
+          style={{
+            background: `linear-gradient(135deg, var(--color-nutrition), ${getComputedStyle(document.documentElement).getPropertyValue('--color-nutrition-hover')})`,
+            border: 'none',
+            color: 'var(--color-nutrition-text)'
+          }}
+        >
           <CardHeader>
-            <CardTitle className="text-white flex-start gap-2">
-              <div className="icon-badge bg-white/20 backdrop-blur-sm">
-                <Apple className="w-5 h-5 text-white" />
+            <CardTitle 
+              style={{
+                color: 'var(--color-nutrition-text)',
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: 'var(--spacing-2)'
+              }}
+            >
+              <div 
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 'var(--control-width-icon)',
+                  height: 'var(--control-width-icon)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  borderRadius: 'var(--radius-lg)',
+                  backdropFilter: 'blur(8px)'
+                }}
+              >
+                <Apple 
+                  style={{
+                    width: 'var(--icon-size-md)',
+                    height: 'var(--icon-size-md)',
+                    color: 'var(--color-nutrition-text)'
+                  }}
+                />
               </div>
               Nutrition Snapshot
             </CardTitle>
-            <CardDescription className="text-white/80">
+            <CardDescription 
+              style={{
+                color: 'rgba(255, 255, 255, 0.8)'
+              }}
+            >
               Today's nutritional breakdown
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent 
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--spacing-4)'
+            }}
+          >
             {/* Macros */}
-            <div className="space-y-3">
-              <div className="flex-between">
-                <span className="font-medium text-white">Protein</span>
-                <span className="text-white/80 text-sm" data-testid="protein-count">
+            <div 
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 'var(--spacing-3)'
+              }}
+            >
+              <div 
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between'
+                }}
+              >
+                <span 
+                  style={{
+                    fontWeight: 'var(--font-weight-medium)',
+                    color: 'var(--color-nutrition-text)'
+                  }}
+                >
+                  Protein
+                </span>
+                <span 
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontSize: 'var(--font-size-sm)'
+                  }}
+                  data-testid="protein-count"
+                >
                   {nutritionData.protein.current}g / {nutritionData.protein.goal}g
                 </span>
               </div>
-              <div className="w-full bg-muted rounded-full h-2">
+              <div 
+                style={{
+                  width: '100%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  borderRadius: 'var(--radius-full)',
+                  height: 'var(--spacing-2)'
+                }}
+              >
                 <div 
-                  className="bg-protein h-2 rounded-full transition-all duration-1000"
-                  style={{ width: `${Math.min(100, (nutritionData.protein.current / nutritionData.protein.goal) * 100)}%` }}
+                  style={{
+                    backgroundColor: 'var(--color-protein)',
+                    height: 'var(--spacing-2)',
+                    borderRadius: 'var(--radius-full)',
+                    transition: 'all 1s ease-out',
+                    width: `${Math.min(100, (nutritionData.protein.current / nutritionData.protein.goal) * 100)}%`
+                  }}
                 />
               </div>
             </div>
 
-            <div className="space-y-3">
-              <div className="flex-between">
-                <span className="font-medium text-white">Carbs</span>
-                <span className="text-white/80 text-sm" data-testid="carbs-count">
+            <div 
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 'var(--spacing-3)'
+              }}
+            >
+              <div 
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between'
+                }}
+              >
+                <span 
+                  style={{
+                    fontWeight: 'var(--font-weight-medium)',
+                    color: 'var(--color-nutrition-text)'
+                  }}
+                >
+                  Carbs
+                </span>
+                <span 
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontSize: 'var(--font-size-sm)'
+                  }}
+                  data-testid="carbs-count"
+                >
                   {nutritionData.carbs.current}g / {nutritionData.carbs.goal}g
                 </span>
               </div>
-              <div className="w-full bg-muted rounded-full h-2">
+              <div 
+                style={{
+                  width: '100%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  borderRadius: 'var(--radius-full)',
+                  height: 'var(--spacing-2)'
+                }}
+              >
                 <div 
-                  className="bg-carbs h-2 rounded-full transition-all duration-1000"
-                  style={{ width: `${Math.min(100, (nutritionData.carbs.current / nutritionData.carbs.goal) * 100)}%` }}
+                  style={{
+                    backgroundColor: 'var(--color-carbs)',
+                    height: 'var(--spacing-2)',
+                    borderRadius: 'var(--radius-full)',
+                    transition: 'all 1s ease-out',
+                    width: `${Math.min(100, (nutritionData.carbs.current / nutritionData.carbs.goal) * 100)}%`
+                  }}
                 />
               </div>
             </div>
 
-            <div className="space-y-3">
-              <div className="flex-between">
-                <span className="font-medium text-white">Fat</span>
-                <span className="text-white/80 text-sm" data-testid="fat-count">
+            <div 
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 'var(--spacing-3)'
+              }}
+            >
+              <div 
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between'
+                }}
+              >
+                <span 
+                  style={{
+                    fontWeight: 'var(--font-weight-medium)',
+                    color: 'var(--color-nutrition-text)'
+                  }}
+                >
+                  Fat
+                </span>
+                <span 
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontSize: 'var(--font-size-sm)'
+                  }}
+                  data-testid="fat-count"
+                >
                   {nutritionData.fat.current}g / {nutritionData.fat.goal}g
                 </span>
               </div>
-              <div className="w-full bg-muted rounded-full h-2">
+              <div 
+                style={{
+                  width: '100%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  borderRadius: 'var(--radius-full)',
+                  height: 'var(--spacing-2)'
+                }}
+              >
                 <div 
-                  className="bg-fat h-2 rounded-full transition-all duration-1000"
-                  style={{ width: `${Math.min(100, (nutritionData.fat.current / nutritionData.fat.goal) * 100)}%` }}
+                  style={{
+                    backgroundColor: 'var(--color-fat)',
+                    height: 'var(--spacing-2)',
+                    borderRadius: 'var(--radius-full)',
+                    transition: 'all 1s ease-out',
+                    width: `${Math.min(100, (nutritionData.fat.current / nutritionData.fat.goal) * 100)}%`
+                  }}
                 />
               </div>
             </div>
 
             {/* Quick Stats */}
-            <div className="flex-between pt-4 border-t border-white/20">
-              <div className="text-center p-3 bg-white/20 rounded-xl backdrop-blur-sm">
-                <p className="text-2xl font-bold text-white" data-testid="meals-logged-count">{nutritionData.mealsLogged}</p>
-                <p className="text-xs text-white/80 font-medium">Meals Logged</p>
+            <div 
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                paddingTop: 'var(--spacing-4)',
+                borderTop: '1px solid rgba(255, 255, 255, 0.2)',
+                gap: 'var(--spacing-2)'
+              }}
+            >
+              <div 
+                style={{
+                  textAlign: 'center',
+                  padding: 'var(--spacing-3)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  borderRadius: 'var(--radius-xl)',
+                  backdropFilter: 'blur(8px)',
+                  flex: 1
+                }}
+              >
+                <p 
+                  style={{
+                    fontSize: 'var(--font-size-2xl)',
+                    fontWeight: 'var(--font-weight-bold)',
+                    color: 'var(--color-nutrition-text)',
+                    margin: 0,
+                    marginBottom: 'var(--spacing-1)'
+                  }}
+                  data-testid="meals-logged-count"
+                >
+                  {nutritionData.mealsLogged}
+                </p>
+                <p 
+                  style={{
+                    fontSize: 'var(--font-size-xs)',
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontWeight: 'var(--font-weight-medium)',
+                    margin: 0
+                  }}
+                >
+                  Meals Logged
+                </p>
               </div>
-              <div className="text-center p-3 bg-white/20 rounded-xl backdrop-blur-sm">
-                <p className="text-2xl font-bold text-white" data-testid="calories-remaining">
+              <div 
+                style={{
+                  textAlign: 'center',
+                  padding: 'var(--spacing-3)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  borderRadius: 'var(--radius-xl)',
+                  backdropFilter: 'blur(8px)',
+                  flex: 1
+                }}
+              >
+                <p 
+                  style={{
+                    fontSize: 'var(--font-size-2xl)',
+                    fontWeight: 'var(--font-weight-bold)',
+                    color: 'var(--color-nutrition-text)',
+                    margin: 0,
+                    marginBottom: 'var(--spacing-1)'
+                  }}
+                  data-testid="calories-remaining"
+                >
                   {nutritionData.calories.goal - nutritionData.calories.current}
                 </p>
-                <p className="text-xs text-white/80 font-medium">Calories Left</p>
+                <p 
+                  style={{
+                    fontSize: 'var(--font-size-xs)',
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontWeight: 'var(--font-weight-medium)',
+                    margin: 0
+                  }}
+                >
+                  Calories Left
+                </p>
               </div>
-              <div className="text-center p-3 bg-white/20 rounded-xl backdrop-blur-sm">
-                <p className="text-2xl font-bold text-white">73%</p>
-                <p className="text-xs text-white/80 font-medium">Daily Goal</p>
+              <div 
+                style={{
+                  textAlign: 'center',
+                  padding: 'var(--spacing-3)',
+                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  borderRadius: 'var(--radius-xl)',
+                  backdropFilter: 'blur(8px)',
+                  flex: 1
+                }}
+              >
+                <p 
+                  style={{
+                    fontSize: 'var(--font-size-2xl)',
+                    fontWeight: 'var(--font-weight-bold)',
+                    color: 'var(--color-nutrition-text)',
+                    margin: 0,
+                    marginBottom: 'var(--spacing-1)'
+                  }}
+                >
+                  73%
+                </p>
+                <p 
+                  style={{
+                    fontSize: 'var(--font-size-xs)',
+                    color: 'rgba(255, 255, 255, 0.8)',
+                    fontWeight: 'var(--font-weight-medium)',
+                    margin: 0
+                  }}
+                >
+                  Daily Goal
+                </p>
               </div>
             </div>
           </CardContent>

@@ -42,8 +42,30 @@ export default function BottomNavigation() {
   }
 
   return (
-    <nav className="nav-bottom" data-testid="nav-bottom">
-      <div className="nav-grid">
+    <nav 
+      style={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: 'var(--color-surface)',
+        borderTop: `1px solid var(--color-border)`,
+        zIndex: 'var(--z-index-fixed)',
+        backdropFilter: 'blur(10px)',
+        boxShadow: 'var(--shadow-lg)'
+      }}
+      data-testid="nav-bottom"
+    >
+      <div 
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(5, 1fr)',
+          gap: 0,
+          maxWidth: '480px',
+          margin: '0 auto',
+          padding: `var(--spacing-2) var(--spacing-4)`
+        }}
+      >
         {navItems.map(({ href, icon: Icon, label, testId }) => {
           const isActive = location === href
           
@@ -52,16 +74,70 @@ export default function BottomNavigation() {
               key={href} 
               href={href}
               onClick={(e) => handleNavigation(href, e)}
-              className={`nav-item ${isActive ? 'nav-item-active' : 'nav-item-inactive'}`}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 'var(--spacing-1)',
+                padding: 'var(--spacing-2)',
+                borderRadius: 'var(--radius-lg)',
+                textDecoration: 'none',
+                position: 'relative',
+                transition: 'all var(--duration-base) var(--easing-ease-out)',
+                backgroundColor: isActive ? 'rgba(var(--color-action-rgb), 0.1)' : 'transparent',
+                color: isActive ? 'var(--color-action)' : 'var(--color-text-secondary)',
+                transform: isActive ? 'translateY(-2px)' : 'translateY(0)',
+                cursor: 'pointer'
+              }}
               data-testid={testId}
+              onMouseEnter={(e) => {
+                if (!isActive) {
+                  e.currentTarget.style.backgroundColor = 'var(--color-interactive-hover)'
+                  e.currentTarget.style.color = 'var(--color-text-primary)'
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isActive) {
+                  e.currentTarget.style.backgroundColor = 'transparent'
+                  e.currentTarget.style.color = 'var(--color-text-secondary)'
+                }
+              }}
             >
-              <Icon className={`nav-icon ${isActive ? 'nav-icon-active' : ''}`} />
-              <span className={`nav-label ${isActive ? 'nav-label-active' : ''}`}>
+              <Icon 
+                style={{
+                  width: 'var(--icon-size-lg)',
+                  height: 'var(--icon-size-lg)',
+                  transition: 'all var(--duration-base) var(--easing-ease-out)',
+                  color: isActive ? 'var(--color-action)' : 'inherit'
+                }} 
+              />
+              <span 
+                style={{
+                  fontSize: 'var(--font-size-xs)',
+                  fontWeight: isActive ? 'var(--font-weight-semibold)' : 'var(--font-weight-medium)',
+                  color: 'inherit',
+                  textAlign: 'center',
+                  lineHeight: 'var(--line-height-tight)'
+                }}
+              >
                 {label}
               </span>
               {/* Active indicator dot */}
               {isActive && (
-                <div className="nav-indicator" data-testid={`${testId}-indicator`}></div>
+                <div 
+                  style={{
+                    position: 'absolute',
+                    top: 'var(--spacing-1)',
+                    right: 'var(--spacing-2)',
+                    width: 'var(--spacing-2)',
+                    height: 'var(--spacing-2)',
+                    backgroundColor: 'var(--color-action)',
+                    borderRadius: 'var(--radius-full)',
+                    animation: 'pulse 2s infinite'
+                  }}
+                  data-testid={`${testId}-indicator`}
+                />
               )}
             </a>
           )
