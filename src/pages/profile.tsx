@@ -115,7 +115,7 @@ export default function SettingsPage() {
     return 'Recently'
   }
 
-  // Settings list item component with vibrant card backgrounds
+  // Settings list item component with vibrant card backgrounds and perfect alignment
   const SettingsItem = ({ icon: Icon, title, subtitle, action, showToggle = false, toggleState = false, showChevron = true, testId, semanticColor = 'action' }: {
     icon: any
     title: string
@@ -128,44 +128,46 @@ export default function SettingsPage() {
     semanticColor?: 'action' | 'wellness' | 'success' | 'warning' | 'activity'
   }) => (
     <div 
-      className={`flex-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl card-${semanticColor}`}
+      className={`flex items-center justify-between p-5 transition-all duration-300 cursor-pointer rounded-xl mx-3 shadow-lg hover:shadow-xl card-${semanticColor} min-h-[76px]`}
       onClick={showToggle ? undefined : action}
       data-testid={testId}
     >
-      <div className="flex items-center gap-4">
-        <div className="icon-badge bg-white rounded-xl">
+      <div className="flex items-center gap-4 flex-1 min-w-0">
+        <div className="icon-badge bg-white rounded-xl flex items-center justify-center p-3 flex-shrink-0">
           <Icon className="w-5 h-5" style={{ color: `var(--color-${semanticColor})` }} />
         </div>
-        <div>
-          <p className="font-bold text-lg" style={{ color: `var(--color-text-on-${semanticColor})` }}>{title}</p>
-          {subtitle && <p className="mt-1 font-medium" style={{ color: `var(--color-text-secondary-on-${semanticColor})` }}>{subtitle}</p>}
+        <div className="flex flex-col justify-center py-1 min-w-0 flex-1">
+          <p className="font-bold text-lg leading-tight" style={{ color: `var(--color-text-on-${semanticColor})` }}>{title}</p>
+          {subtitle && <p className="font-medium text-sm leading-relaxed mt-1" style={{ color: `var(--color-text-secondary-on-${semanticColor})` }}>{subtitle}</p>}
         </div>
       </div>
       
-      {showToggle ? (
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            action?.()
-          }}
-          className={`relative inline-flex h-8 w-14 items-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent shadow-lg ${
-            toggleState ? 'bg-gradient-to-r from-white to-white/90 shadow-white/30' : 'bg-white/30'
-          }`}
-          data-testid={`${testId}-toggle`}
-        >
-          <span
-            className="inline-block h-6 w-6 transform rounded-full shadow-lg transition-transform duration-300"
-            style={{
-              transform: toggleState ? 'translateX(1.75rem)' : 'translateX(0.25rem)',
-              background: toggleState ? 'currentColor' : 'white'
+      <div className="flex items-center justify-center flex-shrink-0 ml-4">
+        {showToggle ? (
+          <button
+            onClick={(e) => {
+              e.stopPropagation()
+              action?.()
             }}
-          />
-        </button>
-      ) : showChevron ? (
-        <div className="icon-badge icon-badge-sm bg-white rounded-lg">
-          <ChevronRight className="w-5 h-5" style={{ color: `var(--color-${semanticColor})` }} />
-        </div>
-      ) : null}
+            className={`relative inline-flex h-8 w-14 items-center justify-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-transparent shadow-lg ${
+              toggleState ? 'bg-gradient-to-r from-white to-white/90 shadow-white/30' : 'bg-white/30'
+            }`}
+            data-testid={`${testId}-toggle`}
+          >
+            <span
+              className="inline-block h-6 w-6 transform rounded-full shadow-lg transition-transform duration-300"
+              style={{
+                transform: toggleState ? 'translateX(1.75rem)' : 'translateX(0.25rem)',
+                background: toggleState ? 'currentColor' : 'white'
+              }}
+            />
+          </button>
+        ) : showChevron ? (
+          <div className="icon-badge icon-badge-sm bg-white rounded-lg flex items-center justify-center p-2">
+            <ChevronRight className="w-5 h-5" style={{ color: `var(--color-${semanticColor})` }} />
+          </div>
+        ) : null}
+      </div>
     </div>
   )
 

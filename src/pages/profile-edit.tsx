@@ -185,35 +185,35 @@ export default function ProfileEditPage() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto p-4 space-y-6 pb-24">
         {/* Header */}
-        <div className="flex items-center gap-4 pt-8">
+        <div className="flex items-center justify-start gap-4 pt-8 min-h-[48px]">
           <Link href="/profile">
-            <Button variant="ghost" size="sm" className="text-secondary hover:text-primary" data-testid="button-back">
-              <ArrowLeft className="w-4 h-4 mr-2" />
+            <Button variant="ghost" size="sm" className="text-secondary hover:text-primary flex items-center gap-2" data-testid="button-back">
+              <ArrowLeft className="w-4 h-4" />
               Back to Settings
             </Button>
           </Link>
         </div>
 
         <div className="text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="p-3 icon-badge-action rounded-2xl">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="p-3 icon-badge-action rounded-2xl flex items-center justify-center">
               <User className="w-8 h-8 text-action" />
             </div>
-            <h1 className="text-3xl font-bold text-primary" data-testid="page-title">Edit Profile</h1>
+            <h1 className="text-3xl font-bold text-primary leading-tight" data-testid="page-title">Edit Profile</h1>
           </div>
-          <p className="text-secondary mt-2">Update your personal information and fitness goals</p>
+          <p className="text-secondary mt-2 text-lg leading-relaxed">Update your personal information and fitness goals</p>
         </div>
 
         {/* Profile Photo Section */}
         <Card className="card-action backdrop-blur-xl shadow-2xl border-action/30">
           <CardHeader>
-            <div className="flex items-center gap-3">
-              <div className="p-3 icon-badge-action rounded-xl">
+            <div className="flex items-center gap-4">
+              <div className="p-3 icon-badge-action rounded-xl flex items-center justify-center flex-shrink-0">
                 <User className="w-6 h-6 text-action" />
               </div>
-              <div>
-                <CardTitle className="text-xl font-bold" style={{ color: 'var(--color-text-on-action)' }}>Profile Photo</CardTitle>
-                <CardDescription style={{ color: 'var(--color-text-secondary-on-action)' }}>
+              <div className="flex flex-col justify-center min-w-0 flex-1">
+                <CardTitle className="text-xl font-bold leading-tight" style={{ color: 'var(--color-text-on-action)' }}>Profile Photo</CardTitle>
+                <CardDescription className="text-sm leading-relaxed mt-1" style={{ color: 'var(--color-text-secondary-on-action)' }}>
                   Upload a profile picture to personalize your account
                 </CardDescription>
               </div>
@@ -283,13 +283,13 @@ export default function ProfileEditPage() {
         {/* Personal Information Section */}
         <Card className="card-activity backdrop-blur-xl shadow-2xl border-activity/30">
           <CardHeader>
-            <div className="flex items-center gap-3">
-              <div className="p-3 icon-badge-activity rounded-xl">
+            <div className="flex items-center gap-4">
+              <div className="p-3 icon-badge-activity rounded-xl flex items-center justify-center flex-shrink-0">
                 <Mail className="w-6 h-6 text-activity" />
               </div>
-              <div>
-                <CardTitle className="text-xl font-bold" style={{ color: 'var(--color-text-on-activity)' }}>Personal Information</CardTitle>
-                <CardDescription style={{ color: 'var(--color-text-secondary-on-activity)' }}>
+              <div className="flex flex-col justify-center min-w-0 flex-1">
+                <CardTitle className="text-xl font-bold leading-tight" style={{ color: 'var(--color-text-on-activity)' }}>Personal Information</CardTitle>
+                <CardDescription className="text-sm leading-relaxed mt-1" style={{ color: 'var(--color-text-secondary-on-activity)' }}>
                   Update your basic profile information
                 </CardDescription>
               </div>
@@ -346,13 +346,13 @@ export default function ProfileEditPage() {
         {/* Personal Goals Section */}
         <Card className="card-wellness backdrop-blur-xl shadow-2xl border-wellness/30">
           <CardHeader>
-            <div className="flex items-center gap-3">
-              <div className="p-3 icon-badge-wellness rounded-xl">
+            <div className="flex items-center gap-4">
+              <div className="p-3 icon-badge-wellness rounded-xl flex items-center justify-center flex-shrink-0">
                 <Target className="w-6 h-6 text-wellness" />
               </div>
-              <div>
-                <CardTitle className="text-xl font-bold" style={{ color: 'var(--color-text-on-wellness)' }}>Personal Goals</CardTitle>
-                <CardDescription style={{ color: 'var(--color-text-secondary-on-wellness)' }}>
+              <div className="flex flex-col justify-center min-w-0 flex-1">
+                <CardTitle className="text-xl font-bold leading-tight" style={{ color: 'var(--color-text-on-wellness)' }}>Personal Goals</CardTitle>
+                <CardDescription className="text-sm leading-relaxed mt-1" style={{ color: 'var(--color-text-secondary-on-wellness)' }}>
                   Set your fitness targets and track your progress
                 </CardDescription>
               </div>
@@ -361,9 +361,9 @@ export default function ProfileEditPage() {
           <CardContent className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-wellness)' }}>
-                  <Weight className="w-4 h-4" style={{ color: 'var(--color-text-on-wellness)' }} />
-                  Current Weight ({measurementUnit.toUpperCase()})
+                <label className="block text-sm font-medium mb-3 flex items-center gap-2" style={{ color: 'var(--color-text-on-wellness)' }}>
+                  <Weight className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--color-text-on-wellness)' }} />
+                  <span className="leading-tight">Current Weight ({measurementUnit.toUpperCase()})</span>
                 </label>
                 <Input
                   value={getDisplayValue(personalGoals.currentWeight, true)}
@@ -379,9 +379,9 @@ export default function ProfileEditPage() {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-wellness)' }}>
-                  <TrendingUp className="w-4 h-4" style={{ color: 'var(--color-text-on-wellness)' }} />
-                  Target Weight ({measurementUnit.toUpperCase()})
+                <label className="block text-sm font-medium mb-3 flex items-center gap-2" style={{ color: 'var(--color-text-on-wellness)' }}>
+                  <TrendingUp className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--color-text-on-wellness)' }} />
+                  <span className="leading-tight">Target Weight ({measurementUnit.toUpperCase()})</span>
                 </label>
                 <Input
                   value={getDisplayValue(personalGoals.targetWeight, true)}
@@ -397,9 +397,9 @@ export default function ProfileEditPage() {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-wellness)' }}>
-                  <Flame className="w-4 h-4" style={{ color: 'var(--color-text-on-wellness)' }} />
-                  Daily Calorie Goal
+                <label className="block text-sm font-medium mb-3 flex items-center gap-2" style={{ color: 'var(--color-text-on-wellness)' }}>
+                  <Flame className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--color-text-on-wellness)' }} />
+                  <span className="leading-tight">Daily Calorie Goal</span>
                 </label>
                 <Input
                   value={getDisplayValue(personalGoals.dailyCalories)}
@@ -414,9 +414,9 @@ export default function ProfileEditPage() {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-wellness)' }}>
-                  <Activity className="w-4 h-4" style={{ color: 'var(--color-text-on-wellness)' }} />
-                  Weekly Workout Goal
+                <label className="block text-sm font-medium mb-3 flex items-center gap-2" style={{ color: 'var(--color-text-on-wellness)' }}>
+                  <Activity className="w-4 h-4 flex-shrink-0" style={{ color: 'var(--color-text-on-wellness)' }} />
+                  <span className="leading-tight">Weekly Workout Goal</span>
                 </label>
                 <Input
                   value={getDisplayValue(personalGoals.weeklyWorkouts)}
