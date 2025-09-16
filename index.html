@@ -42,8 +42,13 @@
     
     <!-- Performance and security optimizations -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Enhanced DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//world.openfoodfacts.org">
+    
+    <!-- Preconnect for critical external APIs -->
+    <link rel="preconnect" href="https://world.openfoodfacts.org" crossorigin>
+    
     
     <!-- Critical CSS for loading state to prevent FOUC -->
     <style>
