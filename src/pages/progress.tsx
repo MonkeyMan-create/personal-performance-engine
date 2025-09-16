@@ -281,7 +281,7 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-day-streak"
-                  className="card-success interactive-enhanced"
+                  className="card-action interactive-enhanced"
                 >
                   <CardContent className="card-content text-center space-y-4 aspect-square flex-col-center p-6">
                     <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-full flex-center shadow-xl">
@@ -311,7 +311,7 @@ export default function ProgressPage() {
 
                 <Card 
                   data-testid="card-avg-calories"
-                  className="card-warning interactive-enhanced"
+                  className="card-error interactive-enhanced"
                 >
                   <CardContent className="card-content text-center space-y-4 aspect-square flex-col-center p-6">
                     <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-full flex-center shadow-xl">

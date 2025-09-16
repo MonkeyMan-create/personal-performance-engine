@@ -597,96 +597,138 @@ export default function WorkoutsPage() {
               </Card>
             )}
 
-            {/* Quick Start Section */}
-            <Card className="card-activity">
-              <CardHeader>
-                <CardTitle className="text-white flex-start gap-3">
-                  <div className="icon-badge bg-white/20 backdrop-blur-sm">
-                    <Zap className="w-5 h-5 text-white" />
-                  </div>
-                  Quick Start
-                </CardTitle>
-                <CardDescription className="text-white/80">
-                  Begin your workout session or browse templates
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {!currentSession && (
-                  <Button
-                    onClick={handleStartWorkout}
-                    className="w-full button-base button-default bg-activity hover:bg-activity/90 text-white shadow-lg hover:shadow-xl font-bold py-4 text-lg"
-                    data-testid="button-start-workout"
-                  >
-                    <Play className="w-6 h-6 mr-3" />
-                    Start New Workout
-                  </Button>
-                )}
-                
-                <div className="grid-2">
-                  <Button
-                    onClick={() => setShowTemplateSelector(true)}
-                    variant="outline"
-                    className="button-base button-outline p-4 h-auto flex-col gap-2"
-                    data-testid="button-browse-templates"
-                  >
-                    <Target className="w-6 h-6 text-action" />
-                    <span className="font-semibold">Browse Templates</span>
-                    <span className="text-xs text-secondary">Pre-built workouts</span>
-                  </Button>
-                  
-                  <Button
-                    onClick={() => setViewMode('history')}
-                    variant="outline"
-                    className="button-base button-outline p-4 h-auto flex-col gap-2"
-                    data-testid="button-view-history"
-                  >
-                    <History className="w-6 h-6 text-activity" />
-                    <span className="font-semibold">View History</span>
-                    <span className="text-xs text-secondary">{workouts.length} workouts logged</span>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Quick Action Buttons */}
+            <div className="grid-2 gap-4">
+              <Button
+                onClick={() => setShowTemplateSelector(true)}
+                className="button-base bg-action hover:bg-action/90 text-white shadow-lg hover:shadow-xl font-bold py-4 text-lg h-auto"
+                data-testid="button-find-workout"
+              >
+                <Search className="w-6 h-6 mr-3" />
+                Find a Workout
+              </Button>
+              
+              <Button
+                onClick={handleStartWorkout}
+                variant="outline"
+                className="button-base button-outline border-2 border-wellness text-wellness hover:bg-wellness/10 font-bold py-4 text-lg h-auto"
+                data-testid="button-create-custom"
+              >
+                <Plus className="w-6 h-6 mr-3" />
+                Create Custom
+              </Button>
+            </div>
 
-            {/* Featured Template */}
+            {/* Your Next Workout */}
             {recommendedWorkout && (
-              <Card className="card-activity">
-                <CardHeader>
-                  <CardTitle className="text-white flex-start gap-3">
-                    <div className="icon-badge bg-white/20 backdrop-blur-sm">
-                      <Trophy className="w-5 h-5 text-white" />
+              <Card 
+                className="card-action cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                onClick={() => handleSelectTemplateFromCard(recommendedWorkout)}
+                data-testid={`your-next-workout`}
+              >
+                <CardContent className="p-6">
+                  <div className="flex-between mb-4">
+                    <div className="space-y-2">
+                      <p className="text-sm font-medium text-white/80 uppercase tracking-wider">YOUR NEXT WORKOUT</p>
+                      <h3 className="text-2xl font-bold text-white">{recommendedWorkout.title}</h3>
+                      <p className="text-white/90">{recommendedWorkout.description}</p>
                     </div>
-                    Featured Workout
-                  </CardTitle>
-                  <CardDescription className="text-white/80">
-                    Recommended for today's training session
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div 
-                    className="action-item cursor-pointer"
-                    onClick={() => handleSelectTemplateFromCard(recommendedWorkout)}
-                    data-testid={`template-${recommendedWorkout.id}`}
-                  >
-                    <div className="flex-start gap-4">
-                      <div className="icon-badge icon-badge-activity">
-                        <recommendedWorkout.icon className="w-6 h-6 text-activity" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-bold text-white mb-1">{recommendedWorkout.title}</h3>
-                        <p className="text-white/80 text-sm mb-3">{recommendedWorkout.description}</p>
-                        <div className="flex gap-2 flex-wrap">
-                          <span className="badge-base badge-secondary">{recommendedWorkout.duration} min</span>
-                          <span className="badge-base badge-secondary">{recommendedWorkout.exercises} exercises</span>
-                          <span className="badge-base badge-secondary">{recommendedWorkout.difficulty}</span>
-                          <span className="badge-base badge-secondary">{recommendedWorkout.type}</span>
-                        </div>
-                      </div>
+                    <div className="p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
+                      <recommendedWorkout.icon className="w-8 h-8 text-white" />
                     </div>
+                  </div>
+                  
+                  <div className="grid-2 gap-4">
+                    <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm text-center">
+                      <div className="flex-center gap-2 mb-1">
+                        <Clock className="w-4 h-4 text-white" />
+                        <span className="text-sm text-white/80">Duration</span>
+                      </div>
+                      <p className="text-lg font-bold text-white">{recommendedWorkout.duration} min</p>
+                    </div>
+                    <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm text-center">
+                      <div className="flex-center gap-2 mb-1">
+                        <Target className="w-4 h-4 text-white" />
+                        <span className="text-sm text-white/80">Exercises</span>
+                      </div>
+                      <p className="text-lg font-bold text-white">{recommendedWorkout.exercises} exercises</p>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4 flex-between">
+                    <div className="flex-start gap-3">
+                      <span className="badge-base bg-white/20 text-white border-white/30">
+                        Difficulty: {recommendedWorkout.difficulty}
+                      </span>
+                      <span className="badge-base bg-white/20 text-white border-white/30">
+                        Type: {recommendedWorkout.type}
+                      </span>
+                    </div>
+                    <Button
+                      className="bg-white text-action hover:bg-white/90 font-bold px-6"
+                      data-testid="button-start-session"
+                    >
+                      Start Session
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
             )}
+
+            {/* Discover Templates */}
+            <div className="space-y-4">
+              <div className="flex-between">
+                <h2 className="text-2xl font-bold text-primary">Discover Templates</h2>
+                <Button
+                  onClick={() => setViewMode('history')}
+                  variant="outline"
+                  className="button-base button-outline text-activity border-activity/30 hover:bg-activity/10"
+                  data-testid="button-view-all"
+                >
+                  View All
+                </Button>
+              </div>
+              
+              <div className="grid-2 gap-4">
+                {workoutTemplates.slice(1, 3).map((template) => (
+                  <Card 
+                    key={template.id}
+                    className="card-base cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg border-border/50"
+                    onClick={() => handleSelectTemplateFromCard(template)}
+                    data-testid={`template-${template.id}`}
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex-start gap-3 mb-3">
+                        <div className="icon-badge icon-badge-activity">
+                          <template.icon className="w-5 h-5 text-activity" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-primary">{template.title}</h3>
+                          <p className="text-sm text-secondary">{template.description}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex-start gap-4 text-xs text-tertiary">
+                        <span className="flex-center gap-1">
+                          <Clock className="w-3 h-3" />
+                          {template.duration} min
+                        </span>
+                        <span className="flex-center gap-1">
+                          <Target className="w-3 h-3" />
+                          {template.exercises} exercises
+                        </span>
+                        <span className={`badge-base text-xs ${
+                          template.difficulty === 'Intermediate' ? 'badge-warning' : 
+                          template.difficulty === 'Advanced' ? 'badge-destructive' : 'badge-success'
+                        }`}>
+                          {template.difficulty}
+                        </span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
 
             {/* Recent Workouts Preview */}
             {workouts.length > 0 && (

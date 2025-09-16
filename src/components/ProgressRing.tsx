@@ -74,7 +74,7 @@ export default function ProgressRing({
           stroke="currentColor"
           strokeWidth={config.strokeWidth}
           fill="none"
-          className="text-slate-700/40"
+          className="text-muted"
         />
         {/* Progress circle with dynamic gradient */}
         <circle
@@ -104,13 +104,13 @@ export default function ProgressRing({
       
       {/* Center content */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <div className={`font-bold text-slate-700 dark:text-slate-300 ${config.textSize}`} data-testid={`${label.toLowerCase().replace(' ', '-')}-current`}>
+        <div className={`font-bold text-primary ${config.textSize}`} data-testid={`${label.toLowerCase().replace(' ', '-')}-current`}>
           {current.toLocaleString()}
         </div>
-        <div className="text-xs text-slate-400 -mt-1">
+        <div className="text-xs text-secondary -mt-1">
           / {goal.toLocaleString()} {unit}
         </div>
-        <div className="text-xs text-slate-500 mt-1 font-medium">
+        <div className="text-xs text-tertiary mt-1 font-medium">
           {label}
         </div>
       </div>
