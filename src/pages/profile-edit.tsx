@@ -212,8 +212,8 @@ export default function ProfileEditPage() {
                 <User className="w-6 h-6 text-action" />
               </div>
               <div>
-                <CardTitle className="text-white text-xl font-bold">Profile Photo</CardTitle>
-                <CardDescription className="text-white/90">
+                <CardTitle className="text-xl font-bold" style={{ color: 'var(--color-text-on-action)' }}>Profile Photo</CardTitle>
+                <CardDescription style={{ color: 'var(--color-text-secondary-on-action)' }}>
                   Upload a profile picture to personalize your account
                 </CardDescription>
               </div>
@@ -288,8 +288,8 @@ export default function ProfileEditPage() {
                 <Mail className="w-6 h-6 text-activity" />
               </div>
               <div>
-                <CardTitle className="text-white text-xl font-bold">Personal Information</CardTitle>
-                <CardDescription className="text-white/90">
+                <CardTitle className="text-xl font-bold" style={{ color: 'var(--color-text-on-activity)' }}>Personal Information</CardTitle>
+                <CardDescription style={{ color: 'var(--color-text-secondary-on-activity)' }}>
                   Update your basic profile information
                 </CardDescription>
               </div>
@@ -298,20 +298,21 @@ export default function ProfileEditPage() {
           <CardContent className="space-y-6">
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium mb-2" style={{ color: 'var(--color-text-on-activity)' }}>
                   Display Name
                 </label>
                 <Input
                   value={profileData.displayName || ''}
                   onChange={(e) => handleInputChange('displayName', e.target.value)}
                   placeholder="Enter your display name"
-                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                  style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.3)', color: 'var(--color-text-on-activity)' }}
+                  className="input-surface"
                   data-testid="input-display-name"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium mb-2" style={{ color: 'var(--color-text-on-activity)' }}>
                   Email Address
                 </label>
                 <Input
@@ -319,20 +320,22 @@ export default function ProfileEditPage() {
                   onChange={(e) => handleInputChange('email', e.target.value)}
                   placeholder="Enter your email address"
                   type="email"
-                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                  style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.3)', color: 'var(--color-text-on-activity)' }}
+                  className="input-surface"
                   data-testid="input-email"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-white mb-2">
+                <label className="block text-sm font-medium mb-2" style={{ color: 'var(--color-text-on-activity)' }}>
                   Bio (Optional)
                 </label>
                 <Input
                   value={profileData.bio || ''}
                   onChange={(e) => handleInputChange('bio', e.target.value)}
                   placeholder="Tell us a bit about yourself"
-                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                  style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.3)', color: 'var(--color-text-on-activity)' }}
+                  className="input-surface"
                   data-testid="input-bio"
                 />
               </div>
@@ -348,8 +351,8 @@ export default function ProfileEditPage() {
                 <Target className="w-6 h-6 text-wellness" />
               </div>
               <div>
-                <CardTitle className="text-white text-xl font-bold">Personal Goals</CardTitle>
-                <CardDescription className="text-white/90">
+                <CardTitle className="text-xl font-bold" style={{ color: 'var(--color-text-on-wellness)' }}>Personal Goals</CardTitle>
+                <CardDescription style={{ color: 'var(--color-text-secondary-on-wellness)' }}>
                   Set your fitness targets and track your progress
                 </CardDescription>
               </div>
@@ -358,8 +361,8 @@ export default function ProfileEditPage() {
           <CardContent className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-white mb-2 flex items-center gap-2">
-                  <Weight className="w-4 h-4 text-white" />
+                <label className="block text-sm font-medium mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-wellness)' }}>
+                  <Weight className="w-4 h-4" style={{ color: 'var(--color-text-on-wellness)' }} />
                   Current Weight ({measurementUnit.toUpperCase()})
                 </label>
                 <Input
@@ -369,14 +372,15 @@ export default function ProfileEditPage() {
                   type="number"
                   step="0.1"
                   min="0"
-                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                  style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.3)', color: 'var(--color-text-on-activity)' }}
+                  className="input-surface"
                   data-testid="input-current-weight"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-white mb-2 flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-white" />
+                <label className="block text-sm font-medium mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-wellness)' }}>
+                  <TrendingUp className="w-4 h-4" style={{ color: 'var(--color-text-on-wellness)' }} />
                   Target Weight ({measurementUnit.toUpperCase()})
                 </label>
                 <Input
@@ -386,14 +390,15 @@ export default function ProfileEditPage() {
                   type="number"
                   step="0.1"
                   min="0"
-                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                  style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.3)', color: 'var(--color-text-on-activity)' }}
+                  className="input-surface"
                   data-testid="input-target-weight"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-white mb-2 flex items-center gap-2">
-                  <Flame className="w-4 h-4 text-white" />
+                <label className="block text-sm font-medium mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-wellness)' }}>
+                  <Flame className="w-4 h-4" style={{ color: 'var(--color-text-on-wellness)' }} />
                   Daily Calorie Goal
                 </label>
                 <Input
@@ -402,14 +407,15 @@ export default function ProfileEditPage() {
                   placeholder="Enter your daily calorie target"
                   type="number"
                   min="0"
-                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                  style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.3)', color: 'var(--color-text-on-activity)' }}
+                  className="input-surface"
                   data-testid="input-daily-calories"
                 />
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-white mb-2 flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-white" />
+                <label className="block text-sm font-medium mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-wellness)' }}>
+                  <Activity className="w-4 h-4" style={{ color: 'var(--color-text-on-wellness)' }} />
                   Weekly Workout Goal
                 </label>
                 <Input
@@ -419,7 +425,8 @@ export default function ProfileEditPage() {
                   type="number"
                   min="0"
                   max="14"
-                  className="input-surface bg-white/10 border-white/30 text-white placeholder:text-white/70"
+                  style={{ backgroundColor: 'rgba(255,255,255,0.1)', borderColor: 'rgba(255,255,255,0.3)', color: 'var(--color-text-on-activity)' }}
+                  className="input-surface"
                   data-testid="input-weekly-workouts"
                 />
               </div>
@@ -461,8 +468,8 @@ export default function ProfileEditPage() {
                 <Award className="w-6 h-6 text-success" />
               </div>
               <div>
-                <CardTitle className="text-white text-xl font-bold">Personal Records</CardTitle>
-                <CardDescription className="text-white/90">
+                <CardTitle className="text-xl font-bold" style={{ color: 'var(--color-text-on-success)' }}>Personal Records</CardTitle>
+                <CardDescription style={{ color: 'var(--color-text-secondary-on-success)' }}>
                   Your best lifts and achievements
                 </CardDescription>
               </div>
@@ -479,7 +486,7 @@ export default function ProfileEditPage() {
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-gradient-to-br from-success to-success/80 rounded-lg flex items-center justify-center">
-                        <Trophy className="w-5 h-5 text-white" />
+                        <Trophy className="w-5 h-5" style={{ color: 'var(--color-text-on-success)' }} />
                       </div>
                       <div className="flex-1">
                         <h4 className="font-semibold text-primary" data-testid={`pr-exercise-${pr.exerciseName.toLowerCase().replace(/\s+/g, '-')}`}>
@@ -536,7 +543,7 @@ export default function ProfileEditPage() {
               <Link href="/profile">
                 <Button 
                   variant="outline" 
-                  className="flex-1 sm:flex-none border-white/30 text-white hover:bg-white/10 backdrop-blur-sm h-14 rounded-xl transition-all duration-300"
+                  className="flex-1 sm:flex-none h-14 rounded-xl transition-all duration-300" style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'var(--color-text-on-action)', backgroundColor: 'rgba(255,255,255,0.1)' }}
                   data-testid="button-cancel"
                 >
                   Cancel
@@ -544,7 +551,7 @@ export default function ProfileEditPage() {
               </Link>
             </div>
             
-            <p className="text-xs text-white/90 text-center mt-6 bg-white/10 p-3 rounded-lg">
+            <p className="text-xs text-center mt-6 p-3 rounded-lg" style={{ color: 'var(--color-text-secondary-on-action)', backgroundColor: 'rgba(255,255,255,0.1)' }}>
               {isGuestMode ? 'Changes in Guest Mode are saved locally on this device' : 'Changes will be saved to your account'}
             </p>
           </CardContent>

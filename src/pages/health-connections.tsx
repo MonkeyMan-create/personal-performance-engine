@@ -280,7 +280,7 @@ export default function HealthConnectionsPage() {
                         <Button
                           onClick={() => requestPermissions(platform)}
                           disabled={!platform.available || isLoading}
-                          className="w-full bg-wellness text-white shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50"
+                          className="w-full bg-wellness shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50" style={{ color: 'var(--color-text-on-wellness)' }}
                           data-testid={`button-connect-${platform.id}`}
                         >
                           {isLoading ? (

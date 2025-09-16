@@ -25,7 +25,7 @@ const TemplateLoadingFallback = () => (
       <div className="py-12 text-center space-y-6">
         <div className="relative">
           <div className="w-20 h-20 bg-gradient-to-br from-primary/80 to-primary rounded-3xl flex items-center justify-center ring-4 ring-primary/30 mx-auto">
-            <Zap className="w-10 h-10 text-white" />
+            <Zap className="w-10 h-10" style={{ color: 'var(--color-text-on-action)' }} />
           </div>
           <div className="absolute inset-0 w-20 h-20 bg-gradient-to-br from-primary/80 to-primary rounded-3xl blur-xl opacity-30 animate-pulse mx-auto"></div>
         </div>

@@ -159,7 +159,7 @@ export default function ExerciseImage({
           {/* Click overlay */}
           {onImageClick && !isLoading && !hasError && (
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200 flex items-center justify-center">
-              <Eye className="w-6 h-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              <Eye className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200" style={{ color: 'var(--color-text-on-primary)' }} />
             </div>
           )}
         </>
@@ -168,7 +168,7 @@ export default function ExerciseImage({
       {/* Badge for exercise type (optional) */}
       {size === 'full' && !hasError && !isLoading && (
         <div className="absolute top-2 right-2">
-          <div className="bg-primary text-white px-2 py-1 rounded-md text-xs font-medium shadow-lg">
+          <div className="bg-primary px-2 py-1 rounded-md text-xs font-medium shadow-lg" style={{ color: 'var(--color-text-on-primary)' }}>
             Exercise
           </div>
         </div>

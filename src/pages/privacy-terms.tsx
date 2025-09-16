@@ -19,8 +19,8 @@ export default function PrivacyTermsPage() {
   const renderPrivacyPolicy = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Information We Collect</h3>
-        <div className="space-y-3 text-white/90">
+        <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-on-action)' }}>Information We Collect</h3>
+        <div className="space-y-3" style={{ color: 'var(--color-text-secondary-on-action)' }}>
           <p>We collect information you provide directly to us, such as:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Account information (name, email, profile photo)</li>
@@ -32,8 +32,8 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">How We Use Your Information</h3>
-        <div className="space-y-3 text-white/90">
+        <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-on-action)' }}>How We Use Your Information</h3>
+        <div className="space-y-3" style={{ color: 'var(--color-text-secondary-on-action)' }}>
           <p>We use the information we collect to:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Provide, maintain, and improve our fitness tracking service</li>
@@ -45,9 +45,9 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Information Sharing</h3>
-        <div className="space-y-3 text-white/90">
-          <p><strong className="text-white">We do not sell your personal data.</strong> We may share your information only in these limited circumstances:</p>
+        <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-on-action)' }}>Information Sharing</h3>
+        <div className="space-y-3" style={{ color: 'var(--color-text-secondary-on-action)' }}>
+          <p><strong style={{ color: 'var(--color-text-on-action)' }}>We do not sell your personal data.</strong> We may share your information only in these limited circumstances:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>With your explicit consent</li>
             <li>To comply with legal obligations</li>
@@ -58,8 +58,8 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Data Retention</h3>
-        <div className="space-y-3 text-white/90">
+        <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-on-action)' }}>Data Retention</h3>
+        <div className="space-y-3" style={{ color: 'var(--color-text-secondary-on-action)' }}>
           <p>We retain your personal information only as long as necessary for the purposes outlined in this policy, including:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>As long as your account is active</li>
@@ -75,15 +75,15 @@ export default function PrivacyTermsPage() {
   const renderTermsOfService = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Acceptance of Terms</h3>
-        <p className="text-white/90">
+        <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-on-action)' }}>Acceptance of Terms</h3>
+        <p style={{ color: 'var(--color-text-secondary-on-info)' }}>
           By accessing and using this fitness tracking application, you accept and agree to be bound by the terms and provision of this agreement.
         </p>
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Use License</h3>
-        <div className="space-y-3 text-white/90">
+        <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-on-action)' }}>Use License</h3>
+        <div className="space-y-3" style={{ color: 'var(--color-text-secondary-on-action)' }}>
           <p>Permission is granted to temporarily use this application for personal, non-commercial transitory viewing only. This includes:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>Personal fitness tracking and goal setting</li>
@@ -108,9 +108,9 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Health and Fitness Disclaimer</h3>
+        <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-on-action)' }}>Health and Fitness Disclaimer</h3>
         <div className="p-4 bg-white/10 rounded-lg border border-white/30">
-          <p className="text-white text-sm">
+          <p className="text-sm" style={{ color: 'var(--color-text-on-action)' }}>
             <strong>Important:</strong> This app is for informational purposes only and should not be considered medical advice. 
             Always consult with healthcare professionals before starting any fitness or nutrition program.
           </p>
@@ -118,8 +118,8 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Service Availability</h3>
-        <p className="text-white/90">
+        <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-on-action)' }}>Service Availability</h3>
+        <p style={{ color: 'var(--color-text-secondary-on-info)' }}>
           We strive to maintain high availability but cannot guarantee uninterrupted service. We reserve the right to modify or discontinue features with reasonable notice.
         </p>
       </div>
@@ -129,11 +129,11 @@ export default function PrivacyTermsPage() {
   const renderDataUsage = () => (
     <div className="space-y-6">
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Data Collection Principles</h3>
+        <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-on-action)' }}>Data Collection Principles</h3>
         <div className="grid md:grid-cols-2 gap-4">
           <div className="p-4 bg-white/10 rounded-lg border border-white/30">
-            <h4 className="font-semibold text-white mb-2">✓ What We Do</h4>
-            <ul className="text-white/90 text-sm space-y-1">
+            <h4 className="font-semibold mb-2" style={{ color: 'var(--color-text-on-wellness)' }}>✓ What We Do</h4>
+            <ul className="text-sm space-y-1" style={{ color: 'var(--color-text-secondary-on-wellness)' }}>
               <li>Collect only necessary data</li>
               <li>Use data to improve your experience</li>
               <li>Encrypt sensitive information</li>
@@ -143,8 +143,8 @@ export default function PrivacyTermsPage() {
           </div>
           
           <div className="p-4 bg-white/10 rounded-lg border border-white/30">
-            <h4 className="font-semibold text-white mb-2">✗ What We Don't Do</h4>
-            <ul className="text-white/90 text-sm space-y-1">
+            <h4 className="font-semibold mb-2" style={{ color: 'var(--color-text-on-wellness)' }}>✗ What We Don't Do</h4>
+            <ul className="text-sm space-y-1" style={{ color: 'var(--color-text-secondary-on-wellness)' }}>
               <li>Sell your personal data</li>
               <li>Share data without consent</li>
               <li>Track you across other websites</li>
@@ -156,7 +156,7 @@ export default function PrivacyTermsPage() {
       </div>
 
       <div>
-        <h3 className="text-xl font-bold text-white mb-3">Data Categories</h3>
+        <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--color-text-on-action)' }}>Data Categories</h3>
         <div className="space-y-4">
           {[
             { 
@@ -182,10 +182,10 @@ export default function PrivacyTermsPage() {
           ].map((category, index) => (
             <div key={index} className="p-4 bg-white/10 rounded-lg border border-white/30">
               <div className="flex justify-between items-start mb-2">
-                <h4 className="font-semibold text-white">{category.name}</h4>
-                <span className="text-xs bg-white/20 text-white px-2 py-1 rounded">{category.retention}</span>
+                <h4 className="font-semibold" style={{ color: 'var(--color-text-on-wellness)' }}>{category.name}</h4>
+                <span className="text-xs px-2 py-1 rounded" style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: 'var(--color-text-on-wellness)' }}>{category.retention}</span>
               </div>
-              <p className="text-white/90 text-sm">{category.description}</p>
+              <p className="text-sm" style={{ color: 'var(--color-text-secondary-on-wellness)' }}>{category.description}</p>
             </div>
           ))}
         </div>
@@ -411,8 +411,8 @@ export default function PrivacyTermsPage() {
                   <Download className="w-6 h-6 text-info" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white">Export Data</h3>
-                  <p className="text-white/90 text-sm">Download your information</p>
+                  <h3 className="font-bold" style={{ color: 'var(--color-text-on-info)' }}>Export Data</h3>
+                  <p className="text-sm" style={{ color: 'var(--color-text-secondary-on-info)' }}>Download your information</p>
                 </div>
               </CardContent>
             </Card>
@@ -425,8 +425,8 @@ export default function PrivacyTermsPage() {
                   <Globe className="w-6 h-6 text-success" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white">Contact Support</h3>
-                  <p className="text-white/90 text-sm">Privacy questions</p>
+                  <h3 className="font-bold" style={{ color: 'var(--color-text-on-success)' }}>Contact Support</h3>
+                  <p className="text-sm" style={{ color: 'var(--color-text-secondary-on-success)' }}>Privacy questions</p>
                 </div>
               </CardContent>
             </Card>

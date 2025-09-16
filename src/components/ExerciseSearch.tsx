@@ -133,11 +133,11 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'beginner': 
-        return 'bg-[var(--color-difficulty-beginner)] text-white'
+        return 'bg-[var(--color-difficulty-beginner)] text-[var(--color-text-on-difficulty-beginner)]'
       case 'intermediate': 
-        return 'bg-[var(--color-difficulty-intermediate)] text-white'
+        return 'bg-[var(--color-difficulty-intermediate)] text-[var(--color-text-on-difficulty-intermediate)]'
       case 'advanced': 
-        return 'bg-[var(--color-difficulty-advanced)] text-white'
+        return 'bg-[var(--color-difficulty-advanced)] text-[var(--color-text-on-difficulty-advanced)]'
       default: 
         return 'bg-[var(--color-text-secondary)] text-white'
     }

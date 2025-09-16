@@ -48,25 +48,25 @@ export default function MissionModelPage() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-3 p-4 card-success rounded-lg backdrop-blur-sm shadow-lg">
                     <div className="w-3 h-3 bg-white rounded-full shadow-lg"></div>
-                    <span className="text-white font-bold">
+                    <span className="font-bold" style={{ color: 'var(--color-text-on-success)' }}>
                       <strong>Workout Logging</strong> - Track exercises, sets, reps, and RIR
                     </span>
                   </div>
                   <div className="flex items-center gap-3 p-4 card-activity rounded-lg backdrop-blur-sm shadow-lg">
                     <div className="w-3 h-3 bg-white rounded-full shadow-lg"></div>
-                    <span className="text-white font-bold">
+                    <span className="font-bold" style={{ color: 'var(--color-text-on-activity)' }}>
                       <strong>Nutrition Tracking</strong> - Log meals and monitor calorie intake
                     </span>
                   </div>
                   <div className="flex items-center gap-3 p-4 card-wellness rounded-lg backdrop-blur-sm shadow-lg">
                     <div className="w-3 h-3 bg-white rounded-full shadow-lg"></div>
-                    <span className="text-white font-bold">
+                    <span className="font-bold" style={{ color: 'var(--color-text-on-wellness)' }}>
                       <strong>Progress Analytics</strong> - Charts, trends, and achievement tracking
                     </span>
                   </div>
                   <div className="flex items-center gap-3 p-4 card-warning rounded-lg backdrop-blur-sm shadow-lg">
                     <div className="w-3 h-3 bg-white rounded-full shadow-lg"></div>
-                    <span className="text-white font-bold">
+                    <span className="font-bold" style={{ color: 'var(--color-text-on-warning)' }}>
                       <strong>Guest Mode</strong> - Full functionality without requiring registration
                     </span>
                   </div>
@@ -79,20 +79,20 @@ export default function MissionModelPage() {
                 </h3>
                 <div className="space-y-3">
                   <div className="p-4 card-action rounded-lg backdrop-blur-sm shadow-lg">
-                    <p className="text-white font-medium">✓ 100% Ad-Free</p>
-                    <p className="text-white/90 text-sm mt-1">
+                    <p className="font-medium" style={{ color: 'var(--color-text-on-action)' }}>✓ 100% Ad-Free</p>
+                    <p className="text-sm mt-1" style={{ color: 'var(--color-text-secondary-on-action)' }}>
                       No banner ads, video ads, or sponsored content ever
                     </p>
                   </div>
                   <div className="p-4 card-activity rounded-lg backdrop-blur-sm shadow-lg">
-                    <p className="text-white font-medium">✓ Your Data, Your Control</p>
-                    <p className="text-white/90 text-sm mt-1">
+                    <p className="font-medium" style={{ color: 'var(--color-text-on-activity)' }}>✓ Your Data, Your Control</p>
+                    <p className="text-sm mt-1" style={{ color: 'var(--color-text-secondary-on-activity)' }}>
                       We never sell your data or share it with third parties
                     </p>
                   </div>
                   <div className="p-4 card-success rounded-lg backdrop-blur-sm shadow-lg">
-                    <p className="text-white font-medium">✓ Core Features Forever</p>
-                    <p className="text-white/90 text-sm mt-1">
+                    <p className="font-medium" style={{ color: 'var(--color-text-on-success)' }}>✓ Core Features Forever</p>
+                    <p className="text-sm mt-1" style={{ color: 'var(--color-text-secondary-on-success)' }}>
                       Essential fitness tracking will always be free
                     </p>
                   </div>
@@ -128,16 +128,16 @@ export default function MissionModelPage() {
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between p-4 card-activity rounded-lg backdrop-blur-sm shadow-lg">
-                    <span className="text-white font-bold">Server & Infrastructure</span>
-                    <Badge variant="secondary" className="bg-white/20 text-white font-bold backdrop-blur-sm">~60%</Badge>
+                    <span className="font-bold" style={{ color: 'var(--color-text-on-activity)' }}>Server & Infrastructure</span>
+                    <Badge variant="secondary" className="font-bold backdrop-blur-sm" style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: 'var(--color-text-on-activity)' }}>~60%</Badge>
                   </div>
                   <div className="flex items-center justify-between p-4 card-success rounded-lg backdrop-blur-sm shadow-lg">
-                    <span className="text-white font-bold">New Free Feature Development</span>
-                    <Badge variant="secondary" className="bg-white/20 text-white font-bold backdrop-blur-sm">~30%</Badge>
+                    <span className="font-bold" style={{ color: 'var(--color-text-on-success)' }}>New Free Feature Development</span>
+                    <Badge variant="secondary" className="font-bold backdrop-blur-sm" style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: 'var(--color-text-on-success)' }}>~30%</Badge>
                   </div>
                   <div className="flex items-center justify-between p-4 card-wellness rounded-lg backdrop-blur-sm shadow-lg">
-                    <span className="text-white font-bold">Platform Maintenance</span>
-                    <Badge variant="secondary" className="bg-white/20 text-white font-bold backdrop-blur-sm">~10%</Badge>
+                    <span className="font-bold" style={{ color: 'var(--color-text-on-wellness)' }}>Platform Maintenance</span>
+                    <Badge variant="secondary" className="font-bold backdrop-blur-sm" style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: 'var(--color-text-on-wellness)' }}>~10%</Badge>
                   </div>
                 </div>
               </div>
@@ -220,18 +220,18 @@ export default function MissionModelPage() {
                         <Brain className="w-6 h-6 text-white" />
                         <h4 className="font-bold text-white">AI Personal Coach</h4>
                       </div>
-                      <Badge variant="outline" className="border-white/30 text-white bg-white/20 font-bold">
+                      <Badge variant="outline" className="font-bold" style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'var(--color-text-on-success)', backgroundColor: 'rgba(255,255,255,0.2)' }}>
                         ~$5-8/month
                       </Badge>
                     </div>
                   </div>
                   <div className="p-4 grid md:grid-cols-2 gap-4">
                     <div>
-                      <h5 className="font-bold text-white mb-2 flex items-center gap-2">
-                        <DollarSign className="w-4 h-4 text-white" />
+                      <h5 className="font-bold mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-action)' }}>
+                        <DollarSign className="w-4 h-4" style={{ color: 'var(--color-text-on-action)' }} />
                         Why It Costs Money
                       </h5>
-                      <ul className="text-sm text-white/90 space-y-1">
+                      <ul className="text-sm space-y-1" style={{ color: 'var(--color-text-secondary-on-action)' }}>
                         <li>• Advanced AI processing ($3-4/month per user)</li>
                         <li>• Real-time workout analysis and feedback</li>
                         <li>• Personalized nutrition recommendations</li>
@@ -239,11 +239,11 @@ export default function MissionModelPage() {
                       </ul>
                     </div>
                     <div>
-                      <h5 className="font-bold text-white mb-2 flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-white" />
+                      <h5 className="font-bold mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-action)' }}>
+                        <TrendingUp className="w-4 h-4" style={{ color: 'var(--color-text-on-action)' }} />
                         What You Get
                       </h5>
-                      <ul className="text-sm text-white/90 space-y-1">
+                      <ul className="text-sm space-y-1" style={{ color: 'var(--color-text-secondary-on-action)' }}>
                         <li>• Personalized workout adjustments based on performance</li>
                         <li>• Smart form correction and technique tips</li>
                         <li>• Adaptive meal planning with macro optimization</li>
@@ -258,21 +258,21 @@ export default function MissionModelPage() {
                   <div className="bg-gradient-to-br from-white/20 to-white/10 p-4 border-b border-white/20">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <TrendingUp className="w-6 h-6 text-white" />
-                        <h4 className="font-bold text-white">Smart Recovery Score</h4>
+                        <TrendingUp className="w-6 h-6" style={{ color: 'var(--color-text-on-success)' }} />
+                        <h4 className="font-bold" style={{ color: 'var(--color-text-on-success)' }}>Smart Recovery Score</h4>
                       </div>
-                      <Badge variant="outline" className="border-white/30 text-white bg-white/20 font-bold">
+                      <Badge variant="outline" className="font-bold" style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'var(--color-text-on-success)', backgroundColor: 'rgba(255,255,255,0.2)' }}>
                         ~$3-5/month
                       </Badge>
                     </div>
                   </div>
                   <div className="p-4 grid md:grid-cols-2 gap-4">
                     <div>
-                      <h5 className="font-bold text-white mb-2 flex items-center gap-2">
-                        <DollarSign className="w-4 h-4 text-white" />
+                      <h5 className="font-bold mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-action)' }}>
+                        <DollarSign className="w-4 h-4" style={{ color: 'var(--color-text-on-action)' }} />
                         Why It Costs Money
                       </h5>
-                      <ul className="text-sm text-white/90 space-y-1">
+                      <ul className="text-sm space-y-1" style={{ color: 'var(--color-text-secondary-on-action)' }}>
                         <li>• Health data aggregation APIs ($2-3/month)</li>
                         <li>• Complex algorithmic processing</li>
                         <li>• Sleep and HRV analysis servers</li>
@@ -280,11 +280,11 @@ export default function MissionModelPage() {
                       </ul>
                     </div>
                     <div>
-                      <h5 className="font-bold text-white mb-2 flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-white" />
+                      <h5 className="font-bold mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-action)' }}>
+                        <TrendingUp className="w-4 h-4" style={{ color: 'var(--color-text-on-action)' }} />
                         What You Get
                       </h5>
-                      <ul className="text-sm text-white/90 space-y-1">
+                      <ul className="text-sm space-y-1" style={{ color: 'var(--color-text-secondary-on-action)' }}>
                         <li>• Daily recovery score based on sleep & HRV data</li>
                         <li>• Workout intensity recommendations</li>
                         <li>• Optimal training and rest day planning</li>
@@ -299,21 +299,21 @@ export default function MissionModelPage() {
                   <div className="bg-gradient-to-br from-white/20 to-white/10 p-4 border-b border-white/20">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <Users className="w-6 h-6 text-white" />
-                        <h4 className="font-bold text-white">Health Platform Integration</h4>
+                        <Users className="w-6 h-6" style={{ color: 'var(--color-text-on-wellness)' }} />
+                        <h4 className="font-bold" style={{ color: 'var(--color-text-on-wellness)' }}>Health Platform Integration</h4>
                       </div>
-                      <Badge variant="outline" className="border-white/30 text-white bg-white/20 font-bold">
+                      <Badge variant="outline" className="font-bold" style={{ borderColor: 'rgba(255,255,255,0.3)', color: 'var(--color-text-on-success)', backgroundColor: 'rgba(255,255,255,0.2)' }}>
                         ~$2-4/month
                       </Badge>
                     </div>
                   </div>
                   <div className="p-4 grid md:grid-cols-2 gap-4">
                     <div>
-                      <h5 className="font-bold text-white mb-2 flex items-center gap-2">
-                        <DollarSign className="w-4 h-4 text-white" />
+                      <h5 className="font-bold mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-action)' }}>
+                        <DollarSign className="w-4 h-4" style={{ color: 'var(--color-text-on-action)' }} />
                         Why It Costs Money
                       </h5>
-                      <ul className="text-sm text-white/90 space-y-1">
+                      <ul className="text-sm space-y-1" style={{ color: 'var(--color-text-secondary-on-action)' }}>
                         <li>• Third-party health API subscriptions ($1-2/month)</li>
                         <li>• Data processing and synchronization</li>
                         <li>• Secure health data storage and compliance</li>
@@ -321,11 +321,11 @@ export default function MissionModelPage() {
                       </ul>
                     </div>
                     <div>
-                      <h5 className="font-bold text-white mb-2 flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-white" />
+                      <h5 className="font-bold mb-2 flex items-center gap-2" style={{ color: 'var(--color-text-on-action)' }}>
+                        <TrendingUp className="w-4 h-4" style={{ color: 'var(--color-text-on-action)' }} />
                         What You Get
                       </h5>
-                      <ul className="text-sm text-white/90 space-y-1">
+                      <ul className="text-sm space-y-1" style={{ color: 'var(--color-text-secondary-on-action)' }}>
                         <li>• Automatic sync with Apple Health & Google Health Connect</li>
                         <li>• Wearable device integration (Fitbit, Garmin, Oura)</li>
                         <li>• Comprehensive health data analysis</li>
@@ -380,10 +380,10 @@ export default function MissionModelPage() {
               <div className="w-20 h-20 icon-badge-action rounded-3xl flex items-center justify-center mx-auto shadow-xl">
                 <Zap className="w-10 h-10 text-action" />
               </div>
-              <h3 className="text-2xl font-bold text-white">
+              <h3 className="text-2xl font-bold" style={{ color: 'var(--color-text-on-action)' }}>
                 Start Your Fitness Journey Today
               </h3>
-              <p className="text-white/90 max-w-2xl mx-auto text-lg leading-relaxed">
+              <p className="max-w-2xl mx-auto text-lg leading-relaxed" style={{ color: 'var(--color-text-secondary-on-action)' }}>
                 Get started with our powerful, free tools. Track workouts, monitor nutrition, and see your progress — 
                 no registration required with Guest Mode.
               </p>

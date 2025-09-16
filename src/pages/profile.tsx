@@ -175,7 +175,7 @@ export default function SettingsPage() {
         <div className="page-header space-y-6">
           <div className="flex-center gap-6">
             <div className="icon-badge icon-badge-action icon-badge-2xl shadow-2xl">
-              <Settings className="w-10 h-10 text-white" />
+              <Settings className="w-10 h-10" style={{ color: 'var(--color-text-on-action)' }} />
             </div>
             <div className="text-center space-y-2">
               <h1 className="page-title text-4xl" data-testid="page-title">Settings & Profile</h1>
@@ -204,7 +204,7 @@ export default function SettingsPage() {
                       data-testid="user-avatar-image"
                     />
                   ) : (
-                    <div className="w-full h-full bg-action flex-center text-white font-bold text-2xl" data-testid="user-avatar-initials">
+                    <div className="w-full h-full bg-action flex-center font-bold text-2xl" style={{ color: 'var(--color-text-on-action)' }} data-testid="user-avatar-initials">
                       {isGuestMode ? getInitials(profileData.displayName) || 'G' : getInitials(user?.displayName)}
                     </div>
                   )}
@@ -256,8 +256,8 @@ export default function SettingsPage() {
                     <User className="w-5 h-5 text-action" />
                   </div>
                   <div>
-                    <p className="font-bold text-white text-lg">My Profile & Account</p>
-                    <p className="text-white mt-1 font-medium">View and edit your profile information</p>
+                    <p className="font-bold text-lg" style={{ color: 'var(--color-text-on-action)' }}>My Profile & Account</p>
+                    <p className="mt-1 font-medium" style={{ color: 'var(--color-text-secondary-on-action)' }}>View and edit your profile information</p>
                   </div>
                 </div>
                 <div className="icon-badge bg-white rounded-lg">
@@ -302,15 +302,15 @@ export default function SettingsPage() {
               >
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-white/20 rounded-xl shadow-lg backdrop-blur-sm">
-                    <Languages className="w-5 h-5 text-white" />
+                    <Languages className="w-5 h-5" style={{ color: 'var(--color-text-on-warning)' }} />
                   </div>
                   <div>
-                    <p className="font-bold text-white text-lg">Language</p>
-                    <p className="text-white/90 mt-1 font-medium">{getLanguageDisplay()}</p>
+                    <p className="font-bold text-lg" style={{ color: 'var(--color-text-on-warning)' }}>Language</p>
+                    <p className="mt-1 font-medium" style={{ color: 'var(--color-text-secondary-on-warning)' }}>{getLanguageDisplay()}</p>
                   </div>
                 </div>
                 <div className="p-2 bg-white/20 rounded-lg shadow-lg backdrop-blur-sm">
-                  <ChevronDown className={`w-5 h-5 text-white transition-transform duration-200 ${showLanguageDropdown ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${showLanguageDropdown ? 'rotate-180' : ''}`} style={{ color: 'var(--color-text-on-warning)' }} />
                 </div>
               </div>
               
@@ -343,15 +343,15 @@ export default function SettingsPage() {
               >
                 <div className="flex items-center gap-4">
                   <div className="p-3 bg-white/20 rounded-xl shadow-lg backdrop-blur-sm">
-                    <Globe className="w-5 h-5 text-white" />
+                    <Globe className="w-5 h-5" style={{ color: 'var(--color-text-on-wellness)' }} />
                   </div>
                   <div>
-                    <p className="font-bold text-white text-lg">Country/Region</p>
-                    <p className="text-white/90 mt-1 font-medium">{getCountryDisplay()}</p>
+                    <p className="font-bold text-lg" style={{ color: 'var(--color-text-on-wellness)' }}>Country/Region</p>
+                    <p className="mt-1 font-medium" style={{ color: 'var(--color-text-secondary-on-wellness)' }}>{getCountryDisplay()}</p>
                   </div>
                 </div>
                 <div className="p-2 bg-white/20 rounded-lg shadow-lg backdrop-blur-sm">
-                  <ChevronDown className={`w-5 h-5 text-white transition-transform duration-200 ${showCountryDropdown ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-5 h-5 transition-transform duration-200 ${showCountryDropdown ? 'rotate-180' : ''}`} style={{ color: 'var(--color-text-on-wellness)' }} />
                 </div>
               </div>
               
@@ -382,13 +382,13 @@ export default function SettingsPage() {
           <CardHeader className="card-header bg-gradient-to-r from-activity/20 to-nutrition/10 rounded-t-xl">
             <div className="flex-start gap-4">
               <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-2xl shadow-xl">
-                <Download className="w-8 h-8 text-white" />
+                <Download className="w-8 h-8" style={{ color: 'var(--color-text-on-activity)' }} />
               </div>
               <div className="space-y-2">
-                <CardTitle className="card-title text-white text-3xl font-black drop-shadow-lg">
+                <CardTitle className="card-title text-3xl font-black drop-shadow-lg" style={{ color: 'var(--color-text-on-activity)' }}>
                   Data Management
                 </CardTitle>
-                <CardDescription className="card-description text-white/90 text-lg font-medium">
+                <CardDescription className="card-description text-lg font-medium" style={{ color: 'var(--color-text-secondary-on-activity)' }}>
                   Manage your health data and account information
                 </CardDescription>
               </div>
@@ -402,15 +402,15 @@ export default function SettingsPage() {
               >
                 <div className="flex-start gap-5">
                   <div className="icon-badge icon-badge-xl bg-white/25 backdrop-blur-sm rounded-2xl shadow-xl">
-                    <Trophy className="w-8 h-8 text-white" />
+                    <Trophy className="w-8 h-8" style={{ color: 'var(--color-text-on-success)' }} />
                   </div>
                   <div className="space-y-1">
-                    <p className="font-black text-white text-xl drop-shadow-lg">Year in Review</p>
-                    <p className="text-white/90 font-medium text-base leading-relaxed">See your fitness journey and achievements</p>
+                    <p className="font-black text-xl drop-shadow-lg" style={{ color: 'var(--color-text-on-success)' }}>Year in Review</p>
+                    <p className="font-medium text-base leading-relaxed" style={{ color: 'var(--color-text-secondary-on-success)' }}>See your fitness journey and achievements</p>
                   </div>
                 </div>
                 <div className="icon-badge bg-white/25 backdrop-blur-sm rounded-xl shadow-lg">
-                  <ChevronRight className="w-6 h-6 text-white" />
+                  <ChevronRight className="w-6 h-6" style={{ color: 'var(--color-text-on-success)' }} />
                 </div>
               </div>
             </Link>
@@ -421,15 +421,15 @@ export default function SettingsPage() {
               >
                 <div className="flex-start gap-5">
                   <div className="icon-badge icon-badge-xl bg-white/25 backdrop-blur-sm rounded-2xl shadow-xl">
-                    <Smartphone className="w-8 h-8 text-white" />
+                    <Smartphone className="w-8 h-8" style={{ color: 'var(--color-text-on-wellness)' }} />
                   </div>
                   <div className="space-y-1">
-                    <p className="font-black text-white text-xl drop-shadow-lg">Health Data Connections</p>
-                    <p className="text-white/90 font-medium text-base leading-relaxed">Connect Google Health & Apple HealthKit</p>
+                    <p className="font-black text-xl drop-shadow-lg" style={{ color: 'var(--color-text-on-wellness)' }}>Health Data Connections</p>
+                    <p className="font-medium text-base leading-relaxed" style={{ color: 'var(--color-text-secondary-on-wellness)' }}>Connect Google Health & Apple HealthKit</p>
                   </div>
                 </div>
                 <div className="icon-badge bg-white/25 backdrop-blur-sm rounded-xl shadow-lg">
-                  <ChevronRight className="w-6 h-6 text-white" />
+                  <ChevronRight className="w-6 h-6" style={{ color: 'var(--color-text-on-success)' }} />
                 </div>
               </div>
             </Link>
@@ -437,15 +437,15 @@ export default function SettingsPage() {
               <div className="action-item card-action border-2 border-white/20 interactive-enhanced shadow-xl" data-testid="settings-export-data">
                 <div className="flex-start gap-5">
                   <div className="icon-badge icon-badge-xl bg-white/25 backdrop-blur-sm rounded-2xl shadow-xl">
-                    <Download className="w-8 h-8 text-white" />
+                    <Download className="w-8 h-8" style={{ color: 'var(--color-text-on-action)' }} />
                   </div>
                   <div className="space-y-1">
-                    <p className="font-black text-white text-xl drop-shadow-lg">Export Data</p>
-                    <p className="text-white/90 font-medium text-base leading-relaxed">Download your fitness and nutrition data</p>
+                    <p className="font-black text-xl drop-shadow-lg" style={{ color: 'var(--color-text-on-action)' }}>Export Data</p>
+                    <p className="font-medium text-base leading-relaxed" style={{ color: 'var(--color-text-secondary-on-action)' }}>Download your fitness and nutrition data</p>
                   </div>
                 </div>
                 <div className="icon-badge bg-white/25 backdrop-blur-sm rounded-xl shadow-lg">
-                  <ChevronRight className="w-6 h-6 text-white" />
+                  <ChevronRight className="w-6 h-6" style={{ color: 'var(--color-text-on-success)' }} />
                 </div>
               </div>
             </Link>
@@ -472,7 +472,7 @@ export default function SettingsPage() {
           <CardHeader className="pb-6 bg-nutrition/10 relative">
             <CardTitle className="text-primary text-2xl font-bold flex-start gap-3">
               <div className="icon-badge bg-nutrition rounded-xl shadow-lg">
-                <HelpCircle className="w-6 h-6 text-white" />
+                <HelpCircle className="w-6 h-6" style={{ color: 'var(--color-text-on-nutrition)' }} />
               </div>
               Support & Help
             </CardTitle>
@@ -524,7 +524,7 @@ export default function SettingsPage() {
                   </div>
                 </div>
                 <div className="icon-badge bg-white/25 backdrop-blur-sm rounded-xl shadow-lg">
-                  <ChevronRight className="w-6 h-6 text-white" />
+                  <ChevronRight className="w-6 h-6" style={{ color: 'var(--color-text-on-success)' }} />
                 </div>
               </div>
             </Link>
@@ -540,7 +540,7 @@ export default function SettingsPage() {
                   </div>
                 </div>
                 <div className="icon-badge bg-white/25 backdrop-blur-sm rounded-xl shadow-lg">
-                  <ChevronRight className="w-6 h-6 text-white" />
+                  <ChevronRight className="w-6 h-6" style={{ color: 'var(--color-text-on-success)' }} />
                 </div>
               </div>
             </Link>
@@ -552,10 +552,10 @@ export default function SettingsPage() {
           <CardContent className="card-content p-8">
             <div className="text-center mb-6">
               <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-2xl shadow-xl mx-auto mb-4">
-                <LogOut className="w-8 h-8 text-white" />
+                <LogOut className="w-8 h-8" style={{ color: 'var(--color-text-on-action)' }} />
               </div>
-              <p className="text-white/90 text-lg font-medium mb-2">Ready to take a break?</p>
-              <p className="text-white/80 text-base">{isGuestMode ? 'End your guest session' : 'You can always sign back in anytime'}</p>
+              <p className="text-lg font-medium mb-2" style={{ color: 'var(--color-text-secondary-on-action)' }}>Ready to take a break?</p>
+              <p className="text-base" style={{ color: 'var(--color-text-secondary-on-action)' }}>{isGuestMode ? 'End your guest session' : 'You can always sign back in anytime'}</p>
             </div>
             <Button 
               variant="destructive" 

@@ -77,6 +77,11 @@
   --color-difficulty-beginner: #22c55e; /* Green */
   --color-difficulty-intermediate: #f59e0b; /* Amber */
   --color-difficulty-advanced: #ef4444; /* Red */
+  
+  /* Text colors for difficulty backgrounds - WCAG AA compliant */
+  --color-text-on-difficulty-beginner: #ffffff; /* White on green (>4.5:1 contrast) */
+  --color-text-on-difficulty-intermediate: #1e293b; /* Dark text on amber (>4.5:1 contrast) */
+  --color-text-on-difficulty-advanced: #ffffff; /* White on red (>4.5:1 contrast) */
 
   /* ==========================================
      BASE UI COLORS - LIGHT MODE
