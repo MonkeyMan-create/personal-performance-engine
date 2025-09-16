@@ -26,7 +26,7 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
         alignItems: 'center',
         justifyContent: 'center',
         padding: 'var(--spacing-6)',
-        backgroundColor: 'var(--color-background)'
+        background: 'var(--color-background)'
       }}
     >
       <div 
@@ -61,16 +61,13 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                boxShadow: `0 0 0 4px rgba(var(--color-action-rgb), 0.3)`
+                boxShadow: `0 0 0 4px rgba(var(--color-action-rgb), 0.3)`,
+                color: 'var(--color-action-text)'
               }}
             >
               {/* Stylized heartbeat/pulse logo */}
               <HeartbeatIcon 
-                style={{
-                  width: 'calc(var(--spacing-10))', // 40px equivalent
-                  height: 'calc(var(--spacing-10))', // 40px equivalent
-                  color: 'var(--color-action-text)'
-                }}
+                className="w-10 h-10"
               />
             </div>
             {/* Glowing effect */}
@@ -224,10 +221,7 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
                 }}
               >
                 <GoogleIcon 
-                  style={{
-                    width: 'var(--icon-size-md)',
-                    height: 'var(--icon-size-md)'
-                  }}
+                  className="w-5 h-5"
                 />
                 Sign in with Google
               </Button>
@@ -245,7 +239,7 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
                   style={{
                     flex: 1,
                     height: '1px',
-                    backgroundColor: 'var(--color-border-secondary)'
+                    background: 'var(--color-border-secondary)'
                   }}
                 />
                 <span 
@@ -253,7 +247,7 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
                     padding: `0 var(--spacing-4)`,
                     fontSize: 'var(--font-size-xs)',
                     color: 'var(--color-text-tertiary)',
-                    backgroundColor: 'var(--color-background)'
+                    background: 'var(--color-background)'
                   }}
                 >
                   OR
@@ -262,7 +256,7 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
                   style={{
                     flex: 1,
                     height: '1px',
-                    backgroundColor: 'var(--color-border-secondary)'
+                    background: 'var(--color-border-secondary)'
                   }}
                 />
               </div>
@@ -313,10 +307,7 @@ export default function AuthPrompt({ title, description }: AuthPromptProps) {
                 }}
               >
                 <UserIcon 
-                  style={{
-                    width: 'var(--icon-size-md)',
-                    height: 'var(--icon-size-md)'
-                  }}
+                  className="w-5 h-5"
                 />
                 Continue as Guest
               </Button>

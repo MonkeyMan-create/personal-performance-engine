@@ -29,7 +29,11 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
   const [SketchPicker, setSketchPicker] = useState<any>(null)
   const [isColorPickerLoading, setIsColorPickerLoading] = useState(false)
   const { toast } = useToast()
-  const { colorTheme, setColorTheme, hasCustomColor, clearCustomColor } = useTheme()
+  const { theme, setTheme } = useTheme()
+  
+  // Custom color state management
+  const [hasCustomColor, setHasCustomColor] = useState(false)
+  const [colorTheme, setColorTheme] = useState<'default' | 'custom'>('default')
 
   // Lazy load SketchPicker when needed
   const loadColorPicker = async () => {
@@ -51,23 +55,27 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
     }
   }
 
-  // Sync selectedColor with theme provider state
+  // Initialize custom color state on component mount
   useEffect(() => {
-    if (colorTheme === 'custom') {
-      try {
-        const savedCustomColor = localStorage.getItem(CUSTOM_COLOR_STORAGE_KEY)
-        if (savedCustomColor) {
-          const colorData = JSON.parse(savedCustomColor)
-          setSelectedColor(colorData.primary)
-        }
-      } catch (error) {
-        console.warn('Failed to load custom color from localStorage:', error)
+    try {
+      const savedCustomColor = localStorage.getItem(CUSTOM_COLOR_STORAGE_KEY)
+      if (savedCustomColor) {
+        const colorData = JSON.parse(savedCustomColor)
+        setSelectedColor(colorData.primary)
+        setColorTheme('custom')
+        setHasCustomColor(true)
+      } else {
+        setSelectedColor('#14B8A6')
+        setColorTheme('default')
+        setHasCustomColor(false)
       }
-    } else {
-      // Reset to default when not using custom theme
+    } catch (error) {
+      console.warn('Failed to load custom color from localStorage:', error)
       setSelectedColor('#14B8A6')
+      setColorTheme('default')
+      setHasCustomColor(false)
     }
-  }, [colorTheme])
+  }, [])
 
   // Calculate color variations using lazy-loaded tinycolor2
   const calculateColorVariations = useCallback(async (hexColor: string): Promise<CustomColorData> => {
@@ -111,21 +119,33 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
       console.warn('Failed to save custom color to localStorage:', error)
     }
 
-    // CRITICAL FIX: Notify theme provider about custom color
+    // Update custom color state
     setColorTheme('custom')
+    setHasCustomColor(true)
 
     // Notify parent component
     onColorApply?.(colorData.primary)
-  }, [calculateColorVariations, onColorApply, setColorTheme])
+  }, [calculateColorVariations, onColorApply])
 
-  // Reset to remove custom color using theme provider
+  // Reset custom color to default
   const resetCustomColor = useCallback(() => {
     try {
-      // Use theme provider's clearCustomColor method
-      clearCustomColor()
+      // Remove custom color from localStorage
+      localStorage.removeItem(CUSTOM_COLOR_STORAGE_KEY)
       
-      // Reset selected color to default
+      // Reset CSS variables to default
+      const root = document.documentElement
+      root.style.removeProperty('--color-primary')
+      root.style.removeProperty('--color-primary-hover')
+      root.style.removeProperty('--color-primary-text')
+      root.style.removeProperty('--primary')
+      root.style.removeProperty('--ring')
+      root.style.removeProperty('--chart-1')
+      
+      // Reset component state
       setSelectedColor('#14B8A6')
+      setColorTheme('default')
+      setHasCustomColor(false)
       setShowColorPicker(false)
 
       onReset?.()
@@ -141,7 +161,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
         description: "Could not reset custom color. Please try again.",
       })
     }
-  }, [clearCustomColor, onReset, toast])
+  }, [onReset, toast])
 
   // Handle color picker change
   const handleColorChange = (color: ColorResult) => {
@@ -206,7 +226,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
                 setShowColorPicker(!showColorPicker)
               }}
               className="w-16 h-16 rounded-xl border-4 border-[var(--color-border)] shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
-              style={{ backgroundColor: selectedColor }}
+              style={{ background: selectedColor }}
               data-testid="color-swatch-button"
               aria-label={`Selected color: ${selectedColor}. Click to open color picker`}
             >
@@ -232,7 +252,7 @@ export default function DynamicColorPicker({ onColorApply, onReset }: DynamicCol
                 />
                 <div 
                   className="w-4 h-4 rounded-full shadow-sm border border-[var(--color-border)]"
-                  style={{ backgroundColor: selectedColor }}
+                  style={{ background: selectedColor }}
                 />
               </div>
             </div>

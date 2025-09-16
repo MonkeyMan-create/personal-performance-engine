@@ -796,7 +796,7 @@ export default function HomePage() {
                     <div 
                       style={{
                         padding: 'var(--spacing-3)',
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        background: 'rgba(255, 255, 255, 0.2)',
                         borderRadius: 'var(--radius-2xl)',
                         backdropFilter: 'blur(8px)'
                       }}
@@ -898,7 +898,7 @@ export default function HomePage() {
                     <div 
                       style={{
                         padding: 'var(--spacing-3)',
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        background: 'rgba(255, 255, 255, 0.2)',
                         borderRadius: 'var(--radius-2xl)',
                         backdropFilter: 'blur(8px)'
                       }}
@@ -1000,7 +1000,7 @@ export default function HomePage() {
                     <div 
                       style={{
                         padding: 'var(--spacing-3)',
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        background: 'rgba(255, 255, 255, 0.2)',
                         borderRadius: 'var(--radius-2xl)',
                         backdropFilter: 'blur(8px)'
                       }}
@@ -1074,7 +1074,7 @@ export default function HomePage() {
                   justifyContent: 'center',
                   width: 'var(--control-width-icon)',
                   height: 'var(--control-width-icon)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.2)',
                   borderRadius: 'var(--radius-lg)',
                   backdropFilter: 'blur(8px)'
                 }}
@@ -1114,7 +1114,7 @@ export default function HomePage() {
                     alignItems: 'flex-start',
                     gap: 'var(--spacing-3)',
                     padding: 'var(--spacing-3)',
-                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    background: 'rgba(255, 255, 255, 0.1)',
                     borderRadius: 'var(--radius-lg)',
                     backdropFilter: 'blur(4px)'
                   }}
@@ -1127,7 +1127,7 @@ export default function HomePage() {
                       justifyContent: 'center',
                       width: 'var(--control-width-icon-sm)',
                       height: 'var(--control-width-icon-sm)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                      background: 'rgba(255, 255, 255, 0.2)',
                       borderRadius: 'var(--radius-full)',
                       flexShrink: 0
                     }}
@@ -1162,7 +1162,7 @@ export default function HomePage() {
                       style={{
                         alignSelf: 'flex-start',
                         padding: `var(--spacing-1) var(--spacing-3)`,
-                        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                        background: 'rgba(255, 255, 255, 0.2)',
                         color: 'var(--color-wellness-text)',
                         fontSize: 'var(--font-size-xs)',
                         fontWeight: 'var(--font-weight-medium)',
@@ -1173,10 +1173,10 @@ export default function HomePage() {
                       }}
                       data-testid={`insight-action-${insight.id}`}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.3)'
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.3)'
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)'
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.2)'
                       }}
                     >
                       {insight.action} →
@@ -1212,7 +1212,7 @@ export default function HomePage() {
                   justifyContent: 'center',
                   width: 'var(--control-width-icon)',
                   height: 'var(--control-width-icon)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.2)',
                   borderRadius: 'var(--radius-lg)',
                   backdropFilter: 'blur(8px)'
                 }}
@@ -1278,14 +1278,14 @@ export default function HomePage() {
               <div 
                 style={{
                   width: '100%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.2)',
                   borderRadius: 'var(--radius-full)',
                   height: 'var(--spacing-2)'
                 }}
               >
                 <div 
                   style={{
-                    backgroundColor: 'var(--color-protein)',
+                    background: 'var(--color-protein)',
                     height: 'var(--spacing-2)',
                     borderRadius: 'var(--radius-full)',
                     transition: 'all 1s ease-out',
@@ -1330,14 +1330,14 @@ export default function HomePage() {
               <div 
                 style={{
                   width: '100%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.2)',
                   borderRadius: 'var(--radius-full)',
                   height: 'var(--spacing-2)'
                 }}
               >
                 <div 
                   style={{
-                    backgroundColor: 'var(--color-carbs)',
+                    background: 'var(--color-carbs)',
                     height: 'var(--spacing-2)',
                     borderRadius: 'var(--radius-full)',
                     transition: 'all 1s ease-out',
@@ -1382,14 +1382,14 @@ export default function HomePage() {
               <div 
                 style={{
                   width: '100%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.2)',
                   borderRadius: 'var(--radius-full)',
                   height: 'var(--spacing-2)'
                 }}
               >
                 <div 
                   style={{
-                    backgroundColor: 'var(--color-fat)',
+                    background: 'var(--color-fat)',
                     height: 'var(--spacing-2)',
                     borderRadius: 'var(--radius-full)',
                     transition: 'all 1s ease-out',
@@ -1414,7 +1414,7 @@ export default function HomePage() {
                 style={{
                   textAlign: 'center',
                   padding: 'var(--spacing-3)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.2)',
                   borderRadius: 'var(--radius-xl)',
                   backdropFilter: 'blur(8px)',
                   flex: 1
@@ -1447,7 +1447,7 @@ export default function HomePage() {
                 style={{
                   textAlign: 'center',
                   padding: 'var(--spacing-3)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.2)',
                   borderRadius: 'var(--radius-xl)',
                   backdropFilter: 'blur(8px)',
                   flex: 1
@@ -1480,7 +1480,7 @@ export default function HomePage() {
                 style={{
                   textAlign: 'center',
                   padding: 'var(--spacing-3)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  background: 'rgba(255, 255, 255, 0.2)',
                   borderRadius: 'var(--radius-xl)',
                   backdropFilter: 'blur(8px)',
                   flex: 1

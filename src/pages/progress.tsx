@@ -367,7 +367,7 @@ export default function ProgressPage() {
                           />
                           <chartComponents.Tooltip 
                             contentStyle={{ 
-                              backgroundColor: 'var(--color-surface)',
+                              background: 'var(--color-surface)',
                               border: '1px solid var(--color-border)',
                               borderRadius: '8px'
                             }}
@@ -719,7 +719,7 @@ export default function ProgressPage() {
                           />
                           <chartComponents.Tooltip 
                             contentStyle={{ 
-                              backgroundColor: 'var(--color-surface)',
+                              background: 'var(--color-surface)',
                               border: '1px solid var(--color-border)',
                               borderRadius: '8px'
                             }}

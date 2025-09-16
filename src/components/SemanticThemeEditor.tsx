@@ -222,7 +222,7 @@ export default function SemanticThemeEditor() {
                   {/* Color Preview */}
                   <div 
                     className="w-6 h-6 rounded-lg shadow-md border-2 border-background"
-                    style={{ backgroundColor: currentTheme[category.id] }}
+                    style={{ background: currentTheme[category.id] }}
                     data-testid={`color-preview-${category.id}`}
                   />
                   

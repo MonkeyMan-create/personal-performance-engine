@@ -157,7 +157,7 @@ export default function SettingsPage() {
             className="inline-block h-6 w-6 transform rounded-full shadow-lg transition-transform duration-300"
             style={{
               transform: toggleState ? 'translateX(1.75rem)' : 'translateX(0.25rem)',
-              backgroundColor: toggleState ? 'currentColor' : 'white'
+              background: toggleState ? 'currentColor' : 'white'
             }}
           />
         </button>
