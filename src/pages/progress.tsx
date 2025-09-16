@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/AuthContext'
 import AuthPrompt from '../components/AuthPrompt'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { TrendingUp, Calendar, Dumbbell, Apple, Target, Flame, Trophy, Award, Star, Zap, Shield, Crown, Medal, BadgeCheck } from 'lucide-react'
+import { ProgressEmptyState } from '../components/EmptyState'
 import { getWorkoutsLocally, getMealsLocally, getProgressLocally, GuestWorkout, GuestMeal, GuestProgress } from '../utils/guestStorage'
 import { useMeasurement } from '../contexts/MeasurementContext'
 
@@ -250,6 +251,15 @@ export default function ProgressPage() {
               <p data-testid="text-loading-message" className="text-secondary">Loading your progress data...</p>
             </CardContent>
           </Card>
+        ) : workoutStats.totalWorkouts === 0 && nutritionStats.totalMealsLogged === 0 && progressData.length === 0 ? (
+          <ProgressEmptyState
+            icon={TrendingUp}
+            title="Start Your Progress Journey"
+            description="Begin logging workouts, meals, and weight to see your fitness progress unfold. Your journey to better health starts with a single step!"
+            actionText="View Workouts"
+            onAction={() => window.location.href = '/workouts'}
+            size="lg"
+          />
         ) : (
           <>
             {/* My Highlights Section */}

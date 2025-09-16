@@ -20,6 +20,7 @@ import {
   Heart,
   ChevronLeft
 } from 'lucide-react'
+import { DataEmptyState } from '../components/EmptyState'
 import { getWorkoutsLocally, getMealsLocally, getProgressLocally, GuestWorkout, GuestMeal, GuestProgress } from '../utils/guestStorage'
 import { useMeasurement } from '../contexts/MeasurementContext'
 import { Button } from '../components/ui/button'
@@ -369,17 +370,16 @@ export default function YearInReviewPage() {
             </div>
           </div>
           
-          <Card className="card-base border-primary backdrop-blur-xl shadow-2xl">
-            <CardContent className="p-8 text-center">
-              <div className="p-4 icon-badge-success rounded-xl border border-success/20 w-fit mx-auto mb-4">
-                <Trophy className="w-16 h-16 text-success" />
-              </div>
-              <h3 className="text-xl font-semibold text-primary mb-2">No Data Available</h3>
-              <p className="text-secondary">
-                Start tracking your workouts, meals, and progress to see your year in review!
-              </p>
-            </CardContent>
-          </Card>
+          <DataEmptyState
+            icon={Trophy}
+            title={`Your ${currentYear} Fitness Journey Awaits`}
+            description="Start logging workouts, meals, and tracking your progress to unlock your personalized year in review with detailed insights and achievements."
+            actionText="Begin Your Journey"
+            onAction={() => window.location.href = '/workouts'}
+            size="lg"
+            variant="feature"
+            className="bg-gradient-to-br from-success/10 to-activity/5 border border-success/20 backdrop-blur-xl shadow-2xl rounded-xl"
+          />
         </div>
       </div>
     )

@@ -29,6 +29,7 @@ import {
   ImageIcon,
   Flame
 } from 'lucide-react'
+import { NutritionEmptyState } from '../components/EmptyState'
 import { saveMealLocally, getMealsByDateLocally, GuestMeal } from '../utils/guestStorage'
 import { toast } from '../hooks/use-toast'
 import LazyBarcodeScanner from '../components/LazyBarcodeScanner'
@@ -839,7 +840,7 @@ export default function NutritionPage() {
         )}
 
         {/* Today's Meals */}
-        {todayMeals.length > 0 && (
+        {todayMeals.length > 0 ? (
           <Card className="card-nutrition">
             <CardHeader>
               <CardTitle className="text-primary flex-start gap-3">
@@ -884,6 +885,30 @@ export default function NutritionPage() {
                   )
                 })}
               </div>
+            </CardContent>
+          </Card>
+        ) : (
+          <Card className="card-nutrition">
+            <CardHeader>
+              <CardTitle className="text-primary flex-start gap-3">
+                <div className="icon-badge icon-badge-nutrition">
+                  <Utensils className="w-5 h-5 text-nutrition" />
+                </div>
+                Today's Nutrition
+              </CardTitle>
+              <CardDescription className="text-secondary">
+                Start logging your meals to track your nutrition
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <NutritionEmptyState
+                icon={ChefHat}
+                title="Begin Your Nutrition Journey"
+                description="Track your meals and discover how proper nutrition fuels your fitness goals. Start by logging your first meal today."
+                actionText="Log Your First Meal"
+                onAction={() => setShowSearch(true)}
+                size="md"
+              />
             </CardContent>
           </Card>
         )}

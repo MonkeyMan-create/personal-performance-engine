@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../co
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
 import { Play, History, Zap, Plus, CheckCircle, Timer, Target, ArrowLeft, Dumbbell, Heart, Flame, Activity, Search, Clock, Calendar, Trophy } from 'lucide-react'
+import { WorkoutEmptyState } from '../components/EmptyState'
 import { 
   getWorkoutsLocally, 
   getCurrentWorkoutSession, 
@@ -492,12 +493,14 @@ export default function WorkoutsPage() {
                     <p className="text-secondary">Loading workouts...</p>
                   </div>
                 ) : workouts.length === 0 ? (
-                  <div className="text-center py-12">
-                    <div className="icon-badge icon-badge-activity w-16 h-16 mx-auto mb-4">
-                      <Dumbbell className="w-8 h-8 text-activity" />
-                    </div>
-                    <p className="text-secondary text-lg">No workouts logged yet. Start your first workout!</p>
-                  </div>
+                  <WorkoutEmptyState
+                    icon={Dumbbell}
+                    title="Start Your Fitness Journey"
+                    description="Ready to build strength and track your progress? Log your first workout and begin achieving your fitness goals."
+                    actionText="Start First Workout"
+                    onAction={() => setViewMode('overview')}
+                    size="md"
+                  />
                 ) : (
                   <div className="space-y-5">
                     {workouts.map((workout) => (
