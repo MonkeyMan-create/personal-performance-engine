@@ -127,10 +127,10 @@ export default function ExerciseVideo({
   // Placeholder component
   const PlaceholderContent = () => (
     <div className={cn(
-      "flex flex-col items-center justify-center bg-gradient-to-br from-slate-100 to-slate-300 dark:from-slate-700 dark:to-slate-900 text-[var(--color-activity)] dark:text-[var(--color-activity)]",
+      "flex flex-col items-center justify-center bg-gradient-to-br from-slate-100 to-slate-300 dark:from-slate-700 dark:to-slate-900 text-[var(--color-activity)] dark:text-white",
       sizeClasses[size]
     )}>
-      <PlayCircle className={cn(iconSizes[size], "mb-1 text-[var(--color-activity)] dark:text-[var(--color-activity)]")} />
+      <PlayCircle className={cn(iconSizes[size], "mb-1 text-[var(--color-activity)] dark:text-white")} />
       {size !== 'small' && (
         <span className="text-xs text-center px-1 font-medium">
           {size === 'full' ? 'Video Guide' : 'Video'}
@@ -142,7 +142,7 @@ export default function ExerciseVideo({
   // Loading component
   const LoadingContent = () => (
     <div className={cn(
-      "flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-700 text-[var(--color-activity)] dark:text-[var(--color-activity)]",
+      "flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-700 text-[var(--color-activity)] dark:text-white",
       sizeClasses[size]
     )}>
       <Loader2 className={cn(iconSizes[size], "animate-spin mb-1")} />
@@ -172,7 +172,7 @@ export default function ExerciseVideo({
           "flex items-center justify-center bg-slate-50 dark:bg-slate-800",
           sizeClasses[size]
         )}>
-          <Video className={cn(iconSizes[size], "text-[var(--color-activity)]")} />
+          <Video className={cn(iconSizes[size], "text-[var(--color-activity)] dark:text-white")} />
         </div>
       ) : !src || hasError ? (
         // No video or error placeholder

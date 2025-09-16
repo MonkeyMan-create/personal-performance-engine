@@ -86,7 +86,7 @@ export default function ExerciseImage({
   // Placeholder component
   const PlaceholderContent = () => (
     <div className={cn(
-      "flex flex-col items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 text-[var(--color-activity)] dark:text-[var(--color-activity)]",
+      "flex flex-col items-center justify-center bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-800 text-[var(--color-activity)] dark:text-white",
       sizeClasses[size]
     )}>
       {fallbackType === 'dumbbell' ? (
@@ -105,7 +105,7 @@ export default function ExerciseImage({
   // Loading component
   const LoadingContent = () => (
     <div className={cn(
-      "flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-700 text-[var(--color-activity)] dark:text-[var(--color-activity)]",
+      "flex flex-col items-center justify-center bg-slate-100 dark:bg-slate-700 text-[var(--color-activity)] dark:text-white",
       sizeClasses[size]
     )}>
       <Loader2 className={cn(iconSizes[size], "animate-spin mb-1")} />
@@ -133,7 +133,7 @@ export default function ExerciseImage({
           "flex items-center justify-center bg-slate-50 dark:bg-slate-800",
           sizeClasses[size]
         )}>
-          <Eye className={cn(iconSizes[size], "text-[var(--color-activity)]")} />
+          <Eye className={cn(iconSizes[size], "text-[var(--color-activity)] dark:text-white")} />
         </div>
       ) : !src || hasError ? (
         // No image or error placeholder
@@ -159,7 +159,7 @@ export default function ExerciseImage({
           {/* Click overlay */}
           {onImageClick && !isLoading && !hasError && (
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-200 flex items-center justify-center">
-              <Eye className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200" style={{ color: 'var(--color-text-on-primary)' }} />
+              <Eye className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity duration-200" style={{ color: 'var(--primary-foreground)' }} />
             </div>
           )}
         </>
@@ -168,7 +168,7 @@ export default function ExerciseImage({
       {/* Badge for exercise type (optional) */}
       {size === 'full' && !hasError && !isLoading && (
         <div className="absolute top-2 right-2">
-          <div className="bg-primary px-2 py-1 rounded-md text-xs font-medium shadow-lg" style={{ color: 'var(--color-text-on-primary)' }}>
+          <div className="bg-primary px-2 py-1 rounded-md text-xs font-medium shadow-lg" style={{ color: 'var(--primary-foreground)' }}>
             Exercise
           </div>
         </div>

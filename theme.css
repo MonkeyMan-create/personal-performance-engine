@@ -12,23 +12,23 @@
      ========================================== */
   
   /* PRIMARY ACTION COLOR - Used for primary buttons, active navigation, main CTAs */
-  --color-action: #0D9488; /* Teal - Default */
-  --color-action-hover: #0F766E; /* 10% darker */
+  --color-action: #0b7b71; /* Teal - WCAG AA Compliant (4.5:1 contrast with white) */
+  --color-action-hover: #095e56; /* 15% darker for better hover state */
   --color-action-text: #FFFFFF; /* White text on action color */
-  --color-action-rgb: 13, 148, 136; /* RGB channels for rgba() usage */
+  --color-action-rgb: 11, 123, 113; /* RGB channels for rgba() usage */
   
   /* ACTIVITY/WORKOUT COLOR - Used for workout stats, progress, fitness features */
-  --color-activity: #EC4899; /* Pink - Default */
-  --color-activity-hover: #DB2777; /* 10% darker */
+  --color-activity: #b83878; /* Pink - WCAG AA Compliant (4.5:1 contrast with white) */
+  --color-activity-hover: #9e2d63; /* 15% darker for better hover state */
   --color-activity-text: #FFFFFF; /* White text on activity color */
-  --color-activity-rgb: 236, 72, 153; /* RGB channels for rgba() usage */
-  --color-activity-hsl: 330, 81%, 60%; /* HSL channels for hsla() usage */
+  --color-activity-rgb: 184, 56, 120; /* RGB channels for rgba() usage */
+  --color-activity-hsl: 330, 53%, 47%; /* HSL channels for hsla() usage */
   
   /* NUTRITION COLOR - Used for calorie tracking, food logging, nutrition features */
-  --color-nutrition: #10B981; /* Green - Default */
-  --color-nutrition-hover: #059669; /* 10% darker */
+  --color-nutrition: #096949; /* Green - WCAG AA Compliant (4.5:1 contrast with white) */
+  --color-nutrition-hover: #074c35; /* 15% darker for better hover state */
   --color-nutrition-text: #FFFFFF; /* White text on nutrition color */
-  --color-nutrition-rgb: 16, 185, 129; /* RGB channels for rgba() usage */
+  --color-nutrition-rgb: 9, 105, 73; /* RGB channels for rgba() usage */
   
   /* WELLNESS COLOR - Used for meditation, mood, mental health features */
   --color-wellness: #4F46E5; /* Indigo - Default */
@@ -111,14 +111,14 @@
   --color-text-on-warning: #ffffff; /* White text on warning color backgrounds */
   --color-text-on-error: #ffffff; /* White text on error color backgrounds */
   
-  /* IMPROVED SECONDARY TEXT ON SEMANTIC BACKGROUNDS - 90% opacity for better contrast */
-  --color-text-secondary-on-action: rgba(255, 255, 255, 0.9); /* 90% white on action backgrounds */
-  --color-text-secondary-on-activity: rgba(255, 255, 255, 0.9); /* 90% white on activity backgrounds */
-  --color-text-secondary-on-nutrition: rgba(255, 255, 255, 0.9); /* 90% white on nutrition backgrounds */
-  --color-text-secondary-on-wellness: rgba(255, 255, 255, 0.9); /* 90% white on wellness backgrounds */
-  --color-text-secondary-on-success: rgba(255, 255, 255, 0.9); /* 90% white on success backgrounds */
-  --color-text-secondary-on-warning: rgba(255, 255, 255, 0.9); /* 90% white on warning backgrounds */
-  --color-text-secondary-on-error: rgba(255, 255, 255, 0.9); /* 90% white on error backgrounds */
+  /* IMPROVED SECONDARY TEXT ON SEMANTIC BACKGROUNDS - 95% opacity for WCAG AA compliance */
+  --color-text-secondary-on-action: rgba(255, 255, 255, 0.95); /* 95% white on action backgrounds - WCAG AA compliant */
+  --color-text-secondary-on-activity: rgba(255, 255, 255, 0.95); /* 95% white on activity backgrounds - WCAG AA compliant */
+  --color-text-secondary-on-nutrition: rgba(255, 255, 255, 0.95); /* 95% white on nutrition backgrounds - WCAG AA compliant */
+  --color-text-secondary-on-wellness: rgba(255, 255, 255, 0.95); /* 95% white on wellness backgrounds - WCAG AA compliant */
+  --color-text-secondary-on-success: rgba(255, 255, 255, 0.95); /* 95% white on success backgrounds - WCAG AA compliant */
+  --color-text-secondary-on-warning: rgba(255, 255, 255, 0.95); /* 95% white on warning backgrounds - WCAG AA compliant */
+  --color-text-secondary-on-error: rgba(255, 255, 255, 0.95); /* 95% white on error backgrounds - WCAG AA compliant */
   
   /* Border Colors */
   --color-border: #e2e8f0; /* Primary border color */
@@ -403,7 +403,7 @@
   --color-text-primary: #f8fafc; /* Light text on dark */
   --color-text-secondary: #cbd5e1; /* Secondary light text */
   --color-text-tertiary: #94a3b8; /* Tertiary light text */
-  --color-text-disabled: #64748b; /* Disabled text in dark mode */
+  --color-text-disabled: #94a3b8; /* Disabled text in dark mode - improved for accessibility */
   
   /* Border Colors - Dark Mode */
   --color-border: #334155; /* Dark border */
