@@ -68,7 +68,20 @@ export default function BottomNavigation() {
         }}
       >
         {navItems.map(({ href, icon: Icon, label, testId, semanticColor }) => {
-          const isActive = location === href
+          // Define route groupings for proper active state management
+          const homeRelatedRoutes = ['/', '/meditate']
+          const profileRelatedRoutes = [
+            '/profile', '/help-center', '/mission-model', '/health-connections', 
+            '/privacy-terms', '/data-export', '/contact-support', '/delete-account', 
+            '/year-in-review', '/profile-edit'
+          ]
+          
+          // Check if current route should show this nav item as active
+          const isActive = href === '/' 
+            ? homeRelatedRoutes.includes(location)
+            : href === '/profile' 
+            ? profileRelatedRoutes.includes(location)
+            : location === href
           
           // Get semantic color variables
           const getSemanticColor = (color: string) => `var(--color-${color})`

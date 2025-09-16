@@ -186,12 +186,22 @@ export default function ProfileEditPage() {
       <div className="container mx-auto p-4 space-y-6 pb-24">
         {/* Header */}
         <div className="flex items-center justify-start gap-4 pt-8 min-h-[48px]">
-          <Link href="/profile">
-            <Button variant="ghost" size="sm" className="text-secondary hover:text-primary flex items-center gap-2" data-testid="button-back">
-              <ArrowLeft className="w-4 h-4" />
-              Back to Settings
-            </Button>
-          </Link>
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="text-secondary hover:text-primary flex items-center gap-2" 
+            data-testid="button-back"
+            onClick={() => {
+              if (window.history.length > 1) {
+                window.history.back()
+              } else {
+                window.location.href = '/profile'
+              }
+            }}
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Settings
+          </Button>
         </div>
 
         <div className="text-center">

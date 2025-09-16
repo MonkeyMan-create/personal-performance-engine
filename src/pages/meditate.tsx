@@ -289,8 +289,28 @@ export default function MeditatePage() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto p-4 space-y-8 pb-24">
         
-        {/* Header */}
-        <div className="pt-6 text-center space-y-4">
+        {/* Header with Back Button */}
+        <div className="flex items-center gap-4 pt-8">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="text-secondary hover:text-primary" 
+            data-testid="button-back"
+            onClick={() => {
+              if (window.history.length > 1) {
+                window.history.back()
+              } else {
+                window.location.href = '/'
+              }
+            }}
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back
+          </Button>
+        </div>
+
+        {/* Page Title */}
+        <div className="text-center space-y-4">
           <div className="flex items-center justify-center gap-4">
             <div className="p-3 bg-gradient-to-br from-wellness to-wellness/80 rounded-2xl shadow-lg">
               <Brain className="w-8 h-8" style={{ color: 'var(--color-text-on-wellness)' }} />

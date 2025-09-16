@@ -59,12 +59,22 @@ export default function ContactSupportPage() {
       <div className="container mx-auto p-4 space-y-6 pb-24">
         {/* Header */}
         <div className="flex items-center gap-4 pt-8">
-          <Link href="/profile">
-            <Button variant="ghost" size="sm" className="text-secondary hover:text-primary" data-testid="button-back">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Settings
-            </Button>
-          </Link>
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="text-secondary hover:text-primary" 
+            data-testid="button-back"
+            onClick={() => {
+              if (window.history.length > 1) {
+                window.history.back()
+              } else {
+                window.location.href = '/profile'
+              }
+            }}
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Settings
+          </Button>
         </div>
 
         <div className="text-center">

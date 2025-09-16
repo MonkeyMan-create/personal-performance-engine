@@ -2,14 +2,35 @@ import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
-import { Heart, Gift, Zap, Brain, TrendingUp, Server, DollarSign, Sparkles, Shield, Users, Clock } from 'lucide-react'
+import { Heart, Gift, Zap, Brain, TrendingUp, Server, DollarSign, Sparkles, Shield, Users, Clock, ArrowLeft } from 'lucide-react'
+import { Link } from 'wouter'
 
 export default function MissionModelPage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto p-4 space-y-8 pb-24">
-        {/* Header */}
-        <div className="text-center pt-6 space-y-4">
+        {/* Header with Back Button */}
+        <div className="flex items-center gap-4 pt-8">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="text-secondary hover:text-primary" 
+            data-testid="button-back"
+            onClick={() => {
+              if (window.history.length > 1) {
+                window.history.back()
+              } else {
+                window.location.href = '/profile'
+              }
+            }}
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Settings
+          </Button>
+        </div>
+
+        {/* Page Title */}
+        <div className="text-center space-y-4">
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="p-3 icon-badge-action rounded-2xl">
               <Heart className="w-8 h-8 text-action" />

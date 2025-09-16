@@ -4,7 +4,8 @@ import AuthPrompt from '../components/AuthPrompt'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { Badge } from '../components/ui/badge'
-import { Smartphone, Heart, Activity, Moon, CheckCircle, XCircle, AlertTriangle } from 'lucide-react'
+import { Smartphone, Heart, Activity, Moon, CheckCircle, XCircle, AlertTriangle, ArrowLeft } from 'lucide-react'
+import { Link } from 'wouter'
 
 interface HealthPlatform {
   id: string
@@ -148,7 +149,27 @@ export default function HealthConnectionsPage() {
     <div className="page-container">
       <div className="max-w-4xl mx-auto space-y-6">
         
-        {/* Header */}
+        {/* Header with Back Button */}
+        <div className="flex items-center gap-4 pt-8">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            className="text-secondary hover:text-primary" 
+            data-testid="button-back"
+            onClick={() => {
+              if (window.history.length > 1) {
+                window.history.back()
+              } else {
+                window.location.href = '/profile'
+              }
+            }}
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Settings
+          </Button>
+        </div>
+
+        {/* Page Title */}
         <div className="text-center space-y-4">
           <div className="flex-center gap-3 mb-4">
             <div className="icon-badge icon-badge-lg icon-badge-wellness">
