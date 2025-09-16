@@ -1,138 +1,29 @@
+/* ==========================================
+   MAIN APPLICATION STYLES
+   ========================================== */
+
+/* Import our comprehensive global styles (which imports theme.css) */
+@import '../global.css';
+
+/* Import Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    /* ==========================================
-       DYNAMIC SEMANTIC THEMING SYSTEM
-       ========================================== */
-    
-    /* THEMEABLE SEMANTIC COLORS - User Customizable */
-    --color-action: #0D9488; /* Teal - For primary buttons, active navigation */
-    --color-action-hover: #0F766E; /* 10% darker */
-    --color-action-text: #FFFFFF; /* White text on teal */
-    --color-action-rgb: 13, 148, 136; /* RGB channels for rgba() usage */
-    
-    --color-activity: #EC4899; /* Pink - For workout stats and progress */
-    --color-activity-hover: #DB2777; /* 10% darker */
-    --color-activity-text: #FFFFFF; /* White text on purple */
-    --color-activity-rgb: 236, 72, 153; /* RGB channels for rgba() usage */
-    
-    --color-nutrition: #10B981; /* Green - For calorie ring and food logging */
-    --color-nutrition-hover: #059669; /* 10% darker */
-    --color-nutrition-text: #FFFFFF; /* White text on orange */
-    --color-nutrition-rgb: 16, 185, 129; /* RGB channels for rgba() usage */
-    
-    --color-wellness: #4F46E5; /* Indigo - For meditation and mood */
-    --color-wellness-hover: #4338CA; /* 10% darker */
-    --color-wellness-text: #FFFFFF; /* White text on indigo */
-    --color-wellness-rgb: 79, 70, 229; /* RGB channels for rgba() usage */
-
-    /* STATIC INFORMATIONAL COLORS - Not themeable */
-    --color-success: #22c55e; /* Static green for success states */
-    --color-success-rgb: 34, 197, 94; /* RGB channels for rgba() usage */
-    --color-error: #ef4444; /* Static red for errors */
-    --color-error-rgb: 239, 68, 68; /* RGB channels for rgba() usage */
-    --color-warning: #f59e0b; /* Static yellow for warnings */
-    --color-warning-rgb: 245, 158, 11; /* RGB channels for rgba() usage */
-
-    /* STATIC DATA VISUALIZATION COLORS - Not themeable */
-    --color-protein: #FB7185; /* Static red/pink for protein */
-    --color-carbs: #818CF8; /* Static blue/purple for carbs */
-    --color-fat: #FBBF24; /* Static yellow/amber for fat */
-
-    /* STATIC DIFFICULTY COLORS - Not themeable */
-    --color-difficulty-beginner: #22c55e; /* Static green for beginner */
-    --color-difficulty-intermediate: #f59e0b; /* Static amber for intermediate */
-    --color-difficulty-advanced: #ef4444; /* Static red for advanced */
-
-    /* STATIC UI COLORS - Light Mode */
-    --color-background: #ffffff;
-    --color-surface: #f8fafc;
-    --color-border: #e2e8f0;
-    --color-text-primary: #1e293b;
-    --color-text-secondary: #64748b;
-
-    /* SHADCN COMPATIBILITY LAYER - Mapping to new semantic system */
-    --background: 255 255 255; /* white */
-    --foreground: 30 41 59; /* slate-800 */
-    --card: 248 250 252; /* slate-50 */
-    --card-foreground: 30 41 59; /* slate-800 */
-    --popover: 255 255 255; /* white */
-    --popover-foreground: 30 41 59; /* slate-800 */
-    --primary: 13 148 136; /* action color - teal-600 */
-    --primary-foreground: 255 255 255; /* white */
-    --secondary: 241 245 249; /* slate-100 */
-    --secondary-foreground: 30 41 59; /* slate-800 */
-    --muted: 248 250 252; /* slate-50 */
-    --muted-foreground: 100 116 139; /* slate-500 */
-    --accent: 248 250 252; /* slate-50 */
-    --accent-foreground: 30 41 59; /* slate-800 */
-    --destructive: 239 68 68; /* error color - red-500 */
-    --destructive-foreground: 255 255 255; /* white */
-    --border: 226 232 240; /* slate-200 */
-    --input: 226 232 240; /* slate-200 */
-    --ring: 13 148 136; /* action color - teal-600 */
-
-    /* CHART COLORS - Using semantic colors for consistency */
-    --chart-1: 13 148 136; /* action - teal */
-    --chart-2: 236 72 153; /* activity - pink */
-    --chart-3: 16 185 129; /* nutrition - green */
-    --chart-4: 79 70 229; /* wellness - indigo */
-    --chart-5: 251 113 133; /* protein - pink */
-
-    --radius: 0.75rem;
-  }
-
-  .dark {
-    /* STATIC UI COLORS - Dark Mode */
-    --color-background: #0f172a;
-    --color-surface: #1e293b;
-    --color-border: #334155;
-    --color-text-primary: #f1f5f9;
-    --color-text-secondary: #94a3b8;
-
-    /* SHADCN COMPATIBILITY LAYER - Dark Mode */
-    --background: 15 23 42; /* slate-900 */
-    --foreground: 241 245 249; /* slate-100 */
-    --card: 30 41 59; /* slate-800 */
-    --card-foreground: 241 245 249; /* slate-100 */
-    --popover: 30 41 59; /* slate-800 */
-    --popover-foreground: 241 245 249; /* slate-100 */
-    --primary: 13 148 136; /* action color - teal-600 */
-    --primary-foreground: 255 255 255; /* white */
-    --secondary: 51 65 85; /* slate-700 */
-    --secondary-foreground: 241 245 249; /* slate-100 */
-    --muted: 51 65 85; /* slate-700 */
-    --muted-foreground: 148 163 184; /* slate-400 */
-    --accent: 51 65 85; /* slate-700 */
-    --accent-foreground: 241 245 249; /* slate-100 */
-    --destructive: 185 28 28; /* red-700 */
-    --destructive-foreground: 241 245 249; /* slate-100 */
-    --border: 51 65 85; /* slate-700 */
-    --input: 51 65 85; /* slate-700 */
-    --ring: 13 148 136; /* action color - teal-600 */
-
-    /* CHART COLORS - Dark Mode (same as light mode for consistency) */
-    --chart-1: 13 148 136; /* action - teal */
-    --chart-2: 236 72 153; /* activity - pink */
-    --chart-3: 16 185 129; /* nutrition - green */
-    --chart-4: 79 70 229; /* wellness - indigo */
-    --chart-5: 251 113 133; /* protein - pink */
-  }
-}
+/* ==========================================
+   TAILWIND BASE LAYER OVERRIDES
+   ========================================== */
 
 @layer base {
+  /* Apply our theme variables to Tailwind base */
   * {
     @apply border-border;
   }
   
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    /* Optimized font stack prioritizing system fonts for faster loading */
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI Variable', 'Segoe UI', Inter, 'SF Pro Display', 'SF Pro Text', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    font-display: swap; /* Ensure text is visible during font load */
+    font-family: var(--font-family-sans);
+    font-display: swap;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -154,3 +45,117 @@
     @apply text-xl lg:text-2xl;
   }
 }
+
+/* ==========================================
+   MOBILE-FIRST RESPONSIVE UTILITIES
+   ========================================== */
+
+/* Flex utilities for mobile layouts */
+.flex-col-center {
+  @apply flex flex-col items-center justify-center;
+}
+
+.flex-row-center {
+  @apply flex flex-row items-center justify-center;
+}
+
+.flex-between {
+  @apply flex items-center justify-between;
+}
+
+/* Mobile-first spacing utilities */
+.container-padding {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+.section-spacing {
+  @apply py-8 sm:py-12 lg:py-16;
+}
+
+/* ==========================================
+   COMPONENT INTEGRATION UTILITIES
+   ========================================== */
+
+/* Icon badge utilities using semantic colors */
+.icon-badge-action {
+  background: linear-gradient(135deg, 
+    rgba(var(--color-action-rgb), 0.15), 
+    rgba(var(--color-action-rgb), 0.05)
+  );
+  border: 1px solid rgba(var(--color-action-rgb), 0.2);
+}
+
+.icon-badge-activity {
+  background: linear-gradient(135deg, 
+    rgba(var(--color-activity-rgb), 0.15), 
+    rgba(var(--color-activity-rgb), 0.05)
+  );
+  border: 1px solid rgba(var(--color-activity-rgb), 0.2);
+}
+
+.icon-badge-nutrition {
+  background: linear-gradient(135deg, 
+    rgba(var(--color-nutrition-rgb), 0.15), 
+    rgba(var(--color-nutrition-rgb), 0.05)
+  );
+  border: 1px solid rgba(var(--color-nutrition-rgb), 0.2);
+}
+
+.icon-badge-wellness {
+  background: linear-gradient(135deg, 
+    rgba(var(--color-wellness-rgb), 0.15), 
+    rgba(var(--color-wellness-rgb), 0.05)
+  );
+  border: 1px solid rgba(var(--color-wellness-rgb), 0.2);
+}
+
+/* ==========================================
+   PERFORMANCE OPTIMIZATIONS
+   ========================================== */
+
+/* Prevent layout shift during font loading */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+}
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Scroll optimization */
+.smooth-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ==========================================
+   ACCESSIBILITY ENHANCEMENTS
+   ========================================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .icon-badge-action,
+  .icon-badge-activity,
+  .icon-badge-nutrition,
+  .icon-badge-wellness {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .gpu-accelerated {
+    will-change: auto;
+  }
+  
+  .smooth-scroll {
+    scroll-behavior: auto;
+  }
+}
+
+/* ==========================================
+   END OF MAIN APPLICATION STYLES
+   ========================================== */
