@@ -23,13 +23,23 @@ import {
   PlayCircle,
   Image as ImageIcon
 } from 'lucide-react'
-import { 
-  searchExercises, 
-  getAllMuscleGroups, 
-  getAllEquipment, 
-  getAllCategories,
-  Exercise 
-} from '../data/exerciseDatabase'
+// Dynamic import type for the exercise database module
+interface ExerciseDatabase {
+  searchExercises: (
+    query: string,
+    muscleGroups?: string[],
+    equipment?: string[],
+    difficulty?: string[],
+    categories?: string[]
+  ) => Exercise[]
+  getAllMuscleGroups: () => string[]
+  getAllEquipment: () => string[]
+  getAllCategories: () => string[]
+  Exercise: any
+}
+
+// Type imports only (no runtime cost)
+import type { Exercise } from '../data/exerciseDatabase'
 import { getExerciseHistory } from '../utils/guestStorage'
 import { ExerciseThumbnail, ExerciseHero } from './ExerciseImage'
 import { VideoThumbnail, VideoPlayer } from './ExerciseVideo'
@@ -53,27 +63,64 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
   const [selectedDifficulty, setSelectedDifficulty] = useState<string[]>([])
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
 
-  // Get filter options
-  const muscleGroups = getAllMuscleGroups()
-  const equipment = getAllEquipment()
-  const categories = getAllCategories()
+  // Database loading state
+  const [exerciseDb, setExerciseDb] = useState<ExerciseDatabase | null>(null)
+  const [isDbLoading, setIsDbLoading] = useState(false)
+
+  // Lazy load exercise database when component mounts
+  useEffect(() => {
+    let isCancelled = false
+    
+    const loadExerciseDatabase = async () => {
+      if (exerciseDb || isDbLoading) return
+      
+      setIsDbLoading(true)
+      try {
+        const module = await import('../data/exerciseDatabase')
+        if (!isCancelled) {
+          setExerciseDb(module)
+        }
+      } catch (error) {
+        console.error('Failed to load exercise database:', error)
+      } finally {
+        if (!isCancelled) {
+          setIsDbLoading(false)
+        }
+      }
+    }
+
+    if (isOpen) {
+      loadExerciseDatabase()
+    }
+
+    return () => {
+      isCancelled = true
+    }
+  }, [isOpen, exerciseDb, isDbLoading])
+
+  // Get filter options (only when database is loaded)
+  const muscleGroups = exerciseDb?.getAllMuscleGroups() || []
+  const equipment = exerciseDb?.getAllEquipment() || []
+  const categories = exerciseDb?.getAllCategories() || []
   const difficulties = ['beginner', 'intermediate', 'advanced']
 
   // Initial load and search
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && exerciseDb) {
       // Show popular exercises on initial load
       if (!searchQuery.trim() && selectedMuscleGroups.length === 0 && selectedEquipment.length === 0) {
-        const popularExercises = searchExercises('').slice(0, 20) // Show first 20 exercises
+        const popularExercises = exerciseDb.searchExercises('').slice(0, 20) // Show first 20 exercises
         setSearchResults(popularExercises)
       } else {
         performSearch()
       }
     }
-  }, [searchQuery, selectedMuscleGroups, selectedEquipment, selectedDifficulty, selectedCategories, isOpen])
+  }, [searchQuery, selectedMuscleGroups, selectedEquipment, selectedDifficulty, selectedCategories, isOpen, exerciseDb])
 
   const performSearch = () => {
-    const results = searchExercises(
+    if (!exerciseDb) return
+    
+    const results = exerciseDb.searchExercises(
       searchQuery,
       selectedMuscleGroups.length > 0 ? selectedMuscleGroups : undefined,
       selectedEquipment.length > 0 ? selectedEquipment : undefined,
@@ -340,8 +387,17 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
           </CardHeader>
 
           <CardContent className="space-y-3 overflow-y-auto max-h-96">
+            {/* Loading State */}
+            {isDbLoading && (
+              <div className="text-center py-8 text-slate-500 dark:text-tertiary">
+                <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin mx-auto mb-3"></div>
+                <p className="text-lg font-medium">Loading exercise database...</p>
+                <p className="text-sm mt-1">This will only happen once</p>
+              </div>
+            )}
+            
             {/* Results */}
-            {searchResults.length > 0 ? (
+            {!isDbLoading && searchResults.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {searchResults.map((exercise) => {
                   const history = getExerciseHistory(exercise.name)
@@ -451,12 +507,14 @@ export default function ExerciseSearch({ onSelectExercise, onClose, isOpen }: Ex
                   )
                 })}
               </div>
-            ) : (
+            ) : !isDbLoading && (
               <div className="text-center py-8 text-slate-500 dark:text-tertiary">
                 <Search className="w-12 h-12 mx-auto mb-3 opacity-50" />
                 <p className="text-lg font-medium">No exercises found</p>
                 <p className="text-sm mt-1">
-                  {searchQuery || activeFiltersCount > 0 
+                  {!exerciseDb 
+                    ? "Loading exercise database..." 
+                    : searchQuery || activeFiltersCount > 0 
                     ? "Try adjusting your search or filters" 
                     : "Start typing to search exercises"
                   }

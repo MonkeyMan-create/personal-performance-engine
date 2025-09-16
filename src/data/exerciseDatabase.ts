@@ -1,5 +1,6 @@
-// Comprehensive Exercise Database
+// Comprehensive Exercise Database - Lazy Loaded Module
 // 100+ exercises covering all major muscle groups and equipment types
+// This module is lazy loaded to reduce main bundle size
 
 export interface Exercise {
   id: string;

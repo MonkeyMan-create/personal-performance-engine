@@ -1,5 +1,6 @@
-// Sample data generator for demonstration purposes
+// Sample data generator for demonstration purposes - Lazy Loaded Module
 // This helps new users see what the Year in Review feature looks like with realistic data
+// This module is lazy loaded to reduce main bundle size and improve initial load performance
 
 import { GuestWorkout, GuestMeal, GuestProgress, saveWorkoutLocally, saveMealLocally, saveProgressLocally, getWorkoutsLocally } from './guestStorage'
 

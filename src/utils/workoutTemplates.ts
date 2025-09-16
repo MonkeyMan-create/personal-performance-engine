@@ -1,5 +1,6 @@
-// Workout template system for guided workouts
+// Workout template system for guided workouts - Lazy Loaded Module
 // Provides pre-built workout routines that users can select and customize
+// This module is lazy loaded to reduce main bundle size
 
 export interface TemplateSet {
   reps: string

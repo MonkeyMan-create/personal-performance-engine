@@ -4,7 +4,15 @@ import AuthPrompt from '../components/AuthPrompt'
 import ExerciseSearch from '../components/ExerciseSearch'
 import LazyActiveSetView from '../components/LazyActiveSetView'
 import LazyWorkoutTemplateSelector from '../components/LazyWorkoutTemplateSelector'
-import { convertTemplateToWorkoutForm, WORKOUT_TEMPLATES, getTemplateById } from '../utils/workoutTemplates'
+// Lazy import types only (no runtime cost)
+import type { WorkoutTemplate } from '../utils/workoutTemplates'
+
+// Dynamic import interface for workout templates module
+interface WorkoutTemplatesModule {
+  convertTemplateToWorkoutForm: (template: WorkoutTemplate) => WorkoutForm
+  WORKOUT_TEMPLATES: WorkoutTemplate[]
+  getTemplateById: (id: string) => WorkoutTemplate | undefined
+}
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../components/ui/card'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
@@ -54,8 +62,27 @@ export default function WorkoutsPage() {
   const [workoutDuration, setWorkoutDuration] = useState('')
   const [workoutNotes, setWorkoutNotes] = useState('')
 
-  // Workout templates data - display summaries mapped from actual templates
-  const workoutTemplates = WORKOUT_TEMPLATES.map(template => ({
+  // Workout templates lazy loading state
+  const [templatesModule, setTemplatesModule] = useState<WorkoutTemplatesModule | null>(null)
+  const [isTemplatesLoading, setIsTemplatesLoading] = useState(false)
+
+  // Lazy load workout templates only when needed
+  const loadWorkoutTemplates = async () => {
+    if (templatesModule || isTemplatesLoading) return
+    
+    setIsTemplatesLoading(true)
+    try {
+      const module = await import('../utils/workoutTemplates')
+      setTemplatesModule(module)
+    } catch (error) {
+      console.error('Failed to load workout templates:', error)
+    } finally {
+      setIsTemplatesLoading(false)
+    }
+  }
+
+  // Workout templates data - display summaries mapped from actual templates (lazy loaded)
+  const workoutTemplates = templatesModule?.WORKOUT_TEMPLATES.map(template => ({
     id: template.id,
     title: template.name,
     description: template.description,
@@ -67,7 +94,7 @@ export default function WorkoutsPage() {
           template.category === 'cardio' ? Heart : 
           template.category === 'hybrid' ? Activity : Target,
     colorClass: 'card-activity'
-  }))
+  })) || []
 
   // Recommended workout (featured)
   const recommendedWorkout = workoutTemplates[0]
@@ -90,6 +117,11 @@ export default function WorkoutsPage() {
           if (session && session.exercises.length > 0) {
             // If there's an active session, show exercise selection
             setViewMode('exercise-selection')
+          }
+
+          // Load workout templates for the overview page
+          if (!session || session.exercises.length === 0) {
+            loadWorkoutTemplates()
           }
         }
       } catch (error) {
@@ -203,15 +235,25 @@ export default function WorkoutsPage() {
     handleStartWorkout()
   }
 
-  const handleSelectTemplateFromCard = (template: any) => {
+  const handleSelectTemplateFromCard = async (template: any) => {
+    // Ensure templates are loaded
+    if (!templatesModule) {
+      await loadWorkoutTemplates()
+    }
+    
+    if (!templatesModule) {
+      console.error('Failed to load workout templates')
+      return
+    }
+    
     // Get the actual template from the templates database using the ID
-    const actualTemplate = getTemplateById(template.id)
+    const actualTemplate = templatesModule.getTemplateById(template.id)
     if (!actualTemplate) {
       console.error('Template not found:', template.id)
       return
     }
     
-    const templateForm = convertTemplateToWorkoutForm(actualTemplate)
+    const templateForm = templatesModule.convertTemplateToWorkoutForm(actualTemplate)
     handleTemplateSelection(templateForm)
   }
 
