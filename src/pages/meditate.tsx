@@ -293,7 +293,7 @@ export default function MeditatePage() {
         <div className="pt-6 text-center space-y-4">
           <div className="flex items-center justify-center gap-4">
             <div className="p-3 bg-gradient-to-br from-wellness to-wellness/80 rounded-2xl shadow-lg">
-              <Brain className="w-8 h-8 text-white" />
+              <Brain className="w-8 h-8" style={{ color: 'var(--color-text-on-wellness)' }} />
             </div>
             <div>
               <h1 className="text-4xl font-bold text-primary" data-testid="text-page-title">Meditation</h1>
@@ -316,7 +316,7 @@ export default function MeditatePage() {
               <CardHeader className="bg-gradient-to-r from-wellness/10 to-wellness/5 relative">
                 <CardTitle className="text-primary text-2xl font-bold flex items-center gap-3">
                   <div className="p-2 bg-wellness rounded-xl shadow-lg">
-                    <Heart className="w-6 h-6 text-white" />
+                    <Heart className="w-6 h-6" style={{ color: 'var(--color-text-on-wellness)' }} />
                   </div>
                   Choose Your Practice
                 </CardTitle>
@@ -341,7 +341,7 @@ export default function MeditatePage() {
                         data-testid={`button-session-${type.type}`}
                       >
                         <div className={`w-16 h-16 rounded-full bg-gradient-to-br from-wellness to-wellness/80 flex items-center justify-center mb-4 mx-auto shadow-lg ${isActive ? 'scale-110' : ''} transition-transform duration-300`}>
-                          <IconComponent className="w-8 h-8 text-white" />
+                          <IconComponent className="w-8 h-8" style={{ color: 'var(--color-text-on-wellness)' }} />
                         </div>
                         <h3 className="text-primary font-bold text-xl mb-2">{type.title}</h3>
                         <p className="text-secondary font-medium">{type.description}</p>
@@ -363,7 +363,7 @@ export default function MeditatePage() {
               <CardHeader className="bg-gradient-to-r from-wellness/10 to-wellness/5 relative">
                 <CardTitle className="text-primary text-2xl font-bold flex items-center gap-3">
                   <div className="p-2 bg-wellness rounded-xl shadow-lg">
-                    <Timer className="w-6 h-6 text-white" />
+                    <Timer className="w-6 h-6" style={{ color: 'var(--color-text-on-wellness)' }} />
                   </div>
                   Session Duration
                 </CardTitle>
@@ -407,7 +407,8 @@ export default function MeditatePage() {
               <Button
                 onClick={sessionType === 'breathing' ? startBreathingExercise : startMeditationTimer}
                 size="lg"
-                className="button-wellness text-white px-12 py-6 text-2xl font-bold shadow-2xl shadow-wellness/30 hover:shadow-wellness/50 transition-all duration-300 hover:scale-[1.05] active:scale-[0.95] rounded-2xl"
+                className="button-wellness px-12 py-6 text-2xl font-bold shadow-2xl shadow-wellness/30 hover:shadow-wellness/50 transition-all duration-300 hover:scale-[1.05] active:scale-[0.95] rounded-2xl"
+                style={{ color: 'var(--color-text-on-wellness)' }}
                 data-testid="button-start-session"
               >
                 <Play className="w-8 h-8 mr-4" />
@@ -455,7 +456,7 @@ export default function MeditatePage() {
                           />
                           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent pointer-events-none"></div>
                           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                            <Wind className="w-8 h-8 text-white" />
+                            <Wind className="w-8 h-8" style={{ color: 'var(--color-text-on-wellness)' }} />
                           </div>
                         </div>
                       </div>
@@ -480,7 +481,7 @@ export default function MeditatePage() {
                           <div className="w-40 h-40 rounded-full bg-gradient-to-br from-wellness to-wellness/80 shadow-2xl shadow-wellness/40 animate-pulse" />
                           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/20 to-transparent pointer-events-none"></div>
                           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                            <Brain className="w-8 h-8 text-white" />
+                            <Brain className="w-8 h-8" style={{ color: 'var(--color-text-on-wellness)' }} />
                           </div>
                         </div>
                       </div>
@@ -545,7 +546,7 @@ export default function MeditatePage() {
             <CardHeader className="bg-gradient-to-r from-wellness/10 to-wellness/5 relative">
               <CardTitle className="text-primary text-2xl font-bold flex items-center gap-3">
                 <div className="p-2 bg-wellness rounded-xl shadow-lg">
-                  <Star className="w-6 h-6 text-white" />
+                  <Star className="w-6 h-6" style={{ color: 'var(--color-text-on-wellness)' }} />
                 </div>
                 Recent Sessions
               </CardTitle>
@@ -563,7 +564,7 @@ export default function MeditatePage() {
                   >
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-full bg-gradient-to-br from-wellness to-wellness/80 flex items-center justify-center shadow-lg">
-                        <CheckCircle className="w-6 h-6 text-white" />
+                        <CheckCircle className="w-6 h-6" style={{ color: 'var(--color-text-on-wellness)' }} />
                       </div>
                       <div>
                         <p className="text-primary font-bold text-lg">

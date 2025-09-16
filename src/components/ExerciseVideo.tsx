@@ -214,7 +214,8 @@ export default function ExerciseVideo({
                 variant="ghost"
                 size="icon"
                 onClick={togglePlay}
-                className="text-white hover:bg-white/20 backdrop-blur-sm"
+                className="backdrop-blur-sm hover:bg-white/20"
+                style={{ color: 'var(--color-text-on-surface)' }}
               >
                 {isPlaying ? (
                   <Pause className={iconSizes[size]} />
@@ -231,7 +232,8 @@ export default function ExerciseVideo({
                       variant="ghost"
                       size="icon"
                       onClick={toggleMute}
-                      className="text-white hover:bg-white/20 backdrop-blur-sm w-8 h-8"
+                      className="backdrop-blur-sm hover:bg-white/20 w-8 h-8"
+                      style={{ color: 'var(--color-text-on-surface)' }}
                     >
                       {isMuted ? (
                         <VolumeX className="w-4 h-4" />
@@ -245,7 +247,8 @@ export default function ExerciseVideo({
                     variant="ghost"
                     size="icon"
                     onClick={() => videoRef.current?.requestFullscreen()}
-                    className="text-white hover:bg-white/20 backdrop-blur-sm w-8 h-8"
+                    className="backdrop-blur-sm hover:bg-white/20 w-8 h-8"
+                    style={{ color: 'var(--color-text-on-surface)' }}
                   >
                     <Maximize className="w-4 h-4" />
                   </Button>
@@ -259,7 +262,7 @@ export default function ExerciseVideo({
       {/* Video type badge */}
       {size === 'full' && !hasError && !isLoading && (
         <div className="absolute top-2 right-2">
-          <div className="bg-red-600 text-white px-2 py-1 rounded-md text-xs font-medium shadow-lg flex items-center space-x-1">
+          <div className="bg-red-600 px-2 py-1 rounded-md text-xs font-medium shadow-lg flex items-center space-x-1" style={{ color: 'var(--color-text-on-error)' }}>
             <PlayCircle className="w-3 h-3" />
             <span>Video</span>
           </div>

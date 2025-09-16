@@ -482,13 +482,13 @@ export default function NutritionPage() {
         {/* Search Section */}
         <Card className="card-nutrition">
           <CardHeader>
-            <CardTitle className="text-white flex-start gap-3">
+            <CardTitle className="flex-start gap-3" style={{ color: 'var(--color-text-on-nutrition)' }}>
               <div className="icon-badge bg-white/20 backdrop-blur-sm">
-                <Search className="w-5 h-5 text-white" />
+                <Search className="w-5 h-5" style={{ color: 'var(--color-text-on-nutrition)' }} />
               </div>
               Add Food
             </CardTitle>
-            <CardDescription className="text-white/80">
+            <CardDescription style={{ color: 'var(--color-text-on-nutrition)', opacity: 0.8 }}>
               Search for foods to add to your meal log
             </CardDescription>
           </CardHeader>
@@ -801,10 +801,10 @@ export default function NutritionPage() {
                         <p className="text-sm text-secondary mb-3 font-medium">{food.brand}</p>
                       )}
                       <div className="flex-center gap-4 mb-2">
-                        <span className="badge-base bg-nutrition text-white font-bold">{food.calories} cal</span>
-                        {food.protein && <span className="badge-base bg-protein text-white">P: {food.protein}g</span>}
-                        {food.carbs && <span className="badge-base bg-carbs text-white">C: {food.carbs}g</span>}
-                        {food.fat && <span className="badge-base bg-fat text-white">F: {food.fat}g</span>}
+                        <span className="badge-base bg-nutrition font-bold" style={{ color: 'var(--color-text-on-nutrition)' }}>{food.calories} cal</span>
+                        {food.protein && <span className="badge-base bg-protein" style={{ color: 'var(--color-text-on-protein)' }}>P: {food.protein}g</span>}
+                        {food.carbs && <span className="badge-base bg-carbs" style={{ color: 'var(--color-text-on-carbs)' }}>C: {food.carbs}g</span>}
+                        {food.fat && <span className="badge-base bg-fat" style={{ color: 'var(--color-text-on-fat)' }}>F: {food.fat}g</span>}
                       </div>
                       <p className="text-xs text-secondary font-medium">
                         per {food.serving || '100g'}
@@ -872,7 +872,7 @@ export default function NutritionPage() {
                                 </p>
                               </div>
                               <div className="text-right">
-                                <span className="badge-base bg-nutrition text-white">
+                                <span className="badge-base bg-nutrition" style={{ color: 'var(--color-text-on-nutrition)' }}>
                                   {meal.calories} cal
                                 </span>
                               </div>
@@ -908,10 +908,10 @@ export default function NutritionPage() {
                   )}
                   
                   <div className="flex gap-2 mb-3">
-                    <span className="badge-base bg-nutrition text-white">{selectedFood.calories} cal</span>
-                    {selectedFood.protein && <span className="badge-base bg-protein text-white">P: {selectedFood.protein}g</span>}
-                    {selectedFood.carbs && <span className="badge-base bg-carbs text-white">C: {selectedFood.carbs}g</span>}
-                    {selectedFood.fat && <span className="badge-base bg-fat text-white">F: {selectedFood.fat}g</span>}
+                    <span className="badge-base bg-nutrition" style={{ color: 'var(--color-text-on-nutrition)' }}>{selectedFood.calories} cal</span>
+                    {selectedFood.protein && <span className="badge-base bg-protein" style={{ color: 'var(--color-text-on-protein)' }}>P: {selectedFood.protein}g</span>}
+                    {selectedFood.carbs && <span className="badge-base bg-carbs" style={{ color: 'var(--color-text-on-carbs)' }}>C: {selectedFood.carbs}g</span>}
+                    {selectedFood.fat && <span className="badge-base bg-fat" style={{ color: 'var(--color-text-on-fat)' }}>F: {selectedFood.fat}g</span>}
                   </div>
                   
                   <p className="text-xs text-secondary">per {selectedFood.serving || '100g'}</p>
@@ -928,9 +928,10 @@ export default function NutritionPage() {
                         variant={mealType === type ? 'default' : 'outline'}
                         className={`button-base capitalize ${
                           mealType === type 
-                            ? 'button-default bg-nutrition text-white' 
+                            ? 'button-default bg-nutrition'
                             : 'button-outline'
                         }`}
+                        style={mealType === type ? { color: 'var(--color-text-on-nutrition)' } : undefined}
                         data-testid={`button-meal-type-${type}`}
                       >
                         {type}

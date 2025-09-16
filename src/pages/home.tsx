@@ -255,7 +255,7 @@ export default function HomePage() {
             </CardTitle>
             <CardDescription 
               style={{
-                color: 'rgba(255, 255, 255, 0.8)'
+                color: 'var(--color-text-secondary-on-wellness)'
               }}
             >
               Tap an emoji to check in with your mood
@@ -317,7 +317,7 @@ export default function HomePage() {
                     style={{
                       fontSize: 'var(--font-size-xs)',
                       color: selectedMood === mood.value 
-                        ? 'rgba(255, 255, 255, 0.8)' 
+                        ? 'var(--color-text-secondary-on-wellness)' 
                         : 'var(--color-text-secondary)',
                       marginTop: 'var(--spacing-1)',
                       fontWeight: 'var(--font-weight-medium)'
@@ -441,7 +441,7 @@ export default function HomePage() {
             <div 
               style={{
                 fontSize: 'var(--font-size-xs)',
-                color: 'var(--color-text-tertiary)',
+                color: 'var(--color-text-secondary)',
                 fontWeight: 'var(--font-weight-medium)'
               }}
             >
@@ -536,7 +536,7 @@ export default function HomePage() {
             <div 
               style={{
                 fontSize: 'var(--font-size-xs)',
-                color: 'var(--color-text-tertiary)',
+                color: 'var(--color-text-secondary)',
                 fontWeight: 'var(--font-weight-medium)'
               }}
             >
@@ -631,7 +631,7 @@ export default function HomePage() {
             <div 
               style={{
                 fontSize: 'var(--font-size-xs)',
-                color: 'var(--color-text-tertiary)',
+                color: 'var(--color-text-secondary)',
                 fontWeight: 'var(--font-weight-medium)'
               }}
             >
@@ -726,7 +726,7 @@ export default function HomePage() {
             <div 
               style={{
                 fontSize: 'var(--font-size-xs)',
-                color: 'var(--color-text-tertiary)',
+                color: 'var(--color-text-secondary)',
                 fontWeight: 'var(--font-weight-medium)'
               }}
             >
@@ -1091,7 +1091,7 @@ export default function HomePage() {
             </CardTitle>
             <CardDescription 
               style={{
-                color: 'rgba(255, 255, 255, 0.8)'
+                color: 'var(--color-text-secondary-on-wellness)'
               }}
             >
               Personalized tips to help you reach your goals
@@ -1229,7 +1229,7 @@ export default function HomePage() {
             </CardTitle>
             <CardDescription 
               style={{
-                color: 'rgba(255, 255, 255, 0.8)'
+                color: 'var(--color-text-secondary-on-nutrition)'
               }}
             >
               Today's nutritional breakdown
@@ -1267,7 +1267,7 @@ export default function HomePage() {
                 </span>
                 <span 
                   style={{
-                    color: 'rgba(255, 255, 255, 0.8)',
+                    color: 'var(--color-text-secondary-on-nutrition)',
                     fontSize: 'var(--font-size-sm)'
                   }}
                   data-testid="protein-count"
@@ -1319,7 +1319,7 @@ export default function HomePage() {
                 </span>
                 <span 
                   style={{
-                    color: 'rgba(255, 255, 255, 0.8)',
+                    color: 'var(--color-text-secondary-on-nutrition)',
                     fontSize: 'var(--font-size-sm)'
                   }}
                   data-testid="carbs-count"
@@ -1371,7 +1371,7 @@ export default function HomePage() {
                 </span>
                 <span 
                   style={{
-                    color: 'rgba(255, 255, 255, 0.8)',
+                    color: 'var(--color-text-secondary-on-nutrition)',
                     fontSize: 'var(--font-size-sm)'
                   }}
                   data-testid="fat-count"
@@ -1435,7 +1435,7 @@ export default function HomePage() {
                 <p 
                   style={{
                     fontSize: 'var(--font-size-xs)',
-                    color: 'rgba(255, 255, 255, 0.8)',
+                    color: 'var(--color-text-secondary-on-nutrition)',
                     fontWeight: 'var(--font-weight-medium)',
                     margin: 0
                   }}
@@ -1468,7 +1468,7 @@ export default function HomePage() {
                 <p 
                   style={{
                     fontSize: 'var(--font-size-xs)',
-                    color: 'rgba(255, 255, 255, 0.8)',
+                    color: 'var(--color-text-secondary-on-nutrition)',
                     fontWeight: 'var(--font-weight-medium)',
                     margin: 0
                   }}
@@ -1500,7 +1500,7 @@ export default function HomePage() {
                 <p 
                   style={{
                     fontSize: 'var(--font-size-xs)',
-                    color: 'rgba(255, 255, 255, 0.8)',
+                    color: 'var(--color-text-secondary-on-nutrition)',
                     fontWeight: 'var(--font-weight-medium)',
                     margin: 0
                   }}

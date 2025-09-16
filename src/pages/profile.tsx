@@ -134,11 +134,11 @@ export default function SettingsPage() {
     >
       <div className="flex items-center gap-4">
         <div className="icon-badge bg-white rounded-xl">
-          <Icon className="w-5 h-5 text-white" />
+          <Icon className="w-5 h-5" style={{ color: `var(--color-${semanticColor})` }} />
         </div>
         <div>
-          <p className="font-bold text-lg text-white">{title}</p>
-          {subtitle && <p className="mt-1 font-medium text-white">{subtitle}</p>}
+          <p className="font-bold text-lg" style={{ color: `var(--color-text-on-${semanticColor})` }}>{title}</p>
+          {subtitle && <p className="mt-1 font-medium" style={{ color: `var(--color-text-secondary-on-${semanticColor})` }}>{subtitle}</p>}
         </div>
       </div>
       
@@ -163,7 +163,7 @@ export default function SettingsPage() {
         </button>
       ) : showChevron ? (
         <div className="icon-badge icon-badge-sm bg-white rounded-lg">
-          <ChevronRight className="w-5 h-5 text-white" />
+          <ChevronRight className="w-5 h-5" style={{ color: `var(--color-${semanticColor})` }} />
         </div>
       ) : null}
     </div>
@@ -210,21 +210,21 @@ export default function SettingsPage() {
                   )}
                 </div>
                 <div className="absolute -bottom-2 -right-2 icon-badge icon-badge-lg bg-white/20 backdrop-blur-sm rounded-full flex-center shadow-xl">
-                  <User className="w-5 h-5 text-white" />
+                  <User className="w-5 h-5" style={{ color: 'var(--color-text-on-action)' }} />
                 </div>
               </div>
               <div className="flex-1">
-                <h2 className="font-black text-4xl text-white mb-3 drop-shadow-lg" data-testid="user-name">
+                <h2 className="font-black text-4xl mb-3 drop-shadow-lg" style={{ color: 'var(--color-text-on-action)' }} data-testid="user-name">
                   {isGuestMode ? (profileData.displayName || 'Guest User') : user?.displayName}
                 </h2>
-                <p className="text-white/90 font-bold text-xl flex-start gap-3 mb-2">
+                <p className="font-bold text-xl flex-start gap-3 mb-2" style={{ color: 'var(--color-text-secondary-on-action)' }}>
                   <span className="w-3 h-3 bg-white rounded-full shadow-lg"></span>
                   {isGuestMode ? 'Guest Session' : `Member since ${getMemberSinceDate()}`}
                 </p>
                 {isGuestMode && profileData.email ? (
-                  <p className="text-white/80 mt-3 font-medium text-lg" data-testid="user-email">{profileData.email}</p>
+                  <p className="mt-3 font-medium text-lg" style={{ color: 'var(--color-text-secondary-on-action)' }} data-testid="user-email">{profileData.email}</p>
                 ) : (!isGuestMode && user?.email && (
-                  <p className="text-white/80 mt-3 font-medium text-lg" data-testid="user-email">{user.email}</p>
+                  <p className="mt-3 font-medium text-lg" style={{ color: 'var(--color-text-secondary-on-action)' }} data-testid="user-email">{user.email}</p>
                 ))}
               </div>
             </div>
@@ -236,13 +236,13 @@ export default function SettingsPage() {
           <CardHeader className="card-header bg-gradient-to-r from-wellness/20 to-action/10 rounded-t-xl">
             <div className="flex-start gap-4">
               <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-2xl shadow-xl">
-                <Settings className="w-8 h-8 text-white" />
+                <Settings className="w-8 h-8" style={{ color: 'var(--color-text-on-wellness)' }} />
               </div>
               <div className="space-y-2">
-                <CardTitle className="card-title text-white text-3xl font-black drop-shadow-lg">
+                <CardTitle className="card-title text-3xl font-black drop-shadow-lg" style={{ color: 'var(--color-text-on-wellness)' }}>
                   Account Settings
                 </CardTitle>
-                <CardDescription className="card-description text-white/90 text-lg font-medium">
+                <CardDescription className="card-description text-lg font-medium" style={{ color: 'var(--color-text-secondary-on-wellness)' }}>
                   Manage your profile and app preferences
                 </CardDescription>
               </div>

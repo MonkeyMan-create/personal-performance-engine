@@ -94,8 +94,26 @@
   /* Text Colors */
   --color-text-primary: #1e293b; /* Primary text color */
   --color-text-secondary: #64748b; /* Secondary text color */
-  --color-text-tertiary: #94a3b8; /* Tertiary text color */
+  --color-text-tertiary: #64748b; /* FIXED: Changed from #94a3b8 to #64748b for WCAG AA compliance */
   --color-text-disabled: #cbd5e1; /* Disabled text color */
+  
+  /* CONTRAST-SAFE TEXT COLORS FOR SEMANTIC BACKGROUNDS */
+  --color-text-on-action: #ffffff; /* White text on action color backgrounds */
+  --color-text-on-activity: #ffffff; /* White text on activity color backgrounds */
+  --color-text-on-nutrition: #ffffff; /* White text on nutrition color backgrounds */
+  --color-text-on-wellness: #ffffff; /* White text on wellness color backgrounds */
+  --color-text-on-success: #ffffff; /* White text on success color backgrounds */
+  --color-text-on-warning: #ffffff; /* White text on warning color backgrounds */
+  --color-text-on-error: #ffffff; /* White text on error color backgrounds */
+  
+  /* IMPROVED SECONDARY TEXT ON SEMANTIC BACKGROUNDS - 90% opacity for better contrast */
+  --color-text-secondary-on-action: rgba(255, 255, 255, 0.9); /* 90% white on action backgrounds */
+  --color-text-secondary-on-activity: rgba(255, 255, 255, 0.9); /* 90% white on activity backgrounds */
+  --color-text-secondary-on-nutrition: rgba(255, 255, 255, 0.9); /* 90% white on nutrition backgrounds */
+  --color-text-secondary-on-wellness: rgba(255, 255, 255, 0.9); /* 90% white on wellness backgrounds */
+  --color-text-secondary-on-success: rgba(255, 255, 255, 0.9); /* 90% white on success backgrounds */
+  --color-text-secondary-on-warning: rgba(255, 255, 255, 0.9); /* 90% white on warning backgrounds */
+  --color-text-secondary-on-error: rgba(255, 255, 255, 0.9); /* 90% white on error backgrounds */
   
   /* Border Colors */
   --color-border: #e2e8f0; /* Primary border color */

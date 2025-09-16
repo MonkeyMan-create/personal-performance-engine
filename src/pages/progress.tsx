@@ -257,7 +257,7 @@ export default function ProgressPage() {
               <div className="section-header">
                 <h2 className="text-2xl font-bold text-primary flex-start gap-3">
                   <div className="icon-badge icon-badge-action">
-                    <Trophy className="w-6 h-6 text-white" />
+                    <Trophy className="w-6 h-6" style={{ color: 'var(--color-text-on-action)' }} />
                   </div>
                   My Highlights
                 </h2>
@@ -270,11 +270,11 @@ export default function ProgressPage() {
                 >
                   <CardContent className="card-content text-center space-y-4 aspect-square flex-col-center p-6">
                     <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-full flex-center shadow-xl">
-                      <Dumbbell className="w-8 h-8 text-white" />
+                      <Dumbbell className="w-8 h-8" style={{ color: 'var(--color-text-on-activity)' }} />
                     </div>
                     <div className="space-y-2">
-                      <div data-testid="text-total-workouts" className="text-4xl font-black text-white drop-shadow-lg">{workoutStats.totalWorkouts}</div>
-                      <div className="text-sm font-bold text-white/90 uppercase tracking-wider">Total Workouts</div>
+                      <div data-testid="text-total-workouts" className="text-4xl font-black drop-shadow-lg" style={{ color: 'var(--color-text-on-activity)' }}>{workoutStats.totalWorkouts}</div>
+                      <div className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-on-activity)', opacity: 0.9 }}>Total Workouts</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -285,11 +285,11 @@ export default function ProgressPage() {
                 >
                   <CardContent className="card-content text-center space-y-4 aspect-square flex-col-center p-6">
                     <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-full flex-center shadow-xl">
-                      <Calendar className="w-8 h-8 text-white" />
+                      <Calendar className="w-8 h-8" style={{ color: 'var(--color-text-on-activity)' }} />
                     </div>
                     <div className="space-y-2">
-                      <div data-testid="text-day-streak" className="text-4xl font-black text-white drop-shadow-lg">{workoutStats.currentStreak}</div>
-                      <div className="text-sm font-bold text-white/90 uppercase tracking-wider">Day Streak</div>
+                      <div data-testid="text-day-streak" className="text-4xl font-black drop-shadow-lg" style={{ color: 'var(--color-text-on-activity)' }}>{workoutStats.currentStreak}</div>
+                      <div className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-on-activity)', opacity: 0.9 }}>Day Streak</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -300,11 +300,11 @@ export default function ProgressPage() {
                 >
                   <CardContent className="card-content text-center space-y-4 aspect-square flex-col-center p-6">
                     <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-full flex-center shadow-xl">
-                      <Apple className="w-8 h-8 text-white" />
+                      <Apple className="w-8 h-8" style={{ color: 'var(--color-text-on-activity)' }} />
                     </div>
                     <div className="space-y-2">
-                      <div data-testid="text-meals-logged" className="text-4xl font-black text-white drop-shadow-lg">{nutritionStats.totalMealsLogged}</div>
-                      <div className="text-sm font-bold text-white/90 uppercase tracking-wider">Meals Logged</div>
+                      <div data-testid="text-meals-logged" className="text-4xl font-black drop-shadow-lg" style={{ color: 'var(--color-text-on-activity)' }}>{nutritionStats.totalMealsLogged}</div>
+                      <div className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-on-activity)', opacity: 0.9 }}>Meals Logged</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -315,11 +315,11 @@ export default function ProgressPage() {
                 >
                   <CardContent className="card-content text-center space-y-4 aspect-square flex-col-center p-6">
                     <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-full flex-center shadow-xl">
-                      <Flame className="w-8 h-8 text-white" />
+                      <Flame className="w-8 h-8" style={{ color: 'var(--color-text-on-activity)' }} />
                     </div>
                     <div className="space-y-2">
-                      <div data-testid="text-avg-calories" className="text-4xl font-black text-white drop-shadow-lg">{nutritionStats.averageCaloriesPerDay}</div>
-                      <div className="text-sm font-bold text-white/90 uppercase tracking-wider">Avg Calories/Day</div>
+                      <div data-testid="text-avg-calories" className="text-4xl font-black drop-shadow-lg" style={{ color: 'var(--color-text-on-activity)' }}>{nutritionStats.averageCaloriesPerDay}</div>
+                      <div className="text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--color-text-on-activity)', opacity: 0.9 }}>Avg Calories/Day</div>
                     </div>
                   </CardContent>
                 </Card>
@@ -335,7 +335,7 @@ export default function ProgressPage() {
                 <CardHeader className="card-header bg-gradient-to-r from-action/10 to-activity/5 rounded-t-xl">
                   <div className="flex-start gap-3">
                     <div className="icon-badge icon-badge-action">
-                      <TrendingUp className="w-6 h-6 text-white" />
+                      <TrendingUp className="w-6 h-6" style={{ color: 'var(--color-text-on-action)' }} />
                     </div>
                     <CardTitle className="card-title text-primary text-2xl font-bold">Weight Trend Analysis</CardTitle>
                   </div>
@@ -396,7 +396,7 @@ export default function ProgressPage() {
                   >
                     <div className="flex-start gap-4">
                       <div className="icon-badge icon-badge-lg bg-action rounded-xl shadow-lg">
-                        <TrendingUp className="w-5 h-5 text-white" />
+                        <TrendingUp className="w-5 h-5" style={{ color: 'var(--color-text-on-action)' }} />
                       </div>
                       <div className="space-y-2">
                         <h4 className="font-bold text-xl text-primary">Weight Progress Insight</h4>
@@ -446,7 +446,7 @@ export default function ProgressPage() {
                 <CardHeader className="card-header bg-gradient-to-r from-wellness/10 to-action/5 rounded-t-xl">
                   <div className="flex-start gap-3">
                     <div className="icon-badge icon-badge-wellness">
-                      <TrendingUp className="w-6 h-6 text-white" />
+                      <TrendingUp className="w-6 h-6" style={{ color: 'var(--color-text-on-action)' }} />
                     </div>
                     <CardTitle className="card-title text-primary text-2xl font-bold">Weight Trend Analysis</CardTitle>
                   </div>
@@ -457,7 +457,7 @@ export default function ProgressPage() {
                 <CardContent className="card-content p-8">
                   <div className="action-item text-center space-y-4">
                     <div className="icon-badge icon-badge-2xl bg-gradient-to-br from-wellness to-action rounded-full flex-center mx-auto shadow-2xl">
-                      <TrendingUp className="w-10 h-10 text-white" />
+                      <TrendingUp className="w-10 h-10" style={{ color: 'var(--color-text-on-action)' }} />
                     </div>
                     <h4 className="font-bold text-2xl text-primary mb-3">Ready to Track Your Progress?</h4>
                     <p className="text-lg text-secondary leading-relaxed max-w-md mx-auto">
@@ -473,7 +473,7 @@ export default function ProgressPage() {
               <div className="section-header">
                 <h2 className="text-2xl font-bold text-primary flex-start gap-3">
                   <div className="icon-badge icon-badge-success">
-                    <Trophy className="w-6 h-6 text-white" />
+                    <Trophy className="w-6 h-6" style={{ color: 'var(--color-text-on-action)' }} />
                   </div>
                   Badges & Achievements
                 </h2>
@@ -486,11 +486,11 @@ export default function ProgressPage() {
                 <CardHeader className="card-header bg-gradient-to-r from-success/20 to-activity/10 rounded-t-xl">
                   <div className="flex-start gap-3">
                     <div className="icon-badge icon-badge-xl bg-white/20 backdrop-blur-sm rounded-xl shadow-lg">
-                      <Trophy className="w-8 h-8 text-white" />
+                      <Trophy className="w-8 h-8" style={{ color: 'var(--color-text-on-activity)' }} />
                     </div>
                     <div className="space-y-1">
-                      <CardTitle className="card-title text-white text-2xl font-bold">Your Achievements</CardTitle>
-                      <CardDescription className="card-description text-white/90 text-lg">
+                      <CardTitle className="card-title text-2xl font-bold" style={{ color: 'var(--color-text-on-action)' }}>Your Achievements</CardTitle>
+                      <CardDescription className="card-description text-lg" style={{ color: 'var(--color-text-on-action)', opacity: 0.9 }}>
                         Unlock badges by hitting milestones in your fitness journey!
                       </CardDescription>
                     </div>
@@ -583,7 +583,7 @@ export default function ProgressPage() {
                                 <div className={`w-16 h-16 mx-auto rounded-2xl flex-center backdrop-blur-sm shadow-xl transition-all duration-300 group-hover:scale-110 ${
                                   achievement.earned ? 'bg-white/25' : 'bg-white/15'
                                 }`}>
-                                  <IconComponent className="w-8 h-8 text-white" />
+                                  <IconComponent className="w-8 h-8" style={{ color: 'var(--color-text-on-activity)' }} />
                                 </div>
                                 
                                 {/* Achievement checkmark */}
@@ -624,13 +624,15 @@ export default function ProgressPage() {
                               <div className="space-y-1">
                                 <h4 
                                   data-testid={`text-badge-title-${achievement.id}`}
-                                  className="text-sm font-black text-white drop-shadow-lg"
+                                  className="text-sm font-black drop-shadow-lg"
+                                  style={{ color: 'var(--color-text-on-action)' }}
                                 >
                                   {achievement.title}
                                 </h4>
                                 <p 
                                   data-testid={`text-badge-progress-${achievement.id}`}
-                                  className="text-xs text-white/90 font-medium"
+                                  className="text-xs font-medium"
+                                  style={{ color: 'var(--color-text-on-action)', opacity: 0.9 }}
                                 >
                                   {achievement.earned ? '✓ Earned!' : `${achievement.current}/${achievement.target}`}
                                 </p>

@@ -91,7 +91,8 @@ const PageLoadingFallback = () => (
       <div className="relative">
         <div className="w-16 h-16 bg-gradient-to-br from-primary/80 to-primary rounded-2xl flex items-center justify-center shadow-2xl ring-4 ring-primary/30 mx-auto">
           <svg 
-            className="w-8 h-8 text-white animate-pulse" 
+            className="w-8 h-8 animate-pulse"
+            style={{ color: 'var(--color-text-on-activity)' }} 
             viewBox="0 0 24 24" 
             fill="none" 
             stroke="currentColor" 

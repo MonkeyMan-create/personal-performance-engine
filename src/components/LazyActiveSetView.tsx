@@ -23,7 +23,7 @@ const ActiveSetLoadingFallback = () => (
       <CardContent className="text-center space-y-4">
         <div className="relative">
           <div className="w-16 h-16 bg-gradient-to-br from-primary/80 to-primary rounded-2xl flex items-center justify-center shadow-2xl ring-4 ring-primary/30 mx-auto">
-            <Dumbbell className="w-8 h-8 text-white" />
+            <Dumbbell className="w-8 h-8" style={{ color: 'var(--color-text-on-activity)' }} />
           </div>
           <div className="absolute inset-0 w-16 h-16 bg-gradient-to-br from-primary/80 to-primary rounded-2xl blur-xl opacity-30 animate-pulse mx-auto"></div>
         </div>

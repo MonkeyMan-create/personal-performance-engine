@@ -263,7 +263,8 @@ export default function WorkoutsPage() {
               <div className="flex gap-3">
                 <Button
                   onClick={handleFinishWorkout}
-                  className="button-base button-default bg-success hover:bg-success/90 text-white shadow-lg hover:shadow-xl font-semibold px-6"
+                  className="button-base button-default bg-success hover:bg-success/90 shadow-lg hover:shadow-xl font-semibold px-6"
+                  style={{ color: 'var(--color-text-on-success)' }}
                   data-testid="button-finish-workout"
                 >
                   <CheckCircle className="w-4 h-4 mr-2" />
@@ -311,7 +312,8 @@ export default function WorkoutsPage() {
                         <Button
                           onClick={() => handleSelectExercise(exercise.name)}
                           size="sm"
-                          className="button-base button-default bg-activity hover:bg-activity/90 text-white shadow-md font-medium ml-4"
+                          className="button-base button-default bg-activity hover:bg-activity/90 shadow-md font-medium ml-4"
+                          style={{ color: 'var(--color-text-on-activity)' }}
                           data-testid={`button-continue-exercise-${exercise.name.toLowerCase().replace(/\s+/g, '-')}`}
                         >
                           <Play className="w-4 h-4 mr-2" />
@@ -415,7 +417,8 @@ export default function WorkoutsPage() {
                 <Button
                   onClick={handleCompleteWorkout}
                   disabled={isLoading}
-                  className="flex-1 button-base button-default bg-success hover:bg-success/90 text-white shadow-lg hover:shadow-xl font-bold text-lg py-3"
+                  className="flex-1 button-base button-default bg-success hover:bg-success/90 shadow-lg hover:shadow-xl font-bold text-lg py-3"
+                  style={{ color: 'var(--color-text-on-success)' }}
                   data-testid="button-complete-workout"
                 >
                   {isLoading ? (
@@ -472,13 +475,13 @@ export default function WorkoutsPage() {
 
             <Card className="card-activity">
               <CardHeader>
-                <CardTitle className="text-white flex-start gap-3">
+                <CardTitle className="flex-start gap-3" style={{ color: 'var(--color-text-on-activity)' }}>
                   <div className="icon-badge bg-white/20 backdrop-blur-sm">
-                    <Calendar className="w-5 h-5 text-white" />
+                    <Calendar className="w-5 h-5" style={{ color: 'var(--color-text-on-activity)' }} />
                   </div>
                   Recent Workouts
                 </CardTitle>
-                <CardDescription className="text-white/80">
+                <CardDescription style={{ color: 'var(--color-text-on-activity)', opacity: 0.8 }}>
                   Your logged workouts and exercise sessions {isGuestMode && '(Guest Mode - stored locally)'}
                 </CardDescription>
               </CardHeader>
@@ -601,7 +604,8 @@ export default function WorkoutsPage() {
             <div className="grid-2 gap-4">
               <Button
                 onClick={() => setShowTemplateSelector(true)}
-                className="button-base bg-action hover:bg-action/90 text-white shadow-lg hover:shadow-xl font-bold py-4 text-lg h-auto"
+                className="button-base bg-action hover:bg-action/90 shadow-lg hover:shadow-xl font-bold py-4 text-lg h-auto"
+                style={{ color: 'var(--color-text-on-action)' }}
                 data-testid="button-find-workout"
               >
                 <Search className="w-6 h-6 mr-3" />
@@ -629,38 +633,38 @@ export default function WorkoutsPage() {
                 <CardContent className="p-6">
                   <div className="flex-between mb-4">
                     <div className="space-y-2">
-                      <p className="text-sm font-medium text-white/80 uppercase tracking-wider">YOUR NEXT WORKOUT</p>
-                      <h3 className="text-2xl font-bold text-white">{recommendedWorkout.title}</h3>
-                      <p className="text-white/90">{recommendedWorkout.description}</p>
+                      <p className="text-sm font-medium uppercase tracking-wider" style={{ color: 'var(--color-text-on-action)', opacity: 0.8 }}>YOUR NEXT WORKOUT</p>
+                      <h3 className="text-2xl font-bold" style={{ color: 'var(--color-text-on-action)' }}>{recommendedWorkout.title}</h3>
+                      <p style={{ color: 'var(--color-text-on-action)', opacity: 0.9 }}>{recommendedWorkout.description}</p>
                     </div>
                     <div className="p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
-                      <recommendedWorkout.icon className="w-8 h-8 text-white" />
+                      <recommendedWorkout.icon className="w-8 h-8" style={{ color: 'var(--color-text-on-action)' }} />
                     </div>
                   </div>
                   
                   <div className="grid-2 gap-4">
                     <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm text-center">
                       <div className="flex-center gap-2 mb-1">
-                        <Clock className="w-4 h-4 text-white" />
-                        <span className="text-sm text-white/80">Duration</span>
+                        <Clock className="w-4 h-4" style={{ color: 'var(--color-text-on-action)' }} />
+                        <span className="text-sm" style={{ color: 'var(--color-text-on-action)', opacity: 0.8 }}>Duration</span>
                       </div>
-                      <p className="text-lg font-bold text-white">{recommendedWorkout.duration} min</p>
+                      <p className="text-lg font-bold" style={{ color: 'var(--color-text-on-action)' }}>{recommendedWorkout.duration} min</p>
                     </div>
                     <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm text-center">
                       <div className="flex-center gap-2 mb-1">
-                        <Target className="w-4 h-4 text-white" />
-                        <span className="text-sm text-white/80">Exercises</span>
+                        <Target className="w-4 h-4" style={{ color: 'var(--color-text-on-action)' }} />
+                        <span className="text-sm" style={{ color: 'var(--color-text-on-action)', opacity: 0.8 }}>Exercises</span>
                       </div>
-                      <p className="text-lg font-bold text-white">{recommendedWorkout.exercises} exercises</p>
+                      <p className="text-lg font-bold" style={{ color: 'var(--color-text-on-action)' }}>{recommendedWorkout.exercises} exercises</p>
                     </div>
                   </div>
                   
                   <div className="mt-4 flex-between">
                     <div className="flex-start gap-3">
-                      <span className="badge-base bg-white/20 text-white border-white/30">
+                      <span className="badge-base bg-white/20 border-white/30" style={{ color: 'var(--color-text-on-action)' }}>
                         Difficulty: {recommendedWorkout.difficulty}
                       </span>
-                      <span className="badge-base bg-white/20 text-white border-white/30">
+                      <span className="badge-base bg-white/20 border-white/30" style={{ color: 'var(--color-text-on-action)' }}>
                         Type: {recommendedWorkout.type}
                       </span>
                     </div>
@@ -734,13 +738,13 @@ export default function WorkoutsPage() {
             {workouts.length > 0 && (
               <Card className="card-activity">
                 <CardHeader>
-                  <CardTitle className="text-white flex-start gap-3">
+                  <CardTitle className="flex-start gap-3" style={{ color: 'var(--color-text-on-activity)' }}>
                     <div className="icon-badge bg-white/20 backdrop-blur-sm">
-                      <Clock className="w-5 h-5 text-white" />
+                      <Clock className="w-5 h-5" style={{ color: 'var(--color-text-on-activity)' }} />
                     </div>
                     Recent Activity
                   </CardTitle>
-                  <CardDescription className="text-white/80">
+                  <CardDescription style={{ color: 'var(--color-text-on-activity)', opacity: 0.8 }}>
                     Your latest workout sessions
                   </CardDescription>
                 </CardHeader>
